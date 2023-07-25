@@ -91,6 +91,10 @@ fun getNonDynamicTheme(
     isSystemDark: Boolean,
     selectedType: Theme
 ): ColorScheme {
+
+    println("------------------------------------" + isSystemDark)
+    println("------------------------------------" + selectedType.name.toString())
+
     return when (selectedType) {
         Theme.SYSTEM -> if (isSystemDark) DarkColorScheme else LightColorScheme
         Theme.LIGHT -> LightColorScheme
