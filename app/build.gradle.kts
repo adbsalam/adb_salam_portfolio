@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "uk.adbsalam.portfolio"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "uk.adbsalam.portfolio"

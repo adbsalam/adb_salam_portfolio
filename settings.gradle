@@ -12,10 +12,11 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "adb_salam_portfolio"
+rootProject.name = "ADBsalam"
 include ':app'
 include ':ui'
 include ':ui:theming'
 include ':startup'
 include ':startup:data'
 include ':startup:feature'
+include ':ui:components'

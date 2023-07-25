@@ -20,13 +20,15 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 private val DarkColorScheme = darkColorScheme(
     primary = primary_dark,
     secondary = secondary_dark,
-    tertiary = tertiary_dark
+    tertiary = tertiary_dark,
+    background = primary_dark
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = primary_light,
     secondary = secondary_light,
-    tertiary = tertiary_light
+    tertiary = tertiary_light,
+    background = Color.White
 )
 
 @Composable
@@ -50,7 +52,10 @@ fun Adb_Theme(
         color = Color.Transparent
     )
 
-//    val view = LocalView.current
+    val view = LocalView.current
+    val window = (view.context as Activity).window
+    WindowCompat.setDecorFitsSystemWindows(window, false)
+
 //    if (!view.isInEditMode) {
 //        SideEffect {
 //            val window = (view.context as Activity).window
