@@ -27,6 +27,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":utils"))
     implementation(libs.app.compat)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)

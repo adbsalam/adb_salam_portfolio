@@ -1,50 +1,52 @@
 package uk.adbsalam.portfolio.theming
 
 import android.app.Activity
+import android.content.Context
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import uk.adbsalam.portfolio.utils.Theme
 
 private val DarkColorScheme = darkColorScheme(
     primary = primary_dark,
     secondary = secondary_dark,
     tertiary = tertiary_dark,
-    background = primary_dark
+    background = secondary_dark
 )
 
 private val LightColorScheme = lightColorScheme(
     primary = primary_light,
     secondary = secondary_light,
     tertiary = tertiary_light,
-    background = Color.White
+    background = Color.White,
 )
 
+/**
+ *
+ */
 @Composable
 fun Adb_Theme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    dynamicColor: Boolean = true,
+    themeType: Theme = Theme.SYSTEM,
+    dynamic: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
+    val context = LocalContext.current
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+    val sch: ColorScheme = if (dynamic) {
+        getDynamicScheme(isSystemInDarkTheme(), themeType, context)
+    } else {
+        getNonDynamicTheme(isSystemInDarkTheme(), themeType)
     }
 
     val systemUiController = rememberSystemUiController()
@@ -53,20 +55,45 @@ fun Adb_Theme(
     )
 
     val view = LocalView.current
-    val window = (view.context as Activity).window
-    WindowCompat.setDecorFitsSystemWindows(window, false)
 
-//    if (!view.isInEditMode) {
-//        SideEffect {
-//            val window = (view.context as Activity).window
-//            window.statusBarColor = colorScheme.primary.toArgb()
-//            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
-//        }
-//    }
+    if (!view.isInEditMode) {
+        val window = (view.context as Activity).window
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+    }
 
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = sch,
         typography = MaterialTheme.typography,
         content = content
     )
+}
+
+/**
+ *
+ */
+fun getDynamicScheme(
+    isSystemDark: Boolean,
+    selectedType: Theme,
+    context: Context
+): ColorScheme {
+    return when (selectedType) {
+        Theme.LIGHT -> dynamicLightColorScheme(context)
+        Theme.DARK -> dynamicDarkColorScheme(context)
+        Theme.SYSTEM ->
+            if (isSystemDark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+    }
+}
+
+/**
+ *
+ */
+fun getNonDynamicTheme(
+    isSystemDark: Boolean,
+    selectedType: Theme
+): ColorScheme {
+    return when (selectedType) {
+        Theme.SYSTEM -> if (isSystemDark) DarkColorScheme else LightColorScheme
+        Theme.LIGHT -> LightColorScheme
+        Theme.DARK -> DarkColorScheme
+    }
 }

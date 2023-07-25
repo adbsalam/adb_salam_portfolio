@@ -8,6 +8,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.utils.Theme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -15,7 +16,9 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            Adb_Theme {
+            Adb_Theme(
+                themeType = Theme.DARK
+            ) {
                 Surface(modifier = Modifier.fillMaxSize()) {
                     LoadingScreen()
                 }

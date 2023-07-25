@@ -41,6 +41,8 @@ snapIt {
 dependencies {
     implementation(project(":ui:theming"))
     implementation(project(":ui:components"))
+    implementation(project(":core:prefs"))
+    implementation(project(":utils"))
 
     implementation(libs.app.compat)
     implementation(libs.compose.activity)
@@ -50,6 +52,7 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.ui.tooling)
+    implementation(libs.hilt.navigation)
 
     kapt(libs.hilt.compiler)
     implementation(libs.hilt.android)
