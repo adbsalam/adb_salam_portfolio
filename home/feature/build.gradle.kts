@@ -38,6 +38,7 @@ snapIt {
 
 dependencies {
     implementation(project(":ui:components"))
+    implementation(project(":settings:feature"))
     implementation(project(":utils"))
 
     implementation(libs.app.compat)
@@ -47,4 +48,5 @@ dependencies {
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.material.icons.extended)
 }

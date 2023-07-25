@@ -30,6 +30,7 @@ private val LightColorScheme = lightColorScheme(
     secondary = secondary_light,
     tertiary = tertiary_light,
     background = Color.White,
+    secondaryContainer = secondary_container_light
 )
 
 /**
@@ -91,10 +92,6 @@ fun getNonDynamicTheme(
     isSystemDark: Boolean,
     selectedType: Theme
 ): ColorScheme {
-
-    println("------------------------------------" + isSystemDark)
-    println("------------------------------------" + selectedType.name.toString())
-
     return when (selectedType) {
         Theme.SYSTEM -> if (isSystemDark) DarkColorScheme else LightColorScheme
         Theme.LIGHT -> LightColorScheme

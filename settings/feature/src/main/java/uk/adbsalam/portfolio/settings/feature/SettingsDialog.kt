@@ -15,11 +15,11 @@ fun SettingsDialog(
     isDynamic: Boolean,
     theme: Theme,
     onDynamicColor: (Boolean) -> Unit,
-    onTheme: (Theme) -> Unit
+    onTheme: (Theme) -> Unit,
+    onDismiss: () -> Unit
 ) {
 
     val openDialog = remember { mutableStateOf(true) }
-
 
     if (openDialog.value) {
         AlertDialog(
@@ -33,7 +33,10 @@ fun SettingsDialog(
                 theme = theme,
                 onDynamicColor = onDynamicColor,
                 onTheme = onTheme,
-                onDismiss = { openDialog.value = false }
+                onDismiss = {
+                    openDialog.value = false
+                    onDismiss()
+                }
             )
 
         }
@@ -47,6 +50,7 @@ fun SettingsDialogPreview() {
         isDynamic = false,
         theme = Theme.SYSTEM,
         onDynamicColor = { /** unused **/ },
-        onTheme = { /** unused **/ }
+        onTheme = { /** unused **/ },
+        onDismiss = { /** unused **/ }
     )
 }

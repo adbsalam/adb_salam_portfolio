@@ -51,6 +51,8 @@ private fun StartupScreen(
             when (uiState) {
                 StartupState.OnLoading -> LoadingScreen()
                 StartupState.OnStart -> HomeScreen(
+                    theme = theme,
+                    isDynamicColor = dynamicColor,
                     onTheme = onTheme,
                     onDynamicColor = onDynamicColor,
                 )
