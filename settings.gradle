@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "adb_salam_portfolio"
 include ':app'
+include ':ui'
+include ':ui:theming'

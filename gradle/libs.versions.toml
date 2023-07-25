@@ -1,0 +1,93 @@
+[versions]
+hilt = "2.44.2"
+ktx-core = "1.7.20"
+app-compat = "1.6.1"
+material = "1.8.0"
+junit = "4.13.2"
+junit-ui = "1.1.5"
+espresso = "3.5.1"
+gson = "2.9.0"
+lotti = "5.2.0"
+hilt-navigation = "1.1.0-alpha01"
+compose-activity = "1.4.0"
+compose-bom = "2023.06.01"
+compose-navigation = "2.5.1"
+retrofit = "2.9.0"
+okhttp = "4.9.1"
+room = "2.5.0"
+mockk = "1.13.4"
+coroutines = "1.6.4"
+reflection = "1.8.10"
+room-ktx = "2.2.1"
+play = "21.0.1"
+bcrypt = "0.4"
+sys-ui = "0.28.0"
+hilt-work = "1.0.0"
+ktx-work = "2.8.1"
+camera-x = "1.2.1"
+camera-preview = "1.0.0-alpha27"
+coil = "2.2.0"
+paparazzi = "1.3.0"
+android-gradle-plugin = "8.0.2"
+kotlin = "1.8.21"
+hilt-plugin = "2.44"
+compose-compiler = "1.4.7"
+ksp = "1.8.21-1.0.11"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
+android-library = { id = "com.android.library", version.ref = "android-gradle-plugin" }
+android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+android-hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt-plugin" }
+google-services = { id = "com.google.gms.google-services", version = "4.3.15" }
+paparazzi = { id = "app.cash.paparazzi", version = "1.3.0" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+snapit = { id = "uk.adbsalam.snapit", version = "1.0.5" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+[libraries]
+app-compat = { group = "androidx.appcompat", name = "appcompat", version.ref = "app-compat" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-material = { group = "androidx.compose.material3", name = "material3" }
+compose-nav = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+compose-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+compose-junit = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+compose-lotti = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lotti" }
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose-activity" }
+compose-system-ui = { group = "com.google.accompanist", name = "accompanist-systemuicontroller", version.ref = "sys-ui" }
+compose-coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+camera-x = { group = "androidx.camera", name = "camera-camera2", version.ref = "camera-x" }
+camera-x-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "camera-x" }
+camera-x-view = { group = "androidx.camera", name = "camera-view", version.ref = "camera-preview" }
+
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
+hilt-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "hilt" }
+hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hilt-work" }
+hilt-navigation = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation" }
+ktx-core = { group = "androidx.core", name = "core-ktx", version.ref = "ktx-core" }
+ktx-work = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "ktx-work" }
+ktx-reflection = { group = "org.jetbrains.kotlin", name = "kotlin-reflect", version.ref = "reflection" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "play" }
+
+okhttp = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room-ktx" }
+
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+junit-ui = { group = "androidx.test.ext", name = "junit", version.ref = "junit-ui" }
+espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
+coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+paparazzi = { group = "app.cash.paparazzi", name = "paparazzi", version.ref = "paparazzi" }
