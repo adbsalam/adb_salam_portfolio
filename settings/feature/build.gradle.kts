@@ -38,6 +38,7 @@ snapIt {
 
 dependencies {
     implementation(project(":ui:components"))
+    implementation(project(":ui:theming"))
     implementation(project(":utils"))
 
     implementation(libs.app.compat)

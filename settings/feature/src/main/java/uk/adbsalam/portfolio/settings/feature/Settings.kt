@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.settings.feature
 
+import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,6 +24,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import uk.adbsalam.portfolio.components.RadioGroup
+import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
 
 @Composable
@@ -113,14 +115,25 @@ internal fun SettingsScreen(
     }
 }
 
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_YES,
+    name = "DefaultPreviewDark"
+)
+@Preview(
+    uiMode = Configuration.UI_MODE_NIGHT_NO,
+    name = "DefaultPreviewLight"
+)
 @Composable
 @Preview
 fun SettingsScreenPreview() {
-    SettingsScreen(
-        isDynamic = false,
-        theme = Theme.SYSTEM,
-        onDynamicColor = { /** unused **/ },
-        onTheme = { /** unused **/ },
-        onDismiss = { /** unused **/ }
-    )
+    Adb_Theme {
+        SettingsScreen(
+            isDynamic = false,
+            theme = Theme.SYSTEM,
+            onDynamicColor = { /** unused **/ },
+            onTheme = { /** unused **/ },
+            onDismiss = { /** unused **/ }
+        )
+    }
+
 }

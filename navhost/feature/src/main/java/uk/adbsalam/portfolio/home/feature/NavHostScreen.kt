@@ -1,54 +1,51 @@
 package uk.adbsalam.portfolio.home.feature
 
-import androidx.compose.foundation.clickable
+import androidx.compose.animation.animateContentSize
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material3.Icon
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import uk.adbsalam.portfolio.home.feature.navbar.HomeBottomNavBar
-import uk.adbsalam.portfolio.settings.feature.SettingsDialog
+import androidx.compose.ui.graphics.Color
 import uk.adbsalam.portfolio.utils.Theme
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NavHostScreen(
-    theme: Theme,
-    isDynamicColor: Boolean,
     onTheme: (Theme) -> Unit,
     onDynamicColor: (Boolean) -> Unit
 ) {
-    val settings = remember { mutableStateOf(false) }
+    val pagerState = rememberPagerState()
 
-    Box(
-        modifier = Modifier.fillMaxSize(),
-    ) {
-        Icon(
-            imageVector = Icons.Default.Settings,
-            contentDescription = "",
-            modifier = Modifier
-                .align(Alignment.Center)
-                .clickable {
-                    settings.value = true
-                }
-        )
+    val pages = createPageList(
+        onTheme = onTheme,
+        onDynamicColor = onDynamicColor
+    )
 
-        if (settings.value) {
-            SettingsDialog(
-                isDynamic = isDynamicColor,
-                theme = theme,
-                onDynamicColor = onDynamicColor,
-                onTheme = onTheme,
-                onDismiss = { settings.value = false }
-            )
+    val pagerModel = PagerModel(
+        pagerState = pagerState,
+        pagerList = pages,
+    )
+
+
+    Scaffold(
+        containerColor = Color.Unspecified,
+        bottomBar = {
+            HomeBottomNavBar(pagerModel = pagerModel)
         }
-
-        HomeBottomNavBar(
-            modifier = Modifier.align(Alignment.BottomCenter)
-        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .animateContentSize()
+                .padding(bottom = it.calculateBottomPadding())
+        ) {
+            AppPager(pagerModel)
+        }
     }
+
 }
