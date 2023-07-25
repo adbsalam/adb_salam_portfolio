@@ -24,5 +24,4 @@ include ':ui:components'
 
 include ':utils'
 include ':settings:feature'
-include ':home'
-include ':home:feature'
+include ':navhost:feature'

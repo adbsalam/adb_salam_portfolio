@@ -41,7 +41,7 @@ snapIt {
 dependencies {
     implementation(project(":ui:theming"))
     implementation(project(":ui:components"))
-    implementation(project(":home:feature"))
+    implementation(project(":navhost:feature"))
     implementation(project(":core:prefs"))
     implementation(project(":utils"))
 

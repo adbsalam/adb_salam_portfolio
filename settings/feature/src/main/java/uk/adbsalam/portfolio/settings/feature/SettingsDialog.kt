@@ -25,7 +25,9 @@ fun SettingsDialog(
         AlertDialog(
             onDismissRequest = { openDialog.value = false },
             properties = DialogProperties(
-                usePlatformDefaultWidth = false
+                usePlatformDefaultWidth = false,
+                dismissOnBackPress = false,
+                dismissOnClickOutside = false
             )
         ) {
             SettingsScreen(

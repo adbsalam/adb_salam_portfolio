@@ -14,6 +14,6 @@ enum class BottomNavItem(
 ) {
     HOME("Home", Icons.Default.Home, "home"),
     INFO("Info", Icons.Default.Info, "info"),
-    VIDEOS("videos", Icons.Default.Movie, "videos"),
-    REVIEWS("reviews", Icons.Default.Forum, "reviews")
+    VIDEOS("Videos", Icons.Default.Movie, "videos"),
+    REVIEWS("Reviews", Icons.Default.Forum, "reviews")
 }

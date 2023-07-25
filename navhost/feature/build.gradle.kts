@@ -9,7 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "uk.adbsalam.portfolio.home.feature"
+    namespace = "uk.adbsalam.portfolio.navhost.feature"
     compileSdk = 33
 
     defaultConfig {
@@ -32,7 +32,7 @@ android {
 }
 
 snapIt {
-    testDir = "src/test/java/uk/adbsalam/portfolio/home/feature"
+    testDir = "src/test/java/uk/adbsalam/portfolio/navhost/feature"
     flavor = "debug"
 }
 
