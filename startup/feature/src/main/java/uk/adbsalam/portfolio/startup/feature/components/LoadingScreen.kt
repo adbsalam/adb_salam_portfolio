@@ -6,16 +6,12 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -58,8 +54,8 @@ internal fun LoadingScreen() {
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(bottom = 100.dp)
-                    .size(60.dp),
-                strokeWidth = 6.dp
+                    .size(50.dp),
+                strokeWidth = 4.dp
             )
         }
     }
@@ -75,45 +71,8 @@ internal fun LoadingScreen() {
     name = "DefaultPreviewLight"
 )
 @SnapIt(name = "LoadingScreen - should render correctly")
-fun LoadingScreenPreview() {
+internal fun LoadingScreenPreview() {
     Adb_Theme {
         LoadingScreen()
     }
-}
-
-
-@Composable
-fun ThemeButtons(
-    onDark: () -> Unit,
-    onLight: () -> Unit,
-    onDynamic: () -> Unit,
-    onSystem: () -> Unit
-) {
-    Column(
-        Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        Button(onClick = onDark) {
-            Text(text = "Dark")
-        }
-
-        Button(onClick = onLight) {
-            Text(text = "Light")
-        }
-
-        Button(onClick = onDynamic) {
-            Text(text = "Dynamic")
-        }
-
-        Button(onClick = onSystem) {
-            Text(text = "System")
-        }
-
-
-    }
-
 }

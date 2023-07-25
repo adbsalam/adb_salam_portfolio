@@ -23,3 +23,6 @@ include ':ui:theming'
 include ':ui:components'
 
 include ':utils'
+include ':settings:feature'
+include ':home'
+include ':home:feature'

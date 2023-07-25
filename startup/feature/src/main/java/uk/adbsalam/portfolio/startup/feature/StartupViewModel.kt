@@ -12,53 +12,38 @@ import uk.adbsalam.portfolio.utils.Theme
 import javax.inject.Inject
 
 @HiltViewModel
-class StartupViewModel @Inject constructor(
+internal class StartupViewModel @Inject constructor(
     private val prefs: AppSharedPrefManager.ThemePrefs,
-    private val userPrefs: AppSharedPrefManager.ThemePrefs
 ) : ViewModel() {
 
-    private val _theme = MutableStateFlow(Theme.SYSTEM)
-    val currentTheme = _theme.asStateFlow()
+    private val _theme = MutableStateFlow(prefs.theme())
+    internal val currentTheme = _theme.asStateFlow()
 
-    private val _dynamic = MutableStateFlow(false)
-    val dynamic = _dynamic.asStateFlow()
+    private val _dynamic = MutableStateFlow(prefs.dynamicColors())
+    internal val dynamic = _dynamic.asStateFlow()
 
     private val _uiState = MutableStateFlow<StartupState>(StartupState.OnLoading)
-    val uiState = _uiState.asStateFlow()
+    internal val uiState = _uiState.asStateFlow()
 
-
-    suspend fun initApp() {
+    internal suspend fun initApp() {
         viewModelScope.launch {
             delay(2000)
             _uiState.value = StartupState.OnStart
         }
     }
 
-    fun onDark() {
+    internal fun onThemeChange(theme: Theme) {
         viewModelScope.launch {
-            _theme.value = Theme.DARK
+            prefs.setTheme(theme)
+            _theme.value = theme
         }
     }
 
 
-    fun onLight() {
+    internal fun onDynamic(dynamic: Boolean) {
         viewModelScope.launch {
-            _theme.value = Theme.LIGHT
+            prefs.setDynamic(dynamic)
+            _dynamic.value = dynamic
         }
     }
-
-
-    fun onSystem() {
-        viewModelScope.launch {
-            _theme.value = Theme.SYSTEM
-        }
-    }
-
-    fun onDynamic() {
-        viewModelScope.launch {
-            _dynamic.value = !_dynamic.value
-        }
-    }
-
-
 }

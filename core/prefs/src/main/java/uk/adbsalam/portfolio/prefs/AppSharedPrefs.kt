@@ -13,5 +13,8 @@ sealed class AppSharedPrefManager {
             val theme = pref.loadString("theme", Theme.SYSTEM.title)
             return Theme.values().first { it.title == theme }
         }
+
+        fun setDynamic(value: Boolean) = pref.saveBoolean("dynamic", value)
+        fun dynamicColors() = pref.loadBoolean("dynamic", false)
     }
 }

@@ -3,15 +3,13 @@ import uk.adbsalam.snapit.plugin.snapIt
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.android.hilt.plugin)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.paparazzi)
     alias(libs.plugins.snapit)
 }
 
 android {
-    namespace = "uk.adbsalam.portfolio.startup.feature"
+    namespace = "uk.adbsalam.portfolio.settings.feature"
     compileSdk = 33
 
     defaultConfig {
@@ -34,27 +32,19 @@ android {
 }
 
 snapIt {
-    testDir = "src/test/java/uk/adbsalam/portfolio/startup/feature"
+    testDir = "src/test/java/uk/adbsalam/portfolio/settings/feature"
     flavor = "debug"
 }
 
 dependencies {
-    implementation(project(":ui:theming"))
     implementation(project(":ui:components"))
-    implementation(project(":home:feature"))
-    implementation(project(":core:prefs"))
     implementation(project(":utils"))
 
     implementation(libs.app.compat)
-    implementation(libs.compose.activity)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)
     implementation(libs.compose.foundation)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.ui.tooling)
-    implementation(libs.hilt.navigation)
-
-    kapt(libs.hilt.compiler)
-    implementation(libs.hilt.android)
 }
