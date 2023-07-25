@@ -1,4 +1,4 @@
-package uk.adbsalam.adb_portfolio.theming
+package uk.adbsalam.portfolio.theming
 
 import androidx.compose.ui.graphics.Color
 

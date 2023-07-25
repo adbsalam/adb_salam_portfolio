@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    namespace = "uk.adbsalam.adb_salam_portfolio"
+    namespace = "uk.adbsalam.portfolio"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "uk.adbsalam.adb_salam_portfolio"
+        applicationId = "uk.adbsalam.portfolio"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":startup:feature"))
     implementation(libs.app.compat)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)

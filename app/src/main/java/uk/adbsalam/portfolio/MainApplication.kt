@@ -1,4 +1,4 @@
-package uk.adbsalam.adb_salam_portfolio
+package uk.adbsalam.portfolio
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
