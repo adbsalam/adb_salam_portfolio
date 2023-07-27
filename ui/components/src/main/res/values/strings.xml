@@ -2,4 +2,6 @@
 <resources>
     <string name="patrolla_detail">Patrolla is an Android Application I recently created for one of my clients (Sagoss Group). Patrolla allows functionality to allocate parking tickets to vehicles. Developed fully in compose using MVVM and MVI Design pattern. For further details please click view button.</string>
     <string name="snapit_details">Snapit is a powerful tool designed to automate the generation of Paparazzi tests by simple adding @Snapit Annotation on @Preview Functions, significantly reducing the time and resources required for creating snapshot tests. It leverages the @Preview Composables feature from the codebase, making it easy to implement and utilize. With Snapit, you can streamline your testing process and ensure the quality and reliability of your code.</string>
+    <string name="gesture_remote">"Gesture Remote Control for TV Application. Follow the github link for instructions, setup all your components and install code from repo. Bingo, Hand gesture remote control is ready!"</string>
+    <string name="youtube_channel">Have a look at my travel diaries, I love to travel when I am not working. I have explored some of the most amazing places in Croatia, Italy , Switzerland and different parts of UK. Have a look and you mind find something you would like to see.</string>
 </resources>

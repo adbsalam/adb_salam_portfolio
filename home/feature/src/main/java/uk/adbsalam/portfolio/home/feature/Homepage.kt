@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
+import uk.adbsalam.snapit.annotations.SnapIt
 
 
 @Composable
@@ -42,9 +43,8 @@ fun Homepage(
     }
 }
 
-
 @Composable
-private fun Homepage(
+internal fun Homepage(
     uiState: HomeScreenState,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
@@ -63,7 +63,11 @@ private fun Homepage(
 
 @Composable
 @Preview
-fun PreviewHomeLight() {
+@SnapIt(
+    name = "HomePage - Light Mode",
+    isScreen = true
+)
+internal fun PreviewHomeLight() {
     Adb_Theme {
         Homepage(
             uiState = HomeScreenState.OnHome,
@@ -75,7 +79,11 @@ fun PreviewHomeLight() {
 
 @Composable
 @Preview
-fun PreviewHomeDark() {
+@SnapIt(
+    name = "HomePage - Dark Mode",
+    isScreen = true
+)
+internal fun PreviewHomeDark() {
     Adb_Theme(
         isSystemDark = true
     ) {

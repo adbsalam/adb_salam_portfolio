@@ -21,13 +21,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.components.SettingsIcon
-import uk.adbsalam.portfolio.home.feature.components.InfoCard
-import uk.adbsalam.portfolio.home.feature.components.LottiInfoCard
+import uk.adbsalam.portfolio.home.feature.components.card.InfoCard
+import uk.adbsalam.portfolio.home.feature.components.card.LottiInfoCard
 import uk.adbsalam.portfolio.home.feature.components.Profile
 import uk.adbsalam.portfolio.home.feature.components.SocialMediaCarousal
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
+import uk.adbsalam.snapit.annotations.SnapIt
 
 @Composable
 internal fun Home(
@@ -49,13 +50,11 @@ internal fun Home(
                 .height(headerHeight.dp)
                 .statusBarsPadding()
                 .graphicsLayer {
-                    alpha = 1f - ((scrollState.value.toFloat() / scrollState.maxValue) * 5.5f)
+                    alpha = 1f - ((scrollState.value.toFloat() / scrollState.maxValue) * 3.5f)
                     translationY = 0.8f * scrollState.value
                 },
         ) {
-
             Profile(modifier = Modifier.align(Alignment.Center))
-
             SettingsIcon(
                 modifier = Modifier.align(Alignment.TopStart),
                 onClick = { settings.value = true }
@@ -71,14 +70,14 @@ internal fun Home(
                 resId = R.raw.lotti_app_patrolla,
                 imageTag = "Android",
                 title = "Patrolla Android App",
-                body = stringResource(id = uk.adbsalam.portfolio.theming.R.string.patrolla_detail),
+                body = stringResource(id = R.string.patrolla_detail),
                 action = {}
             )
 
             InfoCard(
                 imageHint = "Paparazzi Testing",
                 title = "SnapIt plugin",
-                body = stringResource(id = uk.adbsalam.portfolio.theming.R.string.snapit_details),
+                body = stringResource(id = R.string.snapit_details),
                 resId = R.drawable.ic_snapit,
                 action = {}
             )
@@ -87,7 +86,16 @@ internal fun Home(
                 resId = R.raw.ic_tv,
                 imageTag = "C++",
                 title = "Gesture Remote Control",
-                body = "Gesture Remote Control for TV",
+                maxIteration = 1,
+                body = stringResource(id = R.string.gesture_remote),
+                action = {}
+            )
+
+            InfoCard(
+                imageHint = "YouTube",
+                title = "Checkout my YouTube Channel",
+                body = stringResource(id = R.string.youtube_channel),
+                resId = R.drawable.ic_youtube_channel,
                 action = {}
             )
 
@@ -106,6 +114,7 @@ internal fun Home(
 
 @Preview
 @Composable
+@SnapIt(name = "Home - Light Mode")
 internal fun HomeLightPreview() {
     Adb_Theme {
         Home(
@@ -117,6 +126,7 @@ internal fun HomeLightPreview() {
 
 @Preview
 @Composable
+@SnapIt(name = "Home - Dark Mode")
 internal fun HomeDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         Home(

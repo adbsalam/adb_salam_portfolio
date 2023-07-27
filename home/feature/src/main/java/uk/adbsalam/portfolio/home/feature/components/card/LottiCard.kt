@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.home.feature.components
+package uk.adbsalam.portfolio.home.feature.components.card
 
 import androidx.annotation.RawRes
 import androidx.compose.foundation.BorderStroke
@@ -20,21 +20,22 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.theming.Adb_Theme
-
+import uk.adbsalam.snapit.annotations.SnapIt
 
 @Composable
-fun LottiInfoCard(
+internal fun LottiInfoCard(
     @RawRes resId: Int,
     imageTag: String,
     title: String,
     body: String,
+    maxIteration: Int = Integer.MAX_VALUE,
     action: () -> Unit,
 ) {
 
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(resId))
     val progress by animateLottieCompositionAsState(
         composition,
-        iterations = Integer.MAX_VALUE,
+        iterations = maxIteration,
         isPlaying = true
     )
 
@@ -64,10 +65,10 @@ fun LottiInfoCard(
     }
 }
 
-
 @Composable
 @Preview
-fun LottiInfoCardLightPreview() {
+@SnapIt(name = "LottiInfoCard - Light Mode")
+internal fun LottiInfoCardLightPreview() {
     Adb_Theme {
         LottiInfoCard(
             resId = R.raw.lotti_app_patrolla,
@@ -81,14 +82,15 @@ fun LottiInfoCardLightPreview() {
 
 @Composable
 @Preview
-fun LottiInfoCardDarkPreview() {
+@SnapIt(name = "LottiInfoCard - Dark Mode")
+internal fun LottiInfoCardDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         LottiInfoCard(
             resId = R.raw.lotti_app_patrolla,
             imageTag = "Android",
             title = "Patrolla Android App",
             body = "This is some body of this view",
-            action = {/* unused */ }
+            action = { /* unused */ }
         )
     }
 }

@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.home.feature.components
 
+import android.provider.ContactsContract.Profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -19,10 +20,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import uk.adbsalam.portfolio.components.R
+import uk.adbsalam.snapit.annotations.SnapIt
 
-@Preview
 @Composable
-fun Profile(
+internal fun Profile(
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -54,4 +55,11 @@ fun Profile(
             fontSize = 14.sp
         )
     }
+}
+
+@Composable
+@Preview
+@SnapIt(name = "Profile - when in preview should render image correctly",)
+internal fun ProfilePreview() {
+    Profile()
 }
