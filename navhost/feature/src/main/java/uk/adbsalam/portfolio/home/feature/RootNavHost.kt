@@ -18,7 +18,7 @@ fun HomeScreenNavHost(
 ) {
     val navController = rememberNavController()
 
-    Column(Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize()) {
         NavHost(
             navController = navController,
             startDestination = NavigationScreen.OnHome.route(),

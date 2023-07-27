@@ -21,6 +21,4 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             _viewState.value = HomeScreenState.OnHome
         }
     }
-
-
 }

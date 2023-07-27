@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -29,14 +30,19 @@ import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
 @Composable
-fun InfoCard() {
+fun InfoCard(
+    imageHint: String,
+    title: String,
+    body: String,
+    action: () -> Unit,
+) {
+
+    val readMore = remember { mutableStateOf(false) }
+
     Card(
         modifier = Modifier.fillMaxWidth(),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
     ) {
-
-        val readMore = remember { mutableStateOf(false) }
-
         Image(
             painter = painterResource(id = R.drawable.preview),
             contentDescription = null,
@@ -47,66 +53,87 @@ fun InfoCard() {
         )
 
         Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(all = 12.dp)
         ) {
             Text(
-                text = "Sample",
+                text = imageHint,
                 fontSize = 10.sp,
                 fontWeight = FontWeight.Bold
             )
 
-            Spacer(modifier = Modifier.height(12.dp))
-
-            Text(
-                text = "This Is Sample Title",
-                fontSize = 16.sp,
-
-                fontWeight = FontWeight.Bold
+            InfoText(
+                title = title,
+                body = body,
+                expanded = readMore
             )
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            ExpandableText(
-                readMore = readMore,
-                text = "This is some very long text that will show some description of what item is and what it does, this should show max 3 lines if possible and then rest is cut off and only show by animate text size and should be on multiple lines"
-            )
-
-            Spacer(modifier = Modifier.height(12.dp))
-
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                Button(onClick = {}) {
-                    Text(text = "View")
-                }
+                Button(
+                    onClick = action,
+                    content = { Text(text = "View") }
+                )
 
                 TextButton(
-                    onClick = {
-                        readMore.value = !readMore.value
-                    }
-                ) {
-                    Text(text = "Read more")
-                }
+                    content = { Text(text = "Read more") },
+                    onClick = { readMore.value = !readMore.value }
+                )
             }
         }
     }
 }
 
+
 @Composable
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    name = "DefaultPreviewDark"
-)
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    name = "DefaultPreviewLight"
-)
-fun InfoCardPreview() {
+@Preview
+fun InfoCardLightPreview() {
     Adb_Theme {
-        InfoCard()
+        InfoCard(
+            imageHint = "Sample",
+            title = "This Is Sample Title",
+            body = "This is some very long text that will show some description of what item is and what it does",
+            action = {/* unused */ }
+        )
+    }
+}
+
+@Composable
+@Preview
+fun InfoCardDarkPreview() {
+    Adb_Theme(isSystemDark = true) {
+        InfoCard(
+            imageHint = "Sample",
+            title = "This Is Sample Title",
+            body = "This is some very long text that will show some description of what item is and what it does",
+            action = {/* unused */ }
+        )
+    }
+}
+
+@Composable
+fun InfoText(
+    title: String,
+    body: String,
+    expanded: MutableState<Boolean>
+) {
+
+    Column(modifier = Modifier.fillMaxWidth()) {
+        Text(
+            text = title,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        ExpandableText(
+            readMore = expanded,
+            text = body
+        )
     }
 }

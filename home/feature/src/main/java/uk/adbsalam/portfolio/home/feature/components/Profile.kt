@@ -32,9 +32,9 @@ fun Profile(
     ) {
 
         Image(
-            painterResource(id = R.drawable.preview),
+            painterResource(id = R.drawable.ic_dp),
             contentDescription = null,
-            contentScale = ContentScale.FillBounds,
+            contentScale = ContentScale.Crop,
             modifier = Modifier
                 .size(150.dp)
                 .clip(CircleShape)

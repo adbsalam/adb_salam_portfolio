@@ -50,16 +50,14 @@ internal fun Home(
                     translationY = 0.8f * scrollState.value
                 },
         ) {
-            Profile(
-                modifier = Modifier.align(Alignment.Center)
-            )
+
+            Profile(modifier = Modifier.align(Alignment.Center))
 
             SettingsIcon(
                 modifier = Modifier.align(Alignment.TopStart),
                 onClick = { settings.value = true }
             )
         }
-
 
         Column(
             Modifier
@@ -68,12 +66,16 @@ internal fun Home(
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             for (i in 0..20) {
-                InfoCard()
+                InfoCard(
+                    imageHint = "Sample",
+                    title = "This is sample title",
+                    body = "This is some text body with some multiple line description to show on item",
+                    action = {}
+                )
             }
         }
     }
-
-
+    
     if (settings.value) {
         SettingsDialog(
             onDynamicColor = onDynamicColor,

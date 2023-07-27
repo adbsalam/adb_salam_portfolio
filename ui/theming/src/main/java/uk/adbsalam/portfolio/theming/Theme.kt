@@ -2,7 +2,6 @@ package uk.adbsalam.portfolio.theming
 
 import android.app.Activity
 import android.content.Context
-import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
@@ -49,7 +48,7 @@ fun Adb_Theme(
     val sch: ColorScheme = if (dynamic) {
         getDynamicScheme(isSystemDark, themeType, context)
     } else {
-        getNonDynamicTheme(isSystemDark, themeType)
+        getNonDynamicTheme(isSystemInDarkTheme(), themeType)
     }
 
     val systemUiController = rememberSystemUiController()
