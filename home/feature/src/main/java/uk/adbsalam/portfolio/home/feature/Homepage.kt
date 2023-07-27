@@ -1,10 +1,15 @@
 package uk.adbsalam.portfolio.home.feature
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.theming.Adb_Theme
@@ -18,16 +23,23 @@ fun Homepage(
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.viewState.collectAsState()
+    val visible = remember { mutableStateOf(false) }
 
     LaunchedEffect(key1 = null) {
         viewModel.initHome()
+        visible.value = true
     }
 
-    Homepage(
-        uiState = uiState,
-        onDynamicColor = onDynamicColor,
-        onTheme = onTheme
-    )
+    AnimatedVisibility(
+        visible = visible.value,
+        enter = fadeIn(tween(500))
+    ) {
+        Homepage(
+            uiState = uiState,
+            onDynamicColor = onDynamicColor,
+            onTheme = onTheme
+        )
+    }
 }
 
 
