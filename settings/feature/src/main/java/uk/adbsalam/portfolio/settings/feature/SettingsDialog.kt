@@ -12,8 +12,6 @@ import uk.adbsalam.portfolio.utils.Theme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsDialog(
-    isDynamic: Boolean,
-    theme: Theme,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
     onDismiss: () -> Unit
@@ -31,8 +29,6 @@ fun SettingsDialog(
             )
         ) {
             SettingsScreen(
-                isDynamic = isDynamic,
-                theme = theme,
                 onDynamicColor = onDynamicColor,
                 onTheme = onTheme,
                 onDismiss = {
@@ -49,8 +45,6 @@ fun SettingsDialog(
 @Preview
 fun SettingsDialogPreview() {
     SettingsDialog(
-        isDynamic = false,
-        theme = Theme.SYSTEM,
         onDynamicColor = { /** unused **/ },
         onTheme = { /** unused **/ },
         onDismiss = { /** unused **/ }

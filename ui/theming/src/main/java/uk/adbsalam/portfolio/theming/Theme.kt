@@ -23,6 +23,7 @@ private val DarkColorScheme = darkColorScheme(
     secondary = secondary_dark,
     tertiary = tertiary_dark,
     background = secondary_dark,
+    onPrimary = Color.White
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -38,6 +39,7 @@ private val LightColorScheme = lightColorScheme(
  */
 @Composable
 fun Adb_Theme(
+    isSystemDark: Boolean = isSystemInDarkTheme(),
     themeType: Theme = Theme.SYSTEM,
     dynamic: Boolean = false,
     content: @Composable () -> Unit
@@ -45,14 +47,15 @@ fun Adb_Theme(
     val context = LocalContext.current
 
     val sch: ColorScheme = if (dynamic) {
-        getDynamicScheme(isSystemInDarkTheme(), themeType, context)
+        getDynamicScheme(isSystemDark, themeType, context)
     } else {
-        getNonDynamicTheme(isSystemInDarkTheme(), themeType)
+        getNonDynamicTheme(isSystemDark, themeType)
     }
 
     val systemUiController = rememberSystemUiController()
     systemUiController.setSystemBarsColor(
-        color = Color.Transparent
+        color = Color.Transparent,
+        darkIcons = true
     )
 
     val view = LocalView.current

@@ -21,7 +21,7 @@ fun HomeBottomNavBar(
     NavigationBar(modifier = Modifier.fillMaxWidth()) {
         pagerModel.pagerList.forEachIndexed { index, item ->
             NavigationBarItem(
-                alwaysShowLabel = false,
+                alwaysShowLabel = true,
                 label = { Text(text = item.title) },
                 selected = pagerModel.pagerState.currentPage == index,
                 onClick = {

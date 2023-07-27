@@ -3,6 +3,8 @@ import uk.adbsalam.snapit.plugin.snapIt
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.android.hilt.plugin)
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.paparazzi)
     alias(libs.plugins.snapit)
@@ -38,8 +40,10 @@ snapIt {
 
 dependencies {
     implementation(project(":ui:components"))
+    implementation(project(":ui:theming"))
     implementation(project(":utils"))
     implementation(project(":home:feature"))
+    implementation(project(":navigation"))
 
     implementation(libs.app.compat)
     implementation(libs.compose.runtime)
@@ -49,4 +53,7 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.material.icons.extended)
+    implementation(libs.hilt.navigation)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
 }

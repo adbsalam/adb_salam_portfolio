@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import uk.adbsalam.portfolio.home.feature.NavHostScreen
+import uk.adbsalam.portfolio.home.feature.HomeScreenNavHost
 import uk.adbsalam.portfolio.startup.feature.components.LoadingScreen
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
@@ -50,7 +50,7 @@ private fun StartupScreen(
         Surface(modifier = Modifier.fillMaxSize()) {
             when (uiState) {
                 StartupState.OnLoading -> LoadingScreen()
-                StartupState.OnStart -> NavHostScreen(
+                StartupState.OnStart -> HomeScreenNavHost(
                     onTheme = onTheme,
                     onDynamicColor = onDynamicColor,
                 )

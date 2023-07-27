@@ -23,9 +23,27 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.RadioGroup
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
+
+
+@Composable
+internal fun SettingsScreen(
+    viewModel: SettingsViewModel = hiltViewModel(),
+    onDynamicColor: (Boolean) -> Unit,
+    onTheme: (Theme) -> Unit,
+    onDismiss: () -> Unit
+) {
+    SettingsScreen(
+        isDynamic = viewModel.isDynamicColors(),
+        theme = viewModel.theme(),
+        onDynamicColor = onDynamicColor,
+        onTheme = onTheme,
+        onDismiss = onDismiss
+    )
+}
 
 @Composable
 internal fun SettingsScreen(
@@ -35,7 +53,6 @@ internal fun SettingsScreen(
     onTheme: (Theme) -> Unit,
     onDismiss: () -> Unit
 ) {
-
     val preSelectedDynamic = remember { mutableStateOf(isDynamic) }
     val preSelectedTheme = remember { mutableStateOf(theme) }
 
@@ -49,7 +66,6 @@ internal fun SettingsScreen(
             )
             .padding(20.dp, vertical = 20.dp)
     ) {
-
 
         Text(
             text = "Settings",
@@ -72,7 +88,7 @@ internal fun SettingsScreen(
         RadioGroup(
             items = listOf(true, false),
             title = { item -> if (item) "Yes" else "No" },
-            preSelect = isDynamic,
+            preSelect = preSelectedDynamic.value,
             onSelected = { item ->
                 preSelectedDynamic.value = item
                 onDynamicColor(item)
@@ -91,7 +107,7 @@ internal fun SettingsScreen(
         RadioGroup(
             items = Theme.values().toList(),
             title = { item -> item.title },
-            preSelect = theme,
+            preSelect = preSelectedTheme.value,
             onSelected = { item ->
                 preSelectedTheme.value = item
                 onTheme(item)
@@ -115,25 +131,30 @@ internal fun SettingsScreen(
     }
 }
 
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    name = "DefaultPreviewDark"
-)
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    name = "DefaultPreviewLight"
-)
 @Composable
 @Preview
-fun SettingsScreenPreview() {
+fun SettingsScreenLightPreview() {
     Adb_Theme {
         SettingsScreen(
             isDynamic = false,
-            theme = Theme.SYSTEM,
+            theme = Theme.LIGHT,
             onDynamicColor = { /** unused **/ },
             onTheme = { /** unused **/ },
             onDismiss = { /** unused **/ }
         )
     }
+}
 
+@Composable
+@Preview
+fun SettingsScreenDarkPreview() {
+    Adb_Theme(isSystemDark = true) {
+        SettingsScreen(
+            isDynamic = false,
+            theme = Theme.DARK,
+            onDynamicColor = { /** unused **/ },
+            onTheme = { /** unused **/ },
+            onDismiss = { /** unused **/ }
+        )
+    }
 }

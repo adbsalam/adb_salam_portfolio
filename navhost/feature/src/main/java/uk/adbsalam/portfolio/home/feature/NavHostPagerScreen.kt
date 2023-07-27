@@ -2,7 +2,6 @@ package uk.adbsalam.portfolio.home.feature
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -11,11 +10,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.tooling.preview.Preview
+import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun NavHostScreen(
+fun NavBarScreen(
     onTheme: (Theme) -> Unit,
     onDynamicColor: (Boolean) -> Unit
 ) {
@@ -31,21 +33,46 @@ fun NavHostScreen(
         pagerList = pages,
     )
 
-
     Scaffold(
         containerColor = Color.Unspecified,
         bottomBar = {
             HomeBottomNavBar(pagerModel = pagerModel)
         }
     ) {
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .animateContentSize()
                 .padding(bottom = it.calculateBottomPadding())
         ) {
-            AppPager(pagerModel)
+            if (!LocalInspectionMode.current) {
+                NavHostPager(pagerModel)
+            }
         }
     }
+}
 
+@Preview
+@Composable
+fun NavBarScreenPreviewLight() {
+    Adb_Theme {
+        NavBarScreen(
+            onTheme = {},
+            onDynamicColor = {}
+        )
+    }
+}
+
+@Preview
+@Composable
+fun NavBarScreenPreviewDark() {
+    Adb_Theme(
+        isSystemDark = true
+    ) {
+        NavBarScreen(
+            onTheme = {},
+            onDynamicColor = {}
+        )
+    }
 }

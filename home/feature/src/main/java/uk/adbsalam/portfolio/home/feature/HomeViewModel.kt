@@ -10,17 +10,11 @@ import uk.adbsalam.portfolio.prefs.AppSharedPrefManager
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val themePrefs: AppSharedPrefManager.ThemePrefs
-) : ViewModel() {
+class HomeViewModel @Inject constructor() : ViewModel() {
 
     private val _viewState =
         MutableStateFlow<HomeScreenState>(HomeScreenState.OnLoading)
     internal val viewState = _viewState.asStateFlow()
-
-    fun theme() = themePrefs.theme()
-
-    fun isDynamicColors() = themePrefs.dynamicColors()
 
     internal suspend fun initHome() {
         viewModelScope.launch {

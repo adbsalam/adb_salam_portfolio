@@ -45,6 +45,7 @@ dependencies {
     implementation(project(":utils"))
     implementation(project(":core:prefs"))
 
+
     implementation(libs.app.compat)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)
