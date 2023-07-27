@@ -81,8 +81,8 @@ fun PreviewHomeDark() {
     ) {
         Homepage(
             uiState = HomeScreenState.OnHome,
-            onDynamicColor = {},
-            onTheme = { },
+            onDynamicColor = { /* unused */ },
+            onTheme = {/* unused */ },
         )
     }
 }

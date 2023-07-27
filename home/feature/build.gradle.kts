@@ -44,7 +44,8 @@ dependencies {
     implementation(project(":settings:feature"))
     implementation(project(":utils"))
     implementation(project(":core:prefs"))
-
+    implementation(project(":home:data"))
+    implementation(libs.compose.lotti)
 
     implementation(libs.app.compat)
     implementation(libs.compose.runtime)

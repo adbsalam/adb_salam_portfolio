@@ -1,12 +1,9 @@
 package uk.adbsalam.portfolio.home.feature.components
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -16,43 +13,46 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
 @Composable
-fun InfoCard(
-    imageHint: String,
-    title: String,
-    body: String,
-    @DrawableRes resId: Int,
+fun PatrollaCard(
     action: () -> Unit,
 ) {
+
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.lotti_app_patrolla))
+    val progress by animateLottieCompositionAsState(
+        composition,
+        iterations = Integer.MAX_VALUE,
+        isPlaying = true
+    )
 
     val readMore = remember { mutableStateOf(false) }
 
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp),
+        modifier = Modifier.fillMaxWidth().padding(12.dp),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
     ) {
-        Image(
-            painter = painterResource(id = resId),
-            contentDescription = null,
-            contentScale = ContentScale.FillBounds,
+        LottieAnimation(
+            composition = composition,
+            progress = { progress },
             modifier = Modifier
                 .fillMaxWidth()
-                .height(250.dp),
+                .height(250.dp)
         )
 
         Column(
@@ -62,14 +62,14 @@ fun InfoCard(
                 .padding(all = 12.dp)
         ) {
             Text(
-                text = imageHint,
+                text = "Android",
                 fontSize = 10.sp,
                 fontWeight = FontWeight.Bold
             )
 
             InfoText(
-                title = title,
-                body = body,
+                title = "Patrolla Android App",
+                body = stringResource(id = uk.adbsalam.portfolio.theming.R.string.patrolla_detail),
                 expanded = readMore
             )
 
@@ -94,13 +94,9 @@ fun InfoCard(
 
 @Composable
 @Preview
-fun InfoCardLightPreview() {
+fun PatrollaCardView() {
     Adb_Theme {
-        InfoCard(
-            imageHint = "Sample",
-            title = "This Is Sample Title",
-            body = "This is some very long text that will show some description of what item is and what it does",
-            resId = R.drawable.preview,
+        PatrollaCard(
             action = {/* unused */ }
         )
     }
@@ -108,37 +104,10 @@ fun InfoCardLightPreview() {
 
 @Composable
 @Preview
-fun InfoCardDarkPreview() {
+fun PatrollaCardDarkView() {
     Adb_Theme(isSystemDark = true) {
-        InfoCard(
-            imageHint = "Sample",
-            title = "This Is Sample Title",
-            body = "This is some very long text that will show some description of what item is and what it does",
-            resId = R.drawable.preview,
+        PatrollaCard(
             action = {/* unused */ }
-        )
-    }
-}
-
-@Composable
-fun InfoText(
-    title: String,
-    body: String,
-    expanded: MutableState<Boolean>
-) {
-
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            text = title,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        ExpandableText(
-            readMore = expanded,
-            text = body
         )
     }
 }

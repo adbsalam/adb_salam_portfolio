@@ -17,11 +17,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.components.SettingsIcon
 import uk.adbsalam.portfolio.home.feature.components.InfoCard
+import uk.adbsalam.portfolio.home.feature.components.PatrollaCard
 import uk.adbsalam.portfolio.home.feature.components.Profile
+import uk.adbsalam.portfolio.home.feature.components.SocialMediaCarousal
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
@@ -60,22 +64,25 @@ internal fun Home(
         }
 
         Column(
-            Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 12.dp),
+            modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
-            for (i in 0..20) {
-                InfoCard(
-                    imageHint = "Sample",
-                    title = "This is sample title",
-                    body = "This is some text body with some multiple line description to show on item",
-                    action = {}
-                )
-            }
+            PatrollaCard(
+                action = {}
+            )
+
+            InfoCard(
+                imageHint = "Paparazzi Testing",
+                title = "SnapIt plugin",
+                body = stringResource(id = uk.adbsalam.portfolio.theming.R.string.snapit_details),
+                resId = R.drawable.ic_snapit,
+                action = {}
+            )
+
+            SocialMediaCarousal()
         }
     }
-    
+
     if (settings.value) {
         SettingsDialog(
             onDynamicColor = onDynamicColor,
@@ -90,8 +97,8 @@ internal fun Home(
 internal fun HomeLightPreview() {
     Adb_Theme {
         Home(
-            onDynamicColor = {/* unused */ },
-            onTheme = {/* unused */ }
+            onDynamicColor = { /* unused */ },
+            onTheme = { /* unused */ }
         )
     }
 }
@@ -101,8 +108,8 @@ internal fun HomeLightPreview() {
 internal fun HomeDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         Home(
-            onDynamicColor = {/* unused */ },
-            onTheme = {/* unused */ }
+            onDynamicColor = { /* unused */ },
+            onTheme = { /* unused */ }
         )
     }
 }
