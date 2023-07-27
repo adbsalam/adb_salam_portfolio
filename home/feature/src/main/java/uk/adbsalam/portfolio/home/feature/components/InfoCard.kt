@@ -55,39 +55,13 @@ fun InfoCard(
                 .height(250.dp),
         )
 
-        Column(
-            verticalArrangement = Arrangement.spacedBy(12.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(all = 12.dp)
-        ) {
-            Text(
-                text = imageHint,
-                fontSize = 10.sp,
-                fontWeight = FontWeight.Bold
-            )
-
-            InfoText(
-                title = title,
-                body = body,
-                expanded = readMore
-            )
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Button(
-                    onClick = action,
-                    content = { Text(text = "View") }
-                )
-
-                TextButton(
-                    content = { Text(text = "Read more") },
-                    onClick = { readMore.value = !readMore.value }
-                )
-            }
-        }
+        CardInfoText(
+            imageHint = imageHint,
+            title = title,
+            body = body,
+            readMore = readMore,
+            action = action
+        )
     }
 }
 
@@ -116,29 +90,6 @@ fun InfoCardDarkPreview() {
             body = "This is some very long text that will show some description of what item is and what it does",
             resId = R.drawable.preview,
             action = {/* unused */ }
-        )
-    }
-}
-
-@Composable
-fun InfoText(
-    title: String,
-    body: String,
-    expanded: MutableState<Boolean>
-) {
-
-    Column(modifier = Modifier.fillMaxWidth()) {
-        Text(
-            text = title,
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        ExpandableText(
-            readMore = expanded,
-            text = body
         )
     }
 }

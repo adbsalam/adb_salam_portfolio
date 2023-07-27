@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -23,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.components.SettingsIcon
 import uk.adbsalam.portfolio.home.feature.components.InfoCard
-import uk.adbsalam.portfolio.home.feature.components.PatrollaCard
+import uk.adbsalam.portfolio.home.feature.components.LottiInfoCard
 import uk.adbsalam.portfolio.home.feature.components.Profile
 import uk.adbsalam.portfolio.home.feature.components.SocialMediaCarousal
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
@@ -67,7 +66,12 @@ internal fun Home(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
-            PatrollaCard(
+
+            LottiInfoCard(
+                resId = R.raw.lotti_app_patrolla,
+                imageTag = "Android",
+                title = "Patrolla Android App",
+                body = stringResource(id = uk.adbsalam.portfolio.theming.R.string.patrolla_detail),
                 action = {}
             )
 
@@ -76,6 +80,14 @@ internal fun Home(
                 title = "SnapIt plugin",
                 body = stringResource(id = uk.adbsalam.portfolio.theming.R.string.snapit_details),
                 resId = R.drawable.ic_snapit,
+                action = {}
+            )
+
+            LottiInfoCard(
+                resId = R.raw.ic_tv,
+                imageTag = "C++",
+                title = "Gesture Remote Control",
+                body = "Gesture Remote Control for TV",
                 action = {}
             )
 

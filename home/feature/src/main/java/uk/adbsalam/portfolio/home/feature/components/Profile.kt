@@ -24,7 +24,7 @@ import uk.adbsalam.portfolio.components.R
 @Composable
 fun Profile(
     modifier: Modifier = Modifier
-){
+) {
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
@@ -53,6 +53,5 @@ fun Profile(
             fontWeight = FontWeight.W400,
             fontSize = 14.sp
         )
-
     }
 }
