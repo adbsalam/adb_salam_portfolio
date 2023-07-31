@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.home.feature.components
 
-import android.provider.ContactsContract.Profile
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,6 +21,9 @@ import androidx.compose.ui.unit.sp
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.snapit.annotations.SnapIt
 
+/**
+ * Hard coded component since will not change anytime soon
+ */
 @Composable
 internal fun Profile(
     modifier: Modifier = Modifier

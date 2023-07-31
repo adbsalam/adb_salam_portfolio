@@ -17,4 +17,3 @@ data class HomeItems(
         @Json(name = "deeplink") val deeplink: String
     )
 }
-

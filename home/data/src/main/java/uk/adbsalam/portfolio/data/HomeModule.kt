@@ -15,7 +15,7 @@ internal interface HomeModule {
 
     @Binds
     @Singleton
-    fun bindWishlistRepo(nBrownWishlistRepo: HomeRepository): HomeRepo
+    fun bindHomeRepository(homeRepo: HomeRepository): HomeRepo
 
     companion object {
         @Provides

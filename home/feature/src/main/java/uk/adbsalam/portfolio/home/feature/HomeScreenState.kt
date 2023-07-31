@@ -1,6 +1,6 @@
 package uk.adbsalam.portfolio.home.feature
 
-sealed class HomeScreenState {
+internal sealed class HomeScreenState {
     object OnLoading: HomeScreenState()
-    object OnHome: HomeScreenState()
+    data class OnHome(val homeItems: List<HomeScreenItem>): HomeScreenState()
 }

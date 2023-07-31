@@ -16,22 +16,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.components.SettingsIcon
-import uk.adbsalam.portfolio.home.feature.components.card.InfoCard
-import uk.adbsalam.portfolio.home.feature.components.card.LottiInfoCard
 import uk.adbsalam.portfolio.home.feature.components.Profile
 import uk.adbsalam.portfolio.home.feature.components.SocialMediaCarousal
+import uk.adbsalam.portfolio.home.feature.components.card.InfoCard
+import uk.adbsalam.portfolio.home.feature.components.card.LottiInfoCard
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
+/**
+ * @param items list of items to show on home screen
+ * @param onDynamicColor action on dynamic color value change
+ * @param onTheme action on theme value change
+ */
 @Composable
 internal fun Home(
+    items: List<HomeScreenItem>,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
 ) {
@@ -66,38 +70,9 @@ internal fun Home(
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
 
-            LottiInfoCard(
-                resId = R.raw.lotti_app_patrolla,
-                imageTag = "Android",
-                title = "Patrolla Android App",
-                body = stringResource(id = R.string.patrolla_detail),
-                action = {}
-            )
-
-            InfoCard(
-                imageHint = "Paparazzi Testing",
-                title = "SnapIt plugin",
-                body = stringResource(id = R.string.snapit_details),
-                resId = R.drawable.ic_snapit,
-                action = {}
-            )
-
-            LottiInfoCard(
-                resId = R.raw.ic_tv,
-                imageTag = "C++",
-                title = "Gesture Remote Control",
-                maxIteration = 1,
-                body = stringResource(id = R.string.gesture_remote),
-                action = {}
-            )
-
-            InfoCard(
-                imageHint = "YouTube",
-                title = "Checkout my YouTube Channel",
-                body = stringResource(id = R.string.youtube_channel),
-                resId = R.drawable.ic_youtube_channel,
-                action = {}
-            )
+            items.forEach {
+                InfoCardByType(item = it)
+            }
 
             SocialMediaCarousal()
         }
@@ -118,6 +93,7 @@ internal fun Home(
 internal fun HomeLightPreview() {
     Adb_Theme {
         Home(
+            items = HomeScreenItem.createMock(),
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ }
         )
@@ -130,8 +106,56 @@ internal fun HomeLightPreview() {
 internal fun HomeDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         Home(
+            items = HomeScreenItem.createMock(),
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ }
         )
     }
+}
+
+/**
+ * @param item current item to be used
+ *
+ * @return Card by Item type to be shown
+ */
+@Composable
+private fun InfoCardByType(item: HomeScreenItem) {
+    when (item.type) {
+        HomeItemType.IMAGE_CARD ->
+            InfoCard(
+                tags = item.tags,
+                title = item.title,
+                body = item.body,
+                resId = getDrawableRes(item.res),
+                action = {}
+            )
+
+        HomeItemType.LOTTI_CARD -> {
+            LottiInfoCard(
+                tags = item.tags,
+                title = item.title,
+                body = item.body,
+                resId = getRawRes(item.res),
+                action = {}
+            )
+        }
+
+        HomeItemType.LOTTI_SINGLE -> {
+            LottiInfoCard(
+                tags = item.tags,
+                title = item.title,
+                body = item.body,
+                resId = getRawRes(item.res),
+                action = {}
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun InfoCardByTypePreview() {
+    InfoCardByType(
+        item = HomeScreenItem.createMock().first()
+    )
 }

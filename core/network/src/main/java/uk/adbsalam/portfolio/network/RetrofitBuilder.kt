@@ -14,6 +14,9 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
+/**
+ * Annotation class to Generate Retrofit for Portfolio API
+ */
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
 annotation class PortfolioRetrofit
@@ -30,6 +33,9 @@ object NetworkModule {
             level = HttpLoggingInterceptor.Level.HEADERS
         }
 
+    /**
+     * OkHttp general interceptor to set network call properties
+     */
     private fun provideOkHttpClientBuilder() = OkHttpClient
         .Builder()
         .addInterceptor(logger)
@@ -40,6 +46,9 @@ object NetworkModule {
         .retryOnConnectionFailure(true)
         .build()
 
+    /**
+     * @param moshi moshi instance to add converter factory
+     */
     private fun buildRetrofit(
         moshi: Moshi,
     ): Retrofit {

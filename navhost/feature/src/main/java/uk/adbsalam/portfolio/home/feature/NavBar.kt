@@ -11,13 +11,17 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import kotlinx.coroutines.launch
 
+/**
+ * @param pagerModel Pager model to setup home pager
+ * This will create Navigation Bar buttons for each page
+ * Set scroll actions to pager on nav bar buttons
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeBottomNavBar(
     pagerModel: PagerModel
 ) {
     val scope = rememberCoroutineScope()
-
     NavigationBar(modifier = Modifier.fillMaxWidth()) {
         pagerModel.pagerList.forEachIndexed { index, item ->
             NavigationBarItem(

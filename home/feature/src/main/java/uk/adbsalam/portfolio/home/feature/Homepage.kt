@@ -19,7 +19,10 @@ import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
-
+/**
+ * @param onTheme action to perform on theme value selected
+ * @param onDynamicColor action to perform on dynamic color value selected
+ */
 @Composable
 fun Homepage(
     onDynamicColor: (Boolean) -> Unit,
@@ -39,6 +42,11 @@ fun Homepage(
     )
 }
 
+/**
+ * @param uiState current UI State to show on screen
+ * @param onTheme action to perform on theme value selected
+ * @param onDynamicColor action to perform on dynamic color value selected
+ */
 @Composable
 internal fun Homepage(
     uiState: HomeScreenState,
@@ -53,7 +61,7 @@ internal fun Homepage(
                 msg = "Loading"
             )
 
-        HomeScreenState.OnHome -> {
+        is HomeScreenState.OnHome -> {
             var visibility by remember { mutableStateOf(false) }
             LaunchedEffect(key1 = null) {
                 visibility = true
@@ -63,6 +71,7 @@ internal fun Homepage(
                 enter = fadeIn(tween(500))
             ) {
                 Home(
+                    items = uiState.homeItems,
                     onDynamicColor = onDynamicColor,
                     onTheme = onTheme
                 )
@@ -82,7 +91,7 @@ internal fun Homepage(
 internal fun PreviewHomeLight() {
     Adb_Theme {
         Homepage(
-            uiState = HomeScreenState.OnHome,
+            uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
             onDynamicColor = {},
             onTheme = { },
         )
@@ -100,7 +109,7 @@ internal fun PreviewHomeDark() {
         isSystemDark = true
     ) {
         Homepage(
-            uiState = HomeScreenState.OnHome,
+            uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
             onDynamicColor = { /* unused */ },
             onTheme = {/* unused */ },
         )

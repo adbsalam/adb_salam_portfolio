@@ -21,6 +21,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
 
+/**
+ * @param onTheme On new theme selected from settings dialog
+ * @param onDynamicColor on dynamic colors set to true from settings dialog
+ *
+ * This is to update the MainActivity once a setting is change to update app theme
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NavBarScreen(

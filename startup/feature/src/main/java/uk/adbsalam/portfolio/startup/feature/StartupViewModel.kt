@@ -25,6 +25,10 @@ internal class StartupViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<StartupState>(StartupState.OnLoading)
     internal val uiState = _uiState.asStateFlow()
 
+    /**
+     * Init app with a delay for moment
+     * To show loading screen.
+     */
     internal suspend fun initApp() {
         viewModelScope.launch {
             delay(2000)
@@ -32,6 +36,12 @@ internal class StartupViewModel @Inject constructor(
         }
     }
 
+    /**
+     * @param theme theme selected
+     *
+     * new theme selected this should be implemented
+     * and current selection to be stored in prefs
+     */
     internal fun onThemeChange(theme: Theme) {
         viewModelScope.launch {
             prefs.setTheme(theme)
@@ -39,7 +49,12 @@ internal class StartupViewModel @Inject constructor(
         }
     }
 
-
+    /**
+     * @param dynamic value selected
+     *
+     * new dynamic value selected this should be implemented
+     * and current selection to be stored in prefs
+     */
     internal fun onDynamic(dynamic: Boolean) {
         viewModelScope.launch {
             prefs.setDynamic(dynamic)

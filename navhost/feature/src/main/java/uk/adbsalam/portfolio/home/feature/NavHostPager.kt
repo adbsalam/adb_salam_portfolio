@@ -28,6 +28,13 @@ data class PagerModel constructor(
     )
 }
 
+/**
+ * @param pagerModel Pager model to be used with a list of pages
+ * @param userScroll allow user scroll for true, else disable horizontal scroll
+ *
+ * This handles horizontal scroll on pager to go to next page,
+ * by default set to false
+ */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NavHostPager(
@@ -47,6 +54,9 @@ fun NavHostPager(
     }
 }
 
+/**
+ * create pages list to show in pager
+ */
 internal fun createPageList(
     onTheme: (Theme) -> Unit,
     onDynamicColor: (Boolean) -> Unit

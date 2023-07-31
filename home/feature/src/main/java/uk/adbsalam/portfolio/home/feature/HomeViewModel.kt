@@ -3,13 +3,12 @@ package uk.adbsalam.portfolio.home.feature
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import uk.adbsalam.portfolio.data.HomeRepo
+import uk.adbsalam.portfolio.data.objects.HomeItems
 import uk.adbsalam.portfolio.network.Response
-import uk.adbsalam.portfolio.prefs.AppSharedPrefManager
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,17 +23,29 @@ class HomeViewModel @Inject constructor(
     internal suspend fun initHome() {
         viewModelScope.launch {
 
-            val res = homeRepo.homeItems()
+            when (val result = homeRepo.homeItems()) {
+                is Response.Failure -> {
+                    //TODO ERROR VIEW
+                }
 
-
-            if(res is Response.Success){
-                res.data.home.forEach {
-                    println("-----------------------------------" + it.deeplink)
+                is Response.Success -> {
+                    val items = mapToHomeScreenItems(result.data)
+                    _viewState.value = HomeScreenState.OnHome(items)
                 }
             }
+        }
+    }
 
-            delay(2000)
-            _viewState.value = HomeScreenState.OnHome
+    private fun mapToHomeScreenItems(items: HomeItems): List<HomeScreenItem> {
+        return items.home.map { item ->
+            HomeScreenItem(
+                tags = item.tags,
+                title = item.title,
+                type = HomeItemType.values().first { enum -> item.type == enum.type },
+                res = item.res,
+                body = item.body,
+                deeplink = item.deeplink
+            )
         }
     }
 }

@@ -23,6 +23,10 @@ import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.data.SocialMedia
 import uk.adbsalam.snapit.annotations.SnapIt
 
+/**
+ * @param mediaType Social Media type to return Icons
+ * @return Icon Resource ID for item image
+ */
 @DrawableRes
 fun iconRes(mediaType: SocialMedia): Int {
     return when (mediaType) {

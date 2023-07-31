@@ -16,6 +16,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import uk.adbsalam.snapit.annotations.SnapIt
 
+/**
+ * @param readMore read more state boolean to expand when clicked
+ * @param text text to show
+ */
 @Composable
 internal fun ExpandableText(
     readMore: MutableState<Boolean>,

@@ -12,10 +12,14 @@ internal class HomeRepository @Inject constructor(
     private val homeService: HomeService
 ) : HomeRepo {
 
+    /**
+     * Make network call to collect home items
+     * @return Success response if call success
+     * Else return General Exception since theres no error body needed
+     */
     override suspend fun homeItems(): Response<HomeItems> {
         return try {
             val homeItems = homeService.homeItems(item = "home")
-
             Response.Success(data = homeItems)
         } catch (e: Exception) {
             e.printStackTrace()

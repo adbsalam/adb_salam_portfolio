@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.startup.feature.components
 
-import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -62,17 +61,19 @@ internal fun LoadingScreen() {
 }
 
 @Composable
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_YES,
-    name = "DefaultPreviewDark"
-)
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_NO,
-    name = "DefaultPreviewLight"
-)
+@Preview
 @SnapIt(name = "LoadingScreen - should render correctly")
-internal fun LoadingScreenPreview() {
+internal fun LoadingScreenLightPreview() {
     Adb_Theme {
+        LoadingScreen()
+    }
+}
+
+@Composable
+@Preview
+@SnapIt(name = "LoadingScreen - Dark Mode - should render correctly")
+internal fun LoadingScreenDarkPreview() {
+    Adb_Theme(isSystemDark = true) {
         LoadingScreen()
     }
 }

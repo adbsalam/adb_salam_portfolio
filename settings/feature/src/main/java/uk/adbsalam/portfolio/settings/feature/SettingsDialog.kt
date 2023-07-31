@@ -5,12 +5,16 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.DialogProperties
 import uk.adbsalam.portfolio.utils.Theme
 
+/**
+ * @param onDynamicColor action on new dynamic color value is set
+ * @param onTheme action on new theme value is selected
+ * @param onDismiss action on Dialog Dismiss
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsDialog(

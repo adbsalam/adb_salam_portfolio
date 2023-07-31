@@ -1,8 +1,6 @@
 package uk.adbsalam.portfolio.settings.feature
 
-import android.content.res.Configuration
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,7 +26,12 @@ import uk.adbsalam.portfolio.components.RadioGroup
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
 
-
+/**
+ * @param viewModel settings hilt viewModel to be used
+ * @param onDynamicColor action on new dynamic color value is set
+ * @param onTheme action on new theme value is selected
+ * @param onDismiss action on Dialog Dismiss
+ */
 @Composable
 internal fun SettingsScreen(
     viewModel: SettingsViewModel = hiltViewModel(),
@@ -45,6 +48,13 @@ internal fun SettingsScreen(
     )
 }
 
+/**
+ * @param isDynamic current value of dynamic colors value used as pre-selected
+ * @param theme current value of theme value used as pre-selected
+ * @param onDynamicColor action on new dynamic color value is set
+ * @param onTheme action on new theme value is selected
+ * @param onDismiss action on Dialog Dismiss
+ */
 @Composable
 internal fun SettingsScreen(
     isDynamic: Boolean,

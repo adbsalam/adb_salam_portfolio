@@ -1,15 +1,12 @@
 package uk.adbsalam.portfolio.startup.feature
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.home.feature.HomeScreenNavHost
@@ -18,6 +15,13 @@ import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
+/**
+ * Startup Screen Main Composable
+ *
+ * This is separated from main screen view since
+ * some of the components cannot be used as preview
+ * This will allow previews for this screen
+ */
 @Composable
 internal fun StartupScreen() {
     val mainViewModel: StartupViewModel = hiltViewModel()
@@ -38,6 +42,13 @@ internal fun StartupScreen() {
     )
 }
 
+/**
+ * @param uiState current ui state to show on screen
+ * @param theme current theme of the app to use as pre-selected
+ * @param dynamicColor current dynamic colors value to use as pre-selected
+ * @param onTheme action to perform on new theme selected
+ * @param onDynamicColor action to perform on new dynamic color value selected
+ */
 @Composable
 private fun StartupScreen(
     uiState: StartupState,

@@ -17,12 +17,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
+import uk.adbsalam.portfolio.home.feature.HomeScreenItem
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
+/**
+ * @param tags tags list to show chips for
+ * @param title title text to be set
+ * @param body body or description of card component
+ * @param resId resource ID to be used to set image
+ * @param action action to perform on View button is clicked
+ */
 @Composable
 internal fun InfoCard(
-    imageHint: String,
+    tags: List<String>,
     title: String,
     body: String,
     @DrawableRes resId: Int,
@@ -47,7 +55,7 @@ internal fun InfoCard(
         )
 
         CardInfoText(
-            imageHint = imageHint,
+            tags = tags,
             title = title,
             body = body,
             readMore = readMore,
@@ -63,7 +71,7 @@ internal fun InfoCard(
 internal fun InfoCardLightPreview() {
     Adb_Theme {
         InfoCard(
-            imageHint = "Sample",
+            tags = HomeScreenItem.createMock().first().tags,
             title = "This Is Sample Title",
             body = "This is some very long text that will show some description of what item is and what it does",
             resId = R.drawable.preview,
@@ -78,7 +86,7 @@ internal fun InfoCardLightPreview() {
 internal fun InfoCardDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         InfoCard(
-            imageHint = "Sample",
+            tags = HomeScreenItem.createMock().first().tags,
             title = "This Is Sample Title",
             body = "This is some very long text that will show some description of what item is and what it does",
             resId = R.drawable.preview,
