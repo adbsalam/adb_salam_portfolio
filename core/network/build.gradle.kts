@@ -7,9 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "uk.adbsalam.portfolio.data"
-    compileSdk = 33
-
+    namespace = "uk.adbsalam.portfolio.network"
     compileSdk = 33
 
     defaultConfig {
@@ -23,12 +21,11 @@ android {
 }
 
 dependencies {
-    implementation(project(":core:network"))
     implementation(libs.okhttp)
     implementation(libs.hilt.android)
     implementation(libs.retrofit)
-    implementation(libs.moshi)
-    ksp(libs.moshi.codegen)
-
+    implementation(libs.retrofit.converter.moshi)
+    implementation(libs.retrofit.converter.gson)
     kapt(libs.hilt.compiler)
+    kspTest(libs.moshi.codegen)
 }

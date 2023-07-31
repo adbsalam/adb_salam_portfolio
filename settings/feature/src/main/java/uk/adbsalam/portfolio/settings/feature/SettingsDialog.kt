@@ -5,6 +5,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.window.DialogProperties
 import uk.adbsalam.portfolio.utils.Theme
@@ -28,15 +30,28 @@ fun SettingsDialog(
                 dismissOnClickOutside = false
             )
         ) {
-            SettingsScreen(
-                onDynamicColor = onDynamicColor,
-                onTheme = onTheme,
-                onDismiss = {
-                    openDialog.value = false
-                    onDismiss()
-                }
-            )
 
+            if (!LocalInspectionMode.current) {
+                SettingsScreen(
+                    onDynamicColor = onDynamicColor,
+                    onTheme = onTheme,
+                    onDismiss = {
+                        openDialog.value = false
+                        onDismiss()
+                    }
+                )
+            } else { // to preview settings dialog
+                SettingsScreen(
+                    theme = Theme.DARK,
+                    isDynamic = false,
+                    onDynamicColor = {},
+                    onTheme = {},
+                    onDismiss = {
+                        openDialog.value = false
+                        onDismiss()
+                    }
+                )
+            }
         }
     }
 }
