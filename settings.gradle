@@ -12,6 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "ADBsalam"
 include ':app'
 include ':core:prefs'
@@ -28,3 +29,4 @@ include ':ui:theming'
 include ':ui:components'
 include ':utils'
 include ':core:network'
+include ':info:feature'
