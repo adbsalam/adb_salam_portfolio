@@ -24,7 +24,7 @@ fun LoadingLotti(
     modifier: Modifier = Modifier,
     msg: String = ""
 ) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.ic_loading))
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.ic_loading_clock))
     val progress by animateLottieCompositionAsState(
         composition,
         iterations = Integer.MAX_VALUE,
@@ -40,13 +40,8 @@ fun LoadingLotti(
             composition = composition,
             progress = { progress },
             modifier = Modifier
-                .width(150.dp)
-                .height(150.dp)
-        )
-        Text(
-            text = msg,
-            color = Color.Gray,
-            fontWeight = FontWeight.Bold
+                .width(80.dp)
+                .height(80.dp)
         )
     }
 }

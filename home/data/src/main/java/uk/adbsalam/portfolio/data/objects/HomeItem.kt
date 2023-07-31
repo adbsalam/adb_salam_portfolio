@@ -14,7 +14,7 @@ data class HomeItems(
         @Json(name = "type") val type: String,
         @Json(name = "res") val res: String,
         @Json(name = "body") val body: String,
-        @Json(name = "deeplink") val deeplink: String?
+        @Json(name = "deeplink") val deeplink: String
     )
 }
 

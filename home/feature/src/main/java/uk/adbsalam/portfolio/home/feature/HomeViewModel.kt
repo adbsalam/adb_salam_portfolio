@@ -3,6 +3,7 @@ package uk.adbsalam.portfolio.home.feature
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -25,12 +26,14 @@ class HomeViewModel @Inject constructor(
 
             val res = homeRepo.homeItems()
 
+
             if(res is Response.Success){
                 res.data.home.forEach {
-                    println("-----------------------------------" + it.title)
+                    println("-----------------------------------" + it.deeplink)
                 }
             }
 
+            delay(2000)
             _viewState.value = HomeScreenState.OnHome
         }
     }
