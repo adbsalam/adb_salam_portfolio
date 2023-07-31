@@ -18,11 +18,6 @@ import javax.inject.Singleton
 @Retention(AnnotationRetention.BINARY)
 annotation class PortfolioRetrofit
 
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class ProfileOkHttpClient
-
-
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
