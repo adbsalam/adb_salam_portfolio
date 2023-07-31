@@ -9,7 +9,6 @@ internal fun interface HomeService {
 
     @GET("portfolio")
     suspend fun homeItems(
-        @Header("x-api-key") apiKey: String,
         @Query("item") item: String
     ): HomeItems
 

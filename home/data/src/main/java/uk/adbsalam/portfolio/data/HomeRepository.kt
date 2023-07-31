@@ -14,7 +14,7 @@ internal class HomeRepository @Inject constructor(
 
     override suspend fun homeItems(): Response<HomeItems> {
         return try {
-            val homeItems = homeService.homeItems("18G0K0zq7paLmYTueZiK74YbEzrrALjO5R8rRHKp", item = "home")
+            val homeItems = homeService.homeItems(item = "home")
 
             Response.Success(data = homeItems)
         } catch (e: Exception) {
