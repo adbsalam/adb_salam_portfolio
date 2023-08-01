@@ -31,7 +31,6 @@ fun HomeBottomNavBar(
                 onClick = {
                     scope.launch {
                         pagerModel.pagerState.scrollToPage(index)
-
                     }
                 },
                 icon = {
