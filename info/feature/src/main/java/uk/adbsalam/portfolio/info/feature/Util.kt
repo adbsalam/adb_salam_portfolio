@@ -63,10 +63,6 @@ val infoList = listOf(
     ),
 )
 
-fun getEmojiByUnicode(unicode: Int): String? {
-    return String(Character.toChars(unicode))
-}
-
 data class WorkTag(
     val tag: String,
     @DrawableRes val icon: Int
