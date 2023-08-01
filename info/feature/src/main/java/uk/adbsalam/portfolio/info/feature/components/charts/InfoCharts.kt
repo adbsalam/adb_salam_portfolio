@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -37,8 +38,6 @@ import uk.adbsalam.portfolio.theming.primary_light
 
 @Composable
 fun InfoCharts() {
-
-
     Column(
         modifier = Modifier
             .statusBarsPadding()
@@ -48,40 +47,44 @@ fun InfoCharts() {
 
         var expandInfoBars by remember { mutableStateOf(false) }
 
-        Text(
-            modifier = Modifier
-                .fillMaxWidth(),
-            textAlign = TextAlign.Center,
-            text = "Skills Info Graphics",
-            style = MaterialTheme.typography.titleLarge
-        )
-
         Spacer(modifier = Modifier.height(20.dp))
 
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
                 .background(MaterialTheme.colorScheme.background, shape = RoundedCornerShape(10.dp))
                 .padding(14.dp),
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
         ) {
 
-            CircularChart(
-                modifier = Modifier.weight(1f),
-                title = "Android",
-                subTitle = "Kotlin",
-                icon = R.drawable.ic_kotlin,
-                percent = 1f,
+            Text(
+                text = "Android Main",
+                style = MaterialTheme.typography.titleSmall,
             )
 
-            CircularChart(
-                modifier = Modifier.weight(1f),
-                title = "Design",
-                subTitle = "Compose",
-                icon = R.drawable.ic_compose_logo,
-                percent = 0.9f,
+            Divider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 6.dp, bottom = 20.dp)
             )
+
+            Row(Modifier.fillMaxWidth()) {
+                CircularChart(
+                    modifier = Modifier.weight(1f),
+                    title = "Android",
+                    subTitle = "Kotlin",
+                    icon = R.drawable.ic_kotlin,
+                    percent = 1f,
+                )
+
+                CircularChart(
+                    modifier = Modifier.weight(1f),
+                    title = "Design",
+                    subTitle = "Compose",
+                    icon = R.drawable.ic_compose_logo,
+                    percent = 0.9f,
+                )
+            }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -92,6 +95,18 @@ fun InfoCharts() {
                 .background(MaterialTheme.colorScheme.background, shape = RoundedCornerShape(10.dp))
                 .padding(14.dp)
         ) {
+
+            Text(
+                text = "Skills Insight",
+                style = MaterialTheme.typography.titleSmall,
+            )
+
+            Divider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 6.dp, bottom = 10.dp)
+            )
+
             infoList.subList(0, 5).forEach {
                 Spacer(modifier = Modifier.height(16.dp))
                 HorizontalChart(

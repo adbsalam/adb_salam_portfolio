@@ -1,11 +1,16 @@
 package uk.adbsalam.portfolio.info.feature
 
 import android.content.res.Configuration
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -16,6 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.info.feature.components.charts.InfoCharts
 import uk.adbsalam.portfolio.info.feature.components.timeline.Timeline
+import uk.adbsalam.portfolio.info.feature.components.timeline.WorkInfo
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
 @Composable
@@ -38,7 +44,24 @@ fun InfoGraphics() {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        Timeline()
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp)
+                .background(MaterialTheme.colorScheme.background, shape = RoundedCornerShape(10.dp))
+                .padding(vertical = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+
+            val mock = WorkHistory.createMock()
+            mock.forEachIndexed{index,  item ->
+                WorkInfo(
+                    showDivider = index != mock.lastIndex,
+                    workHistory = item
+                )
+            }
+
+        }
 
         Spacer(modifier = Modifier.height(30.dp))
     }
@@ -53,7 +76,7 @@ fun InfoGraphicsPreviewLight() {
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES,)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun InfoGraphicsPreviewDark() {
     Adb_Theme(true) {

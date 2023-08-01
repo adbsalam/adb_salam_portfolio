@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.WorkHistory
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -45,6 +46,9 @@ internal fun TimeLineCard(
 
     Card(
         modifier = modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.background
+        ),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
     ) {
         Column(
@@ -128,3 +132,4 @@ fun TimeLineCardSagossPreview() {
         )
     }
 }
+
