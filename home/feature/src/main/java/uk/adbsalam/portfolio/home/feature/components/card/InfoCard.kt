@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.home.feature.HomeScreenItem
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.adbRoundedBackground
 import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
@@ -47,10 +48,7 @@ internal fun InfoCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 12.dp)
-            .background(
-                color = MaterialTheme.colorScheme.background,
-                shape = RoundedCornerShape(10.dp)
-            ),
+            .adbRoundedBackground()
     ) {
         Image(
             painter = painterResource(id = resId),

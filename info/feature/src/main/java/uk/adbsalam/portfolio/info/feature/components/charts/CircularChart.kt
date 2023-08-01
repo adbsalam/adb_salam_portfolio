@@ -25,12 +25,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
-import uk.adbsalam.portfolio.theming.compose_color
-import uk.adbsalam.portfolio.theming.compose_color_light
-
 
 @Composable
-fun CircularChart(
+internal fun CircularChart(
     modifier: Modifier = Modifier,
     title: String,
     subTitle: String,
@@ -55,7 +52,6 @@ fun CircularChart(
     ) {
 
         Box {
-
             CircularProgressIndicator(
                 modifier = Modifier.size(100.dp),
                 strokeWidth = 20.dp,
