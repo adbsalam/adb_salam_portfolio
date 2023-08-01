@@ -1,6 +1,7 @@
 package uk.adbsalam.portfolio.info.feature
 
 import androidx.annotation.DrawableRes
+import androidx.compose.ui.graphics.Color
 import uk.adbsalam.portfolio.components.R
 
 data class InfoGraphic(
@@ -72,6 +73,7 @@ data class WorkHistory(
     val company: String,
     val duration: String,
     @DrawableRes val logo: Int,
+    val iconTint: Color,
     val tags: List<WorkTag>,
     val description: String,
 ) {
@@ -82,6 +84,7 @@ data class WorkHistory(
                 company = "NBrown Group Plc",
                 duration = "(2021 - Current)",
                 logo = R.drawable.ic_nbrown,
+                iconTint = Color(0xFFFF9800),
                 tags = listOf(
                     WorkTag(
                         tag = "Android",
@@ -110,6 +113,7 @@ data class WorkHistory(
                 company = "Sagoss Group",
                 duration = "(2020 - 2021)",
                 logo = R.drawable.ic_sagoss,
+                iconTint = Color(0xFF9C27B0),
                 tags = listOf(
                     WorkTag(
                         tag = "Android",
@@ -134,6 +138,7 @@ data class WorkHistory(
                 duration = "(2019 - 2020)",
                 company = "Payzone Bill Payments",
                 logo = R.drawable.ic_payzone_logo,
+                iconTint = Color(0xFFFF4785),
                 tags = listOf(
                     WorkTag(
                         tag = "Android",
@@ -162,6 +167,7 @@ data class WorkHistory(
                 duration = "(2017 - 2019)",
                 company = "Free Lancing",
                 logo = R.drawable.ic_git,
+                iconTint = Color(0xFF4CAF50),
                 tags = listOf(
                     WorkTag(
                         tag = "Android",

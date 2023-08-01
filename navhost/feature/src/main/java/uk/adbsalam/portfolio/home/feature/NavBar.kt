@@ -3,6 +3,7 @@ package uk.adbsalam.portfolio.home.feature
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -22,7 +23,10 @@ fun HomeBottomNavBar(
     pagerModel: PagerModel
 ) {
     val scope = rememberCoroutineScope()
-    NavigationBar(modifier = Modifier.fillMaxWidth()) {
+    NavigationBar(
+        modifier = Modifier.fillMaxWidth(),
+        containerColor = MaterialTheme.colorScheme.background
+    ) {
         pagerModel.pagerList.forEachIndexed { index, item ->
             NavigationBarItem(
                 alwaysShowLabel = true,

@@ -25,6 +25,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,7 +43,7 @@ import uk.adbsalam.portfolio.info.feature.WorkHistory
 @Composable
 fun WorkInfo(
     showDivider: Boolean,
-    workHistory: WorkHistory
+    workHistory: WorkHistory,
 ) {
     Column(
         modifier = Modifier
@@ -58,7 +59,6 @@ fun WorkInfo(
             animationSpec = tween(durationMillis = 300, easing = LinearEasing)
         )
 
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -66,7 +66,6 @@ fun WorkInfo(
                 .clickable {
                     chevronRotation = if (!expand) 90f else 0f
                     expand = !expand
-
                 },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
@@ -76,7 +75,11 @@ fun WorkInfo(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(5.dp),
             ) {
-                Icon(imageVector = Icons.Default.WorkHistory, contentDescription = null)
+                Icon(
+                    imageVector = Icons.Default.WorkHistory,
+                    contentDescription = null,
+                    tint = workHistory.iconTint
+                )
 
                 Text(
                     text = workHistory.company,
@@ -146,6 +149,6 @@ fun WorkInfo(
 fun WorkInfoPreview() {
     WorkInfo(
         showDivider = true,
-        workHistory = WorkHistory.createMock().first()
+        workHistory = WorkHistory.createMock().first(),
     )
 }

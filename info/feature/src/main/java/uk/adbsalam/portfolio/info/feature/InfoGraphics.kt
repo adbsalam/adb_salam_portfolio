@@ -25,6 +25,7 @@ import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
 @Composable
 fun InfoGraphics() {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -36,10 +37,15 @@ fun InfoGraphics() {
 
         AndroidMainCard()
 
+        Text(
+            text = "Have a look at my skill set",
+            style = MaterialTheme.typography.titleMedium
+        )
+
         SkillsInsightCard()
 
         Text(
-            text = "Work History",
+            text = "My Work History",
             style = MaterialTheme.typography.titleMedium
         )
 
@@ -55,10 +61,9 @@ fun InfoGraphics() {
             mock.forEachIndexed { index, item ->
                 WorkInfo(
                     showDivider = index != mock.lastIndex,
-                    workHistory = item
+                    workHistory = item,
                 )
             }
-
         }
 
         Spacer(modifier = Modifier.height(30.dp))

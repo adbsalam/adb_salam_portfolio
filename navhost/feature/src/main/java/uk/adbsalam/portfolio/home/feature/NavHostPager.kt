@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import uk.adbsalam.portfolio.info.feature.InfoGraphics
+import uk.adbsalam.portfolio.info.feature.InfoScreen
 import uk.adbsalam.portfolio.utils.Theme
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -76,7 +77,7 @@ internal fun createPageList(
             title = "Info",
             tabIcon = Icons.Outlined.Info
         ) {
-            InfoGraphics()
+            InfoScreen()
         },
         PagerModel.PageModel(
             title = "Videos",
