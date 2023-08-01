@@ -16,18 +16,10 @@ import uk.adbsalam.portfolio.theming.Adb_Theme
 
 @Composable
 internal fun Timeline() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
+    Column(modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {
 
         val mockData = WorkHistory.createMock()
         mockData.forEachIndexed { index, workHistory ->
-
-
-            println("---------------------------------------" + mockData.lastIndex)
-            println("---------------------------------------" + index)
 
             val stage = when (index) {
                 0 -> TimelineNodePosition.FIRST
@@ -38,15 +30,15 @@ internal fun Timeline() {
             TimelineNode(
                 position = stage,
                 circleParameters = CircleParametersDefaults.circleParameters(
-                    backgroundColor = MaterialTheme.colorScheme.surfaceVariant,
+                    backgroundColor = MaterialTheme.colorScheme.primary,
                     stroke = StrokeParameters(
                         color = MaterialTheme.colorScheme.primary,
                         width = 5.dp
                     ),
                 ),
                 lineParameters = LineParametersDefaults.linearGradient(
-                    startColor = MaterialTheme.colorScheme.primary,
-                    endColor = MaterialTheme.colorScheme.primary
+                    startColor = MaterialTheme.colorScheme.surfaceVariant,
+                    endColor = MaterialTheme.colorScheme.surfaceVariant
                 )
             ) { modifier -> TimeLineCard(workHistory, modifier) }
         }

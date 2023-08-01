@@ -2,20 +2,24 @@ package uk.adbsalam.portfolio.info.feature.components.timeline
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.WorkHistory
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -23,76 +27,81 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import uk.adbsalam.portfolio.info.feature.WorkHistory
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 internal fun TimeLineCard(
     workHistory: WorkHistory,
     modifier: Modifier
 ) {
 
-    var expand by remember { mutableStateOf(false) }
+    var expand by remember { mutableStateOf(true) }
 
     Card(
-        modifier = modifier
-            .fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary)
     ) {
         Column(
-            Modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp)
         ) {
 
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                horizontalArrangement = Arrangement.spacedBy(5.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.padding(bottom = 8.dp)
             ) {
-                Column() {
-                    Text(
-                        text = workHistory.company,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.width(10.dp))
-                    Text(
-                        text = workHistory.duration,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.SemiBold
-                    )
-                }
-
-                if(workHistory.logo == 0) return@Row
-
-                Image(
-                    painter = painterResource(id = workHistory.logo),
-                    contentDescription = null,
-                    contentScale = ContentScale.FillBounds,
-                    modifier = Modifier
-                        .width(80.dp)
-                        .height(30.dp)
-                        .clip(RoundedCornerShape(10.dp))
+                Icon(imageVector = Icons.Default.WorkHistory, contentDescription = null)
+                Text(
+                    text = workHistory.company,
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Text(
+                    text = workHistory.duration,
+                    style = MaterialTheme.typography.bodyMedium
                 )
             }
 
-            AnimatedVisibility(visible = expand) {
-                Column() {
-                    Text(text = workHistory.description)
+            FlowRow(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
+            ) {
+                workHistory.tags.forEach {
+                    AssistChip(
+                        label = { Text(text = it.tag) },
+                        leadingIcon = {
+                            Icon(
+                                modifier = Modifier.sizeIn(maxHeight = 30.dp, maxWidth = 30.dp),
+                                painter = painterResource(id = it.icon),
+                                contentDescription = null,
+                                tint = Color.Unspecified
+                            )
+                        },
+                        onClick = {}
+                    )
                 }
             }
 
-            TextButton(onClick = { expand = !expand }) {
-                Text(text = "Expand")
+
+            Spacer(modifier = Modifier.height(10.dp))
+
+            AnimatedVisibility(visible = expand) {
+                Text(text = workHistory.description)
             }
 
+            Spacer(modifier = Modifier.height(10.dp))
+
+            Button(
+                modifier = Modifier.align(Alignment.End),
+                onClick = { expand = !expand },
+                content = { Text(text = if (expand) "see less" else "see more") }
+            )
         }
     }
 }
@@ -105,6 +114,7 @@ fun TimeLineCardNBrownPreview() {
         modifier = Modifier.fillMaxWidth()
     )
 }
+
 @Composable
 @Preview
 fun TimeLineCardSagossPreview() {

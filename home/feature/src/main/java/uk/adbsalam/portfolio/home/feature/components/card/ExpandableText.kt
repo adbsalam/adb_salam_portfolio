@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
@@ -34,9 +35,17 @@ internal fun ExpandableText(
         ) { readMore.value = !readMore.value }) {
 
         if (readMore.value) {
-            Text(text = text)
+            Text(
+                text = text,
+                style = MaterialTheme.typography.bodyMedium
+            )
         } else {
-            Text(text = text, maxLines = 2, overflow = TextOverflow.Ellipsis)
+            Text(
+                text = text,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
     }
 }

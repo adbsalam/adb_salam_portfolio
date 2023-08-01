@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.info.feature.components
+package uk.adbsalam.portfolio.info.feature.components.charts
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -19,6 +19,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import uk.adbsalam.portfolio.info.feature.R
+import uk.adbsalam.portfolio.theming.compose_color
+import uk.adbsalam.portfolio.theming.compose_color_light
 
 @Composable
 fun HorizontalChart(
@@ -42,7 +45,7 @@ fun HorizontalChart(
         Column(Modifier.weight(1f)) {
             Text(
                 text = subTitle,
-                fontWeight = FontWeight.Bold
+                style = MaterialTheme.typography.titleSmall
             )
         }
 
@@ -52,7 +55,7 @@ fun HorizontalChart(
                     .height(15.dp)
                     .fillMaxWidth(),
                 progress = progressAnimation,
-                trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                trackColor = MaterialTheme.colorScheme.surfaceVariant
             )
         }
 

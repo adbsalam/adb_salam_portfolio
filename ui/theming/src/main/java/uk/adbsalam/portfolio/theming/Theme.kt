@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -13,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import uk.adbsalam.portfolio.utils.Theme
@@ -66,8 +69,24 @@ fun Adb_Theme(
 
     MaterialTheme(
         colorScheme = sch,
-        typography = MaterialTheme.typography,
-        content = content
+        content = content,
+        typography = Typography(
+            displayLarge = MaterialTheme.typography.displayLarge.copy(fontFamily = appFont),
+            displayMedium = MaterialTheme.typography.displayMedium.copy(fontFamily = appFont),
+            displaySmall = MaterialTheme.typography.displaySmall.copy(fontFamily = appFont),
+            headlineLarge = MaterialTheme.typography.headlineLarge.copy(fontFamily = appFont),
+            headlineMedium = MaterialTheme.typography.headlineMedium.copy(fontFamily = appFont),
+            headlineSmall = MaterialTheme.typography.headlineSmall.copy(fontFamily = appFont),
+            titleLarge = MaterialTheme.typography.titleLarge.copy(fontFamily = appFont, fontWeight = FontWeight.Bold, fontSize = 18.sp),
+            titleMedium = MaterialTheme.typography.titleMedium.copy(fontFamily = appFont,  fontWeight = FontWeight.Bold, fontSize = 16.sp),
+            titleSmall = MaterialTheme.typography.titleSmall.copy(fontFamily = appFont,  fontWeight = FontWeight.SemiBold, fontSize = 14.sp),
+            bodyLarge = MaterialTheme.typography.bodyLarge.copy(fontFamily = appFont),
+            bodyMedium = MaterialTheme.typography.bodyMedium.copy(fontFamily = appFont),
+            bodySmall = MaterialTheme.typography.bodySmall.copy(fontFamily = appFont),
+            labelLarge = MaterialTheme.typography.labelLarge.copy(fontFamily = appFont),
+            labelMedium = MaterialTheme.typography.labelMedium.copy(fontFamily = appFont),
+            labelSmall = MaterialTheme.typography.labelSmall.copy(fontFamily = appFont)
+        )
     )
 }
 

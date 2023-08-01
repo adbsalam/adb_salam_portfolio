@@ -1,10 +1,14 @@
-package uk.adbsalam.portfolio.info.feature.components
+package uk.adbsalam.portfolio.info.feature.components.charts
 
+import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -17,10 +21,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import uk.adbsalam.portfolio.components.R
+import uk.adbsalam.portfolio.theming.compose_color
+import uk.adbsalam.portfolio.theming.compose_color_light
 
 
 @Composable
@@ -28,6 +34,7 @@ fun CircularChart(
     modifier: Modifier = Modifier,
     title: String,
     subTitle: String,
+    @DrawableRes icon: Int,
     percent: Float
 ) {
 
@@ -45,23 +52,38 @@ fun CircularChart(
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
-        CircularProgressIndicator(
-            modifier = Modifier.size(100.dp),
-            strokeWidth = 20.dp,
-            progress = progressAnimation,
-            trackColor = MaterialTheme.colorScheme.surfaceVariant,
-        )
+
+        Box {
+
+            CircularProgressIndicator(
+                modifier = Modifier.size(100.dp),
+                strokeWidth = 20.dp,
+                progress = progressAnimation,
+                trackColor = MaterialTheme.colorScheme.surfaceVariant,
+            )
+
+            Image(
+                painter = painterResource(id = icon),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(30.dp)
+                    .align(Alignment.Center)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(10.dp))
 
         Text(
             text = title,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
+            style = MaterialTheme.typography.titleMedium
         )
+
+        Spacer(modifier = Modifier.height(5.dp))
+
         Text(
             text = subTitle,
-            fontSize = 16.sp,
+            style = MaterialTheme.typography.titleSmall
         )
     }
 }
@@ -72,6 +94,9 @@ internal fun CircularChartPreview() {
     CircularChart(
         title = "Android",
         subTitle = "kotlin",
+        icon = R.drawable.ic_kotlin,
         percent = 0.5f
     )
 }
+
+

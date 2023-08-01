@@ -61,7 +61,7 @@ fun TimelineNode(
                 circleParameters.stroke?.let { stroke ->
                     val strokeWidthInPx = stroke.width.toPx()
                     drawCircle(
-                        color = stroke.color,
+                        color = circleParameters.backgroundColor,
                         radius = circleRadiusInPx - strokeWidthInPx / 2,
                         center = Offset(x = circleRadiusInPx, y = circleRadiusInPx),
                         style = Stroke(width = strokeWidthInPx)

@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.dp
 
 object CircleParametersDefaults {
 
-    private val defaultCircleRadius = 12.dp
+    private val defaultCircleRadius = 8.dp
 
     fun circleParameters(
         radius: Dp = defaultCircleRadius,

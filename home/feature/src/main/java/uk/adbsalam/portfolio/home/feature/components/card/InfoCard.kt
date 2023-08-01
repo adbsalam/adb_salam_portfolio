@@ -36,7 +36,6 @@ internal fun InfoCard(
     @DrawableRes resId: Int,
     action: () -> Unit,
 ) {
-
     val readMore = remember { mutableStateOf(false) }
 
     Card(
