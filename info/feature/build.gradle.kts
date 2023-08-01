@@ -41,6 +41,7 @@ snapIt {
 dependencies {
     implementation(project(":ui:components"))
     implementation(project(":ui:theming"))
+    implementation(project(":utils"))
     implementation(project(":settings:feature"))
     implementation(libs.compose.lotti)
     implementation(libs.compose.runtime)
