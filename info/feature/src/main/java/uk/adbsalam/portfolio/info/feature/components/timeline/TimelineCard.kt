@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.info.feature.components.timeline
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
@@ -32,6 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.info.feature.WorkHistory
+import uk.adbsalam.portfolio.theming.Adb_Theme
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -39,8 +41,7 @@ internal fun TimeLineCard(
     workHistory: WorkHistory,
     modifier: Modifier
 ) {
-
-    var expand by remember { mutableStateOf(true) }
+    var expand by remember { mutableStateOf(false) }
 
     Card(
         modifier = modifier.fillMaxWidth(),
@@ -109,17 +110,21 @@ internal fun TimeLineCard(
 @Composable
 @Preview
 fun TimeLineCardNBrownPreview() {
-    TimeLineCard(
-        workHistory = WorkHistory.createMock().first(),
-        modifier = Modifier.fillMaxWidth()
-    )
+    Adb_Theme() {
+        TimeLineCard(
+            workHistory = WorkHistory.createMock().first(),
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }
 
 @Composable
-@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES,)
 fun TimeLineCardSagossPreview() {
-    TimeLineCard(
-        workHistory = WorkHistory.createMock()[1],
-        modifier = Modifier.fillMaxWidth()
-    )
+    Adb_Theme(true) {
+        TimeLineCard(
+            workHistory = WorkHistory.createMock()[1],
+            modifier = Modifier.fillMaxWidth()
+        )
+    }
 }

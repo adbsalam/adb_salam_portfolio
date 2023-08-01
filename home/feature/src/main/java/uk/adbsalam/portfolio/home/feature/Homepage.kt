@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.home.feature
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
@@ -99,7 +100,7 @@ internal fun PreviewHomeLight() {
 }
 
 @Composable
-@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @SnapIt(
     name = "HomePage - Dark Mode",
     isScreen = true

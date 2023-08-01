@@ -1,5 +1,7 @@
 package uk.adbsalam.portfolio.startup.feature
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -49,6 +51,7 @@ internal fun StartupScreen() {
  * @param onTheme action to perform on new theme selected
  * @param onDynamicColor action to perform on new dynamic color value selected
  */
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 private fun StartupScreen(
     uiState: StartupState,
@@ -65,6 +68,7 @@ private fun StartupScreen(
             when (uiState) {
                 StartupState.OnLoading -> LoadingScreen()
                 StartupState.OnStart -> HomeScreenNavHost(
+                    theme = theme,
                     onTheme = onTheme,
                     onDynamicColor = onDynamicColor,
                 )

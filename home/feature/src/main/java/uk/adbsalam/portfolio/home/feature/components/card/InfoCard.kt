@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.home.feature.components.card
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -80,7 +81,7 @@ internal fun InfoCardLightPreview() {
 }
 
 @Composable
-@Preview
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @SnapIt(name = "InfoCard - Dark Mode")
 internal fun InfoCardDarkPreview() {
     Adb_Theme(isSystemDark = true) {

@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.info.feature.components.timeline
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -45,10 +46,18 @@ internal fun Timeline() {
     }
 }
 
-@Preview
 @Composable
+@Preview
 internal fun TimelineLightPreview() {
     Adb_Theme() {
+        Timeline()
+    }
+}
+
+@Composable
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES,)
+internal fun TimelineDarkPreview() {
+    Adb_Theme(true) {
         Timeline()
     }
 }

@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.home.feature
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -100,8 +101,8 @@ internal fun HomeLightPreview() {
     }
 }
 
-@Preview
 @Composable
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @SnapIt(name = "Home - Dark Mode")
 internal fun HomeDarkPreview() {
     Adb_Theme(isSystemDark = true) {
