@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.home.feature.components
+package uk.adbsalam.portfolio.startup.feature.components
 
 import org.intellij.lang.annotations.Language
 

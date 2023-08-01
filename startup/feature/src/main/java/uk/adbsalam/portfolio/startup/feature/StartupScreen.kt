@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.home.feature.HomeScreenNavHost
+import uk.adbsalam.portfolio.startup.feature.components.GradientColumn
 import uk.adbsalam.portfolio.startup.feature.components.LoadingScreen
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
@@ -24,6 +25,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * some of the components cannot be used as preview
  * This will allow previews for this screen
  */
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 internal fun StartupScreen() {
     val mainViewModel: StartupViewModel = hiltViewModel()
@@ -64,19 +66,25 @@ private fun StartupScreen(
         themeType = theme,
         dynamic = dynamicColor
     ) {
+
         Surface(modifier = Modifier.fillMaxSize()) {
-            when (uiState) {
-                StartupState.OnLoading -> LoadingScreen()
-                StartupState.OnStart -> HomeScreenNavHost(
-                    theme = theme,
-                    onTheme = onTheme,
-                    onDynamicColor = onDynamicColor,
-                )
+            GradientColumn(
+                theme = theme
+            ) {
+                when (uiState) {
+                    StartupState.OnLoading -> LoadingScreen()
+                    StartupState.OnStart -> HomeScreenNavHost(
+                        onTheme = onTheme,
+                        onDynamicColor = onDynamicColor,
+                    )
+                }
             }
         }
+
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 @Preview
 @SnapIt("StartupScreen - when in light mode - should render correctly")
@@ -90,6 +98,7 @@ internal fun StartupScreenLoadingLightTheme() {
     )
 }
 
+@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 @Preview
 @SnapIt("StartupScreen - when in dark mode - should render correctly")

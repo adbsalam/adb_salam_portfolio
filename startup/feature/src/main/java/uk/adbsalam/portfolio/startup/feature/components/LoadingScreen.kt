@@ -38,11 +38,7 @@ internal fun LoadingScreen() {
         enter = fadeIn(tween(500)),
         exit = fadeOut(tween(500))
     ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(MaterialTheme.colorScheme.background),
-        ) {
+        Box(modifier = Modifier.fillMaxSize()) {
             AdbMainLogo(
                 modifier = Modifier
                     .align(Alignment.Center)

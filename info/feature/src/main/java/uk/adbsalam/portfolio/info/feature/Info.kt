@@ -20,8 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.info.feature.components.charts.InfoCharts
-import uk.adbsalam.portfolio.info.feature.components.timeline.Timeline
-import uk.adbsalam.portfolio.info.feature.components.timeline.WorkInfo
+import uk.adbsalam.portfolio.info.feature.components.WorkInfo
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
 @Composable

@@ -1,4 +1,5 @@
-package uk.adbsalam.portfolio.home.feature.components
+package uk.adbsalam.portfolio.startup.feature.components
+
 
 import android.graphics.RuntimeShader
 import android.os.Build
