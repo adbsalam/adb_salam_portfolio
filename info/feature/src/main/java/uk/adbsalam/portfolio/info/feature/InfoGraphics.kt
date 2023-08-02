@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -59,6 +61,13 @@ fun InfoGraphics() {
             style = MaterialTheme.typography.titleMedium
         )
 
+        SkillsInsightCard()
+
+        Text(
+            text = "Annual spending stats",
+            style = MaterialTheme.typography.titleMedium
+        )
+
         val data = listOf(
             "2022-01-01" to 10f,
             "2022-02-02" to 30f,
@@ -82,39 +91,44 @@ fun InfoGraphics() {
             }
 
 
-        ProvideChartStyle(
-            chartStyle = LocalChartStyle.current.copy(
-                axis = LocalChartStyle.current.axis.copy(
-                    axisLabelColor = MaterialTheme.colorScheme.onBackground,
-                    axisLabelTextSize = 14.sp,
-                    axisLineColor = MaterialTheme.colorScheme.onBackground,
-                    axisGuidelineColor = Color.LightGray,
-                ),
-            )
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
         ) {
-            Chart(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .adbRoundedBackground()
-                    .padding(12.dp),
-                chart = lineChart(
-                    lines = listOf(
-                        lineSpec(
-                            lineColor = MaterialTheme.colorScheme.onBackground,
-                            lineBackgroundShader = null
-                        )
-                    )
-                ),
-                model = chartEntryModel,
-                startAxis = startAxis(),
-                bottomAxis = bottomAxis(
-                    valueFormatter = horizontalAxisValueFormatter
+
+
+            ProvideChartStyle(
+                chartStyle = LocalChartStyle.current.copy(
+                    axis = LocalChartStyle.current.axis.copy(
+                        axisLabelColor = MaterialTheme.colorScheme.onBackground,
+                        axisLabelTextSize = 14.sp,
+                        axisLineColor = MaterialTheme.colorScheme.onBackground,
+                        axisGuidelineColor = Color.LightGray,
+                    ),
                 )
-            )
+            ) {
+                Chart(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .adbRoundedBackground()
+                        .padding(12.dp),
+                    chart = lineChart(
+                        lines = listOf(
+                            lineSpec(
+                                lineColor = MaterialTheme.colorScheme.onBackground,
+                                lineBackgroundShader = null,
+                            )
+                        )
+                    ),
+                    model = chartEntryModel,
+                    startAxis = startAxis(),
+                    bottomAxis = bottomAxis(
+                        valueFormatter = horizontalAxisValueFormatter,
+                        guideline = null
+                    )
+                )
+            }
         }
-
-        SkillsInsightCard()
-
 
         Spacer(modifier = Modifier.height(30.dp))
     }
