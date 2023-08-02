@@ -85,6 +85,7 @@ fun WorkInfo(
                     text = workHistory.company,
                     style = MaterialTheme.typography.titleSmall
                 )
+
                 Text(
                     text = workHistory.duration,
                     style = MaterialTheme.typography.bodyMedium

@@ -23,7 +23,7 @@ fun GradientColumn(
     content: @Composable () -> Unit
 ) {
     val gradientColorOne =
-        if (theme == Theme.DARK || isSystemInDarkTheme()) primary_dark else Color(0xFFBED3D1)
+        if (theme == Theme.DARK || isSystemInDarkTheme()) primary_dark else Color(0xFFFFEDF3)
 
     val gradientColorTwo =
         if (theme == Theme.DARK || isSystemInDarkTheme()) primary_light else Color(0xFFF5EBCE)

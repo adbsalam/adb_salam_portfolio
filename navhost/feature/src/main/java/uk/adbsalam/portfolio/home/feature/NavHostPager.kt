@@ -7,13 +7,18 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Forum
+import androidx.compose.material.icons.outlined.HeartBroken
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Movie
+import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material.icons.outlined.Shop
+import androidx.compose.material.icons.outlined.ShoppingBag
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import uk.adbsalam.nbrown.home.feature.NBrownHome
 import uk.adbsalam.portfolio.info.feature.InfoGraphics
 import uk.adbsalam.portfolio.info.feature.InfoScreen
 import uk.adbsalam.portfolio.utils.Theme
@@ -68,28 +73,36 @@ internal fun createPageList(
             title = "Home",
             tabIcon = Icons.Outlined.Home
         ) {
-            Homepage(
+            NBrownHome(
                 onTheme = onTheme,
                 onDynamicColor = onDynamicColor
             )
         },
         PagerModel.PageModel(
-            title = "Info",
-            tabIcon = Icons.Outlined.Info
+            title = "Search",
+            tabIcon = Icons.Outlined.Search
         ) {
             InfoScreen()
         },
         PagerModel.PageModel(
-            title = "Videos",
-            tabIcon = Icons.Outlined.Movie
+            title = "Shop",
+            tabIcon = Icons.Outlined.Shop
         ) {
             Column(modifier = Modifier.fillMaxSize()) {
                 Text(text = "Videos")
             }
         },
         PagerModel.PageModel(
-            title = "Reviews",
-            tabIcon = Icons.Outlined.Forum
+            title = "Saved",
+            tabIcon = Icons.Outlined.HeartBroken
+        ) {
+            Column(modifier = Modifier.fillMaxSize()) {
+                Text(text = "Reviews")
+            }
+        },
+        PagerModel.PageModel(
+            title = "Bag",
+            tabIcon = Icons.Outlined.ShoppingBag
         ) {
             Column(modifier = Modifier.fillMaxSize()) {
                 Text(text = "Reviews")
