@@ -8,9 +8,11 @@ import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkHorizontally
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -21,6 +23,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.HeartBroken
+import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.ShoppingBag
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -37,13 +40,17 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import uk.adbsalam.nbrown.home.feature.data.Product
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun CarousalItem() {
+fun CarousalItem(
+    product: Product
+) {
     Card(
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
 
@@ -56,15 +63,19 @@ fun CarousalItem() {
             Column(
                 modifier = Modifier
                     .width(160.dp)
-                    .height(240.dp)
-                    .clickable {
-                        visibility = !visibility
-                    }
+                    .height(280.dp)
+                    .background(MaterialTheme.colorScheme.background)
+                    .combinedClickable(
+                        onClick = {},
+                        onLongClick = { visibility = !visibility }
+                    )
             ) {
 
                 Image(
-                    modifier = Modifier.height(160.dp),
-                    painter = painterResource(id = R.drawable.ic_home_top),
+                    modifier = Modifier
+                        .height(200.dp)
+                        .width(160.dp),
+                    painter = painterResource(id = product.image),
                     contentScale = ContentScale.FillBounds,
                     contentDescription = null
                 )
@@ -77,12 +88,12 @@ fun CarousalItem() {
                 ) {
 
                     Text(
-                        text = "£32.00",
+                        text = product.price,
                         style = MaterialTheme.typography.titleSmall,
                         color = MaterialTheme.colorScheme.onBackground
                     )
                     Text(
-                        text = "Cargo pink pants",
+                        text = product.title,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onBackground
                     )
@@ -92,19 +103,20 @@ fun CarousalItem() {
 
             AnimatedVisibility(
                 visible = visibility,
-                enter = fadeIn(tween(400)) + expandHorizontally(tween(400)),
-                exit = fadeOut(tween(400)) + shrinkHorizontally(tween(400)),
+                enter = fadeIn(tween(500)) + expandHorizontally(tween(500)),
+                exit = fadeOut(tween(500)) + shrinkHorizontally(tween(500)),
             ) {
                 Column(
                     modifier = Modifier
-                        .height(240.dp)
-                        .width(60.dp)
-                        .background(color = MaterialTheme.colorScheme.surfaceVariant),
+                        .height(280.dp)
+                        .width(60.dp),
                     verticalArrangement = Arrangement.spacedBy(20.dp),
                 ) {
                     Column(
-                        modifier = Modifier.fillMaxSize().padding(16.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
+                        verticalArrangement = Arrangement.spacedBy(20.dp),
                     ) {
                         Icon(
                             imageVector = Icons.Default.HeartBroken,
@@ -112,6 +124,10 @@ fun CarousalItem() {
                         )
                         Icon(
                             imageVector = Icons.Default.ShoppingBag,
+                            contentDescription = null
+                        )
+                        Icon(
+                            imageVector = Icons.Default.Share,
                             contentDescription = null
                         )
                     }
@@ -126,7 +142,7 @@ fun CarousalItem() {
 @Preview
 internal fun CarouselLightPreview() {
     Adb_Theme {
-        CarousalItem()
+        CarousalItem(Product.createData().first())
     }
 }
 
@@ -134,6 +150,6 @@ internal fun CarouselLightPreview() {
 @Preview
 internal fun CarouselDarkPreview() {
     Adb_Theme(isSystemDark = true) {
-        CarousalItem()
+        CarousalItem(Product.createData().first())
     }
 }

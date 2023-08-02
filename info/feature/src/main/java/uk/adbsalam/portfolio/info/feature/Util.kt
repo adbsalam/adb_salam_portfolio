@@ -11,56 +11,52 @@ data class InfoGraphic(
 
 val infoList = listOf(
     InfoGraphic(
-        name = "Coroutine",
-        value = 1f
+        name = "Makeup",
+        value = 0.4f
     ),
     InfoGraphic(
-        name = "CI/CD",
-        value = 0.9f
-    ),
-    InfoGraphic(
-        name = "REST",
-        value = 1f
-    ),
-    InfoGraphic(
-        name = "Unit Testing",
-        value = 1f
-    ),
-    InfoGraphic(
-        name = "E2E Testing",
-        value = 0.8f
-    ),
-    InfoGraphic(
-        name = "Modularisation",
-        value = 0.8f
-    ),
-    InfoGraphic(
-        name = "Flows",
-        value = 0.9f
-    ),
-    InfoGraphic(
-        name = "Flutter",
+        name = "Jumpers",
         value = 0.6f
     ),
     InfoGraphic(
-        name = "SwiftUI",
-        value = 0.7f
+        name = "Jackets",
+        value = 0.2f
     ),
     InfoGraphic(
-        name = "Bash Shell",
-        value = 0.6f
+        name = "Dresses",
+        value = 0.4f
     ),
     InfoGraphic(
-        name = "Docker",
+        name = "Home",
+        value = 0.3f
+    ),
+    InfoGraphic(
+        name = "Shirts",
+        value = 0.8f
+    ),
+    InfoGraphic(
+        name = "Bags",
+        value = 0.4f
+    ),
+    InfoGraphic(
+        name = "Health",
+        value = 0.2f
+    ),
+    InfoGraphic(
+        name = "Gloves",
         value = 0.5f
     ),
     InfoGraphic(
-        name = "c++",
-        value = 0.4f
+        name = "Tech",
+        value = 0.9f
     ),
     InfoGraphic(
-        name = "AWS",
-        value = 0.4f
+        name = "Cables",
+        value = 0.1f
+    ),
+    InfoGraphic(
+        name = "others",
+        value = 0.1f
     ),
 )
 

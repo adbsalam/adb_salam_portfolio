@@ -28,23 +28,27 @@ internal fun AndroidMainCard(){
             .padding(14.dp),
     ) {
 
-        InfoTitle(title = "Android Main")
+        InfoTitle(title = "Credit Insight")
 
         Row(modifier = Modifier.fillMaxWidth()) {
             CircularChart(
                 modifier = Modifier.weight(1f),
-                title = "Android",
+                title = "Credit",
                 subTitle = "Kotlin",
-                icon = R.drawable.ic_kotlin,
-                percent = 1f,
+                keyOne = "Credit Used : £60.00 ",
+                keyTwo = "Credit Available: £40.00",
+                icon = R.drawable.ic_credit,
+                percent = 0.6f,
             )
 
             CircularChart(
                 modifier = Modifier.weight(1f),
-                title = "Design",
+                title = "Total Orders",
                 subTitle = "Compose",
-                icon = R.drawable.ic_compose_logo,
-                percent = 0.9f,
+                keyOne = "Card: £40.00",
+                keyTwo = "Credit: £60.00",
+                icon = R.drawable.ic_shop,
+                percent = 0.4f,
             )
         }
     }

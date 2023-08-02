@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,10 +26,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.nbrown.home.feature.components.CarousalItem
 import uk.adbsalam.nbrown.home.feature.components.ProductsCarousal
+import uk.adbsalam.nbrown.home.feature.components.PromoImage
+import uk.adbsalam.nbrown.home.feature.components.Promobanner
+import uk.adbsalam.nbrown.home.feature.components.WorkInfo
+import uk.adbsalam.nbrown.home.feature.data.WorkHistory
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.components.SettingsIcon
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.adbRoundedBackground
 import uk.adbsalam.portfolio.utils.Theme
 
 @Composable
@@ -42,9 +49,8 @@ fun NBrownHome(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -70,14 +76,37 @@ fun NBrownHome(
 
         ProductsCarousal()
 
+        Promobanner()
 
-//        LottiInfoCard(
-//            resId = R.raw.ic_stats,
-//            tags = listOf("Track", "Spending", "Summary"),
-//            title = "Spending Insight",
-//            body = "Track you order summary and look at your spendings and much more such as bla bla and other things",
-//            action = {}
-//        )
+        LottiInfoCard(
+            resId = R.raw.ic_spendin,
+            tags = listOf("Track", "Spending", "Summary"),
+            title = "Spending Insight",
+            body = "Track you order summary and look at your spendings and much more such as bla bla and other things",
+            action = {}
+        )
+
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 16.dp)
+                .fillMaxWidth()
+                .adbRoundedBackground()
+                .padding(vertical = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+
+            val mock = WorkHistory.createMock()
+            mock.forEachIndexed { index, item ->
+                WorkInfo(
+                    showDivider = index != mock.lastIndex,
+                    workHistory = item,
+                )
+            }
+        }
+
+
+        Spacer(modifier = Modifier.height(30.dp))
+
     }
 
 

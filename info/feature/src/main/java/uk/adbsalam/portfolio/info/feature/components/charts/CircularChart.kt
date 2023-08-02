@@ -5,11 +5,16 @@ import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -31,6 +36,8 @@ internal fun CircularChart(
     modifier: Modifier = Modifier,
     title: String,
     subTitle: String,
+    keyOne: String,
+    keyTwo: String,
     @DrawableRes icon: Int,
     percent: Float
 ) {
@@ -77,10 +84,41 @@ internal fun CircularChart(
 
         Spacer(modifier = Modifier.height(5.dp))
 
-        Text(
-            text = subTitle,
-            style = MaterialTheme.typography.titleSmall
-        )
+        Column(
+            modifier = Modifier.width(IntrinsicSize.Max)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .size(10.dp)
+                        .background(MaterialTheme.colorScheme.primary)
+                ) {}
+                Text(
+                    text = keyOne,
+                    style = MaterialTheme.typography.titleSmall
+                )
+            }
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .size(10.dp)
+                        .background(MaterialTheme.colorScheme.surfaceVariant)
+                ) {}
+                Text(
+                    text = keyTwo,
+                    style = MaterialTheme.typography.titleSmall
+                )
+            }
+
+        }
+
     }
 }
 
@@ -91,6 +129,8 @@ internal fun CircularChartPreview() {
         title = "Android",
         subTitle = "kotlin",
         icon = R.drawable.ic_kotlin,
+        keyOne = "",
+        keyTwo = "",
         percent = 0.5f
     )
 }

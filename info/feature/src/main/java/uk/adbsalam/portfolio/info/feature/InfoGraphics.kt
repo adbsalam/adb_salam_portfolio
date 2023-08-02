@@ -44,28 +44,6 @@ fun InfoGraphics() {
 
         SkillsInsightCard()
 
-        Text(
-            text = "My Work History",
-            style = MaterialTheme.typography.titleMedium
-        )
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .adbRoundedBackground()
-                .padding(vertical = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
-        ) {
-
-            val mock = WorkHistory.createMock()
-            mock.forEachIndexed { index, item ->
-                WorkInfo(
-                    showDivider = index != mock.lastIndex,
-                    workHistory = item,
-                )
-            }
-        }
-
         Spacer(modifier = Modifier.height(30.dp))
     }
 
