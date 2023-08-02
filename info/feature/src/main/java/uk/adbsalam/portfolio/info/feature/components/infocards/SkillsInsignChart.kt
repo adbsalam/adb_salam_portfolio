@@ -37,7 +37,7 @@ internal fun SkillsInsightCard() {
     ) {
 
         InfoTitle(
-            title = "Skills Insight"
+            title = "Orders Insight"
         )
 
         infoList.subList(0, 5).forEach {

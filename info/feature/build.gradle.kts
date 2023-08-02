@@ -54,8 +54,4 @@ dependencies {
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-
-    implementation("com.patrykandpatrick.vico:core:1.8.0")
-    implementation("com.patrykandpatrick.vico:compose:1.8.0")
-    implementation("com.patrykandpatrick.vico:compose-m3:1.8.0")
 }

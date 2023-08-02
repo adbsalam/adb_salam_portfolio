@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -17,11 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.info.feature.components.WorkInfo
 import uk.adbsalam.portfolio.info.feature.components.infocards.AndroidMainCard
 import uk.adbsalam.portfolio.info.feature.components.infocards.SkillsInsightCard
 import uk.adbsalam.portfolio.theming.Adb_Theme
-import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
 @Composable
 fun InfoGraphics() {
@@ -38,15 +35,14 @@ fun InfoGraphics() {
         AndroidMainCard()
 
         Text(
-            text = "Have a look at my skill set",
+            text = "Check out your orders insights",
             style = MaterialTheme.typography.titleMedium
         )
 
         SkillsInsightCard()
-
         Spacer(modifier = Modifier.height(30.dp))
-    }
 
+    }
 }
 
 @Preview
