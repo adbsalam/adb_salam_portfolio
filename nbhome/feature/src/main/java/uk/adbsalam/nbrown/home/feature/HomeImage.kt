@@ -36,6 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import uk.adbsalam.nbrown.home.feature.components.CarousalItem
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
@@ -119,7 +120,6 @@ fun HomeImage() {
                 .weight(1f)
                 .clip(RoundedCornerShape(topEnd = 8.dp, bottomEnd = 8.dp))
         )
-
     }
 
 

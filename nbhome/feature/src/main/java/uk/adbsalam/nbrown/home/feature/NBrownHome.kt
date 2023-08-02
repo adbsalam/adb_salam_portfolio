@@ -22,6 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import uk.adbsalam.nbrown.home.feature.components.CarousalItem
+import uk.adbsalam.nbrown.home.feature.components.ProductsCarousal
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.components.SettingsIcon
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
@@ -65,6 +67,9 @@ fun NBrownHome(
         }
 
         HomeImage()
+
+        ProductsCarousal()
+
 
 //        LottiInfoCard(
 //            resId = R.raw.ic_stats,
