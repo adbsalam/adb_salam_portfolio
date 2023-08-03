@@ -6,11 +6,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Forum
 import androidx.compose.material.icons.outlined.HeartBroken
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.outlined.Movie
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Shop
 import androidx.compose.material.icons.outlined.ShoppingBag
@@ -19,7 +16,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import uk.adbsalam.nbrown.home.feature.NBrownHome
-import uk.adbsalam.portfolio.info.feature.InfoGraphics
 import uk.adbsalam.portfolio.info.feature.InfoScreen
 import uk.adbsalam.portfolio.utils.Theme
 

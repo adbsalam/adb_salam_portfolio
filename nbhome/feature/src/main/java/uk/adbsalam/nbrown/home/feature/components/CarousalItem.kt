@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.HeartBroken
 import androidx.compose.material.icons.filled.Share
@@ -36,7 +37,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -49,8 +54,10 @@ import uk.adbsalam.portfolio.theming.Adb_Theme
 fun CarousalItem(
     product: Product
 ) {
+    val haptic = LocalHapticFeedback.current
+
     Card(
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
 
@@ -59,22 +66,26 @@ fun CarousalItem(
         Row(
             modifier = Modifier.animateContentSize(spring())
         ) {
-
             Column(
                 modifier = Modifier
                     .width(160.dp)
                     .height(280.dp)
+                    .background(shimmerBrush())
                     .background(MaterialTheme.colorScheme.background)
                     .combinedClickable(
                         onClick = {},
-                        onLongClick = { visibility = !visibility }
+                        onLongClick = {
+                            haptic.performHapticFeedback(HapticFeedbackType.LongPress)
+                            visibility = !visibility
+                        }
                     )
             ) {
 
                 Image(
                     modifier = Modifier
                         .height(200.dp)
-                        .width(160.dp),
+                        .width(160.dp)
+                        .clip(RoundedCornerShape(bottomEnd = 8.dp, bottomStart = 8.dp)),
                     painter = painterResource(id = product.image),
                     contentScale = ContentScale.FillBounds,
                     contentDescription = null

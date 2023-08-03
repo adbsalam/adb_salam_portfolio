@@ -100,6 +100,7 @@ fun getDynamicScheme(
     context: Context
 ): ColorScheme {
     return when (selectedType) {
+        Theme.CHRISTMAS -> dynamicLightColorScheme(context)
         Theme.LIGHT -> dynamicLightColorScheme(context)
         Theme.DARK -> dynamicDarkColorScheme(context)
         Theme.SYSTEM ->
@@ -116,6 +117,7 @@ fun getNonDynamicTheme(
 ): ColorScheme {
     return when (selectedType) {
         Theme.SYSTEM -> if (isSystemDark) DarkColorScheme else LightColorScheme
+        Theme.CHRISTMAS -> LightColorScheme
         Theme.LIGHT -> LightColorScheme
         Theme.DARK -> DarkColorScheme
     }

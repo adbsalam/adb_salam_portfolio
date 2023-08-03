@@ -67,8 +67,6 @@ data class WorkTag(
 
 data class WorkHistory(
     val company: String,
-    val duration: String,
-    @DrawableRes val logo: Int,
     val iconTint: Color,
     val tags: List<WorkTag>,
     val description: String,
@@ -77,63 +75,37 @@ data class WorkHistory(
 
         fun createMock() = listOf(
             WorkHistory(
-                company = "NBrown Group Plc",
-                duration = "(2021 - Current)",
-                logo = R.drawable.ic_nbrown,
+                company = "How can I pay for my credit payments",
                 iconTint = Color(0xFFFF9800),
                 tags = listOf(
                     WorkTag(
-                        tag = "Android",
-                        icon = R.drawable.ic_android
+                        tag = "GPay",
+                        icon = R.drawable.ic_google
                     ),
                     WorkTag(
-                        tag = "Kotlin",
-                        icon = R.drawable.ic_kotlin
-                    ),
-                    WorkTag(
-                        tag = "Compose",
-                        icon = R.drawable.ic_compose_logo
-                    ),
-                    WorkTag(
-                        tag = "E-Commerce",
-                        icon = R.drawable.ic_shop
-                    ),
-                    WorkTag(
-                        tag = "Firebase",
-                        icon = R.drawable.ic_firebase
+                        tag = "Card",
+                        icon = R.drawable.ic_card
                     ),
                 ),
                 description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             ),
             WorkHistory(
-                company = "Sagoss Group",
-                duration = "(2020 - 2021)",
-                logo = R.drawable.ic_sagoss,
+                company = "How can apply for more credit?",
                 iconTint = Color(0xFF9C27B0),
                 tags = listOf(
                     WorkTag(
-                        tag = "Android",
+                        tag = "Website",
+                        icon = R.drawable.ic_web
+                    ),
+                    WorkTag(
+                        tag = "App",
                         icon = R.drawable.ic_android
-                    ),
-                    WorkTag(
-                        tag = "Kotlin",
-                        icon = R.drawable.ic_kotlin
-                    ),
-                    WorkTag(
-                        tag = "BitBucket",
-                        icon = R.drawable.ic_bit_bucket
-                    ),
-                    WorkTag(
-                        tag = "Firebase",
-                        icon = R.drawable.ic_firebase
                     ),
                 ),
                 description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             ),
             WorkHistory(
-                duration = "(2019 - 2020)",
-                company = "Payzone Bill Payments",
-                logo = R.drawable.ic_payzone_logo,
+                company = "What if i do not pay my min payment",
                 iconTint = Color(0xFFFF4785),
                 tags = listOf(
                     WorkTag(
@@ -141,28 +113,18 @@ data class WorkHistory(
                         icon = R.drawable.ic_android
                     ),
                     WorkTag(
-                        tag = "Kotlin",
-                        icon = R.drawable.ic_kotlin
+                        tag = "Website",
+                        icon = R.drawable.ic_web
                     ),
                     WorkTag(
-                        tag = "Java",
-                        icon = R.drawable.ic_java
-                    ),
-                    WorkTag(
-                        tag = "C++",
-                        icon = R.drawable.ic_c_plus
-                    ),
-                    WorkTag(
-                        tag = "Firebase",
-                        icon = R.drawable.ic_firebase
+                        tag = "Phone",
+                        icon = R.drawable.ic_phone
                     ),
                 ),
                 description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
             ),
             WorkHistory(
-                duration = "(2017 - 2019)",
-                company = "Free Lancing",
-                logo = R.drawable.ic_git,
+                company = "Where can I check how much credit I have left",
                 iconTint = Color(0xFF4CAF50),
                 tags = listOf(
                     WorkTag(
@@ -170,16 +132,8 @@ data class WorkHistory(
                         icon = R.drawable.ic_android
                     ),
                     WorkTag(
-                        tag = "Java",
-                        icon = R.drawable.ic_java
-                    ),
-                    WorkTag(
-                        tag = "WordPress",
-                        icon = R.drawable.ic_wordpress
-                    ),
-                    WorkTag(
-                        tag = "Firebase",
-                        icon = R.drawable.ic_firebase
+                        tag = "Website",
+                        icon = R.drawable.ic_web
                     ),
                 ),
                 description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."

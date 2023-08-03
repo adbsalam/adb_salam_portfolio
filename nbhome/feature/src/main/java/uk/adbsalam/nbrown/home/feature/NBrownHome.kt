@@ -1,6 +1,8 @@
 package uk.adbsalam.nbrown.home.feature
 
 import android.content.res.Configuration
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,8 +19,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -39,6 +44,31 @@ import uk.adbsalam.portfolio.utils.Theme
 
 @Composable
 fun NBrownHome(
+    onDynamicColor: (Boolean) -> Unit,
+    onTheme: (Theme) -> Unit,
+) {
+
+    var visibility by remember { mutableStateOf(false) }
+
+    LaunchedEffect(key1 = null) {
+        visibility = true
+    }
+
+    AnimatedVisibility(
+        visible = visibility,
+        enter = fadeIn()
+    ) {
+        NBrownHome(
+            show = true,
+            onDynamicColor = onDynamicColor,
+            onTheme = onTheme
+        )
+    }
+}
+
+@Composable
+private fun NBrownHome(
+    show: Boolean,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
 ) {
@@ -79,7 +109,7 @@ fun NBrownHome(
         Promobanner()
 
         LottiInfoCard(
-            resId = R.raw.ic_spendin,
+            resId = R.raw.lotti_app_patrolla,
             tags = listOf("Track", "Spending", "Summary"),
             title = "Spending Insight",
             body = "Track you order summary and look at your spendings and much more such as bla bla and other things",
@@ -103,8 +133,7 @@ fun NBrownHome(
                 )
             }
         }
-
-
+        
         Spacer(modifier = Modifier.height(30.dp))
 
     }

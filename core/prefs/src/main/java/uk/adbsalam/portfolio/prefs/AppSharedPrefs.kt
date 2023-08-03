@@ -16,5 +16,8 @@ sealed class AppSharedPrefManager {
 
         fun setDynamic(value: Boolean) = pref.saveBoolean("dynamic", value)
         fun dynamicColors() = pref.loadBoolean("dynamic", false)
+
+        fun setChristmas(value: Boolean) = pref.saveBoolean("christmas", value)
+        fun christmas() = pref.loadBoolean("christmas", false)
     }
 }

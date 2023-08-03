@@ -34,6 +34,8 @@ import com.patrykandpatrick.vico.core.axis.AxisPosition
 import com.patrykandpatrick.vico.core.axis.formatter.AxisValueFormatter
 import com.patrykandpatrick.vico.core.entry.entryModelOf
 import com.patrykandpatrick.vico.core.entry.entryOf
+import uk.adbsalam.portfolio.info.feature.components.MakePayment
+import uk.adbsalam.portfolio.info.feature.components.WorkInfo
 import uk.adbsalam.portfolio.info.feature.components.infocards.AndroidMainCard
 import uk.adbsalam.portfolio.info.feature.components.infocards.SkillsInsightCard
 import uk.adbsalam.portfolio.theming.Adb_Theme
@@ -55,6 +57,12 @@ fun InfoGraphics() {
     ) {
 
         AndroidMainCard()
+
+        Text(
+            text = "Your Payments",
+            style = MaterialTheme.typography.titleMedium
+        )
+        MakePayment()
 
         Text(
             text = "Check out your orders insights",
@@ -126,6 +134,24 @@ fun InfoGraphics() {
                         valueFormatter = horizontalAxisValueFormatter,
                         guideline = null
                     )
+                )
+            }
+        }
+
+        Column(
+            modifier = Modifier
+                .padding(top = 10.dp)
+                .fillMaxWidth()
+                .adbRoundedBackground()
+                .padding(vertical = 20.dp),
+            verticalArrangement = Arrangement.spacedBy(20.dp)
+        ) {
+
+            val mock = WorkHistory.createMock()
+            mock.forEachIndexed { index, item ->
+                WorkInfo(
+                    showDivider = index != mock.lastIndex,
+                    workHistory = item,
                 )
             }
         }

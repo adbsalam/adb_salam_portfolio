@@ -22,11 +22,19 @@ fun GradientColumn(
     theme: Theme,
     content: @Composable () -> Unit
 ) {
-    val gradientColorOne =
-        if (theme == Theme.DARK || isSystemInDarkTheme()) primary_dark else Color(0xFFFFEDF3)
+    val gradientColorOne = when{
+        (theme == Theme.DARK || isSystemInDarkTheme()) -> primary_dark
+        theme == Theme.CHRISTMAS -> Color(0xFF990537)
+        else -> Color(0xFFFFEDF3)
+    }
 
-    val gradientColorTwo =
-        if (theme == Theme.DARK || isSystemInDarkTheme()) primary_light else Color(0xFFF5EBCE)
+    val gradientColorTwo = when{
+        (theme == Theme.DARK || isSystemInDarkTheme()) -> primary_light
+        theme == Theme.CHRISTMAS -> Color(0xFFDD0951)
+        else -> Color(0xFFF5EBCE)
+    }
+
+    val modifier = if(theme == Theme.CHRISTMAS) Modifier.snowfall() else Modifier
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -56,6 +64,7 @@ fun GradientColumn(
                 drawRect(shaderBrush)
             }
         }
+        .then(modifier)
     ) {
         content()
     }

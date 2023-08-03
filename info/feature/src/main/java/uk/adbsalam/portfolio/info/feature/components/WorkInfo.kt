@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.WorkHistory
 import androidx.compose.material3.AssistChip
 import androidx.compose.material3.Divider
@@ -76,7 +77,7 @@ fun WorkInfo(
                 horizontalArrangement = Arrangement.spacedBy(5.dp),
             ) {
                 Icon(
-                    imageVector = Icons.Default.WorkHistory,
+                    imageVector = Icons.Default.Info,
                     contentDescription = null,
                     tint = workHistory.iconTint
                 )
@@ -84,11 +85,6 @@ fun WorkInfo(
                 Text(
                     text = workHistory.company,
                     style = MaterialTheme.typography.titleSmall
-                )
-
-                Text(
-                    text = workHistory.duration,
-                    style = MaterialTheme.typography.bodyMedium
                 )
             }
 
