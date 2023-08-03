@@ -67,6 +67,14 @@ fun InfoGraphics() {
 
         AndroidMainCard()
 
+        MakePayment()
+
+        Text(
+            text = "Check out your orders insights",
+            style = MaterialTheme.typography.titleMedium
+        )
+
+        SkillsInsightCard()
 
         Column(
             modifier = Modifier
@@ -112,16 +120,7 @@ fun InfoGraphics() {
             }
         }
 
-        MakePayment()
-
         CreditSlider()
-
-        Text(
-            text = "Check out your orders insights",
-            style = MaterialTheme.typography.titleMedium
-        )
-
-        SkillsInsightCard()
 
         Text(
             text = "Annual spending stats",

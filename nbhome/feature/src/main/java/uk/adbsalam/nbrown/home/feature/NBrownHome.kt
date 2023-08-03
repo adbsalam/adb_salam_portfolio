@@ -113,7 +113,7 @@ private fun NBrownHome(
         Promobanner()
 
         LottiInfoCard(
-            resId = R.raw.lotti_app_patrolla,
+            resId = R.raw.ic_spendin,
             tags = listOf("Track", "Spending", "Summary"),
             title = "Spending Insight",
             body = "Track you order summary and look at your spendings and much more such as bla bla and other things",
