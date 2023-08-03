@@ -37,6 +37,14 @@ private val LightColorScheme = lightColorScheme(
     secondaryContainer = secondary_container_light
 )
 
+private val Santa = lightColorScheme(
+    primary = Color(0xFFBD0D0D),
+    secondary = Color(0xffffffff),
+    tertiary = Color(0xfffffffff),
+    background = Color(0xFFF08A8A),
+    secondaryContainer = Color(0xFFFFFFFF),
+)
+
 /**
  *
  */
@@ -100,7 +108,7 @@ fun getDynamicScheme(
     context: Context
 ): ColorScheme {
     return when (selectedType) {
-        Theme.CHRISTMAS -> dynamicLightColorScheme(context)
+        Theme.CHRISTMAS -> Santa
         Theme.LIGHT -> dynamicLightColorScheme(context)
         Theme.DARK -> dynamicDarkColorScheme(context)
         Theme.SYSTEM ->
@@ -117,7 +125,7 @@ fun getNonDynamicTheme(
 ): ColorScheme {
     return when (selectedType) {
         Theme.SYSTEM -> if (isSystemDark) DarkColorScheme else LightColorScheme
-        Theme.CHRISTMAS -> LightColorScheme
+        Theme.CHRISTMAS -> Santa
         Theme.LIGHT -> LightColorScheme
         Theme.DARK -> DarkColorScheme
     }
