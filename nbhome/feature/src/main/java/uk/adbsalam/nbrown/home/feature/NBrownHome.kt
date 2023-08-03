@@ -2,6 +2,10 @@ package uk.adbsalam.nbrown.home.feature
 
 import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -72,7 +77,6 @@ private fun NBrownHome(
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
 ) {
-
     val settings = remember { mutableStateOf(false) }
 
     Column(
@@ -133,11 +137,10 @@ private fun NBrownHome(
                 )
             }
         }
-        
+
         Spacer(modifier = Modifier.height(30.dp))
 
     }
-
 
     if (settings.value) {
         SettingsDialog(

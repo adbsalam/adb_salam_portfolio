@@ -78,7 +78,9 @@ internal fun createPageList(
             title = "Search",
             tabIcon = Icons.Outlined.Search
         ) {
-            InfoScreen()
+            Column(modifier = Modifier.fillMaxSize()) {
+                Text(text = "Videos")
+            }
         },
         PagerModel.PageModel(
             title = "Shop",
@@ -100,9 +102,7 @@ internal fun createPageList(
             title = "Bag",
             tabIcon = Icons.Outlined.ShoppingBag
         ) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                Text(text = "Reviews")
-            }
+            InfoScreen()
         }
     )
 }

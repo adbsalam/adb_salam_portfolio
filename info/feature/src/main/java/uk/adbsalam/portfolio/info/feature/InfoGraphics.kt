@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -39,6 +40,9 @@ import com.patrykandpatrick.vico.core.axis.AxisPosition
 import com.patrykandpatrick.vico.core.axis.formatter.AxisValueFormatter
 import com.patrykandpatrick.vico.core.entry.entryModelOf
 import com.patrykandpatrick.vico.core.entry.entryOf
+import uk.adbsalam.portfolio.components.R
+import uk.adbsalam.portfolio.info.feature.components.CreditSlider
+import uk.adbsalam.portfolio.info.feature.components.InfoTitle
 import uk.adbsalam.portfolio.info.feature.components.MakePayment
 import uk.adbsalam.portfolio.info.feature.components.WorkInfo
 import uk.adbsalam.portfolio.info.feature.components.infocards.AndroidMainCard
@@ -63,11 +67,54 @@ fun InfoGraphics() {
 
         AndroidMainCard()
 
-        Text(
-            text = "Your Payments",
-            style = MaterialTheme.typography.titleMedium
-        )
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .adbRoundedBackground()
+                .padding(all = 12.dp)
+        ) {
+
+            InfoTitle(title = "Promo code discounts")
+
+            Row(
+                Modifier.align(Alignment.Start),
+                verticalAlignment = Alignment.Bottom
+            ) {
+
+                Text(
+                    text = "Total Promo Code Savings:",
+                    style = MaterialTheme.typography.titleSmall
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Text(
+                    text = "£237.83",
+                    style = MaterialTheme.typography.titleLarge
+                )
+
+                Spacer(modifier = Modifier.width(8.dp))
+
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_discount),
+                    contentDescription = null,
+                    tint = Color.Unspecified,
+                    modifier = Modifier.size(20.dp)
+                )
+
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+            Button(onClick = {}) {
+                Text(text = "See available promos")
+            }
+        }
+
         MakePayment()
+
+        CreditSlider()
 
         Text(
             text = "Check out your orders insights",

@@ -89,7 +89,7 @@ fun MakePayment() {
 
                     Text(
                         text = "You have a minimum payment of £5.00 left to pay, would you like to make a payment now?",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleSmall
                     )
 
                     Spacer(modifier = Modifier.height(10.dp))
@@ -111,7 +111,7 @@ fun MakePayment() {
 
                     Text(
                         text = "Payment request fo minimum amount £5.00. Please select how would you like to pay?",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleSmall
                     )
 
                     Spacer(modifier = Modifier.height(10.dp))

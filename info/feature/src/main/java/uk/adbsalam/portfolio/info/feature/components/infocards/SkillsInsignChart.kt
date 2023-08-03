@@ -49,36 +49,6 @@ internal fun SkillsInsightCard() {
             title = "Orders Insight"
         )
 
-        Row(
-            Modifier.align(Alignment.Start),
-            verticalAlignment = Alignment.Bottom
-        ) {
-
-            Text(
-                text = "Total Promo Code Savings:",
-                style = MaterialTheme.typography.titleSmall
-            )
-
-            Spacer(modifier = Modifier.width(8.dp))
-
-            Text(
-                text = "£237.83",
-                style = MaterialTheme.typography.titleLarge
-            )
-
-            Spacer(modifier = Modifier.width(8.dp))
-            
-            Icon(
-                painter = painterResource(id = R.drawable.ic_discount),
-                contentDescription = null,
-                tint = Color.Unspecified,
-                modifier = Modifier.size(20.dp)
-            )
-
-        }
-
-        Spacer(modifier = Modifier.height(10.dp))
-
         infoList.subList(0, 5).forEach {
             Spacer(modifier = Modifier.height(16.dp))
             HorizontalChart(
