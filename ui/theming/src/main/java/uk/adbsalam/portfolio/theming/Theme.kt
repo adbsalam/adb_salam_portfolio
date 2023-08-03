@@ -38,7 +38,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 private val Santa = lightColorScheme(
-    primary = Color(0xFFBD0D0D),
+    primary = Color(0xFF141414),
     secondary = Color(0xffffffff),
     tertiary = Color(0xfffffffff),
     background = Color(0xFFF08A8A),

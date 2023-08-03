@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,9 +48,12 @@ fun <T> RadioGroup(
                         onSelected(item)
                     }
                 )
+
+                val style = if(title(item) == "Christmas") MaterialTheme.typography.titleLarge else MaterialTheme.typography.bodyLarge
                 Text(
                     text = title(item),
-                    modifier = Modifier.padding(start = 16.dp)
+                    modifier = Modifier.padding(start = 16.dp),
+                    style = style
                 )
             }
         }

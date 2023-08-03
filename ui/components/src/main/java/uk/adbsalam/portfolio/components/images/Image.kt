@@ -44,7 +44,7 @@ fun AdbMainLogo(
 ) {
     AdbImage(
         modifier = modifier,
-        resourceId = R.drawable.ic_logo_main,
+        resourceId = R.drawable.ic_sb,
     )
 }
 
