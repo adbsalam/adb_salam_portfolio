@@ -12,7 +12,6 @@ class InfoViewModel @Inject constructor() : ViewModel() {
         MutableStateFlow<InfoScreenState>(InfoScreenState.OnLoading)
     internal val viewState = _viewState.asStateFlow()
 
-
     suspend fun initInfo() {
         _viewState.value = InfoScreenState.OnInfo
     }

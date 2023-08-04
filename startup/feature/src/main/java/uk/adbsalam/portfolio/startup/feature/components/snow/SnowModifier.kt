@@ -15,11 +15,12 @@ import androidx.compose.ui.unit.IntSize
 import kotlinx.coroutines.isActive
 import kotlin.time.Duration.Companion.nanoseconds
 
-
 internal fun Modifier.snowfall() = composed {
+
     var snowflakesState by remember {
         mutableStateOf(SnowflakesState(-1, IntSize(0, 0)))
     }
+
     LaunchedEffect(Unit) {
         while (isActive) {
             withFrameNanos { newTick ->
@@ -34,6 +35,7 @@ internal fun Modifier.snowfall() = composed {
             }
         }
     }
+
     onSizeChanged { newSize -> snowflakesState = snowflakesState.resize(newSize) }
         .clipToBounds()
         .drawWithContent {
