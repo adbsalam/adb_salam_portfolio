@@ -154,8 +154,7 @@ fun InfoGraphics() {
             modifier = Modifier.fillMaxWidth(),
             elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
         ) {
-
-
+            
             ProvideChartStyle(
                 chartStyle = LocalChartStyle.current.copy(
                     axis = LocalChartStyle.current.axis.copy(
