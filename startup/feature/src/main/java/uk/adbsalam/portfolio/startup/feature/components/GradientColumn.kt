@@ -12,6 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ShaderBrush
+import uk.adbsalam.portfolio.theming.christmas_gradient_color
+import uk.adbsalam.portfolio.theming.light_gradient_color_one
+import uk.adbsalam.portfolio.theming.light_gradient_color_two
 import uk.adbsalam.portfolio.theming.primary_dark
 import uk.adbsalam.portfolio.theming.primary_light
 import uk.adbsalam.portfolio.utils.Theme
@@ -22,11 +25,19 @@ fun GradientColumn(
     theme: Theme,
     content: @Composable () -> Unit
 ) {
-    val gradientColorOne =
-        if (theme == Theme.DARK || isSystemInDarkTheme()) primary_dark else Color(0xFFBED3D1)
+    val gradientColorOne = when{
+        (theme == Theme.DARK || isSystemInDarkTheme()) -> primary_dark
+        theme == Theme.CHRISTMAS -> christmas_gradient_color
+        else -> light_gradient_color_one
+    }
 
-    val gradientColorTwo =
-        if (theme == Theme.DARK || isSystemInDarkTheme()) primary_light else Color(0xFFF5EBCE)
+    val gradientColorTwo = when{
+        (theme == Theme.DARK || isSystemInDarkTheme()) -> primary_light
+        theme == Theme.CHRISTMAS -> christmas_gradient_color
+        else -> light_gradient_color_two
+    }
+
+    val modifier = if(theme == Theme.CHRISTMAS) Modifier.snowfall() else Modifier
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -56,6 +67,7 @@ fun GradientColumn(
                 drawRect(shaderBrush)
             }
         }
+        .then(modifier)
     ) {
         content()
     }
