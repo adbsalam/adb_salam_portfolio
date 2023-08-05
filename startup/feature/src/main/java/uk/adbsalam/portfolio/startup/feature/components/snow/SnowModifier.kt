@@ -15,6 +15,9 @@ import androidx.compose.ui.unit.IntSize
 import kotlinx.coroutines.isActive
 import kotlin.time.Duration.Companion.nanoseconds
 
+/**
+ * Modifier to enable snow fall on a compose
+ */
 internal fun Modifier.snowfall() = composed {
 
     var snowflakesState by remember {

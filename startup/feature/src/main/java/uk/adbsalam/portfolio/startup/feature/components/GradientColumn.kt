@@ -19,6 +19,12 @@ import uk.adbsalam.portfolio.theming.primary_dark
 import uk.adbsalam.portfolio.theming.primary_light
 import uk.adbsalam.portfolio.utils.Theme
 
+/**
+ * @param theme current theme to be implemented
+ * @param content content to show on gradient column
+ *
+ * This will be base background for app alongside snow animations
+ */
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun GradientColumn(

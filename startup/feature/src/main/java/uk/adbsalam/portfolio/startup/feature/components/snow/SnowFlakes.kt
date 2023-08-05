@@ -12,12 +12,24 @@ import androidx.compose.ui.unit.IntSize
 import kotlin.math.cos
 import kotlin.math.sin
 
+/**
+ * Snowflake paint to be use as color and fill style
+ */
 private val snowflakePaint = Paint().apply {
     isAntiAlias = true
     color = Color.White
     style = PaintingStyle.Fill
 }
 
+/**
+ * @param incrementFactor incremental factor to setup snow flake speed
+ * @param size size of sow flake to render
+ * @param canvasSize total size of canvas
+ * @param position starting position for snow flake
+ * @param angle angle to direct flake at
+ *
+ * This will generate a snow flake along with animation path on canvas
+ */
 internal class Snowflake(
     private val incrementFactor: Float,
     private val size: Float,
