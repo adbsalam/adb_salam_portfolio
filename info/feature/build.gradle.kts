@@ -43,6 +43,7 @@ dependencies {
     implementation(project(":ui:theming"))
     implementation(project(":utils"))
     implementation(project(":settings:feature"))
+    implementation(project(":info:data"))
     implementation(libs.compose.lotti)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)

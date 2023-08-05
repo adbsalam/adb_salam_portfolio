@@ -1,8 +1,5 @@
-package uk.adbsalam.portfolio.info.feature
+package uk.adbsalam.portfolio.info.data
 
-import androidx.annotation.DrawableRes
-import androidx.compose.ui.graphics.Color
-import uk.adbsalam.portfolio.components.R
 
 data class InfoGraphic(
     val name: String,
@@ -64,47 +61,46 @@ val infoList = listOf(
     ),
 )
 
+
 data class WorkTag(
     val tag: String,
-    @DrawableRes val icon: Int
+    val icon: String
 )
 
 data class WorkHistory(
     val company: String,
     val duration: String,
-    @DrawableRes val logo: Int,
-    val iconTint: Color,
+    val color: Long,
     val tags: List<WorkTag>,
     val description: String,
 ) {
-    companion object {
 
+    companion object {
         fun createMock() = listOf(
             WorkHistory(
                 company = "NBrown Group Plc",
                 duration = "(2021 - Current)",
-                logo = R.drawable.ic_nbrown,
-                iconTint = Color(0xFFFF9800),
+                color = 0xFFFF9800,
                 tags = listOf(
                     WorkTag(
                         tag = "Android",
-                        icon = R.drawable.ic_android
+                        icon = "ic_android"
                     ),
                     WorkTag(
                         tag = "Kotlin",
-                        icon = R.drawable.ic_kotlin
+                        icon = "ic_kotlin"
                     ),
                     WorkTag(
                         tag = "Compose",
-                        icon = R.drawable.ic_compose_logo
+                        icon = "ic_compose"
                     ),
                     WorkTag(
                         tag = "E-Commerce",
-                        icon = R.drawable.ic_shop
+                        icon = "ic_shop"
                     ),
                     WorkTag(
                         tag = "Firebase",
-                        icon = R.drawable.ic_firebase
+                        icon = "ic_firebase"
                     ),
                 ),
                 description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
@@ -112,24 +108,23 @@ data class WorkHistory(
             WorkHistory(
                 company = "Sagoss Group",
                 duration = "(2020 - 2021)",
-                logo = R.drawable.ic_sagoss,
-                iconTint = Color(0xFF9C27B0),
+                color = 0xFF9C27B0,
                 tags = listOf(
                     WorkTag(
                         tag = "Android",
-                        icon = R.drawable.ic_android
+                        icon = "ic_android"
                     ),
                     WorkTag(
                         tag = "Kotlin",
-                        icon = R.drawable.ic_kotlin
+                        icon = "ic_kotlin"
                     ),
                     WorkTag(
                         tag = "BitBucket",
-                        icon = R.drawable.ic_bit_bucket
+                        icon = "ic_bitbucket"
                     ),
                     WorkTag(
                         tag = "Firebase",
-                        icon = R.drawable.ic_firebase
+                        icon = "ic_firebase"
                     ),
                 ),
                 description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
@@ -137,28 +132,27 @@ data class WorkHistory(
             WorkHistory(
                 duration = "(2019 - 2020)",
                 company = "Payzone Bill Payments",
-                logo = R.drawable.ic_payzone_logo,
-                iconTint = Color(0xFFFF4785),
+                color = 0xFFFF4785,
                 tags = listOf(
                     WorkTag(
                         tag = "Android",
-                        icon = R.drawable.ic_android
+                        icon = "ic_android"
                     ),
                     WorkTag(
                         tag = "Kotlin",
-                        icon = R.drawable.ic_kotlin
+                        icon = "ic_kotlin"
                     ),
                     WorkTag(
                         tag = "Java",
-                        icon = R.drawable.ic_java
+                        icon = "ic_java"
                     ),
                     WorkTag(
                         tag = "C++",
-                        icon = R.drawable.ic_c_plus
+                        icon = "ic_cplus"
                     ),
                     WorkTag(
                         tag = "Firebase",
-                        icon = R.drawable.ic_firebase
+                        icon = "ic_firebase"
                     ),
                 ),
                 description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
@@ -166,24 +160,23 @@ data class WorkHistory(
             WorkHistory(
                 duration = "(2017 - 2019)",
                 company = "Free Lancing",
-                logo = R.drawable.ic_git,
-                iconTint = Color(0xFF4CAF50),
+                color = 0xFF4CAF50,
                 tags = listOf(
                     WorkTag(
                         tag = "Android",
-                        icon = R.drawable.ic_android
+                        icon = "ic_android"
                     ),
                     WorkTag(
                         tag = "Java",
-                        icon = R.drawable.ic_java
+                        icon = "ic_java"
                     ),
                     WorkTag(
                         tag = "WordPress",
-                        icon = R.drawable.ic_wordpress
+                        icon = "ic_wordpress"
                     ),
                     WorkTag(
                         tag = "Firebase",
-                        icon = R.drawable.ic_firebase
+                        icon = "ic_firebase"
                     ),
                 ),
                 description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."

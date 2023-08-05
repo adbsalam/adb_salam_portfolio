@@ -18,9 +18,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import uk.adbsalam.portfolio.info.data.infoList
 import uk.adbsalam.portfolio.info.feature.components.InfoTitle
 import uk.adbsalam.portfolio.info.feature.components.charts.HorizontalChart
-import uk.adbsalam.portfolio.info.feature.infoList
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
