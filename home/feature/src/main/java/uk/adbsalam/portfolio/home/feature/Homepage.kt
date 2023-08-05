@@ -15,6 +15,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import uk.adbsalam.portfolio.components.ErrorPage
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
@@ -38,6 +39,7 @@ fun Homepage(
 
     Homepage(
         uiState = uiState,
+        retry = viewModel::loadHomeItems,
         onDynamicColor = onDynamicColor,
         onTheme = onTheme
     )
@@ -51,6 +53,7 @@ fun Homepage(
 @Composable
 internal fun Homepage(
     uiState: HomeScreenState,
+    retry: () -> Unit,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
 ) {
@@ -61,6 +64,13 @@ internal fun Homepage(
                 modifier = Modifier.fillMaxSize(),
                 msg = "Loading"
             )
+
+        is HomeScreenState.OnError -> {
+            ErrorPage(
+                msg = uiState.errorMessage,
+                retry = retry
+            )
+        }
 
         is HomeScreenState.OnHome -> {
             var visibility by remember { mutableStateOf(false) }
@@ -93,6 +103,7 @@ internal fun PreviewHomeLight() {
     Adb_Theme {
         Homepage(
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
+            retry = { /* unused */ },
             onDynamicColor = {},
             onTheme = { },
         )
@@ -111,6 +122,7 @@ internal fun PreviewHomeDark() {
     ) {
         Homepage(
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
+            retry = { /* unused */ },
             onDynamicColor = { /* unused */ },
             onTheme = {/* unused */ },
         )
