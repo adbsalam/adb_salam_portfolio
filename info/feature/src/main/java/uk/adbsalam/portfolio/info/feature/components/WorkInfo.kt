@@ -56,7 +56,8 @@ fun WorkInfo(
 
         val chevronRotate by animateFloatAsState(
             targetValue = chevronRotation,
-            animationSpec = tween(durationMillis = 300, easing = LinearEasing)
+            animationSpec = tween(durationMillis = 300, easing = LinearEasing),
+            label = ""
         )
 
         Row(

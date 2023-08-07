@@ -11,7 +11,7 @@ plugins {
 }
 
 android {
-    namespace = "uk.adbsalam.portfolio.home.feature"
+    namespace = "uk.adbsalam.portfolio.reviews.feature"
     compileSdk = 33
 
     defaultConfig {
@@ -34,21 +34,17 @@ android {
 }
 
 snapIt {
-    testDir = "src/test/java/uk/adbsalam/portfolio/home/feature"
+    testDir = "src/test/java/uk/adbsalam/portfolio/reviews/feature"
     flavor = "debug"
 }
 
 dependencies {
     implementation(project(":ui:components"))
     implementation(project(":ui:theming"))
-    implementation(project(":settings:feature"))
+    implementation(project(":videos:data"))
     implementation(project(":utils"))
     implementation(project(":core:prefs"))
-    implementation(project(":home:data"))
-    implementation(project(":core:network"))
 
-    implementation(libs.compose.lotti)
-    implementation(libs.app.compat)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)
     implementation(libs.compose.foundation)
@@ -56,7 +52,12 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.material.icons.extended)
+    implementation(libs.app.compat)
+    implementation(libs.ktx.core)
+    implementation(libs.youtube.player)
+    implementation(libs.youtube.player.seekbar)
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.android)
+    implementation(libs.compose.lotti)
     kapt(libs.hilt.compiler)
 }

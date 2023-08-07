@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import uk.adbsalam.portfolio.info.feature.Info
+import uk.adbsalam.portfolio.reviews.feature.Reviews
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.portfolio.videos.feature.Videos
 
@@ -89,9 +90,7 @@ internal fun createPageList(
             title = "Reviews",
             tabIcon = Icons.Outlined.Forum
         ) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                Text(text = "Reviews")
-            }
+            Reviews()
         }
     )
 }

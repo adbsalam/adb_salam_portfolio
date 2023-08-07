@@ -46,6 +46,7 @@ dependencies {
     implementation(project(":info:feature"))
     implementation(project(":navigation"))
     implementation(project(":videos:feature"))
+    implementation(project(":reviews:feature"))
 
     implementation(libs.app.compat)
     implementation(libs.compose.runtime)
