@@ -10,12 +10,17 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.layout.positionInWindow
@@ -29,6 +34,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import uk.adbsalam.portfolio.videos.feature.R
 
 
@@ -67,50 +74,39 @@ data class VideoData(
 fun Player(
     index: Int,
     videoData: VideoData,
-    play: Boolean
+    play: Boolean,
+    onPosition: (y: Float) -> Unit
 ) {
 
-    var positionInRootTopBar by remember { mutableStateOf(Offset.Zero) }
-    val config = LocalConfiguration.current
-
-    // Get local density from composable
-    val localDensity = LocalDensity.current
-
-    // Create element height in pixel state
-    var columnHeightPx by remember {
-        mutableStateOf(0f)
-    }
-
-    // Create element height in dp state
-    var columnHeightDp by remember {
-        mutableStateOf(0.dp)
-    }
+    var playNow by remember { mutableStateOf(false) }
+    var yCo by remember { mutableStateOf(0f) }
+    val localContext = LocalContext.current
+    val view = YouTubePlayerView(localContext)
+    var yblayer: YouTubePlayer? = null
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .onGloballyPositioned { coordinaties ->
-                positionInRootTopBar = coordinaties.positionInWindow()
+            .onGloballyPositioned { coordinates ->
 
-                columnHeightPx = coordinaties.size.height.toFloat()
-                columnHeightDp = with(localDensity) { coordinaties.size.height.toDp() }
 
-                if(index == 1){
-
-                    println("------------------------------------" + columnHeightPx)
-                    println("------------------------------------" + columnHeightDp)
+                if(yCo < 1150 && yCo > 120){
+                    yblayer?.play()
                 }
-//                if( positionInRootTopBar.y < 500 ){
-//                    println("-------------------------------- in view-----------" + index )
-//                }
+                else{
+                    yblayer?.pause()
+                }
+                yCo = coordinates.positionInRoot().y
+                playNow = coordinates.positionInRoot().y > 1000f
+                onPosition(coordinates.positionInRoot().y)
 
+
+                if(index == 0){
+                    println("---------------------------- " + yCo)
+                }
             }
             .padding(horizontal = 12.dp)
     ) {
-
-        val localContext = LocalContext.current
-        val view = YouTubePlayerView(localContext)
-
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -128,6 +124,9 @@ fun Player(
                     view.initialize(
                         youTubePlayerListener = object : AbstractYouTubePlayerListener() {
                             override fun onReady(youTubePlayer: YouTubePlayer) {
+
+                                yblayer = youTubePlayer
+
                                 val customPlayerUiController = CustomPlayerUiController(
                                     localContext,
                                     customView,
@@ -139,6 +138,11 @@ fun Player(
 
                                 customPlayerUiController.ready()
                                 youTubePlayer.cueVideo(videoData.videoId, 0f)
+
+                                if (playNow) {
+                                    youTubePlayer.play()
+                                }
+
                             }
                         },
                         playerOptions = iFramePlayerOptions
@@ -170,6 +174,7 @@ fun PlayerPreview() {
     Player(
         index = 0,
         videoData = VideoData.createMock().first(),
-        play = false
+        play = false,
+        onPosition = {}
     )
 }
