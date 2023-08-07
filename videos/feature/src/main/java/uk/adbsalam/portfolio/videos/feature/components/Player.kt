@@ -11,31 +11,22 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
-import androidx.compose.ui.layout.positionInWindow
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
 import uk.adbsalam.portfolio.videos.feature.R
 
 
@@ -72,40 +63,28 @@ data class VideoData(
 
 @Composable
 fun Player(
-    index: Int,
     videoData: VideoData,
-    play: Boolean,
-    onPosition: (y: Float) -> Unit
 ) {
-
-    var playNow by remember { mutableStateOf(false) }
-    var yCo by remember { mutableStateOf(0f) }
     val localContext = LocalContext.current
     val view = YouTubePlayerView(localContext)
     var yblayer: YouTubePlayer? = null
+    val playerTracker = YouTubePlayerTracker()
+    var setToPlay = false
 
     Card(
         modifier = Modifier
             .fillMaxWidth()
+            .padding(horizontal = 12.dp)
             .onGloballyPositioned { coordinates ->
-
-
-                if(yCo < 1150 && yCo > 120){
+                val offsetY = coordinates.positionInRoot().y
+                if (offsetY < 1150 && offsetY > 120) {
+                    setToPlay = true
                     yblayer?.play()
-                }
-                else{
+                } else {
+                    setToPlay = false
                     yblayer?.pause()
                 }
-                yCo = coordinates.positionInRoot().y
-                playNow = coordinates.positionInRoot().y > 1000f
-                onPosition(coordinates.positionInRoot().y)
-
-
-                if(index == 0){
-                    println("---------------------------- " + yCo)
-                }
             }
-            .padding(horizontal = 12.dp)
     ) {
         Column(
             modifier = Modifier
@@ -115,37 +94,25 @@ fun Player(
         ) {
             AndroidView(
                 factory = {
-                    val iFramePlayerOptions: IFramePlayerOptions = IFramePlayerOptions.Builder()
-                        .controls(0)
-                        .mute(1)
-                        .build()
                     view.enableAutomaticInitialization = false
                     val customView = view.inflateCustomPlayerUi(R.layout.player_item_view)
                     view.initialize(
                         youTubePlayerListener = object : AbstractYouTubePlayerListener() {
                             override fun onReady(youTubePlayer: YouTubePlayer) {
-
                                 yblayer = youTubePlayer
-
                                 val customPlayerUiController = CustomPlayerUiController(
-                                    localContext,
-                                    customView,
-                                    youTubePlayer,
-                                    view
+                                    context = localContext,
+                                    customPlayerUi = customView,
+                                    playerTracker = playerTracker,
+                                    youTubePlayer = youTubePlayer,
+                                    setToPlay
                                 )
-
                                 youTubePlayer.addListener(customPlayerUiController);
-
                                 customPlayerUiController.ready()
                                 youTubePlayer.cueVideo(videoData.videoId, 0f)
-
-                                if (playNow) {
-                                    youTubePlayer.play()
-                                }
-
                             }
                         },
-                        playerOptions = iFramePlayerOptions
+                        playerOptions = iFrameOptions()
                     )
                     view
                 })
@@ -168,13 +135,17 @@ fun Player(
     }
 }
 
+fun iFrameOptions(): IFramePlayerOptions {
+    return IFramePlayerOptions.Builder()
+        .controls(0)
+        .mute(1)
+        .build()
+}
+
 @Preview
 @Composable
 fun PlayerPreview() {
     Player(
-        index = 0,
         videoData = VideoData.createMock().first(),
-        play = false,
-        onPosition = {}
     )
 }
