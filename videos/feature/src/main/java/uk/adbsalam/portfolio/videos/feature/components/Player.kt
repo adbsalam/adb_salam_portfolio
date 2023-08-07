@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.videos.feature.components.videoplayer
+package uk.adbsalam.portfolio.videos.feature.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState

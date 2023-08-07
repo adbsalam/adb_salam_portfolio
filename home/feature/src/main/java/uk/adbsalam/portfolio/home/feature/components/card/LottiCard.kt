@@ -17,7 +17,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import uk.adbsalam.portfolio.components.R
-import uk.adbsalam.portfolio.home.feature.HomeScreenItem
+import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
 import uk.adbsalam.snapit.annotations.SnapIt

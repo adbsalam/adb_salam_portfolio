@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.videos.feature.components.videoplayer
+package uk.adbsalam.portfolio.videos.feature.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement

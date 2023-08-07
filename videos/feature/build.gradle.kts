@@ -43,6 +43,8 @@ dependencies {
     implementation(project(":ui:theming"))
     implementation(project(":videos:data"))
     implementation(project(":utils"))
+    implementation(project(":core:prefs"))
+
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)
     implementation(libs.compose.foundation)

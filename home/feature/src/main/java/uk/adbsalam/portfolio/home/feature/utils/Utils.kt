@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.home.feature
+package uk.adbsalam.portfolio.home.feature.utils
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.RawRes

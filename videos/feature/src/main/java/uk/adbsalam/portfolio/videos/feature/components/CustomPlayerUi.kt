@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.videos.feature.components.videoplayer
+package uk.adbsalam.portfolio.videos.feature.components
 
 import android.content.Context
 import android.view.View

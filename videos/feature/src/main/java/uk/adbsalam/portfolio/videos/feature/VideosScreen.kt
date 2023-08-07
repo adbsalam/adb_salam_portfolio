@@ -3,6 +3,7 @@ package uk.adbsalam.portfolio.videos.feature
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,28 +12,33 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.portfolio.videos.data.VideoData
-import uk.adbsalam.portfolio.videos.feature.components.videoplayer.VideoCard
+import uk.adbsalam.portfolio.videos.feature.components.VideoCard
 
 @Composable
-fun Videos() {
-
+fun VideosScreen(
+    videos: List<VideoData>,
+    currentTheme: Theme
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -60,9 +66,18 @@ fun Videos() {
                 text = "@adb_salam",
                 style = MaterialTheme.typography.titleMedium
             )
-            Button(
-                content = { Text(text = "visit channel") },
-                onClick = {}
+
+            val icon =
+                if (currentTheme == Theme.DARK || isSystemInDarkTheme()) R.drawable.ic_youtube_dark else R.drawable.ic_youtube_light
+
+            Icon(
+                painter = painterResource(id = icon),
+                contentDescription = null,
+                tint = Color.Unspecified,
+                modifier = Modifier
+                    .width(100.dp)
+                    .height(80.dp)
+                    .clip(RoundedCornerShape(20.dp))
             )
         }
 
@@ -71,7 +86,7 @@ fun Videos() {
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.background)
         ) {
-            VideoData.createMock().forEach { item ->
+            videos.forEach { item ->
                 VideoCard(videoData = item)
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -86,7 +101,10 @@ fun Videos() {
 @Composable
 fun VideosPreviewLight() {
     Adb_Theme {
-        Videos()
+        VideosScreen(
+            videos = VideoData.createMock(),
+            currentTheme = Theme.LIGHT
+        )
     }
 }
 
@@ -94,7 +112,10 @@ fun VideosPreviewLight() {
 @Composable
 fun VideosPreviewDark() {
     Adb_Theme(true) {
-        Videos()
+        VideosScreen(
+            videos = VideoData.createMock(),
+            currentTheme = Theme.DARK
+        )
     }
 }
 

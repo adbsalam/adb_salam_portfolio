@@ -24,6 +24,10 @@ import uk.adbsalam.portfolio.home.feature.components.Profile
 import uk.adbsalam.portfolio.home.feature.components.SocialMediaCarousal
 import uk.adbsalam.portfolio.home.feature.components.card.InfoCard
 import uk.adbsalam.portfolio.home.feature.components.card.LottiInfoCard
+import uk.adbsalam.portfolio.home.feature.utils.HomeItemType
+import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
+import uk.adbsalam.portfolio.home.feature.utils.getDrawableRes
+import uk.adbsalam.portfolio.home.feature.utils.getRawRes
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
