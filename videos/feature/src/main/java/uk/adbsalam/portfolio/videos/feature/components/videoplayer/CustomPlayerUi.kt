@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.videos.feature.components
+package uk.adbsalam.portfolio.videos.feature.components.videoplayer
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -42,7 +42,6 @@ internal class CustomPlayerUiController(
     }
 
     override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerState) {
-
         when (state) {
             PlayerState.PLAYING,
             PlayerState.PAUSED,
@@ -63,7 +62,6 @@ internal class CustomPlayerUiController(
         seekbar.visibility = if (state == PlayerState.PLAYING) VISIBLE else View.INVISIBLE
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
         seekbar.onCurrentSecond(youTubePlayer, second)
     }

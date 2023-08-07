@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.videos.feature.components.Player
-import uk.adbsalam.portfolio.videos.feature.components.VideoData
+import uk.adbsalam.portfolio.videos.feature.components.videoplayer.VideoCard
+import uk.adbsalam.portfolio.videos.feature.utils.VideoData
 
 @Preview(showSystemUi = true)
 @Composable
@@ -31,7 +31,7 @@ fun Videos() {
         }
 
         VideoData.createMock().forEach { item ->
-            Player(videoData = item)
+            VideoCard(videoData = item)
         }
 
         Spacer(modifier = Modifier.height(30.dp))
