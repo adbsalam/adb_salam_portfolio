@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.reviews.feature.components.reviewcard
 
+import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -21,7 +22,6 @@ import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.Handshake
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -30,8 +30,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.reviews.feature.ReviewsData
+import uk.adbsalam.portfolio.reviews.data.ReviewsData
+import uk.adbsalam.portfolio.theming.Adb_Theme
 
 @Composable
 fun RelationShipAccordian(
@@ -101,5 +103,21 @@ fun RelationShipAccordian(
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun InfoGraphicsPreviewLight() {
+    Adb_Theme {
+        RelationShipAccordian(review = ReviewsData.createMock().first())
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun InfoGraphicsPreviewDark() {
+    Adb_Theme(true) {
+        RelationShipAccordian(review = ReviewsData.createMock().first())
     }
 }

@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.reviews.feature.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,12 +19,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import uk.adbsalam.portfolio.components.R
+import uk.adbsalam.portfolio.theming.Adb_Theme
 
 @Composable
 fun ReviewLottiTitle() {
@@ -54,7 +57,7 @@ fun ReviewLottiTitle() {
         Spacer(modifier = Modifier.height(12.dp))
 
         Text(
-            text = "Here are some of reviews and recommendations given to me. These reviews are taken from my linked in profile and to read more reviews or know more about me, you can click following button to visit by LinkedIn Profile",
+            text = "Here are some of reviews and recommendations given to me. These reviews are taken from my linked in profile and to read more reviews or know more about me, you can click following button to visit my LinkedIn Profile",
             style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center
         )
@@ -76,5 +79,21 @@ fun ReviewLottiTitle() {
         )
 
         Spacer(modifier = Modifier.height(12.dp))
+    }
+}
+
+@Preview
+@Composable
+fun ReviewLottiTitlePreviewLight() {
+    Adb_Theme {
+        ReviewLottiTitle()
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun ReviewLottiTitlePreviewDark() {
+    Adb_Theme(true) {
+        ReviewLottiTitle()
     }
 }

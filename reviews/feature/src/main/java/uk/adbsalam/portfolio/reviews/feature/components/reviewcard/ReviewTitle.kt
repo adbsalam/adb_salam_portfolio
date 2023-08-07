@@ -15,9 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
-import uk.adbsalam.portfolio.reviews.feature.ReviewsData
+import uk.adbsalam.portfolio.reviews.data.ReviewsData
+import uk.adbsalam.portfolio.theming.Adb_Theme
 
 @Composable
 fun ReviewTitle(
@@ -48,5 +50,12 @@ fun ReviewTitle(
             )
         }
     }
+}
 
+@Preview
+@Composable
+fun ReviewTitlePreview() {
+    Adb_Theme {
+        ReviewTitle(review = ReviewsData.createMock().first())
+    }
 }

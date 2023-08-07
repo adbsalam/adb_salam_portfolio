@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.reviews.feature.components.reviewcard
 
+import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,7 +13,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.reviews.feature.ReviewsData
+import uk.adbsalam.portfolio.reviews.data.ReviewsData
+import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
 @Composable
@@ -44,6 +46,16 @@ fun ReviewCard(
 
 @Preview
 @Composable
-fun ReviewCardPreview() {
-    ReviewCard(review = ReviewsData.createMock().first())
+fun ReviewCardPreviewLight() {
+    Adb_Theme {
+        ReviewCard(review = ReviewsData.createMock().first())
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun ReviewCardPreviewDark() {
+    Adb_Theme(true) {
+        ReviewCard(review = ReviewsData.createMock().first())
+    }
 }

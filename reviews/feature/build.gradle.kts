@@ -44,6 +44,7 @@ dependencies {
     implementation(project(":videos:data"))
     implementation(project(":utils"))
     implementation(project(":core:prefs"))
+    implementation(project(":reviews:data"))
 
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)
