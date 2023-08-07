@@ -41,6 +41,7 @@ snapIt {
 dependencies {
     implementation(project(":ui:components"))
     implementation(project(":ui:theming"))
+    implementation(project(":videos:data"))
     implementation(project(":utils"))
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)

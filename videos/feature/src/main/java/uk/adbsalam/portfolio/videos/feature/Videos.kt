@@ -17,7 +17,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,8 +27,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.videos.data.VideoData
 import uk.adbsalam.portfolio.videos.feature.components.videoplayer.VideoCard
-import uk.adbsalam.portfolio.videos.feature.utils.VideoData
 
 @Composable
 fun Videos() {

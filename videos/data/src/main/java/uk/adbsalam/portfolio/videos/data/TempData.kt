@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.videos.feature.utils
+package uk.adbsalam.portfolio.videos.data
 
 data class VideoData(
     val title: String,

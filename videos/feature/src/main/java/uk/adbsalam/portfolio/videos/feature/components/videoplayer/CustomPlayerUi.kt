@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.videos.feature.components.videoplayer
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.view.View.VISIBLE

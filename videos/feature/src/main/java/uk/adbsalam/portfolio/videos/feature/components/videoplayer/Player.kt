@@ -9,8 +9,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import uk.adbsalam.portfolio.videos.data.VideoData
 import uk.adbsalam.portfolio.videos.feature.R
-import uk.adbsalam.portfolio.videos.feature.utils.VideoData
 
 @Composable
 internal fun VideoPlayerView(
@@ -55,3 +55,4 @@ private fun iFrameOptions(): IFramePlayerOptions {
         .mute(1)
         .build()
 }
+
