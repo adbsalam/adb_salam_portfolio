@@ -13,7 +13,7 @@ import uk.adbsalam.portfolio.videos.feature.R
 import uk.adbsalam.portfolio.videos.feature.utils.VideoData
 
 @Composable
-fun VideoPlayerView(
+internal fun VideoPlayerView(
     player: MutableState<YouTubePlayer?>,
     initialPlay: MutableState<Boolean>,
     videoData: VideoData,
