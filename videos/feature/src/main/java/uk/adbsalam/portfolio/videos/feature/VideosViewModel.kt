@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.videos.feature
 
-import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,5 +27,4 @@ class VideosViewModel @Inject constructor(
     fun currentTheme(): Theme {
         return themePrefs.theme()
     }
-
 }

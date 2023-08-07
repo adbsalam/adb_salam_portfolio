@@ -14,7 +14,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.utils.Theme
 
-
 @Composable
 fun Videos(
     viewModel: VideosViewModel = hiltViewModel()
