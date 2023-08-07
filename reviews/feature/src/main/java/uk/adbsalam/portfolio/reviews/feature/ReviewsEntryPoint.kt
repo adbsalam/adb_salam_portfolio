@@ -1,18 +1,13 @@
 package uk.adbsalam.portfolio.reviews.feature
 
 import android.content.res.Configuration
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.reviews.data.ReviewsData
 import uk.adbsalam.portfolio.theming.Adb_Theme
@@ -39,16 +34,7 @@ fun Reviews(
     when (uiState) {
         ReviewsState.OnLoading -> LoadingLotti()
         is ReviewsState.OnReviews -> {
-            var visibility by remember { mutableStateOf(false) }
-
-            LaunchedEffect(key1 = null) {
-                visibility = true
-            }
-
-            AnimatedVisibility(
-                visible = visibility,
-                enter = fadeIn(tween(500))
-            ) {
+            AnimatedColumn {
                 ReviewsScreen(reviews = uiState.reviews)
             }
         }
