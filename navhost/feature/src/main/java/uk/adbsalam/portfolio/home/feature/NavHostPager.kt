@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import uk.adbsalam.portfolio.info.feature.InfoScreen
 import uk.adbsalam.portfolio.utils.Theme
+import uk.adbsalam.portfolio.videos.feature.Videos
 
 @OptIn(ExperimentalFoundationApi::class)
 data class PagerModel constructor(
@@ -82,9 +83,7 @@ internal fun createPageList(
             title = "Videos",
             tabIcon = Icons.Outlined.Movie
         ) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                Text(text = "Videos")
-            }
+            Videos()
         },
         PagerModel.PageModel(
             title = "Reviews",

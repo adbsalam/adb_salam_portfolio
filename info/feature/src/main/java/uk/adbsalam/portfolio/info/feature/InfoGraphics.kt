@@ -28,12 +28,12 @@ import uk.adbsalam.portfolio.theming.adbRoundedBackground
 fun InfoGraphics() {
 
     Column(
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp)
             .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(20.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
         AndroidMainCard()
@@ -51,11 +51,11 @@ fun InfoGraphics() {
         )
 
         Column(
+            verticalArrangement = Arrangement.spacedBy(20.dp),
             modifier = Modifier
                 .fillMaxWidth()
                 .adbRoundedBackground()
                 .padding(vertical = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
 
             val mock = WorkHistory.createMock()
