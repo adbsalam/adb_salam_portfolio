@@ -39,7 +39,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * @param onTheme action on theme value change
  */
 @Composable
-internal fun Home(
+internal fun HomeScreen(
     items: List<HomeScreenItem>,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
@@ -97,7 +97,7 @@ internal fun Home(
 @SnapIt(name = "Home - Light Mode")
 internal fun HomeLightPreview() {
     Adb_Theme {
-        Home(
+        HomeScreen(
             items = HomeScreenItem.createMock(),
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ }
@@ -110,7 +110,7 @@ internal fun HomeLightPreview() {
 @SnapIt(name = "Home - Dark Mode")
 internal fun HomeDarkPreview() {
     Adb_Theme(isSystemDark = true) {
-        Home(
+        HomeScreen(
             items = HomeScreenItem.createMock(),
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ }

@@ -1,81 +1,89 @@
 package uk.adbsalam.portfolio.info.feature
 
 import android.content.res.Configuration
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
-import uk.adbsalam.portfolio.components.LoadingLotti
+import androidx.compose.ui.unit.dp
+import uk.adbsalam.portfolio.info.data.WorkHistory
+import uk.adbsalam.portfolio.info.feature.components.WorkInfo
+import uk.adbsalam.portfolio.info.feature.components.infocards.AndroidMainCard
+import uk.adbsalam.portfolio.info.feature.components.infocards.SkillsInsightCard
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
 @Composable
-fun InfoScreen(
-    viewModel: InfoViewModel = hiltViewModel()
-) {
-    val uiState by viewModel.viewState.collectAsState()
+fun InfoScreen() {
 
-    LaunchedEffect(key1 = null) {
-        viewModel.initInfo()
-    }
+    Column(
+        verticalArrangement = Arrangement.spacedBy(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 16.dp)
+            .verticalScroll(rememberScrollState()),
+    ) {
 
-    InfoScreen(
-        uiState = uiState
-    )
-}
+        AndroidMainCard()
 
-@Composable
-private fun InfoScreen(
-    uiState: InfoScreenState
-) {
-    when (uiState) {
-        InfoScreenState.OnLoading -> LoadingLotti(
-            modifier = Modifier.fillMaxSize(),
-            msg = "Loading"
+        Text(
+            text = "Have a look at my skill set",
+            style = MaterialTheme.typography.titleMedium
         )
 
-        InfoScreenState.OnInfo -> {
-            var visibility by remember { mutableStateOf(false) }
+        SkillsInsightCard()
 
-            LaunchedEffect(key1 = null) {
-                visibility = true
-            }
+        Text(
+            text = "My Work History",
+            style = MaterialTheme.typography.titleMedium
+        )
 
-            AnimatedVisibility(
-                visible = visibility,
-                enter = fadeIn(tween(500))
-            ) {
-                InfoGraphics()
+        Column(
+            verticalArrangement = Arrangement.spacedBy(20.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .adbRoundedBackground()
+                .padding(vertical = 20.dp),
+        ) {
+
+            val mock = WorkHistory.createMock()
+            mock.forEachIndexed { index, item ->
+                WorkInfo(
+                    showDivider = index != mock.lastIndex,
+                    workHistory = item,
+                )
             }
         }
+
+        Spacer(modifier = Modifier.height(30.dp))
     }
+
 }
 
 @Preview
 @Composable
-fun InfoScreenLightPreview() {
+fun InfoGraphicsPreviewLight() {
     Adb_Theme {
-        InfoScreen(
-            uiState = InfoScreenState.OnInfo
-        )
+        InfoScreen()
     }
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun InfoScreenDarkPreview() {
+fun InfoGraphicsPreviewDark() {
     Adb_Theme(true) {
-        InfoScreen(
-            uiState = InfoScreenState.OnInfo
-        )
+        InfoScreen()
     }
 }

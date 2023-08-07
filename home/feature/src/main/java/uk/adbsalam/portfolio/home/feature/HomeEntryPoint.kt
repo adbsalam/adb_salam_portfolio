@@ -27,7 +27,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * @param onDynamicColor action to perform on dynamic color value selected
  */
 @Composable
-fun Homepage(
+fun Home(
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
@@ -38,7 +38,7 @@ fun Homepage(
         viewModel.initHome()
     }
 
-    Homepage(
+    Home(
         uiState = uiState,
         retry = viewModel::loadHomeItems,
         onDynamicColor = onDynamicColor,
@@ -52,7 +52,7 @@ fun Homepage(
  * @param onDynamicColor action to perform on dynamic color value selected
  */
 @Composable
-internal fun Homepage(
+internal fun Home(
     uiState: HomeScreenState,
     retry: () -> Unit,
     onDynamicColor: (Boolean) -> Unit,
@@ -82,7 +82,7 @@ internal fun Homepage(
                 visible = visibility,
                 enter = fadeIn(tween(500))
             ) {
-                Home(
+                HomeScreen(
                     items = uiState.homeItems,
                     onDynamicColor = onDynamicColor,
                     onTheme = onTheme
@@ -102,7 +102,7 @@ internal fun Homepage(
 )
 internal fun PreviewHomeLight() {
     Adb_Theme {
-        Homepage(
+        Home(
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
             retry = { /* unused */ },
             onDynamicColor = {},
@@ -121,7 +121,7 @@ internal fun PreviewHomeDark() {
     Adb_Theme(
         isSystemDark = true
     ) {
-        Homepage(
+        Home(
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
             retry = { /* unused */ },
             onDynamicColor = { /* unused */ },
