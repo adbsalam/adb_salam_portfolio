@@ -36,7 +36,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.info.data.WorkHistory
+import uk.adbsalam.portfolio.info.data.objects.WorkHistory
 import uk.adbsalam.portfolio.info.feature.util.workIcon
 import uk.adbsalam.snapit.annotations.SnapIt
 
@@ -50,7 +50,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 internal fun WorkInfo(
     showDivider: Boolean,
-    workHistory: WorkHistory,
+    workHistory: WorkHistory.Work,
 ) {
     Column(
         modifier = Modifier
@@ -86,7 +86,7 @@ internal fun WorkInfo(
                 Icon(
                     imageVector = Icons.Default.WorkHistory,
                     contentDescription = null,
-                    tint = Color(workHistory.color)
+//                    tint = Color(workHistory.color) //TODO color fix
                 )
 
                 Text(
@@ -158,6 +158,6 @@ internal fun WorkInfo(
 internal fun WorkInfoPreview() {
     WorkInfo(
         showDivider = true,
-        workHistory = WorkHistory.createMock().first(),
+        workHistory = WorkHistory.createMock().workHistory.first()
     )
 }

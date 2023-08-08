@@ -8,7 +8,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.AnimatedColumn
+import uk.adbsalam.portfolio.components.ErrorPage
 import uk.adbsalam.portfolio.components.LoadingLotti
+import uk.adbsalam.portfolio.info.data.objects.Infographics
+import uk.adbsalam.portfolio.info.data.objects.WorkHistory
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
@@ -24,12 +27,11 @@ fun Info(
 ) {
     val uiState by viewModel.viewState.collectAsState()
 
-    LaunchedEffect(key1 = null) {
-        viewModel.initInfo()
-    }
+    LaunchedEffect(key1 = null) { viewModel.initInfo() }
 
     Info(
-        uiState = uiState
+        uiState = uiState,
+        retry = viewModel::fetchInfoAndWork
     )
 }
 
@@ -39,7 +41,8 @@ fun Info(
  */
 @Composable
 private fun Info(
-    uiState: InfoScreenState
+    uiState: InfoScreenState,
+    retry: () -> Unit
 ) {
     when (uiState) {
         InfoScreenState.OnLoading -> LoadingLotti(
@@ -47,9 +50,19 @@ private fun Info(
             msg = "Loading"
         )
 
-        InfoScreenState.OnInfo -> {
+        is InfoScreenState.OnError -> {
+            ErrorPage(
+                msg = uiState.msg,
+                retry = retry
+            )
+        }
+
+        is InfoScreenState.OnInfo -> {
             AnimatedColumn {
-                InfoScreen()
+                InfoScreen(
+                    infographics = uiState.infographics,
+                    workHistory = uiState.workHistory
+                )
             }
         }
     }
@@ -60,7 +73,11 @@ private fun Info(
 internal fun InfoScreenLightPreview() {
     Adb_Screen_Theme {
         Info(
-            uiState = InfoScreenState.OnInfo
+            uiState = InfoScreenState.OnInfo(
+                infographics = Infographics.createMock(),
+                workHistory = WorkHistory.createMock()
+            ),
+            retry = {/*unused*/ }
         )
     }
 }
@@ -70,7 +87,11 @@ internal fun InfoScreenLightPreview() {
 internal fun InfoScreenDarkPreview() {
     Adb_Screen_Theme(isDark = true) {
         Info(
-            uiState = InfoScreenState.OnInfo
+            uiState = InfoScreenState.OnInfo(
+                infographics = Infographics.createMock(),
+                workHistory = WorkHistory.createMock()
+            ),
+            retry = {/*unused*/ }
         )
     }
 }
