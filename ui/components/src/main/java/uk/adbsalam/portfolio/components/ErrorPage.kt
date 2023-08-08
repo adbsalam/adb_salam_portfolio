@@ -11,12 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
 @Composable
@@ -52,7 +52,7 @@ fun ErrorPage(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
 @SnapIt(name = "ErrorPage - full screen error page")
 internal fun ErrorPagePreview() {

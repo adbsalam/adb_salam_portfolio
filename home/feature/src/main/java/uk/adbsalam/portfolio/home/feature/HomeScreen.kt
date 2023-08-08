@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.home.feature
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,7 +16,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.SettingsIcon
 import uk.adbsalam.portfolio.home.feature.components.Profile
@@ -30,6 +28,8 @@ import uk.adbsalam.portfolio.home.feature.utils.getDrawableRes
 import uk.adbsalam.portfolio.home.feature.utils.getRawRes
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
@@ -92,9 +92,9 @@ internal fun HomeScreen(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-@SnapIt(name = "Home - Light Mode")
+@SnapIt(name = "HomeScreen - Light Mode")
 internal fun HomeLightPreview() {
     Adb_Theme {
         HomeScreen(
@@ -105,9 +105,9 @@ internal fun HomeLightPreview() {
     }
 }
 
+@PreviewDark
 @Composable
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@SnapIt(name = "Home - Dark Mode")
+@SnapIt(name = "HomeScreen - Dark Mode", isDark = true)
 internal fun HomeDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         HomeScreen(
@@ -155,12 +155,4 @@ private fun InfoCardByType(item: HomeScreenItem) {
             )
         }
     }
-}
-
-@Preview
-@Composable
-private fun InfoCardByTypePreview() {
-    InfoCardByType(
-        item = HomeScreenItem.createMock().first()
-    )
 }

@@ -15,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
@@ -59,8 +59,8 @@ internal fun Profile(
 }
 
 @Composable
-@Preview
-@SnapIt(name = "Profile - when in preview should render image correctly",)
+@PreviewLight
+@SnapIt(name = "Profile - profile header",)
 internal fun ProfilePreview() {
     Profile()
 }

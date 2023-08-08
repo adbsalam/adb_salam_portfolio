@@ -20,10 +20,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
+import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
@@ -100,16 +102,35 @@ internal fun CardInfoText(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-@SnapIt(name = "CardInfoText - not expanded")
-internal fun CardInfoTextPreview() {
-    val readMore = remember { mutableStateOf(false) }
-    CardInfoText(
-        tags = HomeScreenItem.createMock().first().tags,
-        title = "Sample Title",
-        body = "This is body example",
-        readMore = readMore,
-        action = { /*unused*/ }
-    )
+@SnapIt(name = "CardInfoText - Light Mode")
+internal fun CardInfoTextPreviewLight() {
+    Adb_Theme {
+        val readMore = remember { mutableStateOf(false) }
+        CardInfoText(
+            tags = HomeScreenItem.createMock().first().tags,
+            title = "Sample Title",
+            body = "This is body example",
+            readMore = readMore,
+            action = { /*unused*/ }
+        )
+    }
 }
+
+@PreviewDark
+@Composable
+@SnapIt(name = "CardInfoText - Dark Mode", isDark = true)
+internal fun CardInfoTextPreviewDark() {
+    Adb_Theme(isSystemDark = true) {
+        val readMore = remember { mutableStateOf(false) }
+        CardInfoText(
+            tags = HomeScreenItem.createMock().first().tags,
+            title = "Sample Title",
+            body = "This is body example",
+            readMore = readMore,
+            action = { /*unused*/ }
+        )
+    }
+}
+

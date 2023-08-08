@@ -7,8 +7,8 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
 @Composable
@@ -26,7 +26,7 @@ fun SettingsIcon(
     )
 }
 
-@Preview
+@PreviewLight
 @Composable
 @SnapIt("SettingsIcon - settings icon")
 internal fun SettingsIconPreview() {

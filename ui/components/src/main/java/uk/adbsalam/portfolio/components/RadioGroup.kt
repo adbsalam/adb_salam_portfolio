@@ -12,8 +12,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
 
@@ -56,7 +56,7 @@ fun <T> RadioGroup(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
 @SnapIt(name = "RadioGroup - first item selected")
 internal fun RadioGroupPreview() {

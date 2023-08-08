@@ -1,19 +1,19 @@
 package uk.adbsalam.portfolio.home.feature
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.ErrorPage
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
@@ -82,15 +82,10 @@ internal fun Home(
         }
 
     }
-
 }
 
+@PreviewLight
 @Composable
-@Preview
-@SnapIt(
-    name = "HomePage - Light Mode",
-    isScreen = true
-)
 internal fun PreviewHomeLight() {
     Adb_Theme {
         Home(
@@ -102,16 +97,10 @@ internal fun PreviewHomeLight() {
     }
 }
 
+@PreviewDark
 @Composable
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@SnapIt(
-    name = "HomePage - Dark Mode",
-    isScreen = true
-)
 internal fun PreviewHomeDark() {
-    Adb_Theme(
-        isSystemDark = true
-    ) {
+    Adb_Theme(isSystemDark = true) {
         Home(
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
             retry = { /* unused */ },

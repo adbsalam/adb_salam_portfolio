@@ -72,8 +72,13 @@ fun Adb_Theme(
     val view = LocalView.current
 
     if (!view.isInEditMode) {
-        val window = (view.context as Activity).window
-        WindowCompat.setDecorFitsSystemWindows(window, false)
+        try { // paparazzi throws exception
+            val window = (view.context as Activity).window
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+        }
+        catch (e: Exception){
+            e.printStackTrace()
+        }
     }
 
     MaterialTheme(

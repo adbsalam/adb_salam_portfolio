@@ -14,7 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
@@ -50,10 +50,10 @@ internal fun ExpandableText(
     }
 }
 
-@Preview(widthDp = 200)
+@PreviewLight
 @Composable
 @SnapIt(name = "ExpandableText - not expanded")
-internal fun ExpandableTextCollapsedPreview(){
+internal fun ExpandableTextCollapsedPreview() {
     val readMore = remember { mutableStateOf(false) }
     ExpandableText(
         readMore = readMore,
@@ -61,10 +61,10 @@ internal fun ExpandableTextCollapsedPreview(){
     )
 }
 
-@Preview(widthDp = 200)
+@PreviewLight
 @Composable
 @SnapIt(name = "ExpandableText - expanded")
-internal fun ExpandableTextExpandedPreview(){
+internal fun ExpandableTextExpandedPreview() {
     val readMore = remember { mutableStateOf(true) }
     ExpandableText(
         readMore = readMore,
