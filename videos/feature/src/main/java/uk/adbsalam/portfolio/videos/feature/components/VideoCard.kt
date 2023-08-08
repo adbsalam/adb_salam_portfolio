@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.videos.feature.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,11 +13,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.videos.data.VideoData
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param videoData video card to populate on screen
@@ -75,9 +76,10 @@ internal fun VideoCard(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-fun VideoCardPreviewLight() {
+@SnapIt(name = "VideoCard - light mode")
+internal fun VideoCardPreviewLight() {
     Adb_Theme {
         VideoCard(
             videoData = VideoData.createMock().first(),
@@ -85,9 +87,10 @@ fun VideoCardPreviewLight() {
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewDark
 @Composable
-fun VideoCardPreviewDark() {
+@SnapIt(name = "VideoCard - dark mode", isDark = true)
+internal fun VideoCardPreviewDark() {
     Adb_Theme(true) {
         VideoCard(
             videoData = VideoData.createMock().first(),

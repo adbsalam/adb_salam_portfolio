@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.videos.feature
 
-import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -26,16 +25,19 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.components.R
-import uk.adbsalam.portfolio.components.R.drawable
-import uk.adbsalam.portfolio.components.R.drawable.*
+import uk.adbsalam.portfolio.components.R.drawable.ic_logo_main
+import uk.adbsalam.portfolio.components.R.drawable.ic_youtube_dark
+import uk.adbsalam.portfolio.components.R.drawable.ic_youtube_light
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.portfolio.utils.Theme.DARK
+import uk.adbsalam.portfolio.utils.Theme.LIGHT
 import uk.adbsalam.portfolio.videos.data.VideoData
 import uk.adbsalam.portfolio.videos.feature.components.VideoCard
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param videos videos to show on this screen
@@ -44,7 +46,7 @@ import uk.adbsalam.portfolio.videos.feature.components.VideoCard
  * This is the main UI Screen to show all videos on
  */
 @Composable
-fun VideosScreen(
+internal fun VideosScreen(
     videos: List<VideoData>,
     currentTheme: Theme
 ) {
@@ -105,21 +107,23 @@ fun VideosScreen(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-fun VideosScreenPreviewLight() {
+@SnapIt(name = "VideosScreen - light mode")
+internal fun VideosScreenPreviewLight() {
     Adb_Theme {
         VideosScreen(
             videos = VideoData.createMock(),
-            currentTheme = Theme.LIGHT
+            currentTheme = LIGHT
         )
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewDark
 @Composable
-fun VideosScreenPreviewDark() {
-    Adb_Theme(true) {
+@SnapIt(name = "VideosScreen - dark mode", isDark = true)
+internal fun VideosScreenPreviewDark() {
+    Adb_Theme(isSystemDark = true) {
         VideosScreen(
             videos = VideoData.createMock(),
             currentTheme = DARK

@@ -20,7 +20,7 @@ class VideosViewModel @Inject constructor(
     /**
      * Load videos an init videos screen
      */
-    suspend fun loadVideos() {
+    internal suspend fun loadVideos() {
         _viewState.value = VideosState.OnVideos(
             videos = VideoData.createMock()
         )
@@ -29,7 +29,7 @@ class VideosViewModel @Inject constructor(
     /**
      * get current theme app us using from prefs
      */
-    fun currentTheme(): Theme {
+    internal fun currentTheme(): Theme {
         return themePrefs.theme()
     }
 }

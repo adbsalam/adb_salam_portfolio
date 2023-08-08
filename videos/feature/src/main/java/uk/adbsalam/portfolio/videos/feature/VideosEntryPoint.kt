@@ -1,15 +1,15 @@
 package uk.adbsalam.portfolio.videos.feature
 
-import android.content.res.Configuration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.portfolio.videos.data.VideoData
 
@@ -17,7 +17,7 @@ import uk.adbsalam.portfolio.videos.data.VideoData
  * @param viewModel view model to be used for this screen
  *
  * Perform functionality that might block preview here
-*/
+ */
 @Composable
 fun Videos(
     viewModel: VideosViewModel = hiltViewModel()
@@ -55,9 +55,9 @@ private fun Videos(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-fun VideosPreviewLight() {
+internal fun VideosPreviewLight() {
     Adb_Theme {
         Videos(
             uiState = VideosState.OnVideos(VideoData.createMock()),
@@ -66,13 +66,13 @@ fun VideosPreviewLight() {
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewDark
 @Composable
-fun VideosPreviewDark() {
-    Adb_Theme(true) {
+internal fun VideosPreviewDark() {
+    Adb_Theme(isSystemDark = true) {
         Videos(
             uiState = VideosState.OnVideos(VideoData.createMock()),
-            currentTheme = Theme.LIGHT
+            currentTheme = Theme.DARK
         )
     }
 }
