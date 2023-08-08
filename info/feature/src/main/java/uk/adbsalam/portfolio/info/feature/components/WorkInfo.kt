@@ -38,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.info.data.WorkHistory
 import uk.adbsalam.portfolio.info.feature.util.workIcon
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param showDivider show divider true or false as last item do not need to have a divider
@@ -47,7 +48,7 @@ import uk.adbsalam.portfolio.info.feature.util.workIcon
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun WorkInfo(
+internal fun WorkInfo(
     showDivider: Boolean,
     workHistory: WorkHistory,
 ) {
@@ -153,7 +154,8 @@ fun WorkInfo(
 
 @Preview
 @Composable
-fun WorkInfoPreview() {
+@SnapIt(name = "WorkInfo - light mode")
+internal fun WorkInfoPreview() {
     WorkInfo(
         showDivider = true,
         workHistory = WorkHistory.createMock().first(),

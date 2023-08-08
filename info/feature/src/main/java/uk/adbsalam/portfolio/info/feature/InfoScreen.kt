@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.info.feature
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,21 +14,23 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.info.data.WorkHistory
 import uk.adbsalam.portfolio.info.feature.components.WorkInfo
 import uk.adbsalam.portfolio.info.feature.components.infocards.AndroidMainCard
 import uk.adbsalam.portfolio.info.feature.components.infocards.SkillsInsightCard
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * Main Info screen upon successfully loading data
  * This is the main Info Screen to show
  */
 @Composable
-fun InfoScreen() {
+internal fun InfoScreen() {
 
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp),
@@ -76,18 +77,20 @@ fun InfoScreen() {
 
 }
 
-@Preview
+@PreviewLight
 @Composable
-fun InfoGraphicsPreviewLight() {
+@SnapIt(name = "InfoScreen - light mode")
+internal fun InfoScreenLight() {
     Adb_Theme {
         InfoScreen()
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewDark
 @Composable
-fun InfoGraphicsPreviewDark() {
-    Adb_Theme(true) {
+@SnapIt(name = "InfoScreen - dark mode", isDark = true)
+internal fun InfoScreenDark() {
+    Adb_Theme(isSystemDark = true) {
         InfoScreen()
     }
 }

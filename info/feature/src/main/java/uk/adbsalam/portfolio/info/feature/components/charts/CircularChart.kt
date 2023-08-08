@@ -22,9 +22,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
+import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param modifier Modifier to apply on chart
@@ -94,15 +97,30 @@ internal fun CircularChart(
     }
 }
 
+@PreviewLight
 @Composable
-@Preview
-internal fun CircularChartPreview() {
-    CircularChart(
-        title = "Android",
-        subTitle = "kotlin",
-        icon = R.drawable.ic_kotlin,
-        percent = 0.5f
-    )
+@SnapIt(name = "CircularChart - light mode")
+internal fun CircularChartPreviewLight() {
+    Adb_Theme {
+        CircularChart(
+            title = "Android",
+            subTitle = "kotlin",
+            icon = R.drawable.ic_kotlin,
+            percent = 0.5f
+        )
+    }
 }
 
-
+@PreviewDark
+@Composable
+@SnapIt(name = "CircularChart - dark mode", isDark = true)
+internal fun CircularChartPreviewDark() {
+    Adb_Theme(isSystemDark = true) {
+        CircularChart(
+            title = "Android",
+            subTitle = "kotlin",
+            icon = R.drawable.ic_kotlin,
+            percent = 0.5f
+        )
+    }
+}

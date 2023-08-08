@@ -12,6 +12,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 
 /**
  * @param viewModel viewModel to use for this compose
@@ -55,9 +57,9 @@ private fun Info(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-fun InfoScreenLightPreview() {
+internal fun InfoScreenLightPreview() {
     Adb_Theme {
         Info(
             uiState = InfoScreenState.OnInfo
@@ -65,9 +67,9 @@ fun InfoScreenLightPreview() {
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewDark
 @Composable
-fun InfoScreenDarkPreview() {
+internal fun InfoScreenDarkPreview() {
     Adb_Theme(true) {
         Info(
             uiState = InfoScreenState.OnInfo

@@ -17,8 +17,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param subTitle subtitle of Chart to be shown as label
@@ -66,11 +69,26 @@ internal fun HorizontalChart(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-internal fun HorizontalChartPreview(){
-    HorizontalChart(
-        subTitle = "Component",
-        percent = 40f
-    )
+@SnapIt(name = "HorizontalChart - light mode")
+internal fun HorizontalChartPreviewLight() {
+    Adb_Theme {
+        HorizontalChart(
+            subTitle = "Component",
+            percent = 40f
+        )
+    }
+}
+
+@PreviewDark
+@Composable
+@SnapIt(name = "HorizontalChart - dark mode", isDark = true)
+internal fun HorizontalChartPreviewDark() {
+    Adb_Theme(isSystemDark = true) {
+        HorizontalChart(
+            subTitle = "Component",
+            percent = 40f
+        )
+    }
 }
