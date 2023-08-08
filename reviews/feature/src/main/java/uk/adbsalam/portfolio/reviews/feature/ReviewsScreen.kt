@@ -14,9 +14,9 @@ import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.reviews.data.ReviewsData
 import uk.adbsalam.portfolio.reviews.feature.components.ReviewLottiTitle
 import uk.adbsalam.portfolio.reviews.feature.components.reviewcard.ReviewCard
-import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
@@ -49,7 +49,7 @@ internal fun ReviewsScreen(
 @Composable
 @SnapIt(name = "ReviewsScreen - light mode")
 internal fun ReviewsScreenPreviewLight() {
-    Adb_Theme {
+    Adb_Screen_Theme {
         ReviewsScreen(
             reviews = ReviewsData.createMock()
         )
@@ -60,7 +60,7 @@ internal fun ReviewsScreenPreviewLight() {
 @Composable
 @SnapIt(name = "ReviewsScreen - dark mode", isDark = true)
 internal fun ReviewsScreenPreviewDark() {
-    Adb_Theme(isSystemDark = true) {
+    Adb_Screen_Theme(isDark = true) {
         ReviewsScreen(
             reviews = ReviewsData.createMock()
         )

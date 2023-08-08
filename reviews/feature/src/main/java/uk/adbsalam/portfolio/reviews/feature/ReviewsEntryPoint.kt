@@ -11,6 +11,7 @@ import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.reviews.data.ReviewsData
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 
 /**
  * @param viewModel view model to be used for this screen
@@ -48,7 +49,7 @@ private fun Reviews(
 @Preview
 @Composable
 internal fun ReviewsPreviewLight() {
-    Adb_Theme {
+    Adb_Screen_Theme {
         Reviews(
             uiState = ReviewsState.OnReviews(ReviewsData.createMock())
         )
@@ -58,7 +59,7 @@ internal fun ReviewsPreviewLight() {
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 internal fun ReviewsPreviewDark() {
-    Adb_Theme(true) {
+    Adb_Screen_Theme(isDark = true) {
         Reviews(
             uiState = ReviewsState.OnReviews(ReviewsData.createMock())
         )
