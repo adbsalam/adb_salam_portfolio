@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.startup.feature.components
+package uk.adbsalam.portfolio.theming.appbackground
 
 
 import android.graphics.RuntimeShader
@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.ShaderBrush
-import uk.adbsalam.portfolio.startup.feature.components.snow.snowfall
+import uk.adbsalam.portfolio.theming.appbackground.snow.snowfall
 import uk.adbsalam.portfolio.theming.christmas_gradient_color
 import uk.adbsalam.portfolio.theming.light_gradient_color_one
 import uk.adbsalam.portfolio.theming.light_gradient_color_two
@@ -25,29 +25,26 @@ import uk.adbsalam.portfolio.utils.Theme
  *
  * This will be base background for app alongside snow animations
  */
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun GradientColumn(
     theme: Theme,
     content: @Composable () -> Unit
 ) {
-    val gradientColorOne = when{
+    val gradientColorOne = when {
         (theme == Theme.DARK || isSystemInDarkTheme()) -> primary_dark
         theme == Theme.CHRISTMAS -> christmas_gradient_color
         else -> light_gradient_color_one
     }
 
-    val gradientColorTwo = when{
+    val gradientColorTwo = when {
         (theme == Theme.DARK || isSystemInDarkTheme()) -> primary_light
         theme == Theme.CHRISTMAS -> christmas_gradient_color
         else -> light_gradient_color_two
     }
 
-    val modifier = if(theme == Theme.CHRISTMAS) Modifier.snowfall() else Modifier
-
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .drawWithCache {
+    val modifier = if (theme == Theme.CHRISTMAS) Modifier.snowfall() else Modifier
+    val gradientModifier = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        Modifier.drawWithCache {
             val shader = RuntimeShader(CUSTOM_SHADER)
             val shaderBrush = ShaderBrush(shader)
             shader.setFloatUniform("resolution", size.width, size.height)
@@ -73,7 +70,13 @@ fun GradientColumn(
                 drawRect(shaderBrush)
             }
         }
-        .then(modifier)
+    } else Modifier
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .then(gradientModifier)
+            .then(modifier)
     ) {
         content()
     }

@@ -30,6 +30,7 @@ import uk.adbsalam.portfolio.settings.feature.SettingsDialog
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
@@ -96,7 +97,7 @@ internal fun HomeScreen(
 @Composable
 @SnapIt(name = "HomeScreen - Light Mode")
 internal fun HomeLightPreview() {
-    Adb_Theme {
+    Adb_Screen_Theme {
         HomeScreen(
             items = HomeScreenItem.createMock(),
             onDynamicColor = { /* unused */ },
@@ -109,7 +110,7 @@ internal fun HomeLightPreview() {
 @Composable
 @SnapIt(name = "HomeScreen - Dark Mode", isDark = true)
 internal fun HomeDarkPreview() {
-    Adb_Theme(isSystemDark = true) {
+    Adb_Screen_Theme(isDark = true) {
         HomeScreen(
             items = HomeScreenItem.createMock(),
             onDynamicColor = { /* unused */ },

@@ -14,8 +14,8 @@ import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.portfolio.utils.Theme
-import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param onTheme action to perform on theme value selected
@@ -87,7 +87,7 @@ internal fun Home(
 @PreviewLight
 @Composable
 internal fun PreviewHomeLight() {
-    Adb_Theme {
+    Adb_Screen_Theme {
         Home(
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
             retry = { /* unused */ },
@@ -100,7 +100,7 @@ internal fun PreviewHomeLight() {
 @PreviewDark
 @Composable
 internal fun PreviewHomeDark() {
-    Adb_Theme(isSystemDark = true) {
+    Adb_Screen_Theme(isDark = true) {
         Home(
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
             retry = { /* unused */ },

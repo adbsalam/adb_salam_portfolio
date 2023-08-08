@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.startup.feature.components.snow
+package uk.adbsalam.portfolio.theming.appbackground.snow
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

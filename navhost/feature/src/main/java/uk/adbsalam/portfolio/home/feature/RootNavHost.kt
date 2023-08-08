@@ -13,7 +13,6 @@ import uk.adbsalam.portfolio.navigation.composeRoute
 import uk.adbsalam.portfolio.navigation.route
 import uk.adbsalam.portfolio.utils.Theme
 
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 fun HomeScreenNavHost(
     onTheme: (Theme) -> Unit,

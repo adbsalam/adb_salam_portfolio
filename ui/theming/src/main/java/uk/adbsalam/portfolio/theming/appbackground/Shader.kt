@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.startup.feature.components
+package uk.adbsalam.portfolio.theming.appbackground
 
 import org.intellij.lang.annotations.Language
 
