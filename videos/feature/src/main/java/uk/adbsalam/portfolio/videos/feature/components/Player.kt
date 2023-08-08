@@ -12,6 +12,13 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import uk.adbsalam.portfolio.videos.data.VideoData
 import uk.adbsalam.portfolio.videos.feature.R
 
+/**
+ * @param player current instance of youtube player to be passed
+ * @param initialPlay start video on video ready
+ * @param videoData video data to be passed
+ *
+ * This creates a custom video player that can be used to play videos
+ */
 @Composable
 internal fun VideoPlayerView(
     player: MutableState<YouTubePlayer?>,
@@ -38,7 +45,6 @@ internal fun VideoPlayerView(
                             initPlay = initialPlay.value
                         )
                         youTubePlayer.addListener(customPlayerUiController);
-                        customPlayerUiController.ready()
                         youTubePlayer.cueVideo(videoData.videoId, 0f)
                     }
                 },

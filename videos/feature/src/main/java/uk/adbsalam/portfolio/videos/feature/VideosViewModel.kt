@@ -14,16 +14,21 @@ class VideosViewModel @Inject constructor(
     private val themePrefs: AppSharedPrefManager.ThemePrefs
 ) : ViewModel() {
 
-    private val _viewState =
-        MutableStateFlow<VideosState>(VideosState.OnLoading)
+    private val _viewState = MutableStateFlow<VideosState>(VideosState.OnLoading)
     internal val viewState = _viewState.asStateFlow()
 
+    /**
+     * Load videos an init videos screen
+     */
     suspend fun loadVideos() {
         _viewState.value = VideosState.OnVideos(
             videos = VideoData.createMock()
         )
     }
 
+    /**
+     * get current theme app us using from prefs
+     */
     fun currentTheme(): Theme {
         return themePrefs.theme()
     }

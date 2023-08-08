@@ -11,7 +11,16 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import uk.adbsalam.portfolio.videos.feature.R
 
-
+/**
+ * @param context context to be passed from view
+ * @param customPlayerUi custom ui player ui as from XML
+ * @param playerTracker player tracker to be used for video timeline tracking
+ * @param youTubePlayer current youtube player instance
+ * @param initPlay start as soon as created true or false
+ *
+ * This is custom UI for Video player to show in list
+ * Add functionality to custom UI here
+ */
 internal class CustomPlayerUiController(
     private val context: Context,
     customPlayerUi: View,
@@ -36,25 +45,23 @@ internal class CustomPlayerUiController(
         seekbar = playerUi.findViewById(R.id.youtube_player_seekbar)
     }
 
-    fun ready() {
-        progressbar.visibility = View.GONE
-    }
-
     override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerState) {
         when (state) {
             PlayerState.PLAYING,
             PlayerState.PAUSED,
             PlayerState.VIDEO_CUED -> {
+                progressbar.visibility = View.GONE
                 panel.setBackgroundColor(
                     ContextCompat.getColor(
                         context, R.color.transparent
                     )
                 )
-                if(initPlay && counter == 0) {
+                if (initPlay && counter == 0) {
                     youTubePlayer.play()
                     counter++
                 }
             }
+
             else -> {}
         }
 

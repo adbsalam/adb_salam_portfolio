@@ -20,6 +20,14 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.videos.data.VideoData
 
+/**
+ * @param videoData video card to populate on screen
+ *
+ * This will handle auto play of videos when in playable screen area
+ * which currently is between 1150f to 120f
+ * As soon as video reaches top of page near status bar, video will pause
+ * Video will start playing while between playable area
+ */
 @Composable
 internal fun VideoCard(
     videoData: VideoData,

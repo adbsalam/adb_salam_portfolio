@@ -29,11 +29,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
+import uk.adbsalam.portfolio.components.R.drawable
+import uk.adbsalam.portfolio.components.R.drawable.*
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
+import uk.adbsalam.portfolio.utils.Theme.DARK
 import uk.adbsalam.portfolio.videos.data.VideoData
 import uk.adbsalam.portfolio.videos.feature.components.VideoCard
 
+/**
+ * @param videos videos to show on this screen
+ * @param currentTheme theme app is currently using
+ *
+ * This is the main UI Screen to show all videos on
+ */
 @Composable
 fun VideosScreen(
     videos: List<VideoData>,
@@ -54,7 +63,7 @@ fun VideosScreen(
 
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ic_logo_main),
+                painter = painterResource(id = ic_logo_main),
                 contentDescription = null,
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
@@ -68,7 +77,7 @@ fun VideosScreen(
             )
 
             val icon =
-                if (currentTheme == Theme.DARK || isSystemInDarkTheme()) R.drawable.ic_youtube_dark else R.drawable.ic_youtube_light
+                if (currentTheme == DARK || isSystemInDarkTheme()) ic_youtube_dark else ic_youtube_light
 
             Icon(
                 painter = painterResource(id = icon),
@@ -92,7 +101,6 @@ fun VideosScreen(
             }
         }
 
-
         Spacer(modifier = Modifier.height(30.dp))
     }
 }
@@ -114,7 +122,7 @@ fun VideosScreenPreviewDark() {
     Adb_Theme(true) {
         VideosScreen(
             videos = VideoData.createMock(),
-            currentTheme = Theme.DARK
+            currentTheme = DARK
         )
     }
 }

@@ -20,6 +20,9 @@ import uk.adbsalam.snapit.annotations.SnapIt
 /**
  * @param onTheme action to perform on theme value selected
  * @param onDynamicColor action to perform on dynamic color value selected
+ * @param viewModel view model to be used for this screen
+ *
+ * Perform functionality that might block preview here
  */
 @Composable
 fun Home(

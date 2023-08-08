@@ -13,12 +13,17 @@ import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.portfolio.videos.data.VideoData
 
+/**
+ * @param viewModel view model to be used for this screen
+ *
+ * Perform functionality that might block preview here
+*/
 @Composable
 fun Videos(
     viewModel: VideosViewModel = hiltViewModel()
 ) {
-
     val uiState by viewModel.viewState.collectAsState()
+
     LaunchedEffect(key1 = null) { viewModel.loadVideos() }
 
     Videos(
@@ -27,12 +32,15 @@ fun Videos(
     )
 }
 
+/**
+ * @param uiState current VideosState Ui State to show here
+ * @param currentTheme theme app is currently using
+ */
 @Composable
 private fun Videos(
     uiState: VideosState,
     currentTheme: Theme
 ) {
-
     when (uiState) {
         VideosState.OnLoading -> LoadingLotti()
 
