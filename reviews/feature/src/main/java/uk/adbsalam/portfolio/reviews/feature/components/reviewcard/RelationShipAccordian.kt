@@ -35,8 +35,12 @@ import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.reviews.data.ReviewsData
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
+/**
+ * @param review relationship accordion to show data with
+ * This is expandable accordion to show and hide details of relationship
+ */
 @Composable
-fun RelationShipAccordian(
+fun RelationShipAccordion(
     review: ReviewsData
 ) {
     var expand by remember { mutableStateOf(false) }
@@ -57,10 +61,10 @@ fun RelationShipAccordian(
             },
     ) {
         Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Row {
                 Icon(
@@ -88,10 +92,10 @@ fun RelationShipAccordian(
             exit = fadeOut(tween(500)) + shrinkVertically(tween(500)),
         ) {
             Column(
+                verticalArrangement = Arrangement.spacedBy(10.dp),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(12.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 Text(
                     text = review.relation,
@@ -110,7 +114,7 @@ fun RelationShipAccordian(
 @Composable
 fun InfoGraphicsPreviewLight() {
     Adb_Theme {
-        RelationShipAccordian(review = ReviewsData.createMock().first())
+        RelationShipAccordion(review = ReviewsData.createMock().first())
     }
 }
 
@@ -118,6 +122,6 @@ fun InfoGraphicsPreviewLight() {
 @Composable
 fun InfoGraphicsPreviewDark() {
     Adb_Theme(true) {
-        RelationShipAccordian(review = ReviewsData.createMock().first())
+        RelationShipAccordion(review = ReviewsData.createMock().first())
     }
 }

@@ -21,6 +21,10 @@ import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.reviews.data.ReviewsData
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
+/**
+ * @param review reviews data to be populated on title
+ * This includes name, designation and LinkedIn icon
+ */
 @Composable
 fun ReviewTitle(
     review: ReviewsData

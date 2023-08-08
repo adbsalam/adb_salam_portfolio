@@ -34,7 +34,6 @@ class HomeViewModel @Inject constructor(
      * Set state according to data loaded or error states
      */
     internal fun loadHomeItems() {
-
         _viewState.value = HomeScreenState.OnLoading
 
         viewModelScope.launch {

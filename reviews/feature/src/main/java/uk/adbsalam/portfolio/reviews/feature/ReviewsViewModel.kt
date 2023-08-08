@@ -14,6 +14,9 @@ class ReviewsViewModel @Inject constructor() : ViewModel() {
         MutableStateFlow<ReviewsState>(ReviewsState.OnLoading)
     internal val viewState = _viewState.asStateFlow()
 
+    /**
+     * Load all reviews data and start screen
+     */
     suspend fun initReviews() {
         _viewState.value = ReviewsState.OnReviews(ReviewsData.createMock())
     }

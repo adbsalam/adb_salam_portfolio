@@ -12,21 +12,25 @@ import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.reviews.data.ReviewsData
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
+/**
+ * @param viewModel view model to be used for this screen
+ *
+ * This is entry point to Reviews screen
+ * Perform all functionality that might block Previews
+ */
 @Composable
 fun Reviews(
     viewModel: ReviewsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.viewState.collectAsState()
-
-    LaunchedEffect(key1 = null) {
-        viewModel.initReviews()
-    }
-
-    Reviews(
-        uiState = uiState
-    )
+    LaunchedEffect(key1 = null) { viewModel.initReviews() }
+    Reviews(uiState = uiState)
 }
 
+/**
+ * @param uiState Current UI State to show on screen
+ * Changes state based on uiState such as loading or show reviews
+ */
 @Composable
 fun Reviews(
     uiState: ReviewsState

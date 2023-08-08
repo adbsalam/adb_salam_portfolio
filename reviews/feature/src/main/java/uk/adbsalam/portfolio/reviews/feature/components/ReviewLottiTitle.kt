@@ -28,6 +28,10 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
+/**
+ * Page title for Reviews
+ * Lotti file and components to show as page title
+ */
 @Composable
 fun ReviewLottiTitle() {
     Column(

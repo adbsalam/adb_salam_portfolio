@@ -18,6 +18,10 @@ import uk.adbsalam.portfolio.reviews.feature.components.ReviewLottiTitle
 import uk.adbsalam.portfolio.reviews.feature.components.reviewcard.ReviewCard
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
+/**
+ * @param reviews reviews to show on screen
+ * Main screen to populate reviews on screen
+ */
 @Composable
 fun ReviewsScreen(
     reviews: List<ReviewsData>

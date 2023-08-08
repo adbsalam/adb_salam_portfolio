@@ -17,19 +17,22 @@ import uk.adbsalam.portfolio.reviews.data.ReviewsData
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
+/**
+ * @param review reviews data to be populated on ReviewCard
+ * This is main Reviews card to display in list
+ */
 @Composable
 fun ReviewCard(
     review: ReviewsData
 ) {
     Column(
+        verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = Modifier
             .fillMaxWidth()
             .adbRoundedBackground()
             .animateContentSize()
             .padding(vertical = 12.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
-
         ReviewTitle(review = review)
 
         Text(
@@ -40,7 +43,7 @@ fun ReviewCard(
 
         Divider(modifier = Modifier.fillMaxWidth())
 
-        RelationShipAccordian(review = review)
+        RelationShipAccordion(review = review)
     }
 }
 
