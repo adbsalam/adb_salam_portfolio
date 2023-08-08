@@ -24,6 +24,10 @@ import uk.adbsalam.portfolio.info.feature.components.charts.HorizontalChart
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
+/**
+ * Top level chart to show Horizontal Chart
+ * Animated progress will be shown
+ */
 @Composable
 internal fun SkillsInsightCard() {
 

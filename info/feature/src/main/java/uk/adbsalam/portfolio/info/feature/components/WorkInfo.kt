@@ -39,6 +39,12 @@ import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.info.data.WorkHistory
 import uk.adbsalam.portfolio.info.feature.util.workIcon
 
+/**
+ * @param showDivider show divider true or false as last item do not need to have a divider
+ * @param workHistory item to show data from
+ *
+ * This is an expandable Card that expands on click to show work history details
+ */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun WorkInfo(

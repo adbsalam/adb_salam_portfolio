@@ -99,7 +99,7 @@ fun VideosScreen(
 
 @Preview
 @Composable
-fun VideosPreviewLight() {
+fun VideosScreenPreviewLight() {
     Adb_Theme {
         VideosScreen(
             videos = VideoData.createMock(),
@@ -110,7 +110,7 @@ fun VideosPreviewLight() {
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun VideosPreviewDark() {
+fun VideosScreenPreviewDark() {
     Adb_Theme(true) {
         VideosScreen(
             videos = VideoData.createMock(),

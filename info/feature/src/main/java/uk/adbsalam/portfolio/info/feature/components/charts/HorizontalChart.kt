@@ -20,6 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * @param subTitle subtitle of Chart to be shown as label
+ * @param percent percentage to reach with animation
+ *
+ * This creates a horizontal animated progressbar representing horizontal chart
+ */
 @Composable
 internal fun HorizontalChart(
     subTitle: String,
@@ -34,7 +40,8 @@ internal fun HorizontalChart(
 
     val progressAnimation by animateFloatAsState(
         targetValue = percentFloat,
-        animationSpec = tween(durationMillis = 1000, easing = LinearEasing)
+        animationSpec = tween(durationMillis = 1000, easing = LinearEasing),
+        label = ""
     )
 
     Row(modifier = Modifier.fillMaxWidth()) {

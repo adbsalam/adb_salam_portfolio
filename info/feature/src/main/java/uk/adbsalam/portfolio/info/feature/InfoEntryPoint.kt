@@ -13,6 +13,11 @@ import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
+/**
+ * @param viewModel viewModel to use for this compose
+ * This is entry point to Info Screen, all functionality that blocks Preview
+ * Should be used here
+ */
 @Composable
 fun Info(
     viewModel: InfoViewModel = hiltViewModel()
@@ -28,6 +33,10 @@ fun Info(
     )
 }
 
+/**
+ * @param uiState current UI State to show on screen
+ * This is Info Screen to show according to InfoScreenState uiState passed
+ */
 @Composable
 private fun Info(
     uiState: InfoScreenState

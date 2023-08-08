@@ -17,6 +17,10 @@ import uk.adbsalam.portfolio.info.feature.components.charts.CircularChart
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
+/**
+ * Top level chart to show Circular Chart
+ * Animated progress will be shown
+ */
 @Composable
 internal fun AndroidMainCard(){
     Column(

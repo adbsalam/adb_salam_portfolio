@@ -24,6 +24,10 @@ import uk.adbsalam.portfolio.info.feature.components.infocards.SkillsInsightCard
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
+/**
+ * Main Info screen upon successfully loading data
+ * This is the main Info Screen to show
+ */
 @Composable
 fun InfoScreen() {
 

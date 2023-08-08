@@ -26,6 +26,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
 
+/**
+ * @param modifier Modifier to apply on chart
+ * @param title title of card to add
+ * @param subTitle subtitle of card to be used
+ * @param icon icon drawable resource for current chart
+ * @param percent max value to reach on this progressbar with animated float
+ *
+ * This will create an animated circular chart for given values
+ */
 @Composable
 internal fun CircularChart(
     modifier: Modifier = Modifier,
@@ -43,7 +52,8 @@ internal fun CircularChart(
 
     val progressAnimation by animateFloatAsState(
         targetValue = percentFloat,
-        animationSpec = tween(durationMillis = 1000, easing = LinearEasing)
+        animationSpec = tween(durationMillis = 1000, easing = LinearEasing),
+        label = ""
     )
 
     Column(

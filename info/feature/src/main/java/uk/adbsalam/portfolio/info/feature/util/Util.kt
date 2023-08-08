@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.info.feature.util
 
-import android.nfc.Tag
 import androidx.annotation.DrawableRes
 import uk.adbsalam.portfolio.components.R
 
@@ -8,9 +7,6 @@ import uk.adbsalam.portfolio.components.R
 internal fun workIcon(
     tag: String
 ): Int {
-
-    println("------------------------" + tag)
-
     return when (tag) {
         "ic_android" -> R.drawable.ic_android
         "ic_kotlin" -> R.drawable.ic_kotlin
