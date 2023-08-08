@@ -9,12 +9,13 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.home.feature.HomeScreenNavHost
 import uk.adbsalam.portfolio.startup.feature.components.GradientColumn
 import uk.adbsalam.portfolio.startup.feature.components.LoadingScreen
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
@@ -66,7 +67,6 @@ private fun StartupScreen(
         themeType = theme,
         dynamic = dynamicColor
     ) {
-
         Surface(modifier = Modifier.fillMaxSize()) {
             GradientColumn(
                 theme = theme
@@ -80,14 +80,13 @@ private fun StartupScreen(
                 }
             }
         }
-
     }
 }
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
-@Preview
-@SnapIt("StartupScreen - when in light mode - should render correctly")
+@PreviewLight
+@SnapIt("StartupScreen - when in light mode")
 internal fun StartupScreenLoadingLightTheme() {
     StartupScreen(
         uiState = StartupState.OnLoading,
@@ -100,8 +99,8 @@ internal fun StartupScreenLoadingLightTheme() {
 
 @RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
-@Preview
-@SnapIt("StartupScreen - when in dark mode - should render correctly")
+@PreviewDark
+@SnapIt("StartupScreen - when in dark mode", isDark = true)
 internal fun StartupScreenLoadingDarkTheme() {
     StartupScreen(
         uiState = StartupState.OnLoading,

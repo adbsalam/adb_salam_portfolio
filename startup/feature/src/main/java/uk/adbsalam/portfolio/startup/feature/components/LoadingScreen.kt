@@ -19,6 +19,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.images.AdbMainLogo
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
 @Composable
@@ -54,18 +56,16 @@ internal fun LoadingScreen() {
     }
 }
 
+@PreviewLight
 @Composable
-@Preview
-@SnapIt(name = "LoadingScreen - should render correctly")
 internal fun LoadingScreenLightPreview() {
     Adb_Theme {
         LoadingScreen()
     }
 }
 
+@PreviewDark
 @Composable
-@Preview
-@SnapIt(name = "LoadingScreen - Dark Mode - should render correctly")
 internal fun LoadingScreenDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         LoadingScreen()
