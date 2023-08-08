@@ -16,7 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.info.data.infoList
+import uk.adbsalam.portfolio.info.data.objects.Infographics
 import uk.adbsalam.portfolio.info.feature.components.InfoTitle
 import uk.adbsalam.portfolio.info.feature.components.charts.HorizontalChart
 import uk.adbsalam.portfolio.theming.Adb_Theme
@@ -30,7 +30,9 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * Animated progress will be shown
  */
 @Composable
-internal fun SkillsInsightCard() {
+internal fun SkillsInsightCard(
+    infographics: Infographics
+) {
 
     var expandInfoBars by remember { mutableStateOf(false) }
 
@@ -45,7 +47,7 @@ internal fun SkillsInsightCard() {
             title = "Skills Insight"
         )
 
-        infoList.subList(0, 5).forEach {
+        infographics.infoGraphics.subList(0, 5).forEach {
             Spacer(modifier = Modifier.height(16.dp))
             HorizontalChart(
                 subTitle = it.name,
@@ -57,7 +59,7 @@ internal fun SkillsInsightCard() {
             visible = expandInfoBars,
         ) {
             Column(Modifier.fillMaxWidth()) {
-                infoList.subList(5, infoList.size).forEach {
+                infographics.infoGraphics.subList(5, infographics.infoGraphics.size).forEach {
                     Spacer(modifier = Modifier.height(16.dp))
                     HorizontalChart(
                         subTitle = it.name,
@@ -83,7 +85,9 @@ internal fun SkillsInsightCard() {
 @SnapIt(name = "SkillsInsightCard - light mode")
 internal fun SkillsInsightCardLight() {
     Adb_Theme {
-        SkillsInsightCard()
+        SkillsInsightCard(
+            infographics = Infographics.createMock()
+        )
     }
 }
 
@@ -92,6 +96,8 @@ internal fun SkillsInsightCardLight() {
 @SnapIt(name = "SkillsInsightCard - dark mode", isDark = true)
 internal fun SkillsInsightCardDark() {
     Adb_Theme(isSystemDark = true) {
-        SkillsInsightCard()
+        SkillsInsightCard(
+            infographics = Infographics.createMock()
+        )
     }
 }

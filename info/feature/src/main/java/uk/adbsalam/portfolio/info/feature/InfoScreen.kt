@@ -15,7 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.info.data.WorkHistory
+import uk.adbsalam.portfolio.info.data.objects.Infographics
+import uk.adbsalam.portfolio.info.data.objects.WorkHistory
 import uk.adbsalam.portfolio.info.feature.components.WorkInfo
 import uk.adbsalam.portfolio.info.feature.components.infocards.AndroidMainCard
 import uk.adbsalam.portfolio.info.feature.components.infocards.SkillsInsightCard
@@ -30,8 +31,10 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * This is the main Info Screen to show
  */
 @Composable
-internal fun InfoScreen() {
-
+internal fun InfoScreen(
+    infographics: Infographics,
+    workHistory: WorkHistory
+) {
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -48,7 +51,7 @@ internal fun InfoScreen() {
             style = MaterialTheme.typography.titleMedium
         )
 
-        SkillsInsightCard()
+        SkillsInsightCard(infographics = infographics)
 
         Text(
             text = "My Work History",
@@ -63,10 +66,9 @@ internal fun InfoScreen() {
                 .padding(vertical = 20.dp),
         ) {
 
-            val mock = WorkHistory.createMock()
-            mock.forEachIndexed { index, item ->
+            workHistory.workHistory.forEachIndexed { index, item ->
                 WorkInfo(
-                    showDivider = index != mock.lastIndex,
+                    showDivider = index != workHistory.workHistory.lastIndex,
                     workHistory = item,
                 )
             }
@@ -74,7 +76,6 @@ internal fun InfoScreen() {
 
         Spacer(modifier = Modifier.height(30.dp))
     }
-
 }
 
 @PreviewLight
@@ -82,7 +83,10 @@ internal fun InfoScreen() {
 @SnapIt(name = "InfoScreen - light mode")
 internal fun InfoScreenLight() {
     Adb_Screen_Theme {
-        InfoScreen()
+        InfoScreen(
+            infographics = Infographics.createMock(),
+            workHistory = WorkHistory.createMock()
+        )
     }
 }
 
@@ -91,6 +95,9 @@ internal fun InfoScreenLight() {
 @SnapIt(name = "InfoScreen - dark mode", isDark = true)
 internal fun InfoScreenDark() {
     Adb_Screen_Theme(isDark = true) {
-        InfoScreen()
+        InfoScreen(
+            infographics = Infographics.createMock(),
+            workHistory = WorkHistory.createMock()
+        )
     }
 }
