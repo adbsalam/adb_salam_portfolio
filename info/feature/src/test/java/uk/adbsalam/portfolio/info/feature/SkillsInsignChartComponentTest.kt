@@ -1,25 +1,26 @@
- package uk.adbsalam.portfolio.info.feature.components.infocards
+package uk.adbsalam.portfolio.info.feature
 
- import app.cash.paparazzi.Paparazzi
- import org.junit.Rule
- import org.junit.Test
- import org.junit.runner.RunWith
- import org.junit.runners.JUnit4
- import uk.adbsalam.snapit.testing.captureScreenshot
- import uk.adbsalam.snapit.testing.forComponent
+import app.cash.paparazzi.Paparazzi
+import org.junit.Rule
+import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.JUnit4
+import uk.adbsalam.portfolio.info.feature.components.infocards.SkillsInsightCardLight
+import uk.adbsalam.snapit.testing.captureScreenshot
+import uk.adbsalam.snapit.testing.forComponent
 
- @RunWith(JUnit4::class)
- class SkillsInsignChartComponentTest {
-   @get:Rule
-   val paparazzi: Paparazzi = Paparazzi.forComponent()
+@RunWith(JUnit4::class)
+class SkillsInsignChartComponentTest {
+    @get:Rule
+    val paparazzi: Paparazzi = Paparazzi.forComponent()
 
-   @Test
-   fun `SkillsInsightCard - light mode`() {
-     paparazzi.captureScreenshot {
-         SkillsInsightCardLight()
-     }
-   }
- }
+    @Test
+    fun `SkillsInsightCard - light mode`() {
+        paparazzi.captureScreenshot {
+            SkillsInsightCardLight()
+        }
+    }
+}
 
 
 
