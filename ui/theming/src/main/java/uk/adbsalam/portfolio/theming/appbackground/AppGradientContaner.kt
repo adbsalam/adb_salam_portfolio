@@ -7,6 +7,14 @@ import androidx.compose.ui.Modifier
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.utils.Theme
 
+/**
+ * @param theme current theme to use for background
+ * @param dynamicColor is dynamic theming enabled or false
+ * @param content content to show on
+ *
+ * This is App's Primary theming container
+ * All compose must be used with this to make sure gradient backgrounds are consistent
+ */
 @Composable
 fun AppGradientContainer(
     theme: Theme,
