@@ -30,8 +30,8 @@ fun AdbImage(
 
 @Preview
 @Composable
-@SnapIt(name = "AdbImage - should render correctly")
-fun AdbImagePreview() {
+@SnapIt(name = "AdbImage - preview image")
+internal fun AdbImagePreview() {
     AdbImage(
         modifier = Modifier.size(200.dp),
         resourceId = R.drawable.preview,
@@ -48,10 +48,10 @@ fun AdbMainLogo(
     )
 }
 
-@Composable
 @Preview
-@SnapIt(name = "AdbMainLogo - should render correctly")
-fun AdbMainLogoPreview() {
+@Composable
+@SnapIt(name = "AdbMainLogo - preview image")
+internal fun AdbMainLogoPreview() {
     AdbMainLogo(
         modifier = Modifier.size(150.dp)
     )

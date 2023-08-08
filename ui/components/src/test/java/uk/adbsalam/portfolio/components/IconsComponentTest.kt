@@ -9,14 +9,14 @@ import uk.adbsalam.snapit.testing.captureScreenshot
 import uk.adbsalam.snapit.testing.forComponent
 
 @RunWith(JUnit4::class)
-class RadioGroupComponentTest {
+class IconsComponentTest {
     @get:Rule
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `RadioGroup - first item selected`() {
+    fun `SettingsIcon - settings icon`() {
         paparazzi.captureScreenshot {
-            RadioGroupPreview()
+            SettingsIconPreview()
         }
     }
 }

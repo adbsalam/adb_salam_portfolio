@@ -9,14 +9,14 @@ import uk.adbsalam.snapit.testing.captureScreenshot
 import uk.adbsalam.snapit.testing.forComponent
 
 @RunWith(JUnit4::class)
-class RadioGroupComponentTest {
+class ErrorPageComponentTest {
     @get:Rule
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `RadioGroup - first item selected`() {
+    fun `ErrorPage - full screen error page`() {
         paparazzi.captureScreenshot {
-            RadioGroupPreview()
+            ErrorPagePreview()
         }
     }
 }

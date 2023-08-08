@@ -58,8 +58,8 @@ fun <T> RadioGroup(
 
 @Preview
 @Composable
-@SnapIt(name = "TogglePrinterMakePreview - should render correctly")
-fun TogglePrinterMakePreview() {
+@SnapIt(name = "RadioGroup - first item selected")
+internal fun RadioGroupPreview() {
     RadioGroup(
         items = listOf("itemOne", "itemTwo"),
         title = { item -> item },

@@ -16,19 +16,16 @@ class ImageComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `AdbImage - should render correctly`() {
+    fun `AdbImage - preview image`() {
         paparazzi.captureScreenshot {
             AdbImagePreview()
         }
     }
 
     @Test
-    fun `AdbMainLogo - should render correctly`() {
+    fun `AdbMainLogo - preview image`() {
         paparazzi.captureScreenshot {
             AdbMainLogoPreview()
         }
     }
 }
-
-
-

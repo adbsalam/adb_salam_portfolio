@@ -17,6 +17,7 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
+import uk.adbsalam.snapit.annotations.SnapIt
 
 @Composable
 fun ErrorPage(
@@ -53,7 +54,8 @@ fun ErrorPage(
 
 @Preview
 @Composable
-fun ErrorPagePreview() {
+@SnapIt(name = "ErrorPage - full screen error page")
+internal fun ErrorPagePreview() {
     ErrorPage(
         msg = "Cannot load page currently",
         retry = { /*unused*/ }

@@ -26,10 +26,10 @@ fun SettingsIcon(
     )
 }
 
-@SnapIt
-@Composable
 @Preview
-fun SettingsIconPreview() {
+@Composable
+@SnapIt("SettingsIcon - settings icon")
+internal fun SettingsIconPreview() {
     SettingsIcon(
         onClick = {}
     )
