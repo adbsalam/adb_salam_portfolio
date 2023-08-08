@@ -7,9 +7,9 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.LoadingLotti
-import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.portfolio.videos.data.VideoData
 
@@ -58,7 +58,7 @@ private fun Videos(
 @PreviewLight
 @Composable
 internal fun VideosPreviewLight() {
-    Adb_Theme {
+    Adb_Screen_Theme {
         Videos(
             uiState = VideosState.OnVideos(VideoData.createMock()),
             currentTheme = Theme.LIGHT
@@ -69,7 +69,7 @@ internal fun VideosPreviewLight() {
 @PreviewDark
 @Composable
 internal fun VideosPreviewDark() {
-    Adb_Theme(isSystemDark = true) {
+    Adb_Screen_Theme(isDark = true) {
         Videos(
             uiState = VideosState.OnVideos(VideoData.createMock()),
             currentTheme = Theme.DARK

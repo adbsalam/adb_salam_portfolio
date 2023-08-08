@@ -29,9 +29,9 @@ import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R.drawable.ic_logo_main
 import uk.adbsalam.portfolio.components.R.drawable.ic_youtube_dark
 import uk.adbsalam.portfolio.components.R.drawable.ic_youtube_light
-import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.portfolio.utils.Theme.DARK
 import uk.adbsalam.portfolio.utils.Theme.LIGHT
@@ -111,7 +111,7 @@ internal fun VideosScreen(
 @Composable
 @SnapIt(name = "VideosScreen - light mode")
 internal fun VideosScreenPreviewLight() {
-    Adb_Theme {
+    Adb_Screen_Theme {
         VideosScreen(
             videos = VideoData.createMock(),
             currentTheme = LIGHT
@@ -123,7 +123,7 @@ internal fun VideosScreenPreviewLight() {
 @Composable
 @SnapIt(name = "VideosScreen - dark mode", isDark = true)
 internal fun VideosScreenPreviewDark() {
-    Adb_Theme(isSystemDark = true) {
+    Adb_Screen_Theme(isDark = true) {
         VideosScreen(
             videos = VideoData.createMock(),
             currentTheme = DARK
