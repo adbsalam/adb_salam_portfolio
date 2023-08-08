@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.reviews.feature.components.reviewcard
 
-import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -30,17 +29,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.reviews.data.ReviewsData
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param review relationship accordion to show data with
  * This is expandable accordion to show and hide details of relationship
  */
 @Composable
-fun RelationShipAccordion(
+internal fun RelationShipAccordion(
     review: ReviewsData
 ) {
     var expand by remember { mutableStateOf(false) }
@@ -110,18 +111,20 @@ fun RelationShipAccordion(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-fun InfoGraphicsPreviewLight() {
+@SnapIt(name = "RelationShipAccordion - light mode")
+internal fun RelationShipAccordionPreviewLight() {
     Adb_Theme {
         RelationShipAccordion(review = ReviewsData.createMock().first())
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewDark
 @Composable
-fun InfoGraphicsPreviewDark() {
-    Adb_Theme(true) {
+@SnapIt(name = "RelationShipAccordion - dark mode", isDark = true)
+internal fun RelationShipAccordionPreviewDark() {
+    Adb_Theme(isSystemDark = true) {
         RelationShipAccordion(review = ReviewsData.createMock().first())
     }
 }

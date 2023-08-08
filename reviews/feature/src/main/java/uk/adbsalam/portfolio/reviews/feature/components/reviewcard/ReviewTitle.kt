@@ -26,7 +26,7 @@ import uk.adbsalam.portfolio.theming.Adb_Theme
  * This includes name, designation and LinkedIn icon
  */
 @Composable
-fun ReviewTitle(
+internal fun ReviewTitle(
     review: ReviewsData
 ) {
     Row(
@@ -58,7 +58,7 @@ fun ReviewTitle(
 
 @Preview
 @Composable
-fun ReviewTitlePreview() {
+internal fun ReviewTitlePreview() {
     Adb_Theme {
         ReviewTitle(review = ReviewsData.createMock().first())
     }

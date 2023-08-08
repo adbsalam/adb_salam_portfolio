@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.reviews.feature.components.reviewcard
 
-import android.content.res.Configuration
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,18 +10,20 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.reviews.data.ReviewsData
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param review reviews data to be populated on ReviewCard
  * This is main Reviews card to display in list
  */
 @Composable
-fun ReviewCard(
+internal fun ReviewCard(
     review: ReviewsData
 ) {
     Column(
@@ -47,18 +48,20 @@ fun ReviewCard(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-fun ReviewCardPreviewLight() {
+@SnapIt(name = "ReviewCard - light mode")
+internal fun ReviewCardPreviewLight() {
     Adb_Theme {
         ReviewCard(review = ReviewsData.createMock().first())
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewDark
 @Composable
-fun ReviewCardPreviewDark() {
-    Adb_Theme(true) {
+@SnapIt(name = "ReviewCard - dark mode", isDark = true)
+internal fun ReviewCardPreviewDark() {
+    Adb_Theme(isSystemDark = true) {
         ReviewCard(review = ReviewsData.createMock().first())
     }
 }

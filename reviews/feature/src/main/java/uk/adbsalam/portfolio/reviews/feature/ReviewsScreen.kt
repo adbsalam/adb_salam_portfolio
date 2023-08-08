@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.reviews.feature
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,19 +10,21 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.reviews.data.ReviewsData
 import uk.adbsalam.portfolio.reviews.feature.components.ReviewLottiTitle
 import uk.adbsalam.portfolio.reviews.feature.components.reviewcard.ReviewCard
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param reviews reviews to show on screen
  * Main screen to populate reviews on screen
  */
 @Composable
-fun ReviewsScreen(
+internal fun ReviewsScreen(
     reviews: List<ReviewsData>
 ) {
     Column(
@@ -44,9 +45,10 @@ fun ReviewsScreen(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-fun ReviewsScreenPreviewLight() {
+@SnapIt(name = "ReviewsScreen - light mode")
+internal fun ReviewsScreenPreviewLight() {
     Adb_Theme {
         ReviewsScreen(
             reviews = ReviewsData.createMock()
@@ -54,10 +56,11 @@ fun ReviewsScreenPreviewLight() {
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewDark
 @Composable
-fun ReviewsScreenPreviewDark() {
-    Adb_Theme(true) {
+@SnapIt(name = "ReviewsScreen - dark mode", isDark = true)
+internal fun ReviewsScreenPreviewDark() {
+    Adb_Theme(isSystemDark = true) {
         ReviewsScreen(
             reviews = ReviewsData.createMock()
         )

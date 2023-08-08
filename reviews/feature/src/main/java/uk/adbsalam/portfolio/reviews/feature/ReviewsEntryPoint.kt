@@ -32,7 +32,7 @@ fun Reviews(
  * Changes state based on uiState such as loading or show reviews
  */
 @Composable
-fun Reviews(
+private fun Reviews(
     uiState: ReviewsState
 ) {
     when (uiState) {
@@ -47,7 +47,7 @@ fun Reviews(
 
 @Preview
 @Composable
-fun ReviewsPreviewLight() {
+internal fun ReviewsPreviewLight() {
     Adb_Theme {
         Reviews(
             uiState = ReviewsState.OnReviews(ReviewsData.createMock())
@@ -57,7 +57,7 @@ fun ReviewsPreviewLight() {
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ReviewsPreviewDark() {
+internal fun ReviewsPreviewDark() {
     Adb_Theme(true) {
         Reviews(
             uiState = ReviewsState.OnReviews(ReviewsData.createMock())

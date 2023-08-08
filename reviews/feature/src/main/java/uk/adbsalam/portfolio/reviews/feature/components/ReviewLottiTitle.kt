@@ -33,7 +33,7 @@ import uk.adbsalam.portfolio.theming.Adb_Theme
  * Lotti file and components to show as page title
  */
 @Composable
-fun ReviewLottiTitle() {
+internal fun ReviewLottiTitle() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -88,7 +88,7 @@ fun ReviewLottiTitle() {
 
 @Preview
 @Composable
-fun ReviewLottiTitlePreviewLight() {
+internal fun ReviewLottiTitlePreviewLight() {
     Adb_Theme {
         ReviewLottiTitle()
     }
@@ -96,7 +96,7 @@ fun ReviewLottiTitlePreviewLight() {
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun ReviewLottiTitlePreviewDark() {
+internal fun ReviewLottiTitlePreviewDark() {
     Adb_Theme(true) {
         ReviewLottiTitle()
     }

@@ -17,7 +17,7 @@ class ReviewsViewModel @Inject constructor() : ViewModel() {
     /**
      * Load all reviews data and start screen
      */
-    suspend fun initReviews() {
+    internal suspend fun initReviews() {
         _viewState.value = ReviewsState.OnReviews(ReviewsData.createMock())
     }
 
