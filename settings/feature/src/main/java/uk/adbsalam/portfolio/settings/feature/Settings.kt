@@ -18,13 +18,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.RadioGroup
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.utils.Theme
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param viewModel settings hilt viewModel to be used
@@ -141,8 +143,9 @@ internal fun SettingsScreen(
     }
 }
 
+@PreviewLight
 @Composable
-@Preview
+@SnapIt(name = "SettingsScreen - light mode")
 fun SettingsScreenLightPreview() {
     Adb_Theme {
         SettingsScreen(
@@ -155,8 +158,9 @@ fun SettingsScreenLightPreview() {
     }
 }
 
+@PreviewDark
 @Composable
-@Preview
+@SnapIt(name = "SettingsScreen - dark mode", isDark = true)
 fun SettingsScreenDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         SettingsScreen(
