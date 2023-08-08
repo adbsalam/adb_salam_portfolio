@@ -27,7 +27,6 @@ import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
 import uk.adbsalam.portfolio.home.feature.utils.getDrawableRes
 import uk.adbsalam.portfolio.home.feature.utils.getRawRes
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
-import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme

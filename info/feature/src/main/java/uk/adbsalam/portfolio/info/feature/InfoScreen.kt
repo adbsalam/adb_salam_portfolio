@@ -19,10 +19,10 @@ import uk.adbsalam.portfolio.info.data.WorkHistory
 import uk.adbsalam.portfolio.info.feature.components.WorkInfo
 import uk.adbsalam.portfolio.info.feature.components.infocards.AndroidMainCard
 import uk.adbsalam.portfolio.info.feature.components.infocards.SkillsInsightCard
-import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
+import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
@@ -81,7 +81,7 @@ internal fun InfoScreen() {
 @Composable
 @SnapIt(name = "InfoScreen - light mode")
 internal fun InfoScreenLight() {
-    Adb_Theme {
+    Adb_Screen_Theme {
         InfoScreen()
     }
 }
@@ -90,7 +90,7 @@ internal fun InfoScreenLight() {
 @Composable
 @SnapIt(name = "InfoScreen - dark mode", isDark = true)
 internal fun InfoScreenDark() {
-    Adb_Theme(isSystemDark = true) {
+    Adb_Screen_Theme(isDark = true) {
         InfoScreen()
     }
 }

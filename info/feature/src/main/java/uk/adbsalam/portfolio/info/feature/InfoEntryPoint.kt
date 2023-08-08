@@ -1,19 +1,17 @@
 package uk.adbsalam.portfolio.info.feature
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.LoadingLotti
-import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 
 /**
  * @param viewModel viewModel to use for this compose
@@ -60,7 +58,7 @@ private fun Info(
 @PreviewLight
 @Composable
 internal fun InfoScreenLightPreview() {
-    Adb_Theme {
+    Adb_Screen_Theme {
         Info(
             uiState = InfoScreenState.OnInfo
         )
@@ -70,7 +68,7 @@ internal fun InfoScreenLightPreview() {
 @PreviewDark
 @Composable
 internal fun InfoScreenDarkPreview() {
-    Adb_Theme(true) {
+    Adb_Screen_Theme(isDark = true) {
         Info(
             uiState = InfoScreenState.OnInfo
         )
