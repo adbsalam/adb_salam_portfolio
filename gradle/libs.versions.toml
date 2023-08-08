@@ -33,6 +33,9 @@ hilt-plugin = "2.44"
 compose-compiler = "1.4.7"
 ksp = "1.8.21-1.0.11"
 moshi = "1.14.0"
+com-google-android-material-material = "1.8.0"
+com-google-android-material-material180 = "1.8.0"
+com-google-android-material-material1802 = "1.8.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
@@ -42,7 +45,7 @@ android-hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hi
 google-services = { id = "com.google.gms.google-services", version = "4.3.15" }
 paparazzi = { id = "app.cash.paparazzi", version = "1.3.0" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-snapit = { id = "uk.adbsalam.snapit", version = "1.0.5" }
+snapit = { id = "uk.adbsalam.snapit", version = "1.0.6" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [libraries]
@@ -91,3 +94,6 @@ espresso = { group = "androidx.test.espresso", name = "espresso-core", version.r
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 paparazzi = { group = "app.cash.paparazzi", name = "paparazzi", version.ref = "paparazzi" }
+youtube-player = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "core", version = "12.1.0" }
+youtube-player-seekbar = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "custom-ui", version = "12.1.0" }
+material = { group = "com.google.android.material", name = "material", version.ref = "com-google-android-material-material1802" }

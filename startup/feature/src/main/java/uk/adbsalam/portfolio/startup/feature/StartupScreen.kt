@@ -2,19 +2,16 @@ package uk.adbsalam.portfolio.startup.feature
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.home.feature.HomeScreenNavHost
-import uk.adbsalam.portfolio.startup.feature.components.GradientColumn
 import uk.adbsalam.portfolio.startup.feature.components.LoadingScreen
-import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.portfolio.theming.appbackground.AppGradientContainer
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
@@ -53,7 +50,6 @@ internal fun StartupScreen() {
  * @param onTheme action to perform on new theme selected
  * @param onDynamicColor action to perform on new dynamic color value selected
  */
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
 private fun StartupScreen(
     uiState: StartupState,
@@ -62,32 +58,23 @@ private fun StartupScreen(
     onTheme: (Theme) -> Unit,
     onDynamicColor: (Boolean) -> Unit
 ) {
-    Adb_Theme(
-        themeType = theme,
-        dynamic = dynamicColor
+    AppGradientContainer(
+        theme = theme,
+        dynamicColor = dynamicColor
     ) {
-
-        Surface(modifier = Modifier.fillMaxSize()) {
-            GradientColumn(
-                theme = theme
-            ) {
-                when (uiState) {
-                    StartupState.OnLoading -> LoadingScreen()
-                    StartupState.OnStart -> HomeScreenNavHost(
-                        onTheme = onTheme,
-                        onDynamicColor = onDynamicColor,
-                    )
-                }
-            }
+        when (uiState) {
+            StartupState.OnLoading -> LoadingScreen()
+            StartupState.OnStart -> HomeScreenNavHost(
+                onTheme = onTheme,
+                onDynamicColor = onDynamicColor,
+            )
         }
-
     }
 }
 
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
-@Preview
-@SnapIt("StartupScreen - when in light mode - should render correctly")
+@PreviewLight
+@SnapIt("StartupScreen - when in light mode")
 internal fun StartupScreenLoadingLightTheme() {
     StartupScreen(
         uiState = StartupState.OnLoading,
@@ -98,10 +85,9 @@ internal fun StartupScreenLoadingLightTheme() {
     )
 }
 
-@RequiresApi(Build.VERSION_CODES.TIRAMISU)
 @Composable
-@Preview
-@SnapIt("StartupScreen - when in dark mode - should render correctly")
+@PreviewDark
+@SnapIt("StartupScreen - when in dark mode", isDark = true)
 internal fun StartupScreenLoadingDarkTheme() {
     StartupScreen(
         uiState = StartupState.OnLoading,

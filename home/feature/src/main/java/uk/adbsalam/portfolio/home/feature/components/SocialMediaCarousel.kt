@@ -16,12 +16,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.data.SocialMedia
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
@@ -40,9 +38,9 @@ fun iconRes(mediaType: SocialMedia): Int {
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-@SnapIt(name = "SocialMediaCarousal - when in preview - should render correctly",)
+@SnapIt(name = "SocialMediaCarousal - icon carousel")
 internal fun SocialMediaCarousal() {
     Column(
         modifier = Modifier.fillMaxWidth()

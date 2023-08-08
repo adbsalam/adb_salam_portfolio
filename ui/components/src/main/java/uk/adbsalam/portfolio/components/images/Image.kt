@@ -7,9 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
 @Composable
@@ -28,10 +28,10 @@ fun AdbImage(
     )
 }
 
-@Preview
+@PreviewLight
 @Composable
-@SnapIt(name = "AdbImage - should render correctly")
-fun AdbImagePreview() {
+@SnapIt(name = "AdbImage - preview image")
+internal fun AdbImagePreview() {
     AdbImage(
         modifier = Modifier.size(200.dp),
         resourceId = R.drawable.preview,
@@ -48,10 +48,10 @@ fun AdbMainLogo(
     )
 }
 
+@PreviewLight
 @Composable
-@Preview
-@SnapIt(name = "AdbMainLogo - should render correctly")
-fun AdbMainLogoPreview() {
+@SnapIt(name = "AdbMainLogo - preview image")
+internal fun AdbMainLogoPreview() {
     AdbMainLogo(
         modifier = Modifier.size(150.dp)
     )

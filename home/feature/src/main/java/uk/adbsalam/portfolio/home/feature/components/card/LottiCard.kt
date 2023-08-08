@@ -1,21 +1,19 @@
 package uk.adbsalam.portfolio.home.feature.components.card
 
 import androidx.annotation.RawRes
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
@@ -23,8 +21,10 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import uk.adbsalam.portfolio.components.R
-import uk.adbsalam.portfolio.home.feature.HomeScreenItem
+import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
 import uk.adbsalam.snapit.annotations.SnapIt
 
@@ -60,13 +60,24 @@ internal fun LottiInfoCard(
             .padding(12.dp)
             .adbRoundedBackground()
     ) {
-        LottieAnimation(
-            composition = composition,
-            progress = { progress },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(250.dp)
-        )
+
+        if (LocalInspectionMode.current) {
+            Image(
+                painter = painterResource(id = R.drawable.preview),
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(250.dp)
+            )
+        } else {
+            LottieAnimation(
+                composition = composition,
+                progress = { progress },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(250.dp)
+            )
+        }
 
         CardInfoText(
             tags = tags,
@@ -79,8 +90,8 @@ internal fun LottiInfoCard(
 }
 
 @Composable
-@Preview
-@SnapIt(name = "LottiInfoCard - Light Mode")
+@PreviewLight
+@SnapIt(name = "LottiInfoCard - Light Mode", preview = true)
 internal fun LottiInfoCardLightPreview() {
     Adb_Theme {
         LottiInfoCard(
@@ -94,8 +105,12 @@ internal fun LottiInfoCardLightPreview() {
 }
 
 @Composable
-@Preview
-@SnapIt(name = "LottiInfoCard - Dark Mode")
+@PreviewDark
+@SnapIt(
+    name = "LottiInfoCard - Dark Mode",
+    isDark = true,
+    preview = true
+)
 internal fun LottiInfoCardDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         LottiInfoCard(

@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.info.feature.components.infocards
 
-import android.content.res.Configuration
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,14 +15,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import uk.adbsalam.portfolio.info.data.infoList
 import uk.adbsalam.portfolio.info.feature.components.InfoTitle
 import uk.adbsalam.portfolio.info.feature.components.charts.HorizontalChart
-import uk.adbsalam.portfolio.info.feature.infoList
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
+import uk.adbsalam.snapit.annotations.SnapIt
 
+/**
+ * Top level chart to show Horizontal Chart
+ * Animated progress will be shown
+ */
 @Composable
 internal fun SkillsInsightCard() {
 
@@ -73,18 +78,20 @@ internal fun SkillsInsightCard() {
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
-internal fun SkillsInsightCardLightPreview(){
+@SnapIt(name = "SkillsInsightCard - light mode")
+internal fun SkillsInsightCardLight() {
     Adb_Theme {
         SkillsInsightCard()
     }
 }
 
+@PreviewDark
 @Composable
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-internal fun SkillsInsightCardDarkPreview(){
-    Adb_Theme(true) {
+@SnapIt(name = "SkillsInsightCard - dark mode", isDark = true)
+internal fun SkillsInsightCardDark() {
+    Adb_Theme(isSystemDark = true) {
         SkillsInsightCard()
     }
 }

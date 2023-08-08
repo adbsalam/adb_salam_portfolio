@@ -14,12 +14,9 @@ class RadioGroupComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `TogglePrinterMakePreview - should render correctly`() {
+    fun `RadioGroup - first item selected`() {
         paparazzi.captureScreenshot {
-            TogglePrinterMakePreview()
+            RadioGroupPreview()
         }
     }
 }
-
-
-

@@ -25,7 +25,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -37,11 +36,19 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.info.feature.WorkHistory
+import uk.adbsalam.portfolio.info.data.WorkHistory
+import uk.adbsalam.portfolio.info.feature.util.workIcon
+import uk.adbsalam.snapit.annotations.SnapIt
 
+/**
+ * @param showDivider show divider true or false as last item do not need to have a divider
+ * @param workHistory item to show data from
+ *
+ * This is an expandable Card that expands on click to show work history details
+ */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun WorkInfo(
+internal fun WorkInfo(
     showDivider: Boolean,
     workHistory: WorkHistory,
 ) {
@@ -56,7 +63,8 @@ fun WorkInfo(
 
         val chevronRotate by animateFloatAsState(
             targetValue = chevronRotation,
-            animationSpec = tween(durationMillis = 300, easing = LinearEasing)
+            animationSpec = tween(durationMillis = 300, easing = LinearEasing),
+            label = ""
         )
 
         Row(
@@ -78,7 +86,7 @@ fun WorkInfo(
                 Icon(
                     imageVector = Icons.Default.WorkHistory,
                     contentDescription = null,
-                    tint = workHistory.iconTint
+                    tint = Color(workHistory.color)
                 )
 
                 Text(
@@ -115,7 +123,7 @@ fun WorkInfo(
                             leadingIcon = {
                                 Icon(
                                     modifier = Modifier.sizeIn(maxHeight = 30.dp, maxWidth = 30.dp),
-                                    painter = painterResource(id = it.icon),
+                                    painter = painterResource(id = workIcon(it.icon)),
                                     contentDescription = null,
                                     tint = Color.Unspecified
                                 )
@@ -146,7 +154,8 @@ fun WorkInfo(
 
 @Preview
 @Composable
-fun WorkInfoPreview() {
+@SnapIt(name = "WorkInfo - light mode")
+internal fun WorkInfoPreview() {
     WorkInfo(
         showDivider = true,
         workHistory = WorkHistory.createMock().first(),

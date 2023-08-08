@@ -14,9 +14,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import uk.adbsalam.portfolio.info.feature.InfoGraphics
-import uk.adbsalam.portfolio.info.feature.InfoScreen
+import uk.adbsalam.portfolio.info.feature.Info
+import uk.adbsalam.portfolio.reviews.feature.Reviews
 import uk.adbsalam.portfolio.utils.Theme
+import uk.adbsalam.portfolio.videos.feature.Videos
 
 @OptIn(ExperimentalFoundationApi::class)
 data class PagerModel constructor(
@@ -68,7 +69,7 @@ internal fun createPageList(
             title = "Home",
             tabIcon = Icons.Outlined.Home
         ) {
-            Homepage(
+            Home(
                 onTheme = onTheme,
                 onDynamicColor = onDynamicColor
             )
@@ -77,23 +78,19 @@ internal fun createPageList(
             title = "Info",
             tabIcon = Icons.Outlined.Info
         ) {
-            InfoScreen()
+            Info()
         },
         PagerModel.PageModel(
             title = "Videos",
             tabIcon = Icons.Outlined.Movie
         ) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                Text(text = "Videos")
-            }
+            Videos()
         },
         PagerModel.PageModel(
             title = "Reviews",
             tabIcon = Icons.Outlined.Forum
         ) {
-            Column(modifier = Modifier.fillMaxSize()) {
-                Text(text = "Reviews")
-            }
+            Reviews()
         }
     )
 }

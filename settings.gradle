@@ -14,10 +14,14 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ADBsalam"
+
 include ':app'
 include ':core:prefs'
+include ':core:network'
 include ':home:feature'
 include ':home:data'
+include ':info:feature'
+include ':info:data'
 include ':navhost:feature'
 include ':navigation'
 include ':startup'
@@ -28,5 +32,7 @@ include ':ui'
 include ':ui:theming'
 include ':ui:components'
 include ':utils'
-include ':core:network'
-include ':info:feature'
+include ':videos:feature'
+include ':videos:data'
+include ':reviews:feature'
+include ':reviews:data'

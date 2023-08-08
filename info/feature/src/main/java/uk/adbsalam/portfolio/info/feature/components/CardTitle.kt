@@ -11,6 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
+/**
+ * @param title of the card ti show
+ *
+ * This returns a text component with title and divider
+ */
 @Composable
 internal fun InfoTitle(
     title: String

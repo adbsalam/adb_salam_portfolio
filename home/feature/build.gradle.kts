@@ -46,8 +46,8 @@ dependencies {
     implementation(project(":core:prefs"))
     implementation(project(":home:data"))
     implementation(project(":core:network"))
-    implementation(libs.compose.lotti)
 
+    implementation(libs.compose.lotti)
     implementation(libs.app.compat)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)

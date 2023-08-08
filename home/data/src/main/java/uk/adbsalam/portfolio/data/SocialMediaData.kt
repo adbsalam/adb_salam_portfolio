@@ -1,5 +1,8 @@
 package uk.adbsalam.portfolio.data
 
+/**
+ * Home Social Media links to be used
+ */
 enum class SocialMedia(val link: String) {
     LINKED_IN("https://www.linkedin.com/in/muhammad-abdulsalam-1253a7178/"),
     GIT("https://github.com/MuhammadAbdulSalam"),
