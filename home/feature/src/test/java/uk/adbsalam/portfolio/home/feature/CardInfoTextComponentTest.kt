@@ -15,7 +15,7 @@ class CardInfoTextComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `CardInfoText - Light Mode`() {
+    fun cardInfoTextPreviewLightSnapTest() {
         paparazzi.captureScreenshot {
             CardInfoTextPreviewLight()
         }

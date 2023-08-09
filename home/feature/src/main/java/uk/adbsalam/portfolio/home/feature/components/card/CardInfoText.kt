@@ -104,7 +104,7 @@ internal fun CardInfoText(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "CardInfoText - Light Mode")
+@SnapIt
 internal fun CardInfoTextPreviewLight() {
     Adb_Theme {
         val readMore = remember { mutableStateOf(false) }
@@ -120,7 +120,7 @@ internal fun CardInfoTextPreviewLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "CardInfoText - Dark Mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun CardInfoTextPreviewDark() {
     Adb_Theme(isSystemDark = true) {
         val readMore = remember { mutableStateOf(false) }

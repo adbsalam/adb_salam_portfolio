@@ -14,7 +14,7 @@ class HomeScreenComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `HomeScreen - Light Mode`() {
+    fun homeLightPreviewSnapTest() {
         paparazzi.captureScreenshot {
             HomeLightPreview()
         }

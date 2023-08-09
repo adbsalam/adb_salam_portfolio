@@ -26,7 +26,7 @@ ktx-work = "2.8.1"
 camera-x = "1.2.1"
 camera-preview = "1.0.0-alpha27"
 coil = "2.2.0"
-paparazzi = "1.3.0"
+paparazzi = "1.3.1"
 android-gradle-plugin = "8.0.2"
 kotlin = "1.8.21"
 hilt-plugin = "2.44"
@@ -43,9 +43,9 @@ android-library = { id = "com.android.library", version.ref = "android-gradle-pl
 android-kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt-plugin" }
 google-services = { id = "com.google.gms.google-services", version = "4.3.15" }
-paparazzi = { id = "app.cash.paparazzi", version = "1.3.0" }
+paparazzi = { id = "app.cash.paparazzi", version.ref = "paparazzi" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
-snapit = { id = "uk.adbsalam.snapit", version = "1.0.6" }
+snapit = { id = "uk.adbsalam.snapit", version = "1.0.8" }
 kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
 [libraries]

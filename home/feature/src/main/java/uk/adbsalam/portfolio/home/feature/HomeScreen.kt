@@ -94,7 +94,7 @@ internal fun HomeScreen(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "HomeScreen - Light Mode")
+@SnapIt
 internal fun HomeLightPreview() {
     Adb_Screen_Theme {
         HomeScreen(
@@ -107,7 +107,7 @@ internal fun HomeLightPreview() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "HomeScreen - Dark Mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun HomeDarkPreview() {
     Adb_Screen_Theme(isDark = true) {
         HomeScreen(

@@ -15,7 +15,7 @@ class ProfileComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `Profile - profile header`() {
+    fun profilePreviewSnapTest() {
         paparazzi.captureScreenshot {
             ProfilePreview()
         }

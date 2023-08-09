@@ -65,7 +65,7 @@ internal fun InfoCard(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "InfoCard - Light Mode")
+@SnapIt
 internal fun InfoCardLightPreview() {
     Adb_Theme {
         InfoCard(
@@ -80,7 +80,7 @@ internal fun InfoCardLightPreview() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "InfoCard - Dark Mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun InfoCardDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         InfoCard(
