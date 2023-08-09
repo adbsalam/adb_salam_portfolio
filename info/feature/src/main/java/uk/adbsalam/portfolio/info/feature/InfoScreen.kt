@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.info.feature
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,9 +13,11 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import uk.adbsalam.portfolio.info.data.objects.Infographics
 import uk.adbsalam.portfolio.info.data.objects.WorkHistory
 import uk.adbsalam.portfolio.info.feature.components.WorkInfo
@@ -35,13 +38,16 @@ internal fun InfoScreen(
     infographics: Infographics,
     workHistory: WorkHistory
 ) {
+    val scrollState = rememberScrollState()
+    val scope = rememberCoroutineScope()
+
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 16.dp)
-            .verticalScroll(rememberScrollState()),
+            .verticalScroll(scrollState),
     ) {
 
         AndroidMainCard()
@@ -75,6 +81,14 @@ internal fun InfoScreen(
         }
 
         Spacer(modifier = Modifier.height(30.dp))
+    }
+
+    if (scrollState.value > 0) {
+        BackHandler {
+            scope.launch {
+                scrollState.animateScrollTo(0)
+            }
+        }
     }
 }
 

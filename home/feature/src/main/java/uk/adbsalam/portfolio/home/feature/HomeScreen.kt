@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.home.feature
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,11 +13,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import uk.adbsalam.portfolio.components.SettingsIcon
 import uk.adbsalam.portfolio.home.feature.components.Profile
 import uk.adbsalam.portfolio.home.feature.components.SocialMediaCarousal
@@ -47,6 +50,7 @@ internal fun HomeScreen(
     val settings = remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
     val headerHeight = LocalConfiguration.current.screenHeightDp / 3
+    val scope = rememberCoroutineScope()
 
     Column(
         modifier = Modifier
@@ -89,6 +93,14 @@ internal fun HomeScreen(
             onTheme = onTheme,
             onDismiss = { settings.value = false }
         )
+    }
+
+    if (scrollState.value > 0) {
+        BackHandler {
+            scope.launch {
+                scrollState.animateScrollTo(0)
+            }
+        }
     }
 }
 
