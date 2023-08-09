@@ -35,7 +35,7 @@ import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.portfolio.utils.Theme.DARK
 import uk.adbsalam.portfolio.utils.Theme.LIGHT
-import uk.adbsalam.portfolio.videos.data.VideoData
+import uk.adbsalam.portfolio.videos.data.objects.VideoItems
 import uk.adbsalam.portfolio.videos.feature.components.VideoCard
 import uk.adbsalam.snapit.annotations.SnapIt
 
@@ -47,7 +47,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
  */
 @Composable
 internal fun VideosScreen(
-    videos: List<VideoData>,
+    videos: VideoItems,
     currentTheme: Theme
 ) {
     Column(
@@ -97,7 +97,7 @@ internal fun VideosScreen(
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.background)
         ) {
-            videos.forEach { item ->
+            videos.videos.forEach { item ->
                 VideoCard(videoData = item)
                 Spacer(modifier = Modifier.height(16.dp))
             }
@@ -113,7 +113,7 @@ internal fun VideosScreen(
 internal fun VideosScreenPreviewLight() {
     Adb_Screen_Theme {
         VideosScreen(
-            videos = VideoData.createMock(),
+            videos = VideoItems.createMock(),
             currentTheme = LIGHT
         )
     }
@@ -125,7 +125,7 @@ internal fun VideosScreenPreviewLight() {
 internal fun VideosScreenPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         VideosScreen(
-            videos = VideoData.createMock(),
+            videos = VideoItems.createMock(),
             currentTheme = DARK
         )
     }

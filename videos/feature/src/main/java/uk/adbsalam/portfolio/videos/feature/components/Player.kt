@@ -9,7 +9,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.Abs
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.utils.YouTubePlayerTracker
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-import uk.adbsalam.portfolio.videos.data.VideoData
+import uk.adbsalam.portfolio.videos.data.objects.VideoItems
 import uk.adbsalam.portfolio.videos.feature.R
 
 /**
@@ -23,7 +23,7 @@ import uk.adbsalam.portfolio.videos.feature.R
 internal fun VideoPlayerView(
     player: MutableState<YouTubePlayer?>,
     initialPlay: MutableState<Boolean>,
-    videoData: VideoData,
+    videoData: VideoItems.Video,
 ) {
     val context = LocalContext.current
     val playerTracker = YouTubePlayerTracker()

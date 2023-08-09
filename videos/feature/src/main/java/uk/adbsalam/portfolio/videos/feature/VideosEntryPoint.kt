@@ -6,12 +6,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.AnimatedColumn
+import uk.adbsalam.portfolio.components.ErrorPage
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.portfolio.utils.Theme
-import uk.adbsalam.portfolio.videos.data.VideoData
+import uk.adbsalam.portfolio.videos.data.objects.VideoItems
 
 /**
  * @param viewModel view model to be used for this screen
@@ -28,7 +29,8 @@ fun Videos(
 
     Videos(
         uiState = uiState,
-        currentTheme = viewModel.currentTheme()
+        currentTheme = viewModel.currentTheme(),
+        retry = viewModel::fetchVideos
     )
 }
 
@@ -39,10 +41,18 @@ fun Videos(
 @Composable
 private fun Videos(
     uiState: VideosState,
-    currentTheme: Theme
+    currentTheme: Theme,
+    retry: () -> Unit,
 ) {
     when (uiState) {
         VideosState.OnLoading -> LoadingLotti()
+
+        is VideosState.OnError -> {
+            ErrorPage(
+                msg = uiState.msg,
+                retry = retry
+            )
+        }
 
         is VideosState.OnVideos -> {
             AnimatedColumn {
@@ -60,8 +70,9 @@ private fun Videos(
 internal fun VideosPreviewLight() {
     Adb_Screen_Theme {
         Videos(
-            uiState = VideosState.OnVideos(VideoData.createMock()),
-            currentTheme = Theme.LIGHT
+            uiState = VideosState.OnVideos(VideoItems.createMock()),
+            currentTheme = Theme.LIGHT,
+            retry = {/*unused*/ }
         )
     }
 }
@@ -71,8 +82,9 @@ internal fun VideosPreviewLight() {
 internal fun VideosPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         Videos(
-            uiState = VideosState.OnVideos(VideoData.createMock()),
-            currentTheme = Theme.DARK
+            uiState = VideosState.OnVideos(VideoItems.createMock()),
+            currentTheme = Theme.DARK,
+            retry = {/*unused*/ }
         )
     }
 }
