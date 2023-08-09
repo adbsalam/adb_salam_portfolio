@@ -86,7 +86,7 @@ internal fun WorkInfo(
                 Icon(
                     imageVector = Icons.Default.WorkHistory,
                     contentDescription = null,
-//                    tint = Color(workHistory.color) //TODO color fix
+                    tint = workTint(workHistory.color)
                 )
 
                 Text(
@@ -149,6 +149,16 @@ internal fun WorkInfo(
                 .padding(start = 10.dp)
         )
 
+    }
+}
+
+private fun workTint(color: String): Color {
+    return when (color) {
+        "orange" -> Color(0xFFFF9800)
+        "purple" -> Color(0xFF9C27B0)
+        "pink" -> Color(0xFFFF4785)
+        "green" -> Color(0xFF4CAF50)
+        else -> Color.Unspecified
     }
 }
 
