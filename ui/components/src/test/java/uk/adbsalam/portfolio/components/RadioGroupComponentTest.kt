@@ -14,9 +14,12 @@ class RadioGroupComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `RadioGroup - first item selected`() {
+    fun radioGroupPreviewSnapTest() {
         paparazzi.captureScreenshot {
             RadioGroupPreview()
         }
     }
 }
+
+
+

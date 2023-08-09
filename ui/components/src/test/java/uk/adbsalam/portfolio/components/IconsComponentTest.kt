@@ -14,9 +14,12 @@ class IconsComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `SettingsIcon - settings icon`() {
+    fun settingsIconPreviewSnapTest() {
         paparazzi.captureScreenshot {
             SettingsIconPreview()
         }
     }
 }
+
+
+
