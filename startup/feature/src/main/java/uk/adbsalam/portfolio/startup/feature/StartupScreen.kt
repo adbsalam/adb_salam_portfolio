@@ -74,7 +74,7 @@ private fun StartupScreen(
 
 @Composable
 @PreviewLight
-@SnapIt("StartupScreen - when in light mode")
+@SnapIt(isScreen = true)
 internal fun StartupScreenLoadingLightTheme() {
     StartupScreen(
         uiState = StartupState.OnLoading,
@@ -87,7 +87,7 @@ internal fun StartupScreenLoadingLightTheme() {
 
 @Composable
 @PreviewDark
-@SnapIt("StartupScreen - when in dark mode", isDark = true)
+@SnapIt(isScreen = true, isDark = true)
 internal fun StartupScreenLoadingDarkTheme() {
     StartupScreen(
         uiState = StartupState.OnLoading,
