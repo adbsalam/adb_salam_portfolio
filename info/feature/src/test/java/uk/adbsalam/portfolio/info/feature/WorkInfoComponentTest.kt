@@ -15,7 +15,7 @@ class WorkInfoComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `WorkInfo - light mode`() {
+    fun workInfoPreviewSnapTest() {
         paparazzi.captureScreenshot {
             WorkInfoPreview()
         }

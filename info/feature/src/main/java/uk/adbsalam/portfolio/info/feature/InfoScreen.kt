@@ -80,7 +80,7 @@ internal fun InfoScreen(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "InfoScreen - light mode")
+@SnapIt
 internal fun InfoScreenLight() {
     Adb_Screen_Theme {
         InfoScreen(
@@ -92,7 +92,7 @@ internal fun InfoScreenLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "InfoScreen - dark mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun InfoScreenDark() {
     Adb_Screen_Theme(isDark = true) {
         InfoScreen(

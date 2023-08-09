@@ -15,7 +15,7 @@ class HorizontalChartComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `HorizontalChart - light mode`() {
+    fun horizontalChartPreviewLightSnapTest() {
         paparazzi.captureScreenshot {
             HorizontalChartPreviewLight()
         }

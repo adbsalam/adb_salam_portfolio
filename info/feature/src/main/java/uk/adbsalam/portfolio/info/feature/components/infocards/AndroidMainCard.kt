@@ -23,7 +23,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * Animated progress will be shown
  */
 @Composable
-internal fun AndroidMainCard(){
+internal fun AndroidMainCard() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -57,7 +57,7 @@ internal fun AndroidMainCard(){
 
 @PreviewLight
 @Composable
-@SnapIt(name = "AndroidMainCard - light mode")
+@SnapIt
 internal fun AndroidMainCardLight() {
     Adb_Theme {
         AndroidMainCard()
@@ -66,7 +66,7 @@ internal fun AndroidMainCardLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "AndroidMainCard - dark mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun AndroidMainCardDark() {
     Adb_Theme(isSystemDark = true) {
         AndroidMainCard()
