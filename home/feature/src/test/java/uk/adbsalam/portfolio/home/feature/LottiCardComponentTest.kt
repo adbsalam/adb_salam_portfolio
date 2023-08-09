@@ -17,7 +17,7 @@ class LottiCardComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `LottiInfoCard - Light Mode`() {
+    fun lottiInfoCardLightPreviewSnapTest() {
         paparazzi.captureScreenshot {
             CompositionLocalProvider(LocalInspectionMode provides true) {
                 LottiInfoCardLightPreview()

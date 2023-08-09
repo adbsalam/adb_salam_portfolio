@@ -60,7 +60,7 @@ internal fun Profile(
 
 @Composable
 @PreviewLight
-@SnapIt(name = "Profile - profile header",)
+@SnapIt
 internal fun ProfilePreview() {
     Profile()
 }

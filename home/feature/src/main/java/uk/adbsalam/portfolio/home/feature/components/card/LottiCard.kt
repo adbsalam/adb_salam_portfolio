@@ -91,7 +91,7 @@ internal fun LottiInfoCard(
 
 @Composable
 @PreviewLight
-@SnapIt(name = "LottiInfoCard - Light Mode", preview = true)
+@SnapIt(preview = true)
 internal fun LottiInfoCardLightPreview() {
     Adb_Theme {
         LottiInfoCard(
@@ -106,11 +106,7 @@ internal fun LottiInfoCardLightPreview() {
 
 @Composable
 @PreviewDark
-@SnapIt(
-    name = "LottiInfoCard - Dark Mode",
-    isDark = true,
-    preview = true
-)
+@SnapIt(isDark = true, preview = true)
 internal fun LottiInfoCardDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         LottiInfoCard(

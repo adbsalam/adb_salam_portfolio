@@ -15,7 +15,7 @@ class SocialMediaCarouselComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `SocialMediaCarousal - icon carousel`() {
+    fun socialMediaCarousalSnapTest() {
         paparazzi.captureScreenshot {
             SocialMediaCarousal()
         }

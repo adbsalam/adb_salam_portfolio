@@ -52,7 +52,7 @@ internal fun ExpandableText(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "ExpandableText - not expanded")
+@SnapIt
 internal fun ExpandableTextCollapsedPreview() {
     val readMore = remember { mutableStateOf(false) }
     ExpandableText(
@@ -63,7 +63,7 @@ internal fun ExpandableTextCollapsedPreview() {
 
 @PreviewLight
 @Composable
-@SnapIt(name = "ExpandableText - expanded")
+@SnapIt
 internal fun ExpandableTextExpandedPreview() {
     val readMore = remember { mutableStateOf(true) }
     ExpandableText(

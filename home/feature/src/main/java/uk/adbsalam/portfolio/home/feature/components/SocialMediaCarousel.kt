@@ -40,7 +40,7 @@ fun iconRes(mediaType: SocialMedia): Int {
 
 @PreviewLight
 @Composable
-@SnapIt(name = "SocialMediaCarousal - icon carousel")
+@SnapIt
 internal fun SocialMediaCarousal() {
     Column(
         modifier = Modifier.fillMaxWidth()
