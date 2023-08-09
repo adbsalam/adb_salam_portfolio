@@ -15,7 +15,7 @@ class RelationShipAccordianComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `RelationShipAccordion - light mode`() {
+    fun relationShipAccordionPreviewLightSnapTest() {
         paparazzi.captureScreenshot {
             RelationShipAccordionPreviewLight()
         }

@@ -5,18 +5,22 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import uk.adbsalam.portfolio.reviews.feature.components.ReviewLottiTitlePreviewLight
 import uk.adbsalam.snapit.testing.captureScreenshot
 import uk.adbsalam.snapit.testing.forComponent
 
 @RunWith(JUnit4::class)
-class ReviewsScreenComponentTest {
+class ReviewLottiTitleComponentTest {
     @get:Rule
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun reviewsScreenPreviewLightSnapTest() {
+    fun reviewLottiTitlePreviewLightSnapTest() {
         paparazzi.captureScreenshot {
-            ReviewsScreenPreviewLight()
+            ReviewLottiTitlePreviewLight()
         }
     }
 }
+
+
+

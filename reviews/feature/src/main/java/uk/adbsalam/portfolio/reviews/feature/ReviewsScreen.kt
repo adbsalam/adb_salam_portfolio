@@ -47,7 +47,7 @@ internal fun ReviewsScreen(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "ReviewsScreen - light mode")
+@SnapIt
 internal fun ReviewsScreenPreviewLight() {
     Adb_Screen_Theme {
         ReviewsScreen(
@@ -58,7 +58,7 @@ internal fun ReviewsScreenPreviewLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "ReviewsScreen - dark mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun ReviewsScreenPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         ReviewsScreen(

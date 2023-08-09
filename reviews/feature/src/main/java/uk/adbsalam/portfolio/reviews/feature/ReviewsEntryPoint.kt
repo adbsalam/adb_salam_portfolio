@@ -1,19 +1,20 @@
 package uk.adbsalam.portfolio.reviews.feature
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.ErrorPage
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.reviews.data.objects.ReviewItems
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param viewModel view model to be used for this screen
@@ -64,8 +65,9 @@ private fun Reviews(
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
+@SnapIt(gif = true, end = 1000L)
 internal fun ReviewsPreviewLight() {
     Adb_Screen_Theme {
         Reviews(
@@ -75,8 +77,9 @@ internal fun ReviewsPreviewLight() {
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewDark
 @Composable
+@SnapIt(gif = true, end = 1000L, isDark = true)
 internal fun ReviewsPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         Reviews(
