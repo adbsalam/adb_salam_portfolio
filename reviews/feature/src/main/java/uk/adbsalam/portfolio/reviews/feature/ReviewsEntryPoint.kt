@@ -1,10 +1,12 @@
 package uk.adbsalam.portfolio.reviews.feature
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.AnimatedColumn
@@ -41,7 +43,11 @@ private fun Reviews(
     retry: () -> Unit
 ) {
     when (uiState) {
-        ReviewsState.OnLoading -> LoadingLotti()
+        ReviewsState.OnLoading ->
+            LoadingLotti(
+                modifier = Modifier.fillMaxSize(),
+                msg = "Loading"
+            )
 
         is ReviewsState.OnError -> {
             ErrorPage(
