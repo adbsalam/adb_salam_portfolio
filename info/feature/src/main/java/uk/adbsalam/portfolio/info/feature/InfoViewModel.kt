@@ -30,6 +30,9 @@ class InfoViewModel @Inject constructor(
     }
 
     internal fun fetchInfoAndWork() {
+
+        _viewState.value = InfoScreenState.OnLoading
+
         viewModelScope.launch {
             val infographics: Infographics
             val workHistory: WorkHistory

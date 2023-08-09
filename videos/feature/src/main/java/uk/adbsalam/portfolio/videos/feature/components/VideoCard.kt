@@ -18,7 +18,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
-import uk.adbsalam.portfolio.videos.data.VideoData
+import uk.adbsalam.portfolio.videos.data.objects.VideoItems
 import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
@@ -31,7 +31,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
  */
 @Composable
 internal fun VideoCard(
-    videoData: VideoData,
+    videoData: VideoItems.Video,
 ) {
     val player = remember { mutableStateOf<YouTubePlayer?>(null) }
     val setToPlay = remember { mutableStateOf(false) }
@@ -82,7 +82,7 @@ internal fun VideoCard(
 internal fun VideoCardPreviewLight() {
     Adb_Theme {
         VideoCard(
-            videoData = VideoData.createMock().first(),
+            videoData = VideoItems.createMock().videos.first(),
         )
     }
 }
@@ -93,7 +93,7 @@ internal fun VideoCardPreviewLight() {
 internal fun VideoCardPreviewDark() {
     Adb_Theme(true) {
         VideoCard(
-            videoData = VideoData.createMock().first(),
+            videoData = VideoItems.createMock().videos.first(),
         )
     }
 }
