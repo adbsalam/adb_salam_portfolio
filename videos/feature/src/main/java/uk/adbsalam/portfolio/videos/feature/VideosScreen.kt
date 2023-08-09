@@ -50,10 +50,12 @@ internal fun VideosScreen(
     videos: VideoItems,
     currentTheme: Theme
 ) {
+    val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
+            .verticalScroll(scrollState),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Column(
