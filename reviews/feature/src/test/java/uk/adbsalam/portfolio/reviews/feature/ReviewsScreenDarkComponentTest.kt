@@ -5,7 +5,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
-import uk.adbsalam.snapit.testing.captureDarkScreenshot
+import uk.adbsalam.snapit.testing.captureScreenshot
 import uk.adbsalam.snapit.testing.forDarkComponent
 
 @RunWith(JUnit4::class)
@@ -14,12 +14,9 @@ class ReviewsScreenDarkComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forDarkComponent()
 
     @Test
-    fun `ReviewsScreen - dark mode`() {
-        paparazzi.captureDarkScreenshot {
+    fun reviewsScreenPreviewDarkSnapTest() {
+        paparazzi.captureScreenshot {
             ReviewsScreenPreviewDark()
         }
     }
 }
-
-
-

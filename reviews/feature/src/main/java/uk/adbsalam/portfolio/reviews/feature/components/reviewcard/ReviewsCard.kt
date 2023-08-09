@@ -50,7 +50,7 @@ internal fun ReviewCard(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "ReviewCard - light mode")
+@SnapIt
 internal fun ReviewCardPreviewLight() {
     Adb_Theme {
         ReviewCard(review = ReviewItems.createMock().reviews.first())
@@ -59,7 +59,7 @@ internal fun ReviewCardPreviewLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "ReviewCard - dark mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun ReviewCardPreviewDark() {
     Adb_Theme(isSystemDark = true) {
         ReviewCard(review = ReviewItems.createMock().reviews.first())

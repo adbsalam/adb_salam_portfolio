@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.reviews.feature.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -27,6 +25,9 @@ import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.theming.PreviewDark
+import uk.adbsalam.portfolio.theming.PreviewLight
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * Page title for Reviews
@@ -86,16 +87,18 @@ internal fun ReviewLottiTitle() {
     }
 }
 
-@Preview
+@PreviewLight
 @Composable
+@SnapIt
 internal fun ReviewLottiTitlePreviewLight() {
     Adb_Theme {
         ReviewLottiTitle()
     }
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@PreviewDark
 @Composable
+@SnapIt(isDark = true)
 internal fun ReviewLottiTitlePreviewDark() {
     Adb_Theme(true) {
         ReviewLottiTitle()

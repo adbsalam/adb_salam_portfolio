@@ -15,7 +15,7 @@ class ReviewsCardComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `ReviewCard - light mode`() {
+    fun reviewCardPreviewLightSnapTest() {
         paparazzi.captureScreenshot {
             ReviewCardPreviewLight()
         }

@@ -6,7 +6,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import uk.adbsalam.portfolio.reviews.feature.components.reviewcard.RelationShipAccordionPreviewDark
-import uk.adbsalam.snapit.testing.captureDarkScreenshot
+import uk.adbsalam.snapit.testing.captureScreenshot
 import uk.adbsalam.snapit.testing.forDarkComponent
 
 @RunWith(JUnit4::class)
@@ -15,8 +15,8 @@ class RelationShipAccordianDarkComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forDarkComponent()
 
     @Test
-    fun `RelationShipAccordion - dark mode`() {
-        paparazzi.captureDarkScreenshot {
+    fun relationShipAccordionPreviewDarkSnapTest() {
+        paparazzi.captureScreenshot {
             RelationShipAccordionPreviewDark()
         }
     }

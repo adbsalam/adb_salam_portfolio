@@ -113,7 +113,7 @@ internal fun RelationShipAccordion(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "RelationShipAccordion - light mode")
+@SnapIt
 internal fun RelationShipAccordionPreviewLight() {
     Adb_Theme {
         RelationShipAccordion(review = ReviewItems.createMock().reviews.first())
@@ -122,7 +122,7 @@ internal fun RelationShipAccordionPreviewLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "RelationShipAccordion - dark mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun RelationShipAccordionPreviewDark() {
     Adb_Theme(isSystemDark = true) {
         RelationShipAccordion(review = ReviewItems.createMock().reviews.first())
