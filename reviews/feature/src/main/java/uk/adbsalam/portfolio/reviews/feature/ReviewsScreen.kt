@@ -11,7 +11,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.reviews.data.ReviewsData
+import uk.adbsalam.portfolio.reviews.data.objects.ReviewItems
 import uk.adbsalam.portfolio.reviews.feature.components.ReviewLottiTitle
 import uk.adbsalam.portfolio.reviews.feature.components.reviewcard.ReviewCard
 import uk.adbsalam.portfolio.theming.PreviewDark
@@ -25,7 +25,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
  */
 @Composable
 internal fun ReviewsScreen(
-    reviews: List<ReviewsData>
+    reviews: ReviewItems
 ) {
     Column(
         modifier = Modifier
@@ -37,7 +37,7 @@ internal fun ReviewsScreen(
 
         ReviewLottiTitle()
 
-        reviews.forEach {
+        reviews.reviews.forEach {
             ReviewCard(review = it)
         }
 
@@ -51,7 +51,7 @@ internal fun ReviewsScreen(
 internal fun ReviewsScreenPreviewLight() {
     Adb_Screen_Theme {
         ReviewsScreen(
-            reviews = ReviewsData.createMock()
+            reviews = ReviewItems.createMock()
         )
     }
 }
@@ -62,7 +62,7 @@ internal fun ReviewsScreenPreviewLight() {
 internal fun ReviewsScreenPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         ReviewsScreen(
-            reviews = ReviewsData.createMock()
+            reviews = ReviewItems.createMock()
         )
     }
 }

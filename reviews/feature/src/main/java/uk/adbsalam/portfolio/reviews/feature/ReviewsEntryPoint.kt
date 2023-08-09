@@ -8,9 +8,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import uk.adbsalam.portfolio.components.AnimatedColumn
+import uk.adbsalam.portfolio.components.ErrorPage
 import uk.adbsalam.portfolio.components.LoadingLotti
-import uk.adbsalam.portfolio.reviews.data.ReviewsData
-import uk.adbsalam.portfolio.theming.Adb_Theme
+import uk.adbsalam.portfolio.reviews.data.objects.ReviewItems
 import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 
 /**
@@ -25,7 +25,10 @@ fun Reviews(
 ) {
     val uiState by viewModel.viewState.collectAsState()
     LaunchedEffect(key1 = null) { viewModel.initReviews() }
-    Reviews(uiState = uiState)
+    Reviews(
+        uiState = uiState,
+        retry = viewModel::fetchReviews
+    )
 }
 
 /**
@@ -34,10 +37,19 @@ fun Reviews(
  */
 @Composable
 private fun Reviews(
-    uiState: ReviewsState
+    uiState: ReviewsState,
+    retry: () -> Unit
 ) {
     when (uiState) {
         ReviewsState.OnLoading -> LoadingLotti()
+
+        is ReviewsState.OnError -> {
+            ErrorPage(
+                msg = uiState.msg,
+                retry = retry
+            )
+        }
+
         is ReviewsState.OnReviews -> {
             AnimatedColumn {
                 ReviewsScreen(reviews = uiState.reviews)
@@ -51,7 +63,8 @@ private fun Reviews(
 internal fun ReviewsPreviewLight() {
     Adb_Screen_Theme {
         Reviews(
-            uiState = ReviewsState.OnReviews(ReviewsData.createMock())
+            uiState = ReviewsState.OnReviews(ReviewItems.createMock()),
+            retry = { /*unused*/ }
         )
     }
 }
@@ -61,7 +74,8 @@ internal fun ReviewsPreviewLight() {
 internal fun ReviewsPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         Reviews(
-            uiState = ReviewsState.OnReviews(ReviewsData.createMock())
+            uiState = ReviewsState.OnReviews(ReviewItems.createMock()),
+            retry = { /*unused*/ }
         )
     }
 }
