@@ -79,7 +79,7 @@ internal fun InfoScreenLightPreview() {
                 infographics = Infographics.createMock(),
                 workHistory = WorkHistory.createMock()
             ),
-            retry = {/*unused*/ }
+            retry = { /* unused */ }
         )
     }
 }
@@ -94,7 +94,7 @@ internal fun InfoScreenDarkPreview() {
                 infographics = Infographics.createMock(),
                 workHistory = WorkHistory.createMock()
             ),
-            retry = {/*unused*/ }
+            retry = { /* unused */ }
         )
     }
 }
