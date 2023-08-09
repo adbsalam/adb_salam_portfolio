@@ -14,7 +14,7 @@ class InfoScreenComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `InfoScreen - light mode`() {
+    fun infoScreenLightSnapTest() {
         paparazzi.captureScreenshot {
             InfoScreenLight()
         }

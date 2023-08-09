@@ -15,6 +15,7 @@ import uk.adbsalam.portfolio.info.data.objects.WorkHistory
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param viewModel viewModel to use for this compose
@@ -70,6 +71,7 @@ private fun Info(
 
 @PreviewLight
 @Composable
+@SnapIt(gif = true, end = 1000L)
 internal fun InfoScreenLightPreview() {
     Adb_Screen_Theme {
         Info(
@@ -84,6 +86,7 @@ internal fun InfoScreenLightPreview() {
 
 @PreviewDark
 @Composable
+@SnapIt(gif = true, end = 1000L, isDark = true)
 internal fun InfoScreenDarkPreview() {
     Adb_Screen_Theme(isDark = true) {
         Info(

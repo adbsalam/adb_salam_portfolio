@@ -15,7 +15,7 @@ class SkillsInsignChartComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `SkillsInsightCard - light mode`() {
+    fun skillsInsightCardLightSnapTest() {
         paparazzi.captureScreenshot {
             SkillsInsightCardLight()
         }

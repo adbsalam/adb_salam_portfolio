@@ -164,7 +164,7 @@ private fun workTint(color: String): Color {
 
 @Preview
 @Composable
-@SnapIt(name = "WorkInfo - light mode")
+@SnapIt
 internal fun WorkInfoPreview() {
     WorkInfo(
         showDivider = true,

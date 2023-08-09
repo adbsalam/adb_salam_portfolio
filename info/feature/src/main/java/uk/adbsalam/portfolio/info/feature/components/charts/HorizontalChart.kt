@@ -71,7 +71,7 @@ internal fun HorizontalChart(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "HorizontalChart - light mode")
+@SnapIt
 internal fun HorizontalChartPreviewLight() {
     Adb_Theme {
         HorizontalChart(
@@ -83,7 +83,7 @@ internal fun HorizontalChartPreviewLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "HorizontalChart - dark mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun HorizontalChartPreviewDark() {
     Adb_Theme(isSystemDark = true) {
         HorizontalChart(

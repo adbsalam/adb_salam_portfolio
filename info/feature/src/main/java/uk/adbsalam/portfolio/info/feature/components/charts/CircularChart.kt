@@ -99,7 +99,7 @@ internal fun CircularChart(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "CircularChart - light mode")
+@SnapIt
 internal fun CircularChartPreviewLight() {
     Adb_Theme {
         CircularChart(
@@ -113,7 +113,7 @@ internal fun CircularChartPreviewLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "CircularChart - dark mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun CircularChartPreviewDark() {
     Adb_Theme(isSystemDark = true) {
         CircularChart(

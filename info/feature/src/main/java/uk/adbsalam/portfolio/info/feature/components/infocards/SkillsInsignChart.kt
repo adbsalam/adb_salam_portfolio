@@ -82,7 +82,7 @@ internal fun SkillsInsightCard(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "SkillsInsightCard - light mode")
+@SnapIt
 internal fun SkillsInsightCardLight() {
     Adb_Theme {
         SkillsInsightCard(
@@ -93,7 +93,7 @@ internal fun SkillsInsightCardLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "SkillsInsightCard - dark mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun SkillsInsightCardDark() {
     Adb_Theme(isSystemDark = true) {
         SkillsInsightCard(

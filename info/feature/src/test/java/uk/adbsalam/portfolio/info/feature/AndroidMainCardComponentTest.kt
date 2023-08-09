@@ -15,7 +15,7 @@ class AndroidMainCardComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `AndroidMainCard - light mode`() {
+    fun androidMainCardLightSnapTest() {
         paparazzi.captureScreenshot {
             AndroidMainCardLight()
         }

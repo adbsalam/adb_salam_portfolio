@@ -15,7 +15,7 @@ class CircularChartComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `CircularChart - light mode`() {
+    fun circularChartPreviewLightSnapTest() {
         paparazzi.captureScreenshot {
             CircularChartPreviewLight()
         }
