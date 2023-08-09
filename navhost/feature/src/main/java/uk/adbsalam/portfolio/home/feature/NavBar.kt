@@ -1,6 +1,6 @@
 package uk.adbsalam.portfolio.home.feature
 
-import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -8,38 +8,45 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
-import kotlinx.coroutines.launch
+import androidx.navigation.NavHostController
+import uk.adbsalam.portfolio.navigation.navigateToHome
+import uk.adbsalam.portfolio.navigation.navigateToInfo
+import uk.adbsalam.portfolio.navigation.navigateToReviews
+import uk.adbsalam.portfolio.navigation.navigateToVideos
 
 /**
- * @param pagerModel Pager model to setup home pager
+ * @param selected selected item on nav bar
  * This will create Navigation Bar buttons for each page
  * Set scroll actions to pager on nav bar buttons
  */
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeBottomNavBar(
-    pagerModel: PagerModel
+fun RootNavBar(
+    selected: MutableState<Int>,
+    navController: NavHostController
 ) {
-    val scope = rememberCoroutineScope()
     NavigationBar(
         modifier = Modifier.fillMaxWidth(),
         containerColor = MaterialTheme.colorScheme.background
     ) {
-        pagerModel.pagerList.forEachIndexed { index, item ->
+        navItems.forEachIndexed { index, item ->
             NavigationBarItem(
                 alwaysShowLabel = true,
                 label = { Text(text = item.title) },
-                selected = pagerModel.pagerState.currentPage == index,
+                selected = selected.value == index,
                 onClick = {
-                    scope.launch {
-                        pagerModel.pagerState.scrollToPage(index)
+                    when (index) {
+                        0 -> navController.navigateToHome()
+                        1 -> navController.navigateToInfo()
+                        2 -> navController.navigateToVideos()
+                        3 -> navController.navigateToReviews()
                     }
+                    selected.value = index
                 },
                 icon = {
                     Icon(
-                        imageVector = item.tabIcon,
+                        imageVector = item.icon,
                         contentDescription = item.title,
                     )
                 },
