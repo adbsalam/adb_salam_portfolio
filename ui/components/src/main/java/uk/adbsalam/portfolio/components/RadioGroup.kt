@@ -58,7 +58,7 @@ fun <T> RadioGroup(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "RadioGroup - first item selected")
+@SnapIt
 internal fun RadioGroupPreview() {
     RadioGroup(
         items = listOf("itemOne", "itemTwo"),

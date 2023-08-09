@@ -33,9 +33,6 @@ hilt-plugin = "2.44"
 compose-compiler = "1.4.7"
 ksp = "1.8.21-1.0.11"
 moshi = "1.14.0"
-com-google-android-material-material = "1.8.0"
-com-google-android-material-material180 = "1.8.0"
-com-google-android-material-material1802 = "1.8.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle-plugin" }
@@ -96,4 +93,3 @@ coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-t
 paparazzi = { group = "app.cash.paparazzi", name = "paparazzi", version.ref = "paparazzi" }
 youtube-player = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "core", version = "12.1.0" }
 youtube-player-seekbar = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "custom-ui", version = "12.1.0" }
-material = { group = "com.google.android.material", name = "material", version.ref = "com-google-android-material-material1802" }

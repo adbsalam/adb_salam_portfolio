@@ -28,7 +28,7 @@ fun SettingsIcon(
 
 @PreviewLight
 @Composable
-@SnapIt("SettingsIcon - settings icon")
+@SnapIt
 internal fun SettingsIconPreview() {
     SettingsIcon(
         onClick = {}

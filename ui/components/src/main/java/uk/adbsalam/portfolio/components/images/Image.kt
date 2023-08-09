@@ -30,7 +30,7 @@ fun AdbImage(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "AdbImage - preview image")
+@SnapIt
 internal fun AdbImagePreview() {
     AdbImage(
         modifier = Modifier.size(200.dp),
@@ -50,7 +50,7 @@ fun AdbMainLogo(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "AdbMainLogo - preview image")
+@SnapIt
 internal fun AdbMainLogoPreview() {
     AdbMainLogo(
         modifier = Modifier.size(150.dp)
