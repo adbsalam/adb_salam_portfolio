@@ -11,7 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.reviews.data.ReviewsData
+import uk.adbsalam.portfolio.reviews.data.objects.ReviewItems
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
@@ -24,7 +24,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
  */
 @Composable
 internal fun ReviewCard(
-    review: ReviewsData
+    review: ReviewItems.Review
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
@@ -53,7 +53,7 @@ internal fun ReviewCard(
 @SnapIt(name = "ReviewCard - light mode")
 internal fun ReviewCardPreviewLight() {
     Adb_Theme {
-        ReviewCard(review = ReviewsData.createMock().first())
+        ReviewCard(review = ReviewItems.createMock().reviews.first())
     }
 }
 
@@ -62,6 +62,6 @@ internal fun ReviewCardPreviewLight() {
 @SnapIt(name = "ReviewCard - dark mode", isDark = true)
 internal fun ReviewCardPreviewDark() {
     Adb_Theme(isSystemDark = true) {
-        ReviewCard(review = ReviewsData.createMock().first())
+        ReviewCard(review = ReviewItems.createMock().reviews.first())
     }
 }

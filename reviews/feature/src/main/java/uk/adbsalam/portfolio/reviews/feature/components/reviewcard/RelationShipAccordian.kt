@@ -30,7 +30,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.reviews.data.ReviewsData
+import uk.adbsalam.portfolio.reviews.data.objects.ReviewItems
 import uk.adbsalam.portfolio.theming.Adb_Theme
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
@@ -42,7 +42,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
  */
 @Composable
 internal fun RelationShipAccordion(
-    review: ReviewsData
+    review: ReviewItems.Review
 ) {
     var expand by remember { mutableStateOf(false) }
     var chevronRotation by remember { mutableStateOf(0f) }
@@ -116,7 +116,7 @@ internal fun RelationShipAccordion(
 @SnapIt(name = "RelationShipAccordion - light mode")
 internal fun RelationShipAccordionPreviewLight() {
     Adb_Theme {
-        RelationShipAccordion(review = ReviewsData.createMock().first())
+        RelationShipAccordion(review = ReviewItems.createMock().reviews.first())
     }
 }
 
@@ -125,6 +125,6 @@ internal fun RelationShipAccordionPreviewLight() {
 @SnapIt(name = "RelationShipAccordion - dark mode", isDark = true)
 internal fun RelationShipAccordionPreviewDark() {
     Adb_Theme(isSystemDark = true) {
-        RelationShipAccordion(review = ReviewsData.createMock().first())
+        RelationShipAccordion(review = ReviewItems.createMock().reviews.first())
     }
 }

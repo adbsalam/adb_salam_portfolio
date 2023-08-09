@@ -45,6 +45,7 @@ dependencies {
     implementation(project(":utils"))
     implementation(project(":core:prefs"))
     implementation(project(":reviews:data"))
+    implementation(project(":core:network"))
 
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)

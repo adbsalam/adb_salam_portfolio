@@ -18,7 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.components.R
-import uk.adbsalam.portfolio.reviews.data.ReviewsData
+import uk.adbsalam.portfolio.reviews.data.objects.ReviewItems
 import uk.adbsalam.portfolio.theming.Adb_Theme
 
 /**
@@ -27,7 +27,7 @@ import uk.adbsalam.portfolio.theming.Adb_Theme
  */
 @Composable
 internal fun ReviewTitle(
-    review: ReviewsData
+    review: ReviewItems.Review
 ) {
     Row(
         modifier = Modifier
@@ -60,6 +60,6 @@ internal fun ReviewTitle(
 @Composable
 internal fun ReviewTitlePreview() {
     Adb_Theme {
-        ReviewTitle(review = ReviewsData.createMock().first())
+        ReviewTitle(review = ReviewItems.createMock().reviews.first())
     }
 }
