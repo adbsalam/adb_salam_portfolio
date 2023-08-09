@@ -15,7 +15,7 @@ class VideoCardComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `VideoCard - light mode`() {
+    fun videoCardPreviewLightSnapTest() {
         paparazzi.captureScreenshot {
             VideoCardPreviewLight()
         }

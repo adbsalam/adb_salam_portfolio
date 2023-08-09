@@ -15,6 +15,7 @@ import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.portfolio.videos.data.objects.VideoItems
+import uk.adbsalam.snapit.annotations.SnapIt
 
 /**
  * @param viewModel view model to be used for this screen
@@ -73,6 +74,7 @@ private fun Videos(
 
 @PreviewLight
 @Composable
+@SnapIt(gif = true, end = 1000L)
 internal fun VideosPreviewLight() {
     Adb_Screen_Theme {
         Videos(
@@ -85,6 +87,7 @@ internal fun VideosPreviewLight() {
 
 @PreviewDark
 @Composable
+@SnapIt(gif = true, end = 1000L, isDark = true)
 internal fun VideosPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         Videos(
