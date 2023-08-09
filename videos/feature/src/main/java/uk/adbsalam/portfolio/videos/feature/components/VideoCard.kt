@@ -78,7 +78,7 @@ internal fun VideoCard(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "VideoCard - light mode")
+@SnapIt
 internal fun VideoCardPreviewLight() {
     Adb_Theme {
         VideoCard(
@@ -89,7 +89,7 @@ internal fun VideoCardPreviewLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "VideoCard - dark mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun VideoCardPreviewDark() {
     Adb_Theme(true) {
         VideoCard(

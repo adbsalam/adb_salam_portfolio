@@ -14,7 +14,7 @@ class VideosScreenComponentTest {
     val paparazzi: Paparazzi = Paparazzi.forComponent()
 
     @Test
-    fun `VideosScreen - light mode`() {
+    fun videosScreenPreviewLightSnapTest() {
         paparazzi.captureScreenshot {
             VideosScreenPreviewLight()
         }

@@ -109,7 +109,7 @@ internal fun VideosScreen(
 
 @PreviewLight
 @Composable
-@SnapIt(name = "VideosScreen - light mode")
+@SnapIt
 internal fun VideosScreenPreviewLight() {
     Adb_Screen_Theme {
         VideosScreen(
@@ -121,7 +121,7 @@ internal fun VideosScreenPreviewLight() {
 
 @PreviewDark
 @Composable
-@SnapIt(name = "VideosScreen - dark mode", isDark = true)
+@SnapIt(isDark = true)
 internal fun VideosScreenPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         VideosScreen(
