@@ -44,6 +44,7 @@ internal fun VideoPlayerView(
                             youTubePlayer = youTubePlayer,
                             initPlay = initialPlay.value
                         )
+                        customPlayerUiController.setOnClick(videoData.videoId)
                         youTubePlayer.addListener(customPlayerUiController);
                         youTubePlayer.cueVideo(videoData.videoId, 0f)
                     }
