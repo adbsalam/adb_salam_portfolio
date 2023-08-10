@@ -28,8 +28,6 @@ fun Videos(
 ) {
     val uiState by viewModel.viewState.collectAsState()
 
-    LaunchedEffect(key1 = null) { viewModel.loadVideos() }
-
     Videos(
         uiState = uiState,
         currentTheme = viewModel.currentTheme(),

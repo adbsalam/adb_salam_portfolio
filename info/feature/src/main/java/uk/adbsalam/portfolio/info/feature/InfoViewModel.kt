@@ -22,10 +22,9 @@ class InfoViewModel @Inject constructor(
     internal val viewState = _viewState.asStateFlow()
 
     /**
-     * Init info details
-     * This will change state from loading to OnInfo
+     * Fetch data on init View Model
      */
-    internal suspend fun initInfo() {
+    init {
         fetchInfoAndWork()
     }
 

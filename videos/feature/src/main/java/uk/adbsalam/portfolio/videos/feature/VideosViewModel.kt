@@ -22,9 +22,9 @@ class VideosViewModel @Inject constructor(
     internal val viewState = _viewState.asStateFlow()
 
     /**
-     * Load videos an init videos screen
+     * Fetch data on init View Model
      */
-    internal suspend fun loadVideos() {
+    init {
         fetchVideos()
     }
 

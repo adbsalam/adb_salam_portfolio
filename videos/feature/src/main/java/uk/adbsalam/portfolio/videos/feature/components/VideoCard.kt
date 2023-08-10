@@ -36,7 +36,6 @@ internal fun VideoCard(
 ) {
     val player = remember { mutableStateOf<YouTubePlayer?>(null) }
     val setToPlay = remember { mutableStateOf(false) }
-    val context = LocalContext.current
 
     Column(
         modifier = Modifier
