@@ -1,9 +1,12 @@
 package uk.adbsalam.portfolio.videos.feature.components
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.View
 import android.view.View.VISIBLE
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.views.YouTubePlayerSeekBar
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -66,6 +69,14 @@ internal class CustomPlayerUiController(
         }
 
         seekbar.visibility = if (state == PlayerState.PLAYING) VISIBLE else View.INVISIBLE
+    }
+
+    fun setOnClick(videoId: String) {
+        panel.setOnClickListener {
+            val url = "https://www.youtube.com/watch?v=${videoId}"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(context, intent, null)
+        }
     }
 
     override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {

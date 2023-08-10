@@ -1,7 +1,10 @@
 package uk.adbsalam.portfolio.videos.feature
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,8 +27,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import uk.adbsalam.portfolio.components.R.drawable.ic_logo_main
 import uk.adbsalam.portfolio.components.R.drawable.ic_youtube_dark
 import uk.adbsalam.portfolio.components.R.drawable.ic_youtube_light
@@ -51,6 +57,7 @@ internal fun VideosScreen(
     currentTheme: Theme
 ) {
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -91,6 +98,11 @@ internal fun VideosScreen(
                     .width(100.dp)
                     .height(80.dp)
                     .clip(RoundedCornerShape(20.dp))
+                    .clickable {
+                        val url = "https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA"
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        startActivity(context, intent, null)
+                    }
             )
         }
 

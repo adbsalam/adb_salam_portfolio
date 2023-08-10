@@ -102,7 +102,7 @@ internal fun HomeScreen(
 
                     val url = when (item.deeplink) {
                         deeplinkYoutube -> "https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA"
-                        deeplinkGesture -> "https://github.com/MuhammadAbdulSalam/snapit-plugin"
+                        deeplinkGesture -> "https://github.com/MuhammadAbdulSalam/arduino_gesture"
                         else -> ""
                     }
 

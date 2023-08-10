@@ -1,5 +1,7 @@
 package uk.adbsalam.portfolio.reviews.feature.components
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,9 +18,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
@@ -35,6 +40,8 @@ import uk.adbsalam.snapit.annotations.SnapIt
  */
 @Composable
 internal fun ReviewLottiTitle() {
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -80,7 +87,11 @@ internal fun ReviewLottiTitle() {
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(text = "LinkedIn")
             },
-            onClick = {}
+            onClick = {
+                val url = "https://www.linkedin.com/in/muhammad-abdulsalam-1253a7178/"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                startActivity(context, intent, null)
+            }
         )
 
         Spacer(modifier = Modifier.height(12.dp))

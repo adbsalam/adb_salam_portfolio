@@ -13,6 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.positionInRoot
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import uk.adbsalam.portfolio.theming.Adb_Theme
@@ -35,6 +36,7 @@ internal fun VideoCard(
 ) {
     val player = remember { mutableStateOf<YouTubePlayer?>(null) }
     val setToPlay = remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
