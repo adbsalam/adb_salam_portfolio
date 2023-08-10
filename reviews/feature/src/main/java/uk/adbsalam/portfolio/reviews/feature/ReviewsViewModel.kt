@@ -20,9 +20,9 @@ class ReviewsViewModel @Inject constructor(
     internal val viewState = _viewState.asStateFlow()
 
     /**
-     * Load all reviews data and start screen
+     * Fetch data on init View Model
      */
-    internal suspend fun initReviews() {
+    init {
         fetchReviews()
     }
 

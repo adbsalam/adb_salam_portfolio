@@ -23,9 +23,9 @@ class HomeViewModel @Inject constructor(
     internal val viewState = _viewState.asStateFlow()
 
     /**
-     * init home items setup
+     * Fetch data on init View Model
      */
-    internal suspend fun initHome() {
+    init {
         loadHomeItems()
     }
 

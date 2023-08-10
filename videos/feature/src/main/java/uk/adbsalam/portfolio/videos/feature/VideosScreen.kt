@@ -30,7 +30,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import uk.adbsalam.portfolio.components.R.drawable.ic_logo_main
 import uk.adbsalam.portfolio.components.R.drawable.ic_youtube_dark
