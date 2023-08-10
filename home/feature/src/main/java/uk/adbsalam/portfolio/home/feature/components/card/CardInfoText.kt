@@ -90,7 +90,7 @@ internal fun CardInfoText(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Button(
-                onClick = action,
+                onClick = {action()},
                 content = { Text(text = "View") }
             )
 

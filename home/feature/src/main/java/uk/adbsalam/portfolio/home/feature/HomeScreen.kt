@@ -1,5 +1,7 @@
 package uk.adbsalam.portfolio.home.feature
 
+import android.content.Intent
+import android.net.Uri
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -18,7 +20,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
 import kotlinx.coroutines.launch
 import uk.adbsalam.portfolio.components.SettingsIcon
 import uk.adbsalam.portfolio.home.feature.components.Profile
@@ -29,12 +33,17 @@ import uk.adbsalam.portfolio.home.feature.utils.HomeItemType
 import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
 import uk.adbsalam.portfolio.home.feature.utils.getDrawableRes
 import uk.adbsalam.portfolio.home.feature.utils.getRawRes
+import uk.adbsalam.portfolio.navigation.deeplinkGesture
+import uk.adbsalam.portfolio.navigation.deeplinkPatrolla
+import uk.adbsalam.portfolio.navigation.deeplinkSnapit
+import uk.adbsalam.portfolio.navigation.deeplinkYoutube
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.snapit.annotations.SnapIt
+
 
 /**
  * @param items list of items to show on home screen
@@ -44,6 +53,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 internal fun HomeScreen(
     items: List<HomeScreenItem>,
+    navigateDeeplink: (String) -> Unit,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
 ) {
@@ -51,6 +61,7 @@ internal fun HomeScreen(
     val scrollState = rememberScrollState()
     val headerHeight = LocalConfiguration.current.screenHeightDp / 3
     val scope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -78,9 +89,26 @@ internal fun HomeScreen(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
+            items.forEach { item ->
+                InfoCardByType(item = item) {
 
-            items.forEach {
-                InfoCardByType(item = it)
+                    when (item.deeplink) {
+                        deeplinkPatrolla,
+                        deeplinkSnapit -> {
+                            navigateDeeplink(item.deeplink)
+                            return@InfoCardByType
+                        }
+                    }
+
+                    val url = when (item.deeplink) {
+                        deeplinkYoutube -> "https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA"
+                        deeplinkGesture -> "https://github.com/MuhammadAbdulSalam/snapit-plugin"
+                        else -> ""
+                    }
+
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                    startActivity(context, intent, null)
+                }
             }
 
             SocialMediaCarousal()
@@ -111,6 +139,7 @@ internal fun HomeLightPreview() {
     Adb_Screen_Theme {
         HomeScreen(
             items = HomeScreenItem.createMock(),
+            navigateDeeplink = { /* unused */ },
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ }
         )
@@ -125,6 +154,7 @@ internal fun HomeDarkPreview() {
         HomeScreen(
             items = HomeScreenItem.createMock(),
             onDynamicColor = { /* unused */ },
+            navigateDeeplink = { /* unused */ },
             onTheme = { /* unused */ }
         )
     }
@@ -136,7 +166,10 @@ internal fun HomeDarkPreview() {
  * @return Card by Item type to be shown
  */
 @Composable
-private fun InfoCardByType(item: HomeScreenItem) {
+private fun InfoCardByType(
+    item: HomeScreenItem,
+    action: () -> Unit
+) {
     when (item.type) {
         HomeItemType.IMAGE_CARD ->
             InfoCard(
@@ -144,7 +177,7 @@ private fun InfoCardByType(item: HomeScreenItem) {
                 title = item.title,
                 body = item.body,
                 resId = getDrawableRes(item.res),
-                action = {}
+                action = action
             )
 
         HomeItemType.LOTTI_CARD -> {
@@ -153,7 +186,7 @@ private fun InfoCardByType(item: HomeScreenItem) {
                 title = item.title,
                 body = item.body,
                 resId = getRawRes(item.res),
-                action = {}
+                action = action
             )
         }
 
@@ -163,7 +196,7 @@ private fun InfoCardByType(item: HomeScreenItem) {
                 title = item.title,
                 body = item.body,
                 resId = getRawRes(item.res),
-                action = {}
+                action = action
             )
         }
     }

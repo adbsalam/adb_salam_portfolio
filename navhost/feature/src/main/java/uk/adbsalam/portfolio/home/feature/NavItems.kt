@@ -7,7 +7,6 @@ import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Movie
 import androidx.compose.ui.graphics.vector.ImageVector
 
-
 data class NavItem(
     val title: String,
     val icon: ImageVector,

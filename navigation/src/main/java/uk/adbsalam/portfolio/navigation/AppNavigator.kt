@@ -1,6 +1,7 @@
 package uk.adbsalam.portfolio.navigation
 
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 
 private fun NavController.rootNavOptions() = NavOptions
@@ -13,6 +14,10 @@ private fun NavController.rootNavOptions() = NavOptions
     .setLaunchSingleTop(true)
     .setRestoreState(true)
     .build()
+
+fun NavController.navigateHomeNavHost() {
+    this.navigate(NavigationScreen.OnHomeNav.route(), this.rootNavOptions())
+}
 
 fun NavController.navigateToHome() {
     this.navigate(NavigationScreen.OnHome.route(), this.rootNavOptions())

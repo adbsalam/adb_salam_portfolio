@@ -7,7 +7,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
-import uk.adbsalam.portfolio.home.feature.RootNavHost
+import uk.adbsalam.portfolio.home.feature.RootNavGraph
 import uk.adbsalam.portfolio.startup.feature.components.LoadingScreen
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
@@ -64,7 +64,7 @@ private fun StartupScreen(
     ) {
         when (uiState) {
             StartupState.OnLoading -> LoadingScreen()
-            StartupState.OnStart -> RootNavHost(
+            StartupState.OnStart -> RootNavGraph(
                 onTheme = onTheme,
                 onDynamicColor = onDynamicColor,
             )

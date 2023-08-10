@@ -14,15 +14,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import uk.adbsalam.portfolio.navigation.NavigationScreen
 import uk.adbsalam.portfolio.navigation.route
 import uk.adbsalam.portfolio.utils.Theme
 
 @Composable
-fun RootNavHost(
+fun HomeNavHost(
     onTheme: (Theme) -> Unit,
-    onDynamicColor: (Boolean) -> Unit
+    onDynamicColor: (Boolean) -> Unit,
+    rootNavHostController: NavHostController
 ) {
     val visibility = remember { mutableStateOf(false) }
     val selected = remember { mutableStateOf(0) }
@@ -51,10 +53,11 @@ fun RootNavHost(
                     .animateContentSize()
                     .padding(bottom = it.calculateBottomPadding())
             ) {
-                RootNavGraph(
+                HomeNavGraph(
                     onTheme = onTheme,
                     onDynamicColor = onDynamicColor,
-                    navController = navController
+                    homeNavController = navController,
+                    rootNavHostController = rootNavHostController
                 )
             }
         }
