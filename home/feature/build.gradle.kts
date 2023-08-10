@@ -46,6 +46,7 @@ dependencies {
     implementation(project(":core:prefs"))
     implementation(project(":home:data"))
     implementation(project(":core:network"))
+    implementation(project(":navigation"))
 
     implementation(libs.compose.lotti)
     implementation(libs.app.compat)

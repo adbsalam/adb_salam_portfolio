@@ -7,10 +7,12 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.ErrorPage
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
+import uk.adbsalam.portfolio.navigation.navigateDeepLink
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
@@ -28,6 +30,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
 fun Home(
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
+    navController: NavHostController,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.viewState.collectAsState()
@@ -40,7 +43,8 @@ fun Home(
         uiState = uiState,
         retry = viewModel::loadHomeItems,
         onDynamicColor = onDynamicColor,
-        onTheme = onTheme
+        onTheme = onTheme,
+        navigateDeeplink = navController::navigateDeepLink
     )
 }
 
@@ -55,6 +59,7 @@ internal fun Home(
     retry: () -> Unit,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
+    navigateDeeplink: (String) -> Unit
 ) {
 
     when (uiState) {
@@ -76,7 +81,8 @@ internal fun Home(
                 HomeScreen(
                     items = uiState.homeItems,
                     onDynamicColor = onDynamicColor,
-                    onTheme = onTheme
+                    onTheme = onTheme,
+                    navigateDeeplink = navigateDeeplink
                 )
             }
         }
@@ -92,8 +98,9 @@ internal fun HomePreviewLight() {
         Home(
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
             retry = { /* unused */ },
-            onDynamicColor = {},
-            onTheme = { },
+            onDynamicColor = { /* unused */ },
+            onTheme = { /* unused */ },
+            navigateDeeplink = { /* unused */ }
         )
     }
 }
@@ -107,7 +114,8 @@ internal fun HomePreviewDark() {
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
             retry = { /* unused */ },
             onDynamicColor = { /* unused */ },
-            onTheme = {/* unused */ },
+            onTheme = { /* unused */ },
+            navigateDeeplink = { /* unused */ }
         )
     }
 }
