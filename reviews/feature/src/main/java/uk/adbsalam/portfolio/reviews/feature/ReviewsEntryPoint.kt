@@ -2,7 +2,6 @@ package uk.adbsalam.portfolio.reviews.feature
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -27,7 +26,7 @@ fun Reviews(
     viewModel: ReviewsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.viewState.collectAsState()
-    LaunchedEffect(key1 = null) { viewModel.initReviews() }
+
     Reviews(
         uiState = uiState,
         retry = viewModel::fetchReviews
