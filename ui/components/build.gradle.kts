@@ -40,12 +40,15 @@ dependencies {
     implementation(project(":ui:theming"))
 
     implementation(libs.app.compat)
+    implementation(libs.ktx.core)
     implementation(libs.compose.activity)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)
+    implementation(libs.compose.views.material)
     implementation(libs.compose.foundation)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
+
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.lotti)
 }

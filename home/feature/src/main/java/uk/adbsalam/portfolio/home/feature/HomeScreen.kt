@@ -33,6 +33,7 @@ import uk.adbsalam.portfolio.home.feature.utils.HomeItemType
 import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
 import uk.adbsalam.portfolio.home.feature.utils.getDrawableRes
 import uk.adbsalam.portfolio.home.feature.utils.getRawRes
+import uk.adbsalam.portfolio.navigation.deeplinkGallery
 import uk.adbsalam.portfolio.navigation.deeplinkGesture
 import uk.adbsalam.portfolio.navigation.deeplinkPatrolla
 import uk.adbsalam.portfolio.navigation.deeplinkSnapit
@@ -94,7 +95,8 @@ internal fun HomeScreen(
 
                     when (item.deeplink) {
                         deeplinkPatrolla,
-                        deeplinkSnapit -> {
+                        deeplinkSnapit,
+                        deeplinkGallery -> {
                             navigateDeeplink(item.deeplink)
                             return@InfoCardByType
                         }

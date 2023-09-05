@@ -34,7 +34,7 @@ android {
 }
 
 snapIt {
-    testDir = "src/test/java/uk/adbsalam/portfolio/startup/feature"
+    testDir = "src/test/java/uk/adbsalam/portfolio/gallery/feature"
     flavor = "debug"
 }
 

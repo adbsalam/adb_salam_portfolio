@@ -1,7 +1,6 @@
 package uk.adbsalam.portfolio.navigation
 
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 
 private fun NavController.rootNavOptions() = NavOptions
@@ -33,4 +32,8 @@ fun NavController.navigateToVideos() {
 
 fun NavController.navigateToReviews() {
     this.navigate(NavigationScreen.OnReviews.route(), this.rootNavOptions())
+}
+
+fun NavController.navigateToFullScreenGallery(galleryArgs: FullScreenArgs) {
+    this.toDestination(NavigationScreen.OnFullScreenGallery, galleryArgs)
 }

@@ -26,7 +26,8 @@ private val DarkColorScheme = darkColorScheme(
     tertiary = tertiary_dark,
     background = secondary_dark,
     onPrimary = Color.White,
-    secondaryContainer = primary_dark
+    secondaryContainer = primary_dark,
+    inverseSurface = Color.Black
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -34,7 +35,8 @@ private val LightColorScheme = lightColorScheme(
     secondary = secondary_light,
     tertiary = tertiary_light,
     background = Color.White,
-    secondaryContainer = secondary_container_light
+    secondaryContainer = secondary_container_light,
+    inverseSurface = Color.White
 )
 
 private val Christmas = lightColorScheme(
@@ -43,6 +45,7 @@ private val Christmas = lightColorScheme(
     tertiary = Color.White,
     background = Color(0xFFF08A8A),
     secondaryContainer = Color.White,
+    inverseSurface = Color.Red
 )
 
 /**
@@ -75,8 +78,7 @@ fun Adb_Theme(
         try { // paparazzi throws exception
             val window = (view.context as Activity).window
             WindowCompat.setDecorFitsSystemWindows(window, false)
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }
@@ -91,9 +93,21 @@ fun Adb_Theme(
             headlineLarge = MaterialTheme.typography.headlineLarge.copy(fontFamily = appFont),
             headlineMedium = MaterialTheme.typography.headlineMedium.copy(fontFamily = appFont),
             headlineSmall = MaterialTheme.typography.headlineSmall.copy(fontFamily = appFont),
-            titleLarge = MaterialTheme.typography.titleLarge.copy(fontFamily = appFont, fontWeight = FontWeight.Bold, fontSize = 18.sp),
-            titleMedium = MaterialTheme.typography.titleMedium.copy(fontFamily = appFont,  fontWeight = FontWeight.Bold, fontSize = 16.sp),
-            titleSmall = MaterialTheme.typography.titleSmall.copy(fontFamily = appFont,  fontWeight = FontWeight.SemiBold, fontSize = 14.sp),
+            titleLarge = MaterialTheme.typography.titleLarge.copy(
+                fontFamily = appFont,
+                fontWeight = FontWeight.Bold,
+                fontSize = 18.sp
+            ),
+            titleMedium = MaterialTheme.typography.titleMedium.copy(
+                fontFamily = appFont,
+                fontWeight = FontWeight.Bold,
+                fontSize = 16.sp
+            ),
+            titleSmall = MaterialTheme.typography.titleSmall.copy(
+                fontFamily = appFont,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 14.sp
+            ),
             bodyLarge = MaterialTheme.typography.bodyLarge.copy(fontFamily = appFont),
             bodyMedium = MaterialTheme.typography.bodyMedium.copy(fontFamily = appFont),
             bodySmall = MaterialTheme.typography.bodySmall.copy(fontFamily = appFont),

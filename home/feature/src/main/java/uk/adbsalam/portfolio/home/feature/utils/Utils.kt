@@ -49,6 +49,7 @@ internal fun getRawRes(res: String): Int {
     return when (res) {
         "patrol" -> R.raw.lotti_app_patrolla
         "gesture" -> R.raw.ic_tv
+        "gallery" -> R.raw.gallery
         else -> 0
     }
 }
