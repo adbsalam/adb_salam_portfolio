@@ -8,6 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import uk.adbsalam.portfolio.gallery.feature.Gallery
+import uk.adbsalam.portfolio.gallery.feature.fullscreen.FullscreenGallery
 import uk.adbsalam.portfolio.navigation.NavigationScreen
 import uk.adbsalam.portfolio.navigation.composeRoute
 import uk.adbsalam.portfolio.navigation.route
@@ -38,7 +40,7 @@ fun RootNavGraph(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Text(text = "Patrolla Page")
+                    Text(text = "patrolla Page")
                 }
             }
 
@@ -49,6 +51,14 @@ fun RootNavGraph(
                 ) {
                     Text(text = "Snapit Page")
                 }
+            }
+
+            composeRoute(NavigationScreen.OnGallery) {
+                Gallery(navController = navController)
+            }
+
+            composeRoute(NavigationScreen.OnFullScreenGallery) {
+                FullscreenGallery(navController = navController)
             }
         }
     }

@@ -52,6 +52,7 @@ compose-ui = { group = "androidx.compose.ui", name = "ui" }
 compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-material = { group = "androidx.compose.material3", name = "material3" }
+compose-views-material = { group = "com.google.android.material", name = "material", version = "1.11.0-alpha02" }
 compose-nav = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 compose-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
