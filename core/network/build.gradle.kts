@@ -1,3 +1,5 @@
+apply<BaseConfig>()
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -7,17 +9,7 @@ plugins {
 }
 
 android {
-    namespace = "uk.adbsalam.portfolio.network"
-    compileSdk = 33
-
-    defaultConfig {
-        minSdk = 24
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+    namespace = asNameSpace("network")
 }
 
 dependencies {

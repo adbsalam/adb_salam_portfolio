@@ -1,3 +1,5 @@
+apply<ComposableConfig>()
+
 plugins {
    alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -5,26 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "uk.adbsalam.portfolio.navigation"
-    compileSdk = 33
-
-    defaultConfig {
-        minSdk = 21
-    }
-
-    @Suppress("UnstableApiUsage")
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+    namespace = asNameSpace("navigation")
 }
 
 dependencies {

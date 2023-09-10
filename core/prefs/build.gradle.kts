@@ -1,3 +1,5 @@
+apply<BaseConfig>()
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -7,21 +9,12 @@ plugins {
 }
 
 android {
-    namespace = "uk.adbsalam.portfolio.core.prefs"
-    compileSdk = 33
-
-    defaultConfig {
-        minSdk = 24
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+    namespace = asNameSpace("core.prefs")
 }
 
 dependencies {
-    implementation(project(":utils"))
+    applyProject(utils.module)
+
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     testImplementation(libs.junit)

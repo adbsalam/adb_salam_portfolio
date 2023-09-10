@@ -1,5 +1,7 @@
 import uk.adbsalam.snapit.plugin.snapIt
 
+apply<ComposableConfig>()
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -9,39 +11,21 @@ plugins {
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.android.hilt.plugin)
 }
+
 android {
-    namespace = "uk.adbsalam.portfolio.gallery.feature"
-    compileSdk = 33
-
-    defaultConfig {
-        minSdk = 24
-    }
-
-    @Suppress("UnstableApiUsage")
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+    namespace = asNameSpace("gallery.feature")
 }
 
 snapIt {
-    testDir = "src/test/java/uk/adbsalam/portfolio/gallery/feature"
-    flavor = "debug"
+    testDir = gallery.snapFeature
+    flavor = DEBUG_FLAVOR
 }
 
 dependencies {
-    implementation(project(":ui:components"))
-    implementation(project(":ui:theming"))
-    implementation(project(":utils"))
-    implementation(project(":navigation"))
+    applyProject(ui.components)
+    applyProject(ui.theming)
+    applyProject(utils.module)
+    applyProject(navigation.module)
 
     implementation(libs.app.compat)
     implementation(libs.ktx.core)

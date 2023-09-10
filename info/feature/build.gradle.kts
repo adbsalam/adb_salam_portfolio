@@ -1,5 +1,7 @@
 import uk.adbsalam.snapit.plugin.snapIt
 
+apply<ComposableConfig>()
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -11,40 +13,21 @@ plugins {
 }
 
 android {
-    namespace = "uk.adbsalam.portfolio.info.feature"
-    compileSdk = 33
-
-    defaultConfig {
-        minSdk = 24
-    }
-
-    @Suppress("UnstableApiUsage")
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+    namespace = asNameSpace("info.feature")
 }
 
 snapIt {
-    testDir = "src/test/java/uk/adbsalam/portfolio/info/feature"
-    flavor = "debug"
+    testDir = info.snapFeature
+    flavor = DEBUG_FLAVOR
 }
 
 dependencies {
-    implementation(project(":ui:components"))
-    implementation(project(":ui:theming"))
-    implementation(project(":utils"))
-    implementation(project(":settings:feature"))
-    implementation(project(":info:data"))
-    implementation(project(":core:network"))
+    applyProject(ui.components)
+    applyProject(ui.theming)
+    applyProject(utils.module)
+    applyProject(settings.feature)
+    applyProject(info.data)
+    applyProject(core.network)
 
     implementation(libs.compose.lotti)
     implementation(libs.compose.runtime)
