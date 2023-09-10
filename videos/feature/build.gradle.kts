@@ -1,6 +1,6 @@
 import uk.adbsalam.snapit.plugin.snapIt
 
-apply<FeatureModuleConfig>()
+apply<ComposableConfig>()
 
 plugins {
     alias(libs.plugins.android.library)
@@ -17,7 +17,7 @@ android {
 }
 
 snapIt {
-    testDir = asSnapName("videos.feature")
+    testDir = videos.snapFeature
     flavor = DEBUG_FLAVOR
 }
 

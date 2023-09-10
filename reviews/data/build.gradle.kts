@@ -1,4 +1,4 @@
-apply<DataModuleConfig>()
+apply<BaseConfig>()
 
 plugins {
     alias(libs.plugins.android.library)

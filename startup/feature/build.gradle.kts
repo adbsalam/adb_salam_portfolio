@@ -1,6 +1,6 @@
 import uk.adbsalam.snapit.plugin.snapIt
 
-apply<FeatureModuleConfig>()
+apply<ComposableConfig>()
 
 plugins {
     alias(libs.plugins.android.library)
@@ -17,7 +17,7 @@ android {
 }
 
 snapIt {
-    testDir = asSnapName("startup.feature")
+    testDir = startup.snapFeature
     flavor = DEBUG_FLAVOR
 }
 
@@ -26,7 +26,7 @@ dependencies {
     applyProject(ui.theming)
     applyProject(utils.module)
     applyProject(core.prefs)
-    applyProject(navhost.feature)
+    applyProject(navHost.feature)
 
     implementation(libs.app.compat)
     implementation(libs.compose.activity)

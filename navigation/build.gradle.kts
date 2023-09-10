@@ -1,4 +1,4 @@
-apply<FeatureModuleConfig>()
+apply<ComposableConfig>()
 
 plugins {
    alias(libs.plugins.android.library)
