@@ -3,18 +3,10 @@ plugins {
     alias(libs.plugins.android.kotlin)
 }
 
+apply<DataModuleConfig>()
+
 android {
     namespace = "uk.adbsalam.portfolio.utils"
-    compileSdk = 33
-
-    defaultConfig {
-        minSdk = 24
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
 }
 
 dependencies {}
