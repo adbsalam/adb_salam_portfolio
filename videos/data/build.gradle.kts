@@ -1,3 +1,5 @@
+apply<DataModuleConfig>()
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -6,19 +8,17 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
 }
 
-apply<DataModuleConfig>()
-
 android {
-    namespace = "uk.adbsalam.portfolio.videos.data"
+    namespace = asNameSpace("videos.data")
 }
 
 dependencies {
-    implementation(project(":core:network"))
+    applyProject(core.network)
+
     implementation(libs.okhttp)
     implementation(libs.hilt.android)
     implementation(libs.retrofit)
     implementation(libs.moshi)
     ksp(libs.moshi.codegen)
-
     kapt(libs.hilt.compiler)
 }

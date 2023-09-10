@@ -1,3 +1,5 @@
+apply<DataModuleConfig>()
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -6,14 +8,13 @@ plugins {
     id("kotlin-parcelize")
 }
 
-apply<DataModuleConfig>()
-
 android {
-    namespace = "uk.adbsalam.portfolio.core.prefs"
+    namespace = asNameSpace("core.prefs")
 }
 
 dependencies {
-    implementation(project(":utils"))
+    applyProject(utils.module)
+
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
     testImplementation(libs.junit)

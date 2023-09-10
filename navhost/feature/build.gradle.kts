@@ -1,5 +1,7 @@
 import uk.adbsalam.snapit.plugin.snapIt
 
+apply<FeatureModuleConfig>()
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -11,43 +13,24 @@ plugins {
 }
 
 android {
-    namespace = "uk.adbsalam.portfolio.navhost.feature"
-    compileSdk = 33
-
-    defaultConfig {
-        minSdk = 24
-    }
-
-    @Suppress("UnstableApiUsage")
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
+    namespace = asNameSpace("navhost.feature")
 }
 
 snapIt {
-    testDir = "src/test/java/uk/adbsalam/portfolio/navhost/feature"
-    flavor = "debug"
+    testDir = asSnapName("navhost.feature")
+    flavor = DEBUG_FLAVOR
 }
 
 dependencies {
-    implementation(project(":ui:components"))
-    implementation(project(":ui:theming"))
-    implementation(project(":utils"))
-    implementation(project(":home:feature"))
-    implementation(project(":info:feature"))
-    implementation(project(":navigation"))
-    implementation(project(":videos:feature"))
-    implementation(project(":reviews:feature"))
-    implementation(project(":gallery:feature"))
+    applyProject(ui.components)
+    applyProject(ui.theming)
+    applyProject(home.feature)
+    applyProject(info.feature)
+    applyProject(videos.feature)
+    applyProject(reviews.feature)
+    applyProject(gallery.feature)
+    applyProject(navigation.module)
+    applyProject(utils.module)
 
     implementation(libs.app.compat)
     implementation(libs.compose.runtime)

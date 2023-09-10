@@ -1,3 +1,5 @@
+apply<DataModuleConfig>()
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -6,10 +8,8 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
 }
 
-apply<DataModuleConfig>()
-
 android {
-    namespace = "uk.adbsalam.portfolio.network"
+    namespace = asNameSpace("network")
 }
 
 dependencies {

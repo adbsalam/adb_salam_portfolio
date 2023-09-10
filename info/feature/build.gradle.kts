@@ -1,5 +1,7 @@
 import uk.adbsalam.snapit.plugin.snapIt
 
+apply<FeatureModuleConfig>()
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
@@ -10,15 +12,13 @@ plugins {
     alias(libs.plugins.android.hilt.plugin)
 }
 
-apply<FeatureModuleConfig>()
-
 android {
-    namespace = "uk.adbsalam.portfolio.info.feature"
+    namespace = asNameSpace("info.feature")
 }
 
 snapIt {
-    testDir = "src/test/java/uk/adbsalam/portfolio/info/feature"
-    flavor = "debug"
+    testDir = asSnapName("info.feature")
+    flavor = DEBUG_FLAVOR
 }
 
 dependencies {
