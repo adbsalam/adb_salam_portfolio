@@ -10,27 +10,10 @@ plugins {
     alias(libs.plugins.android.hilt.plugin)
 }
 
+apply<FeatureModuleConfig>()
+
 android {
     namespace = "uk.adbsalam.portfolio.info.feature"
-    compileSdk = 33
-
-    defaultConfig {
-        minSdk = 24
-    }
-
-    @Suppress("UnstableApiUsage")
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
 }
 
 snapIt {
@@ -39,12 +22,12 @@ snapIt {
 }
 
 dependencies {
-    implementation(project(":ui:components"))
-    implementation(project(":ui:theming"))
-    implementation(project(":utils"))
-    implementation(project(":settings:feature"))
-    implementation(project(":info:data"))
-    implementation(project(":core:network"))
+    applyProject(ui.components)
+    applyProject(ui.theming)
+    applyProject(utils.module)
+    applyProject(settings.feature)
+    applyProject(info.data)
+    applyProject(core.network)
 
     implementation(libs.compose.lotti)
     implementation(libs.compose.runtime)
