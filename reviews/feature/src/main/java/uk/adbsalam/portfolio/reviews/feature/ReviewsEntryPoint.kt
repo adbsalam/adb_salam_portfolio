@@ -6,7 +6,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.ErrorPage
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.reviews.data.objects.ReviewItems
@@ -57,9 +56,7 @@ private fun Reviews(
         }
 
         is ReviewsState.OnReviews -> {
-            AnimatedColumn {
-                ReviewsScreen(reviews = uiState.reviews)
-            }
+            ReviewsScreen(reviews = uiState.reviews)
         }
     }
 }

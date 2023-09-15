@@ -1,7 +1,6 @@
 package uk.adbsalam.portfolio.home.feature
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.foundation.layout.Column
@@ -50,7 +49,6 @@ fun HomeNavHost(
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .animateContentSize()
                     .padding(bottom = it.calculateBottomPadding())
             ) {
                 HomeNavGraph(

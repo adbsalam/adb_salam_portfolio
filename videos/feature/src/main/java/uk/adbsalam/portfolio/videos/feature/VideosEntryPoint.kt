@@ -2,12 +2,10 @@ package uk.adbsalam.portfolio.videos.feature
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.ErrorPage
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.theming.PreviewDark
@@ -60,12 +58,10 @@ private fun Videos(
         }
 
         is VideosState.OnVideos -> {
-            AnimatedColumn {
-                VideosScreen(
-                    videos = uiState.videos,
-                    currentTheme = currentTheme
-                )
-            }
+            VideosScreen(
+                videos = uiState.videos,
+                currentTheme = currentTheme
+            )
         }
     }
 }

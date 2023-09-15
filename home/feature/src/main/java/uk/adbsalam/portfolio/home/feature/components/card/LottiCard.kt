@@ -11,10 +11,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
@@ -44,7 +42,6 @@ internal fun LottiInfoCard(
     maxIteration: Int = Integer.MAX_VALUE,
     action: () -> Unit,
 ) {
-
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(resId))
     val progress by animateLottieCompositionAsState(
         composition,
@@ -95,7 +92,7 @@ internal fun LottiInfoCard(
 internal fun LottiInfoCardLightPreview() {
     Adb_Theme {
         LottiInfoCard(
-            resId = R.raw.lotti_app_patrolla,
+            resId = R.raw.lotti_patrolla,
             tags = HomeScreenItem.createMock().first().tags,
             title = "Patrolla Android App",
             body = "This is some body of this view",
@@ -110,7 +107,7 @@ internal fun LottiInfoCardLightPreview() {
 internal fun LottiInfoCardDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         LottiInfoCard(
-            resId = R.raw.lotti_app_patrolla,
+            resId = R.raw.lotti_patrolla,
             tags = HomeScreenItem.createMock().first().tags,
             title = "Patrolla Android App",
             body = "This is some body of this view",
