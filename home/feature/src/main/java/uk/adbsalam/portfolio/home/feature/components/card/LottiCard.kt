@@ -14,9 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.airbnb.lottie.AsyncUpdates
+import com.airbnb.lottie.RenderMode
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
-import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
@@ -39,17 +40,11 @@ internal fun LottiInfoCard(
     tags: List<String>,
     title: String,
     body: String,
-    maxIteration: Int = Integer.MAX_VALUE,
+    animate: Boolean,
     action: () -> Unit,
 ) {
-    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(resId))
-    val progress by animateLottieCompositionAsState(
-        composition,
-        iterations = maxIteration,
-        isPlaying = true
-    )
-
     val readMore = remember { mutableStateOf(false) }
+    val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(resId))
 
     Column(
         modifier = Modifier
@@ -64,15 +59,19 @@ internal fun LottiInfoCard(
                 contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(250.dp)
+                    .height(200.dp)
             )
         } else {
             LottieAnimation(
                 composition = composition,
-                progress = { progress },
+                isPlaying = false,
+                restartOnPlay = false,
+                iterations = Int.MAX_VALUE,
+                renderMode = RenderMode.HARDWARE,
+                asyncUpdates = AsyncUpdates.ENABLED,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(250.dp)
+                    .height(200.dp)
             )
         }
 
@@ -96,6 +95,7 @@ internal fun LottiInfoCardLightPreview() {
             tags = HomeScreenItem.createMock().first().tags,
             title = "Patrolla Android App",
             body = "This is some body of this view",
+            animate = true,
             action = {/* unused */ }
         )
     }
@@ -111,6 +111,7 @@ internal fun LottiInfoCardDarkPreview() {
             tags = HomeScreenItem.createMock().first().tags,
             title = "Patrolla Android App",
             body = "This is some body of this view",
+            animate = true,
             action = { /* unused */ }
         )
     }
