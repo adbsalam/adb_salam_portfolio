@@ -64,7 +64,7 @@ internal fun LottiInfoCard(
         } else {
             LottieAnimation(
                 composition = composition,
-                isPlaying = false,
+                isPlaying = animate,
                 restartOnPlay = false,
                 iterations = Int.MAX_VALUE,
                 renderMode = RenderMode.HARDWARE,
