@@ -67,7 +67,11 @@ fun FullscreenGallery(
     val media = FullScreenMedia.mockkGallery().firstOrNull() { it.title == fullScreenArgs.title }
         ?: FullScreenMedia.mockkGallery().first()
 
-    val pagerState = rememberPagerState(initialPage = fullScreenArgs.index)
+    val pagerState = rememberPagerState(
+        initialPage = fullScreenArgs.index,
+        initialPageOffsetFraction = 0f,
+        pageCount = { media.images.size }
+    )
 
     Box(
         modifier = Modifier
@@ -75,12 +79,6 @@ fun FullscreenGallery(
             .background(Color.Black)
     ) {
         HorizontalPager(
-            state = pagerState,
-            verticalAlignment = Alignment.CenterVertically,
-            userScrollEnabled = !isTransforming,
-            pageCount = media.images.size,
-            beyondBoundsPageCount = 2,
-            pageSpacing = 12.dp,
             modifier = Modifier
                 .fillMaxSize()
                 .transformer(
@@ -88,21 +86,28 @@ fun FullscreenGallery(
                     contentSize = contentSize,
                     onTap = { showControls = !showControls },
                     onTransForming = { isTransforming = it }
-                )
-        ) {
-            Box(modifier = Modifier.fillMaxSize()) {
-                Image(
-                    modifier = Modifier
-                        .aspectRatio(4f / 3f)
-                        .onSizeChanged { contentSize.value = it }
-                        .wrapContentHeight()
-                        .align(Alignment.Center),
-                    contentScale = ContentScale.FillBounds,
-                    painter = painterResource(id = media.images[it]),
-                    contentDescription = null
-                )
+                ),
+            state = pagerState,
+            pageSpacing = 12.dp,
+            userScrollEnabled = !isTransforming,
+            reverseLayout = false,
+            contentPadding = PaddingValues(0.dp),
+            beyondBoundsPageCount = 2,
+            pageContent = {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    Image(
+                        modifier = Modifier
+                            .aspectRatio(4f / 3f)
+                            .onSizeChanged { contentSize.value = it }
+                            .wrapContentHeight()
+                            .align(Alignment.Center),
+                        contentScale = ContentScale.FillBounds,
+                        painter = painterResource(id = media.images[it]),
+                        contentDescription = null
+                    )
+                }
             }
-        }
+        )
 
         AnimatedVisibility(
             visible = showControls,

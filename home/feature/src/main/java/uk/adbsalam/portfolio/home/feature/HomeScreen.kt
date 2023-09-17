@@ -91,8 +91,10 @@ internal fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             items.forEach { item ->
-                InfoCardByType(item = item) {
-
+                InfoCardByType(
+                    item = item,
+                    animateLottie = !scrollState.isScrollInProgress
+                ) {
                     when (item.deeplink) {
                         deeplinkPatrolla,
                         deeplinkSnapit,
@@ -170,6 +172,7 @@ internal fun HomeDarkPreview() {
 @Composable
 private fun InfoCardByType(
     item: HomeScreenItem,
+    animateLottie: Boolean,
     action: () -> Unit
 ) {
     when (item.type) {
@@ -188,6 +191,7 @@ private fun InfoCardByType(
                 title = item.title,
                 body = item.body,
                 resId = getRawRes(item.res),
+                animate = animateLottie,
                 action = action
             )
         }
@@ -198,6 +202,7 @@ private fun InfoCardByType(
                 title = item.title,
                 body = item.body,
                 resId = getRawRes(item.res),
+                animate = animateLottie,
                 action = action
             )
         }

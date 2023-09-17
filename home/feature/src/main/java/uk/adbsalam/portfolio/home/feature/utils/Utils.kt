@@ -47,9 +47,9 @@ internal enum class HomeItemType(val type: String) {
 @RawRes
 internal fun getRawRes(res: String): Int {
     return when (res) {
-        "patrol" -> R.raw.lotti_app_patrolla
-        "gesture" -> R.raw.ic_tv
-        "gallery" -> R.raw.gallery
+        "patrol" -> R.raw.lotti_patrolla
+        "gesture" -> R.raw.lotti_tv
+        "gallery" -> R.raw.lotti_camera
         else -> 0
     }
 }

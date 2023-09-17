@@ -7,7 +7,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import uk.adbsalam.portfolio.components.AnimatedColumn
 import uk.adbsalam.portfolio.components.ErrorPage
 import uk.adbsalam.portfolio.components.LoadingLotti
 import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
@@ -72,16 +71,13 @@ internal fun Home(
         }
 
         is HomeScreenState.OnHome -> {
-            AnimatedColumn {
-                HomeScreen(
-                    items = uiState.homeItems,
-                    onDynamicColor = onDynamicColor,
-                    onTheme = onTheme,
-                    navigateDeeplink = navigateDeeplink
-                )
-            }
+            HomeScreen(
+                items = uiState.homeItems,
+                onDynamicColor = onDynamicColor,
+                onTheme = onTheme,
+                navigateDeeplink = navigateDeeplink
+            )
         }
-
     }
 }
 

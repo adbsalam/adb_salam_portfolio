@@ -16,7 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -47,7 +47,7 @@ internal fun CircularChart(
     percent: Float
 ) {
 
-    var percentFloat by remember { mutableStateOf(0f) }
+    var percentFloat by remember { mutableFloatStateOf(0f) }
 
     LaunchedEffect(key1 = null) {
         percentFloat = percent
@@ -67,7 +67,7 @@ internal fun CircularChart(
         Box {
             CircularProgressIndicator(
                 modifier = Modifier.size(100.dp),
-                strokeWidth = 20.dp,
+                strokeWidth = 16.dp,
                 progress = progressAnimation,
                 trackColor = MaterialTheme.colorScheme.surfaceVariant,
             )

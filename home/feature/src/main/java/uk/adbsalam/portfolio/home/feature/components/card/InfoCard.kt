@@ -50,7 +50,7 @@ internal fun InfoCard(
             contentScale = ContentScale.FillBounds,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(250.dp),
+                .height(200.dp),
         )
 
         CardInfoText(
