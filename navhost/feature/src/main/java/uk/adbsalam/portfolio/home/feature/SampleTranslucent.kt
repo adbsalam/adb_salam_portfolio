@@ -33,62 +33,36 @@ fun Cover() {
     var animateOne by remember { mutableFloatStateOf(1f) }
     var animateTwo by remember { mutableFloatStateOf(1f) }
     var animateThree by remember { mutableFloatStateOf(1f) }
-    var animateFour by remember { mutableFloatStateOf(1f) }
-    var animateFive by remember { mutableFloatStateOf(1f) }
+
     var twoReset by rememberSaveable { mutableStateOf(false) }
     var threeReset by rememberSaveable { mutableStateOf(false) }
-    var fourReset by rememberSaveable { mutableStateOf(false) }
-    var fiveReset by rememberSaveable { mutableStateOf(false) }
-
 
     val animateOneAlpha by animateFloatAsState(
         targetValue = animateOne,
         label = "",
-        animationSpec = tween(2000),
+        animationSpec = tween(1000),
     )
 
     val animateTwoAlpha by animateFloatAsState(
         targetValue = animateTwo,
         label = "",
-        animationSpec = tween(2000)
+        animationSpec = tween(1000)
     )
 
     val animateThreeAlpha by animateFloatAsState(
         targetValue = animateThree,
         label = "",
-        animationSpec = tween(2000),
+        animationSpec = tween(1000),
     )
 
-    val animateFourAlpha by animateFloatAsState(
-        targetValue = animateFour,
-        label = "",
-        animationSpec = tween(2000),
-    )
-
-    val animateFiveAlpha by animateFloatAsState(
-        targetValue = animateFive,
-        label = "",
-        animationSpec = tween(2000),
-    )
-
-    if(animateOneAlpha < 0.5 && !twoReset){
+    if(animateOneAlpha < 0.8 && !twoReset){
         animateTwo = 0f
         twoReset = true
     }
 
-    if(animateTwoAlpha < 0.5 && !threeReset){
+    if(animateTwoAlpha < 0.8 && !threeReset){
         animateThree = 0f
         threeReset = true
-    }
-
-    if(animateThreeAlpha < 0.5 && !fourReset){
-        animateFour = 0f
-        fourReset = true
-    }
-
-    if(animateFourAlpha < 0.5 && !fiveReset){
-        animateFive = 0f
-        fiveReset = true
     }
 
     Box(
@@ -107,25 +81,17 @@ fun Cover() {
                     contentDescription = null
                 )
 
-
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
                         .clickable {
                             animateOne = if (animateOne == 0f) 1f else 0f
-                            animateTwo = if (animateOne == 0f) 1f else 0f
-                            animateThree = if (animateOne == 0f) 1f else 0f
-                            animateFour = if (animateOne == 0f) 1f else 0f
-                            animateFive = if (animateOne == 0f) 1f else 0f
-
                         }
                         .background(
                             Brush.linearGradient(
                                 0F to Color.Red.copy(animateOneAlpha),
-                                0.25F to Color.Red.copy(animateTwoAlpha),
-                                0.5F to Color.Red.copy(animateThreeAlpha),
-                                0.75F to Color.Red.copy(animateFourAlpha),
-                                1F to Color.Red.copy(animateFiveAlpha),
+                                0.5F to Color.Red.copy(animateTwoAlpha),
+                                1F to Color.Red.copy(animateThreeAlpha),
                             )
                         )
                 )
