@@ -10,20 +10,20 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.TileMode
 import uk.adbsalam.portfolio.components.R
 
-const val SHIMMER_ANIMATION_DURATION = 500
+const val SHIMMER_ANIMATION_DURATION = 300
 const val SHIMMER_GRADIENTS_THRESHOLD = 0.97f
 
 data class ShimmerCardItem(
     @DrawableRes val imageRes: Int,
     val title: String,
-    val body: String
+    val body: String,
 ) {
     companion object {
         fun mockCards() = listOf(
             ShimmerCardItem(
                 R.drawable.shimm,
                 "Synchronised Shimmer",
-                "Shimmer skeleton loader reinvented, Have a look at this sample"
+                "Shimmer skeleton loader reinvented, Have a look at this sample",
             ),
 
             ShimmerCardItem(

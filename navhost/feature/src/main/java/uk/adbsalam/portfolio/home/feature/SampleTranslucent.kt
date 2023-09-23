@@ -177,7 +177,7 @@ fun Cover(
         contentAlignment = Alignment.Center
     ) {
         Card(
-            modifier = Modifier.size(240.dp, 300.dp),
+            modifier = Modifier.size(200.dp, 300.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
             colors = CardDefaults.cardColors(containerColor = Color.White)
         ) {

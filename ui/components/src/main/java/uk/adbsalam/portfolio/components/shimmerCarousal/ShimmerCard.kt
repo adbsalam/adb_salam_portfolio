@@ -57,7 +57,7 @@ fun ShimmerCard(
         if (!isShimmerComplete) {
             delay(1000)
             if (currentIndex > 0) {
-                delay(200)
+                delay(150)
             } //extra delay to let first anim start first
             animOne = 0f
 
