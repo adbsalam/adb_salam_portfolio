@@ -39,14 +39,13 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.theming.light_gradient_color_two
 
-@Preview
 @Composable
 fun Cover(
     currentIndex: Int = 0,
+    startHere: MutableState<Float>,
     duration: MutableState<Float> = remember { mutableStateOf(1000f) },
     threshold: MutableState<Float> = remember { mutableStateOf(0.97f) }
 ) {
@@ -54,7 +53,6 @@ fun Cover(
 
     var componentWidth by remember { mutableStateOf(0f) }
 
-    var animateOne by remember { mutableFloatStateOf(1f) }
     var animateTwo by remember { mutableFloatStateOf(1f) }
     var animateThree by remember { mutableFloatStateOf(1f) }
     var animateFour by remember { mutableFloatStateOf(1f) }
@@ -68,7 +66,7 @@ fun Cover(
     var manualReset by remember { mutableStateOf(false) }
 
     val animateOneAlpha by animateFloatAsState(
-        targetValue = animateOne,
+        targetValue = startHere.value,
         label = "",
         animationSpec = tween(duration.value.toInt()),
     )
@@ -117,6 +115,29 @@ fun Cover(
         fiveReset = true
     }
 
+
+    val background = if(currentIndex == 0) {
+        Brush.radialGradient(
+            0.0F to light_gradient_color_two.copy(animateOneAlpha),
+            0.4F to light_gradient_color_two.copy(animateTwoAlpha),
+            0.6F to light_gradient_color_two.copy(animateThreeAlpha),
+            1F to light_gradient_color_two.copy(animateThreeAlpha),
+            center = Offset(0f, 100f),
+            radius = 900f,
+            tileMode = TileMode.Decal
+        )
+    }
+    else{
+        Brush.radialGradient(
+            0.0F to light_gradient_color_two.copy(animateOneAlpha),
+            0.4F to light_gradient_color_two.copy(animateTwoAlpha),
+            0.6F to light_gradient_color_two.copy(animateThreeAlpha),
+            1F to light_gradient_color_two.copy(animateThreeAlpha),
+            center = Offset(-100f, 200f),
+            radius = 900f,
+            tileMode = TileMode.Decal
+        )
+    }
     Box(
         modifier = Modifier.wrapContentSize(),
         contentAlignment = Alignment.Center
@@ -150,9 +171,9 @@ fun Cover(
                             .pointerInput(Unit) {
                                 detectTapGestures(
                                     onTap = {
-                                        if (animateOne == 0f) {
+                                        if (startHere.value == 0f) {
                                             manualReset = true
-                                            animateOne = 1f
+                                            startHere.value = 1f
                                             animateTwo = 1f
                                             animateThree = 1f
                                             animateFour = 1f
@@ -165,23 +186,13 @@ fun Cover(
 
                                         } else {
                                             manualReset = false
-                                            animateOne = 0f
+                                            startHere.value = 0f
                                         }
                                     }
                                 )
                             }
                             .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
-                            .background(
-                                Brush.radialGradient(
-                                    0.0F to light_gradient_color_two.copy(animateOneAlpha),
-                                    0.4F to light_gradient_color_two.copy(animateTwoAlpha),
-                                    0.6F to light_gradient_color_two.copy(animateThreeAlpha),
-                                    1F to light_gradient_color_two.copy(animateThreeAlpha),
-                                    center = Offset(100f, 50f),
-                                    radius = 800f,
-                                    tileMode = TileMode.Decal
-                                )
-                            )
+                            .background(background)
                     )
                 }
             }

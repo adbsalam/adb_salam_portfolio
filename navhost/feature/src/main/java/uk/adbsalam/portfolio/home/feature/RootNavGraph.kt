@@ -10,12 +10,14 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.delay
 import uk.adbsalam.portfolio.gallery.feature.Gallery
 import uk.adbsalam.portfolio.gallery.feature.fullscreen.FullscreenGallery
 import uk.adbsalam.portfolio.navigation.NavigationScreen
@@ -49,13 +51,27 @@ fun RootNavGraph(
                     verticalArrangement = Arrangement.Center
                 ) {
 
-                    var duration = rememberSaveable { mutableStateOf(5000f) }
-                    var threshold = rememberSaveable { mutableStateOf(0.5f) }
+                    var duration = rememberSaveable { mutableStateOf(500f) }
+                    var threshold = rememberSaveable { mutableStateOf(0.97f) }
+
+                    var startOne = rememberSaveable { mutableStateOf(1f) }
+                    var startTwo = rememberSaveable { mutableStateOf(1f) }
+
+                    LaunchedEffect(
+                        key1 = null,
+                        block = {
+                            delay(1000)
+                            startOne.value = 0f
+
+                            delay(150)
+                            startTwo.value = 0f
+                        }
+                    )
 
                     Row() {
-                        Cover(threshold = threshold, duration = duration)
+                        Cover(threshold = threshold, duration = duration, startHere = startOne)
                         Spacer(modifier = Modifier.width(12.dp))
-                        Cover(threshold = threshold, duration = duration, currentIndex = 1)
+                        Cover(threshold = threshold, duration = duration, currentIndex = 1, startHere = startTwo)
                     }
 
                     Slider(
