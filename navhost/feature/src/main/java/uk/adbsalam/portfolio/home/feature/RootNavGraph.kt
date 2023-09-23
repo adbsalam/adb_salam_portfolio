@@ -144,8 +144,6 @@ fun RootNavGraph(
                                 delay(150)
                                 startTwo.value = 0f
                                 startThree.value = 0f
-
-                                delay(20)
                                 startFour.value = 0f
                             }
                         }) {
