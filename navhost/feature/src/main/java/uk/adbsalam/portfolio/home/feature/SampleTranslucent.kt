@@ -47,7 +47,8 @@ fun Cover(
     currentIndex: Int = 0,
     startHere: MutableState<Float>,
     duration: MutableState<Float> = remember { mutableStateOf(1000f) },
-    threshold: MutableState<Float> = remember { mutableStateOf(0.97f) }
+    threshold: MutableState<Float> = remember { mutableStateOf(0.97f) },
+    manualReset: MutableState<Boolean>
 ) {
 
 
@@ -62,8 +63,6 @@ fun Cover(
     var threeReset by rememberSaveable { mutableStateOf(false) }
     var fourReset by rememberSaveable { mutableStateOf(false) }
     var fiveReset by rememberSaveable { mutableStateOf(false) }
-
-    var manualReset by remember { mutableStateOf(false) }
 
     val animateOneAlpha by animateFloatAsState(
         targetValue = startHere.value,
@@ -95,29 +94,29 @@ fun Cover(
         animationSpec = tween(duration.value.toInt()),
     )
 
-    if (animateOneAlpha < threshold.value && !twoReset && !manualReset) {
+    if (animateOneAlpha < threshold.value && !twoReset && !manualReset.value) {
         animateTwo = 0f
         twoReset = true
     }
 
-    if (animateTwoAlpha < threshold.value && !threeReset && !manualReset) {
+    if (animateTwoAlpha < threshold.value && !threeReset && !manualReset.value) {
         animateThree = 0f
         threeReset = true
     }
 
-    if (animateThreeAlpha < threshold.value && !fourReset && !manualReset) {
+    if (animateThreeAlpha < threshold.value && !fourReset && !manualReset.value) {
         animateFour = 0f
         fourReset = true
     }
 
-    if (animateFour < threshold.value && !fiveReset && !manualReset) {
+    if (animateFour < threshold.value && !fiveReset && !manualReset.value) {
         animateFive = 0f
         fiveReset = true
     }
 
 
-    val background = if(currentIndex == 0) {
-        Brush.radialGradient(
+    val background = when (currentIndex) {
+        0 -> Brush.radialGradient(
             0.0F to light_gradient_color_two.copy(animateOneAlpha),
             0.4F to light_gradient_color_two.copy(animateTwoAlpha),
             0.6F to light_gradient_color_two.copy(animateThreeAlpha),
@@ -126,18 +125,53 @@ fun Cover(
             radius = 900f,
             tileMode = TileMode.Decal
         )
-    }
-    else{
-        Brush.radialGradient(
+
+        1 -> Brush.radialGradient(
             0.0F to light_gradient_color_two.copy(animateOneAlpha),
             0.4F to light_gradient_color_two.copy(animateTwoAlpha),
             0.6F to light_gradient_color_two.copy(animateThreeAlpha),
             1F to light_gradient_color_two.copy(animateThreeAlpha),
-            center = Offset(-100f, 200f),
-            radius = 900f,
+            center = Offset(-900f, 200f),
+            radius = 3000f,
+            tileMode = TileMode.Decal
+        )
+
+        2 -> Brush.radialGradient(
+            0.0F to light_gradient_color_two.copy(animateOneAlpha),
+            0.4F to light_gradient_color_two.copy(animateTwoAlpha),
+            0.6F to light_gradient_color_two.copy(animateThreeAlpha),
+            1F to light_gradient_color_two.copy(animateThreeAlpha),
+            center = Offset(-200f, -900f),
+            radius = 3000f,
+            tileMode = TileMode.Decal
+        )
+
+        else -> Brush.radialGradient(
+            0.0F to light_gradient_color_two.copy(animateOneAlpha),
+            0.4F to light_gradient_color_two.copy(animateTwoAlpha),
+            0.6F to light_gradient_color_two.copy(animateThreeAlpha),
+            1F to light_gradient_color_two.copy(animateThreeAlpha),
+            center = Offset(-900f, -900f),
+            radius = 3000f,
             tileMode = TileMode.Decal
         )
     }
+
+
+    if(manualReset.value){
+        manualReset.value = true
+        startHere.value = 1f
+        animateTwo = 1f
+        animateThree = 1f
+        animateFour = 1f
+        animateFive = 1f
+
+        twoReset = false
+        threeReset = false
+        fourReset = false
+        fiveReset = false
+    }
+
     Box(
         modifier = Modifier.wrapContentSize(),
         contentAlignment = Alignment.Center
@@ -172,7 +206,7 @@ fun Cover(
                                 detectTapGestures(
                                     onTap = {
                                         if (startHere.value == 0f) {
-                                            manualReset = true
+                                            manualReset.value = true
                                             startHere.value = 1f
                                             animateTwo = 1f
                                             animateThree = 1f
@@ -185,7 +219,7 @@ fun Cover(
                                             fiveReset = false
 
                                         } else {
-                                            manualReset = false
+                                            manualReset.value = false
                                             startHere.value = 0f
                                         }
                                     }
