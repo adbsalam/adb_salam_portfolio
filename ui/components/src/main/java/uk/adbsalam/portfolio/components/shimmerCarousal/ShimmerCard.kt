@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.home.feature.shimmerCarousal
+package uk.adbsalam.portfolio.components.shimmerCarousal
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -17,7 +17,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -37,10 +36,11 @@ import kotlinx.coroutines.delay
 fun ShimmerCard(
     item: ShimmerCardItem,
     currentIndex: Int,
-    shimmerState: MutableState<LazyRowShimmerState>
+    shimmerState: LazyRowShimmerState,
+    onUpdateState: (LazyRowShimmerState.LazyRowItemShimmer) -> Unit,
 ) {
     val isShimmerComplete =
-        shimmerState.value.stateList.firstOrNull { it.index == currentIndex }?.isShimmerComplete
+        shimmerState.stateList.firstOrNull { it.index == currentIndex }?.isShimmerComplete
             ?: false
 
     var animOne by remember { mutableFloatStateOf(if (isShimmerComplete) 0f else 1f) }
@@ -60,7 +60,8 @@ fun ShimmerCard(
                 delay(150)
             } //extra delay to let first anim start first
             animOne = 0f
-            shimmerState.value.stateList.add(
+
+            onUpdateState(
                 LazyRowShimmerState.LazyRowItemShimmer(
                     index = currentIndex,
                     isShimmerComplete = true
@@ -79,74 +80,100 @@ fun ShimmerCard(
         threeReset = true
     }
 
-    val background =
-        shimmerRadialBackground(animateOneAlpha, animTwoAlpha, animThreeAlpha, currentIndex)
-
     Card(
         modifier = Modifier.size(200.dp, 300.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
     ) {
         Column {
-            Box(
-                modifier = Modifier
-                    .height(200.dp)
-                    .fillMaxWidth()
-            ) {
-                Image(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp)),
-                    contentScale = ContentScale.Crop,
-                    painter = painterResource(id = item.imageRes),
-                    contentDescription = null
-                )
 
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .pointerInput(Unit) {}
-                        .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
-                        .background(background)
-                )
-            }
+            ShimmerCardImage(
+                item = item,
+                alphaOne = animateOneAlpha,
+                alphaTwo = animTwoAlpha,
+                alphaThree = animThreeAlpha,
+                index = currentIndex
+            )
 
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(MaterialTheme.colorScheme.background)
-            ) {
-
-                Column(
-                    modifier = Modifier.padding(12.dp),
-                    verticalArrangement = Arrangement.spacedBy(10.dp)
-                ) {
-                    Text(
-                        text = item.title,
-                        style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onBackground
-                    )
-
-                    Text(
-                        text = item.body,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onBackground
-                    )
-                }
-
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(
-                            shimmerTextBackground(
-                                animateOneAlpha,
-                                animTwoAlpha,
-                                animThreeAlpha
-                            )
-                        )
-                )
-            }
+            ShimmerCardText(
+                item = item,
+                alphaOne = animateOneAlpha,
+                alphaTwo = animTwoAlpha,
+                alphaThree = animThreeAlpha
+            )
         }
     }
 }
+
+@Composable
+fun ShimmerCardImage(
+    item: ShimmerCardItem,
+    alphaOne: Float,
+    alphaTwo: Float,
+    alphaThree: Float,
+    index: Int
+) {
+    Box(
+        modifier = Modifier
+            .height(200.dp)
+            .fillMaxWidth()
+    ) {
+        Image(
+            modifier = Modifier
+                .fillMaxSize()
+                .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp)),
+            contentScale = ContentScale.Crop,
+            painter = painterResource(id = item.imageRes),
+            contentDescription = null
+        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .pointerInput(Unit) {}
+                .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
+                .background(shimmerRadialBackground(alphaOne, alphaTwo, alphaThree, index))
+        )
+    }
+}
+
+@Composable
+fun ShimmerCardText(
+    item: ShimmerCardItem,
+    alphaOne: Float,
+    alphaTwo: Float,
+    alphaThree: Float,
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(MaterialTheme.colorScheme.background)
+    ) {
+
+        Column(
+            modifier = Modifier.padding(12.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Text(
+                text = item.title,
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+
+            Text(
+                text = item.body,
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground
+            )
+        }
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(shimmerTextBackground(alphaOne, alphaTwo, alphaThree))
+        )
+    }
+}
+
+
 

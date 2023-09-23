@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.home.feature.shimmerCarousal
+package uk.adbsalam.portfolio.components.shimmerCarousal
 
 import androidx.annotation.DrawableRes
 import androidx.compose.animation.core.animateFloatAsState
@@ -21,7 +21,7 @@ data class ShimmerCardItem(
     companion object {
         fun mockCards() = List(5) {
             ShimmerCardItem(
-                R.drawable.preview,
+                R.drawable.thumb_swiss_2,
                 "Test Title",
                 "This is some cool animated shimmery text!!"
             )
@@ -57,10 +57,10 @@ fun shimmerRadialBackground(
     index: Int
 ): Brush {
     return Brush.radialGradient(
-        0.0F to MaterialTheme.colorScheme.primary.copy(alphaOne),
-        0.4F to MaterialTheme.colorScheme.primary.copy(alphaTwo),
-        0.6F to MaterialTheme.colorScheme.primary.copy(alphaThree),
-        1F to MaterialTheme.colorScheme.primary.copy(alphaThree),
+        0.0F to MaterialTheme.colorScheme.secondary.copy(alphaOne),
+        0.4F to MaterialTheme.colorScheme.secondary.copy(alphaTwo),
+        0.6F to MaterialTheme.colorScheme.secondary.copy(alphaThree),
+        1F to MaterialTheme.colorScheme.secondary.copy(alphaThree),
         center = if (index == 0) Offset(0f, 100f) else Offset(-900f, 200f),
         radius = if (index == 0) 900f else 3000f, //bigger circles for rest items, since start point of circle should be wider
         tileMode = TileMode.Decal

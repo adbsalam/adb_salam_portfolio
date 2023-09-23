@@ -8,9 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import uk.adbsalam.portfolio.components.shimmerCarousal.ShimmerCardCarousal
 import uk.adbsalam.portfolio.gallery.feature.Gallery
 import uk.adbsalam.portfolio.gallery.feature.fullscreen.FullscreenGallery
-import uk.adbsalam.portfolio.home.feature.shimmerCarousal.ShimmerCardCarousal
 import uk.adbsalam.portfolio.navigation.NavigationScreen
 import uk.adbsalam.portfolio.navigation.composeRoute
 import uk.adbsalam.portfolio.navigation.route

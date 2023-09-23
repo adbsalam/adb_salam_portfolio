@@ -6,6 +6,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
     alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.android.hilt.plugin)
     alias(libs.plugins.paparazzi)
     alias(libs.plugins.snapit)
 }
@@ -31,7 +33,10 @@ dependencies {
     implementation(libs.compose.foundation)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
-
+    implementation(libs.hilt.navigation)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.lotti)
 }

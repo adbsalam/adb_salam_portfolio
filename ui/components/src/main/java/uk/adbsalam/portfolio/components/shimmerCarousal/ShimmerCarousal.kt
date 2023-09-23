@@ -1,19 +1,20 @@
-package uk.adbsalam.portfolio.home.feature.shimmerCarousal
+package uk.adbsalam.portfolio.components.shimmerCarousal
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 
 
 @Composable
-fun ShimmerCardCarousal() {
-
-    val shimmerCardRowState = remember { mutableStateOf(LazyRowShimmerState()) }
+fun ShimmerCardCarousal(
+    viewModel: ShimmerViewModel = hiltViewModel()
+) {
+    val shimmerState by viewModel.shimmerState.collectAsState()
 
     LazyRow(
         contentPadding = PaddingValues(horizontal = 12.dp),
@@ -24,16 +25,19 @@ fun ShimmerCardCarousal() {
                 ShimmerCard(
                     item = item,
                     currentIndex = index,
-                    shimmerState = shimmerCardRowState
+                    shimmerState = shimmerState,
+                    onUpdateState = viewModel::updateState
                 )
             }
         }
     }
 }
 
-
-@Preview
-@Composable
-fun ShimmerCardPreview() {
-    ShimmerCardCarousal()
-}
+//
+//@Preview
+//@Composable
+//fun ShimmerCardPreview() {
+//    ShimmerCardCarousal(
+//        shimmerCardRowState = remember { mutableStateOf(LazyRowShimmerState()) }
+//    )
+//}

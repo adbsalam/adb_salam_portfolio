@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import kotlinx.coroutines.launch
 import uk.adbsalam.portfolio.components.SettingsIcon
+import uk.adbsalam.portfolio.components.shimmerCarousal.ShimmerCardCarousal
 import uk.adbsalam.portfolio.home.feature.components.Profile
 import uk.adbsalam.portfolio.home.feature.components.SocialMediaCarousal
 import uk.adbsalam.portfolio.home.feature.components.card.InfoCard
@@ -90,6 +91,9 @@ internal fun HomeScreen(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
+
+            ShimmerCardCarousal()
+
             items.forEach { item ->
                 InfoCardByType(
                     item = item,

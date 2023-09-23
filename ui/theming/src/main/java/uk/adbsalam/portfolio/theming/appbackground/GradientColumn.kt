@@ -3,7 +3,6 @@ package uk.adbsalam.portfolio.theming.appbackground
 
 import android.graphics.RuntimeShader
 import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,10 +12,10 @@ import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.ShaderBrush
 import uk.adbsalam.portfolio.theming.appbackground.snow.snowfall
 import uk.adbsalam.portfolio.theming.christmas_gradient_color
+import uk.adbsalam.portfolio.theming.dark_gradient_color_one
+import uk.adbsalam.portfolio.theming.dark_gradient_color_two
 import uk.adbsalam.portfolio.theming.light_gradient_color_one
 import uk.adbsalam.portfolio.theming.light_gradient_color_two
-import uk.adbsalam.portfolio.theming.primary_dark
-import uk.adbsalam.portfolio.theming.primary_light
 import uk.adbsalam.portfolio.utils.Theme
 
 /**
@@ -31,13 +30,13 @@ fun GradientColumn(
     content: @Composable () -> Unit
 ) {
     val gradientColorOne = when {
-        (theme == Theme.DARK || isSystemInDarkTheme()) -> primary_dark
+        (theme == Theme.DARK || isSystemInDarkTheme()) -> dark_gradient_color_one
         theme == Theme.CHRISTMAS -> christmas_gradient_color
         else -> light_gradient_color_one
     }
 
     val gradientColorTwo = when {
-        (theme == Theme.DARK || isSystemInDarkTheme()) -> primary_light
+        (theme == Theme.DARK || isSystemInDarkTheme()) -> dark_gradient_color_two
         theme == Theme.CHRISTMAS -> christmas_gradient_color
         else -> light_gradient_color_two
     }
