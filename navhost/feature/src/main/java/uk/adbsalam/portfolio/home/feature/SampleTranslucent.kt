@@ -33,14 +33,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import uk.adbsalam.portfolio.theming.light_gradient_color_two
 
 @Composable
 fun Cover(
@@ -117,40 +115,40 @@ fun Cover(
 
     val background = when (currentIndex) {
         0 -> Brush.radialGradient(
-            0.0F to light_gradient_color_two.copy(animateOneAlpha),
-            0.4F to light_gradient_color_two.copy(animateTwoAlpha),
-            0.6F to light_gradient_color_two.copy(animateThreeAlpha),
-            1F to light_gradient_color_two.copy(animateThreeAlpha),
+            0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
+            0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
+            0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+            1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
             center = Offset(0f, 100f),
             radius = 900f,
             tileMode = TileMode.Decal
         )
 
         1 -> Brush.radialGradient(
-            0.0F to light_gradient_color_two.copy(animateOneAlpha),
-            0.4F to light_gradient_color_two.copy(animateTwoAlpha),
-            0.6F to light_gradient_color_two.copy(animateThreeAlpha),
-            1F to light_gradient_color_two.copy(animateThreeAlpha),
+            0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
+            0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
+            0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+            1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
             center = Offset(-900f, 200f),
             radius = 3000f,
             tileMode = TileMode.Decal
         )
 
         2 -> Brush.radialGradient(
-            0.0F to light_gradient_color_two.copy(animateOneAlpha),
-            0.4F to light_gradient_color_two.copy(animateTwoAlpha),
-            0.6F to light_gradient_color_two.copy(animateThreeAlpha),
-            1F to light_gradient_color_two.copy(animateThreeAlpha),
+            0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
+            0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
+            0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+            1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
             center = Offset(-0f, -500f),
             radius = 3000f,
             tileMode = TileMode.Decal
         )
 
         else -> Brush.radialGradient(
-            0.0F to light_gradient_color_two.copy(animateOneAlpha),
-            0.4F to light_gradient_color_two.copy(animateTwoAlpha),
-            0.6F to light_gradient_color_two.copy(animateThreeAlpha),
-            1F to light_gradient_color_two.copy(animateThreeAlpha),
+            0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
+            0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
+            0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+            1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
             center = Offset(-900f, -900f),
             radius = 3000f,
             tileMode = TileMode.Decal
@@ -179,7 +177,7 @@ fun Cover(
         Card(
             modifier = Modifier.size(200.dp, 300.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White)
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
         ) {
             Column {
                 Box(
@@ -243,12 +241,14 @@ fun Cover(
                 ) {
                     Text(
                         text = "Title",
-                        style = MaterialTheme.typography.titleMedium
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
 
                     Text(
                         text = "This is some sample text here, this is soo cool!!",
-                        style = MaterialTheme.typography.bodyMedium
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onBackground
                     )
                 }
 
@@ -257,11 +257,11 @@ fun Cover(
                         .fillMaxSize()
                         .background(
                             Brush.linearGradient(
-                                0F to Color.White.copy(animateOneAlpha),
-                                0.25F to Color.White.copy(animateTwoAlpha),
-                                0.5F to Color.White.copy(animateThreeAlpha),
-                                0.75F to Color.White.copy(animateFourAlpha),
-                                1F to Color.White.copy(animateFiveAlpha),
+                                0F to MaterialTheme.colorScheme.background.copy(animateOneAlpha),
+                                0.25F to MaterialTheme.colorScheme.background.copy(animateTwoAlpha),
+                                0.5F to MaterialTheme.colorScheme.background.copy(animateThreeAlpha),
+                                0.75F to MaterialTheme.colorScheme.background.copy(animateFourAlpha),
+                                1F to MaterialTheme.colorScheme.background.copy(animateFiveAlpha),
                             )
                         )
                 )
