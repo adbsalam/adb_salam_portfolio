@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.home.feature
 
-import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -22,6 +21,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -34,48 +34,87 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.theming.light_gradient_color_two
 
+@Preview
 @Composable
-fun Cover() {
+fun Cover(
+    currentIndex: Int = 0,
+    duration: MutableState<Float> = remember { mutableStateOf(1000f) },
+    threshold: MutableState<Float> = remember { mutableStateOf(0.97f) }
+) {
+
+
+    var componentWidth by remember { mutableStateOf(0f) }
 
     var animateOne by remember { mutableFloatStateOf(1f) }
     var animateTwo by remember { mutableFloatStateOf(1f) }
     var animateThree by remember { mutableFloatStateOf(1f) }
+    var animateFour by remember { mutableFloatStateOf(1f) }
+    var animateFive by remember { mutableFloatStateOf(1f) }
 
     var twoReset by rememberSaveable { mutableStateOf(false) }
     var threeReset by rememberSaveable { mutableStateOf(false) }
+    var fourReset by rememberSaveable { mutableStateOf(false) }
+    var fiveReset by rememberSaveable { mutableStateOf(false) }
+
+    var manualReset by remember { mutableStateOf(false) }
 
     val animateOneAlpha by animateFloatAsState(
         targetValue = animateOne,
         label = "",
-        animationSpec = tween(1000, easing = LinearOutSlowInEasing),
+        animationSpec = tween(duration.value.toInt()),
     )
 
     val animateTwoAlpha by animateFloatAsState(
         targetValue = animateTwo,
         label = "",
-        animationSpec = tween(1000)
+        animationSpec = tween(duration.value.toInt())
     )
 
     val animateThreeAlpha by animateFloatAsState(
         targetValue = animateThree,
         label = "",
-        animationSpec = tween(1000),
+        animationSpec = tween(duration.value.toInt()),
     )
 
-    if (animateOneAlpha < 0.8 && !twoReset) {
+    val animateFourAlpha by animateFloatAsState(
+        targetValue = animateFour,
+        label = "",
+        animationSpec = tween(duration.value.toInt()),
+    )
+
+    val animateFiveAlpha by animateFloatAsState(
+        targetValue = animateFive,
+        label = "",
+        animationSpec = tween(duration.value.toInt()),
+    )
+
+    if (animateOneAlpha < threshold.value && !twoReset && !manualReset) {
         animateTwo = 0f
         twoReset = true
     }
 
-    if (animateTwoAlpha < 0.8 && !threeReset) {
+    if (animateTwoAlpha < threshold.value && !threeReset && !manualReset) {
         animateThree = 0f
         threeReset = true
+    }
+
+    if (animateThreeAlpha < threshold.value && !fourReset && !manualReset) {
+        animateFour = 0f
+        fourReset = true
+    }
+
+    if (animateFour < threshold.value && !fiveReset && !manualReset) {
+        animateFive = 0f
+        fiveReset = true
     }
 
     Box(
@@ -92,6 +131,9 @@ fun Cover() {
                     modifier = Modifier
                         .height(200.dp)
                         .fillMaxWidth()
+                        .onSizeChanged {
+                            componentWidth = it.width.toFloat()
+                        }
                 ) {
                     Image(
                         modifier = Modifier
@@ -107,16 +149,37 @@ fun Cover() {
                             .fillMaxSize()
                             .pointerInput(Unit) {
                                 detectTapGestures(
-                                    onTap = {  animateOne = if (animateOne == 0f) 1f else 0f}
+                                    onTap = {
+                                        if (animateOne == 0f) {
+                                            manualReset = true
+                                            animateOne = 1f
+                                            animateTwo = 1f
+                                            animateThree = 1f
+                                            animateFour = 1f
+                                            animateFive = 1f
+
+                                            twoReset = false
+                                            threeReset = false
+                                            fourReset = false
+                                            fiveReset = false
+
+                                        } else {
+                                            manualReset = false
+                                            animateOne = 0f
+                                        }
+                                    }
                                 )
                             }
                             .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
                             .background(
-                                Brush.linearGradient(
-                                    0F to light_gradient_color_two.copy(animateOneAlpha),
-                                    0.5F to light_gradient_color_two.copy(animateTwoAlpha),
+                                Brush.radialGradient(
+                                    0.0F to light_gradient_color_two.copy(animateOneAlpha),
+                                    0.4F to light_gradient_color_two.copy(animateTwoAlpha),
+                                    0.6F to light_gradient_color_two.copy(animateThreeAlpha),
                                     1F to light_gradient_color_two.copy(animateThreeAlpha),
-                                    start = Offset(0f, 0f)
+                                    center = Offset(100f, 50f),
+                                    radius = 800f,
+                                    tileMode = TileMode.Decal
                                 )
                             )
                     )
@@ -150,8 +213,10 @@ fun Cover() {
                         .background(
                             Brush.linearGradient(
                                 0F to Color.White.copy(animateOneAlpha),
-                                0.5F to Color.White.copy(animateTwoAlpha),
-                                1F to Color.White.copy(animateThreeAlpha),
+                                0.25F to Color.White.copy(animateTwoAlpha),
+                                0.5F to Color.White.copy(animateThreeAlpha),
+                                0.75F to Color.White.copy(animateFourAlpha),
+                                1F to Color.White.copy(animateFiveAlpha),
                             )
                         )
                 )

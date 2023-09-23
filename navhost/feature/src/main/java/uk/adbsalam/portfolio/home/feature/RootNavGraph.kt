@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
@@ -45,19 +48,31 @@ fun RootNavGraph(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Row() {
-                        Cover()
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Cover()
-                    }
 
-                    Spacer(modifier = Modifier.height(14.dp))
+                    var duration = rememberSaveable { mutableStateOf(5000f) }
+                    var threshold = rememberSaveable { mutableStateOf(0.5f) }
 
                     Row() {
-                        Cover()
+                        Cover(threshold = threshold, duration = duration)
                         Spacer(modifier = Modifier.width(12.dp))
-                        Cover()
+                        Cover(threshold = threshold, duration = duration, currentIndex = 1)
                     }
+
+                    Slider(
+                        value = duration.value,
+                        onValueChange = { duration.value = it },
+                        valueRange = 0f..5000f
+                    )
+                    Text(text = duration.toString())
+
+                    Spacer(modifier = Modifier.height(50.dp))
+
+                    Slider(
+                        value = threshold.value,
+                        onValueChange = { threshold.value = it },
+                        valueRange = 0.1f..0.99f
+                    )
+                    Text(text = threshold.toString())
                 }
             }
 
