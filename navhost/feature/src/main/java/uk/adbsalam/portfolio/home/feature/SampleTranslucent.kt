@@ -141,7 +141,7 @@ fun Cover(
             0.4F to light_gradient_color_two.copy(animateTwoAlpha),
             0.6F to light_gradient_color_two.copy(animateThreeAlpha),
             1F to light_gradient_color_two.copy(animateThreeAlpha),
-            center = Offset(-200f, -900f),
+            center = Offset(-0f, -500f),
             radius = 3000f,
             tileMode = TileMode.Decal
         )

@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Slider
@@ -77,7 +79,7 @@ fun RootNavGraph(
                             startTwo.value = 0f
                             startThree.value = 0f
 
-                            delay(40)
+                            delay(20)
                             startFour.value = 0f
                         }
                     )
@@ -96,24 +98,29 @@ fun RootNavGraph(
                         Spacer(modifier = Modifier.width(12.dp))
                         Cover(threshold = threshold, duration = duration, currentIndex = 3, startHere = startFour, manualReset =  manualReset)
                     }
-                    Slider(
-                        value = duration.value,
-                        onValueChange = { duration.value = it },
-                        valueRange = 0f..5000f
-                    )
-                    Text(text = duration.value.toString())
 
-                    Spacer(modifier = Modifier.height(50.dp))
+                    Column(Modifier.fillMaxWidth().padding(horizontal = 12.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                        Slider(
+                            value = duration.value,
+                            onValueChange = { duration.value = it },
+                            valueRange = 0f..5000f
+                        )
+                        Text(text = duration.value.toString())
 
-                    Slider(
-                        value = threshold.value,
-                        onValueChange = { threshold.value = it },
-                        valueRange = 0.1f..0.99f
-                    )
-                    Text(text = threshold.value.toString())
+                        Spacer(modifier = Modifier.height(50.dp))
+
+                        Slider(
+                            value = threshold.value,
+                            onValueChange = { threshold.value = it },
+                            valueRange = 0.1f..0.99f
+                        )
+                        Text(text = threshold.value.toString())
+                    }
+
 
                     Row(
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.SpaceEvenly,
+                        modifier = Modifier.fillMaxWidth()
                     ) {
                         Button(onClick = {
                             manualReset.value = true
@@ -131,14 +138,14 @@ fun RootNavGraph(
                             duration.value = 500f
                             threshold.value  = 0.97f
                             scope.launch {
-                                delay(1000)
+                                delay(500)
                                 startOne.value = 0f
 
                                 delay(150)
                                 startTwo.value = 0f
                                 startThree.value = 0f
 
-                                delay(40)
+                                delay(20)
                                 startFour.value = 0f
                             }
                         }) {
