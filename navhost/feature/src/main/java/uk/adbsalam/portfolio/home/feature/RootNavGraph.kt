@@ -40,7 +40,7 @@ fun RootNavGraph(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Text(text = "patrolla Page")
+                    Cover()
                 }
             }
 
