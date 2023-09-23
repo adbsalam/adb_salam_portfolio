@@ -19,13 +19,37 @@ data class ShimmerCardItem(
     val body: String
 ) {
     companion object {
-        fun mockCards() = List(5) {
+        fun mockCards() = listOf(
             ShimmerCardItem(
-                R.drawable.thumb_swiss_2,
-                "Test Title",
-                "This is some cool animated shimmery text!!"
+                R.drawable.shimm,
+                "Synchronised Shimmer",
+                "Shimmer skeleton loader reinvented, Have a look at this sample"
+            ),
+
+            ShimmerCardItem(
+                R.drawable.transform,
+                "Transformable Gallery",
+                "Transformation, grid arrangement selection and fancy craousals"
+            ),
+
+            ShimmerCardItem(
+                R.drawable.animation_samples,
+                "Animation Experiments",
+                "Some of animation components visualised in form of graphs"
+            ),
+
+            ShimmerCardItem(
+                R.drawable.dark_mode,
+                "Explore Dark Mode",
+                "Insights of how dark mode for this app is implemented"
+            ),
+
+            ShimmerCardItem(
+                R.drawable.placeholder,
+                "Placeholder sample",
+                "Once I ll figure out what to add here, will add!"
             )
-        }
+        )
     }
 }
 
