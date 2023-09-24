@@ -30,7 +30,7 @@ fun GradientColumn(
     content: @Composable () -> Unit
 ) {
     val gradientColorOne = when {
-        (theme == Theme.DARK || isSystemInDarkTheme()) -> dark_gradient_color_one
+        ((theme == Theme.DARK || isSystemInDarkTheme())) -> dark_gradient_color_one
         theme == Theme.CHRISTMAS -> christmas_gradient_color
         else -> light_gradient_color_one
     }
