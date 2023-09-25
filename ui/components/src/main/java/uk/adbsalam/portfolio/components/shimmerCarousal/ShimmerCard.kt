@@ -81,8 +81,8 @@ fun ShimmerCard(
     }
 
     Card(
-        modifier = Modifier.size(200.dp, 300.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
+        modifier = Modifier.size(180.dp, 260.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
     ) {
         Column {
@@ -115,7 +115,7 @@ fun ShimmerCardImage(
 ) {
     Box(
         modifier = Modifier
-            .height(200.dp)
+            .height(160.dp)
             .fillMaxWidth()
     ) {
         Image(
@@ -156,13 +156,13 @@ fun ShimmerCardText(
         ) {
             Text(
                 text = item.title,
-                style = MaterialTheme.typography.titleMedium,
+                style = MaterialTheme.typography.titleSmall,
                 color = MaterialTheme.colorScheme.onBackground
             )
 
             Text(
                 text = item.body,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onBackground
             )
         }

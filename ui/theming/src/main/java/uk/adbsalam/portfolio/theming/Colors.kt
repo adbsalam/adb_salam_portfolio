@@ -7,13 +7,15 @@ val secondary_dark = Color(0xFF276880)
 val tertiary_dark = Color(0xFF50577A)
 val dark_background = Color(0xFF012138)
 val dark_surface_variant = Color(0xFF44494D)
+val dark_surface = Color(0xFF02384B)
 
 val primary_light = Color(0xff8d965d)
 val secondary_light = Color(0xFFF5EBCE)
 val tertiary_light = Color.Green
-val secondary_container_light = Color(0xFFC3CA9C)
+val secondary_container_light = Color(0xFF949976)
 val light_backgraound = Color(0xFFF7FAEA)
 val light_surface_variant = Color(0xFFCECFC4)
+val light_surface = Color(0xFFD5DBB2)
 
 val kotlin_color = Color(0xFF8052FF)
 val kotlin_color_light = Color(0xFFC4AEFF)

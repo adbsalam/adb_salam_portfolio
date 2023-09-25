@@ -2,7 +2,6 @@ package uk.adbsalam.portfolio.home.feature
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
@@ -29,7 +28,6 @@ fun RootNavBar(
     NavigationBar(
         modifier = Modifier.fillMaxWidth(),
         tonalElevation = 8.dp,
-        containerColor = MaterialTheme.colorScheme.background
     ) {
         navItems.forEachIndexed { index, item ->
             NavigationBarItem(
