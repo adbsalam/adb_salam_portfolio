@@ -11,8 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,6 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
+import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
 
 @Composable
@@ -80,28 +79,26 @@ fun ShimmerCard(
         threeReset = true
     }
 
-    Card(
-        modifier = Modifier.size(180.dp, 260.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
+    Column(
+        modifier = Modifier
+            .size(180.dp, 260.dp)
+            .adbRoundedBackground()
     ) {
-        Column {
 
-            ShimmerCardImage(
-                item = item,
-                alphaOne = animateOneAlpha,
-                alphaTwo = animTwoAlpha,
-                alphaThree = animThreeAlpha,
-                index = currentIndex
-            )
+        ShimmerCardImage(
+            item = item,
+            alphaOne = animateOneAlpha,
+            alphaTwo = animTwoAlpha,
+            alphaThree = animThreeAlpha,
+            index = currentIndex
+        )
 
-            ShimmerCardText(
-                item = item,
-                alphaOne = animateOneAlpha,
-                alphaTwo = animTwoAlpha,
-                alphaThree = animThreeAlpha
-            )
-        }
+        ShimmerCardText(
+            item = item,
+            alphaOne = animateOneAlpha,
+            alphaTwo = animTwoAlpha,
+            alphaThree = animThreeAlpha
+        )
     }
 }
 
