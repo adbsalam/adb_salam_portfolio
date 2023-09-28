@@ -8,7 +8,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import uk.adbsalam.portfolio.navigation.navigateToHome
 import uk.adbsalam.portfolio.navigation.navigateToInfo
@@ -26,8 +25,7 @@ fun RootNavBar(
     navController: NavHostController
 ) {
     NavigationBar(
-        modifier = Modifier.fillMaxWidth(),
-        tonalElevation = 8.dp,
+        modifier = Modifier.fillMaxWidth()
     ) {
         navItems.forEachIndexed { index, item ->
             NavigationBarItem(
