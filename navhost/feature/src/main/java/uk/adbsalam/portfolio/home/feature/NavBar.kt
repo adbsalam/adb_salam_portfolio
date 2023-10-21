@@ -24,9 +24,7 @@ fun RootNavBar(
     selected: MutableState<Int>,
     navController: NavHostController
 ) {
-    NavigationBar(
-        modifier = Modifier.fillMaxWidth()
-    ) {
+    NavigationBar(modifier = Modifier.fillMaxWidth()) {
         navItems.forEachIndexed { index, item ->
             NavigationBarItem(
                 alwaysShowLabel = true,
