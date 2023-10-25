@@ -1,4 +1,4 @@
-package uk.adbsalam.portfolio.home.feature
+package uk.adbsalam.portfolio.samples.feature
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -8,24 +8,31 @@ import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -39,18 +46,156 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
+@Composable
+fun ShimmerCardSample(){
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+        val manualReset = rememberSaveable { mutableStateOf(false) }
+
+        val duration = rememberSaveable { mutableFloatStateOf(500f) }
+        val threshold = rememberSaveable { mutableFloatStateOf(0.97f) }
+
+        val startOne = rememberSaveable { mutableFloatStateOf(1f) }
+        val startTwo = rememberSaveable { mutableFloatStateOf(1f) }
+
+        val startThree = rememberSaveable { mutableFloatStateOf(1f) }
+        val startFour = rememberSaveable { mutableFloatStateOf(1f) }
+        val scope = rememberCoroutineScope()
+
+        Text(
+            text = "Try out Synchronised Shimmer",
+            style = MaterialTheme.typography.bodyLarge
+        )
+
+        Spacer(Modifier.height(40.dp))
+
+        LaunchedEffect(
+            key1 = null,
+            block = {
+                delay(1000)
+                startOne.floatValue = 0f
+
+                delay(150)
+                startTwo.floatValue = 0f
+                startThree.floatValue = 0f
+
+                delay(20)
+                startFour.floatValue = 0f
+            }
+        )
+
+        Row() {
+            Cover(
+                threshold = threshold,
+                duration = duration,
+                startHere = startOne,
+                manualReset = manualReset
+            )
+            Spacer(modifier = Modifier.width(12.dp))
+            Cover(
+                threshold = threshold,
+                duration = duration,
+                currentIndex = 1,
+                startHere = startTwo,
+                manualReset = manualReset
+            )
+        }
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+
+        Row() {
+            Cover(
+                threshold = threshold,
+                duration = duration,
+                startHere = startThree,
+                currentIndex = 2,
+                manualReset = manualReset
+            )
+            Spacer(modifier = Modifier.width(12.dp))
+            Cover(
+                threshold = threshold,
+                duration = duration,
+                currentIndex = 3,
+                startHere = startFour,
+                manualReset = manualReset
+            )
+        }
+
+        Column(
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
+        ) {
+            Spacer(modifier = Modifier.height(22.dp))
+
+            Slider(
+                value = duration.floatValue,
+                onValueChange = { duration.floatValue = it },
+                valueRange = 0f..1000f
+            )
+            Text(text = "Duration: " + duration.floatValue.toString())
+        }
+
+        Spacer(Modifier.height(40.dp))
+
+        Row(
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Button(
+                modifier = Modifier.width(120.dp),
+                onClick = {
+                    manualReset.value = true
+                    startOne.floatValue = 1f
+                    startTwo.floatValue = 1f
+                    startThree.floatValue = 1f
+                    startFour.floatValue = 1f
+
+                }) {
+                Text(text = "reset")
+            }
+
+            Button(
+                modifier = Modifier.width(120.dp),
+                onClick = {
+                    manualReset.value = false
+                    scope.launch {
+                        delay(500)
+                        startOne.floatValue = 0f
+
+                        delay(150)
+                        startTwo.floatValue = 0f
+                        startThree.floatValue = 0f
+                        startFour.floatValue = 0f
+                    }
+                }) {
+                Text(text = "shimmer")
+            }
+        }
+    }
+}
+
 
 @Composable
 fun Cover(
     currentIndex: Int = 0,
     startHere: MutableState<Float>,
-    duration: MutableState<Float> = remember { mutableStateOf(1000f) },
-    threshold: MutableState<Float> = remember { mutableStateOf(0.97f) },
+    duration: MutableState<Float> = remember { mutableFloatStateOf(1000f) },
+    threshold: MutableState<Float> = remember { mutableFloatStateOf(0.97f) },
     manualReset: MutableState<Boolean>
 ) {
 
 
-    var componentWidth by remember { mutableStateOf(0f) }
+    var componentWidth by remember { mutableFloatStateOf(0f) }
 
     var animateTwo by remember { mutableFloatStateOf(1f) }
     var animateThree by remember { mutableFloatStateOf(1f) }

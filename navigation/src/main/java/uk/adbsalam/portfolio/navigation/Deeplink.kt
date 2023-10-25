@@ -7,12 +7,13 @@ const val deeplinkSnapit = "/snapit"
 const val deeplinkGallery = "/gallery"
 const val deeplinkGesture = "/gesture"
 const val deeplinkYoutube = "/youtube"
+const val deeplinkShimmerCard = "/shimmer_card"
 
 fun NavHostController.navigateDeepLink(deeplink: String) {
     val destination = when (deeplink) {
-        deeplinkPatrolla -> NavigationScreen.OnPatrolla
-        deeplinkSnapit -> NavigationScreen.OnSnapIt
-        else -> NavigationScreen.OnGallery
+        deeplinkShimmerCard -> NavigationScreen.OnShimmerSample
+        deeplinkGallery -> NavigationScreen.OnGallery
+        else -> NavigationScreen.OnInProgress
     }
     this.toDestination(destination)
 }

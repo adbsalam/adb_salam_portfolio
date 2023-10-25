@@ -5,43 +5,39 @@ apply<ComposableConfig>()
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
+    alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.android.hilt.plugin)
-    alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.paparazzi)
     alias(libs.plugins.snapit)
 }
 
 android {
-    namespace = asNameSpace("navhost.feature")
+    namespace = asNameSpace("samples.feature")
 }
 
 snapIt {
-    testDir = navHost.snapFeature
+    testDir = samples.snapModule
     flavor = DEBUG_FLAVOR
 }
 
 dependencies {
-    applyProject(ui.components)
     applyProject(ui.theming)
-    applyProject(home.feature)
-    applyProject(info.feature)
-    applyProject(videos.feature)
-    applyProject(reviews.feature)
-    applyProject(gallery.feature)
-    applyProject(navigation.module)
-    applyProject(utils.module)
-    applyProject(samples.feature)
+    applyProject(ui.components)
 
     implementation(libs.app.compat)
+    implementation(libs.ktx.core)
+    implementation(libs.compose.activity)
     implementation(libs.compose.runtime)
     implementation(libs.compose.material)
+    implementation(libs.compose.views.material)
     implementation(libs.compose.foundation)
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling.preview)
-    implementation(libs.compose.ui.tooling)
-    implementation(libs.compose.material.icons.extended)
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
+
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.lotti)
 }
