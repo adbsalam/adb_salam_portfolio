@@ -17,6 +17,7 @@ data class ShimmerCardItem(
     @DrawableRes val imageRes: Int,
     val title: String,
     val body: String,
+    val deepLink: String,
 ) {
     companion object {
         fun mockCards() = listOf(
@@ -24,30 +25,35 @@ data class ShimmerCardItem(
                 R.drawable.shimm,
                 "Synchronised Shimmer",
                 "Shimmer skeleton loader reinvented, Have a look at this sample",
+                "/shimmer_card"
             ),
 
             ShimmerCardItem(
                 R.drawable.transform,
                 "Transformable Gallery",
-                "Transformation, grid arrangement selection and fancy craousals"
+                "Transformation, grid arrangement selection and fancy craousals",
+                "/gallery"
             ),
 
             ShimmerCardItem(
                 R.drawable.animation_samples,
                 "Animation Experiments",
-                "Some of animation components visualised in form of graphs"
+                "Some of animation components visualised in form of graphs",
+                "/animation_samples"
             ),
 
             ShimmerCardItem(
                 R.drawable.dark_mode,
                 "Explore Dark Mode",
-                "Insights of how dark mode for this app is implemented"
+                "Insights of how dark mode for this app is implemented",
+                "/dark_mode"
             ),
 
             ShimmerCardItem(
                 R.drawable.placeholder,
                 "Placeholder sample",
-                "Once I ll figure out what to add here, will add!"
+                "Once I ll figure out what to add here, will add!",
+                "/placeholder"
             )
         )
     }

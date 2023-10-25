@@ -38,6 +38,7 @@ fun ShimmerCard(
     item: ShimmerCardItem,
     currentIndex: Int,
     shimmerState: LazyRowShimmerState,
+    onClick: () -> Unit,
     onUpdateState: (LazyRowShimmerState.LazyRowItemShimmer) -> Unit,
 ) {
     val isShimmerComplete =
@@ -87,7 +88,7 @@ fun ShimmerCard(
             .adbRoundedBackground()
     ) {
         Surface(
-            modifier = Modifier.clickable { }
+            modifier = Modifier.clickable { onClick() }
         ) {
             Column {
                 ShimmerCardImage(

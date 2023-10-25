@@ -12,7 +12,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun ShimmerCardCarousal(
-    viewModel: ShimmerViewModel = hiltViewModel()
+    viewModel: ShimmerViewModel = hiltViewModel(),
+    onClick: (String) -> Unit
 ) {
     val shimmerState by viewModel.shimmerState.collectAsState()
 
@@ -26,7 +27,8 @@ fun ShimmerCardCarousal(
                     item = item,
                     currentIndex = index,
                     shimmerState = shimmerState,
-                    onUpdateState = viewModel::updateState
+                    onUpdateState = viewModel::updateState,
+                    onClick = { onClick(item.deepLink) }
                 )
             }
         }

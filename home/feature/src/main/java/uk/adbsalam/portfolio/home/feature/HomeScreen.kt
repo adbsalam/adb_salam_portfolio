@@ -99,17 +99,27 @@ internal fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
             Row(
-                modifier = Modifier.padding(start = 14.dp, end = 14.dp).fillMaxWidth(),
+                modifier = Modifier
+                    .padding(start = 14.dp, end = 14.dp)
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
                     text = "Component Lab",
                     style = MaterialTheme.typography.titleLarge
                 )
-                Icon(imageVector = Icons.Default.Info, contentDescription =  null)
+                Icon(imageVector = Icons.Default.Info, contentDescription = null)
             }
 
-            ShimmerCardCarousal()
+            ShimmerCardCarousal(
+                onClick = { deeplink ->
+                    if (deeplink == "/dark_mode") {
+                        settings.value = true
+                    } else {
+                        navigateDeeplink(deeplink)
+                    }
+                }
+            )
 
             items.forEach { item ->
                 InfoCardByType(
