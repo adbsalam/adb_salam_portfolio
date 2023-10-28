@@ -24,9 +24,11 @@ private val DarkColorScheme = darkColorScheme(
     primary = primary_dark,
     secondary = secondary_dark,
     tertiary = tertiary_dark,
-    background = secondary_dark,
+    background = dark_background,
     onPrimary = Color.White,
+    surface = dark_surface,
     secondaryContainer = primary_dark,
+    surfaceVariant = dark_surface_variant,
     inverseSurface = Color.Black
 )
 
@@ -34,8 +36,10 @@ private val LightColorScheme = lightColorScheme(
     primary = primary_light,
     secondary = secondary_light,
     tertiary = tertiary_light,
-    background = Color.White,
+    background = light_backgraound,
     secondaryContainer = secondary_container_light,
+    surface = light_surface,
+    surfaceVariant = light_surface_variant,
     inverseSurface = Color.White
 )
 

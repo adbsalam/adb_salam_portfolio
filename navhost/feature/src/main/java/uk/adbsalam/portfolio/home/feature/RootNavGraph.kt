@@ -1,9 +1,7 @@
 package uk.adbsalam.portfolio.home.feature
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -13,6 +11,8 @@ import uk.adbsalam.portfolio.gallery.feature.fullscreen.FullscreenGallery
 import uk.adbsalam.portfolio.navigation.NavigationScreen
 import uk.adbsalam.portfolio.navigation.composeRoute
 import uk.adbsalam.portfolio.navigation.route
+import uk.adbsalam.portfolio.samples.feature.InProgressPage
+import uk.adbsalam.portfolio.samples.feature.ShimmerCardSample
 import uk.adbsalam.portfolio.utils.Theme
 
 @Composable
@@ -35,22 +35,20 @@ fun RootNavGraph(
                 )
             }
 
+            composeRoute(NavigationScreen.OnInProgress) {
+                InProgressPage()
+            }
+
             composeRoute(NavigationScreen.OnPatrolla) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(text = "patrolla Page")
-                }
+                // TODO add page
             }
 
             composeRoute(NavigationScreen.OnSnapIt) {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.Center
-                ) {
-                    Text(text = "Snapit Page")
-                }
+                // TODO add page
+            }
+
+            composeRoute(NavigationScreen.OnShimmerSample) {
+                ShimmerCardSample()
             }
 
             composeRoute(NavigationScreen.OnGallery) {

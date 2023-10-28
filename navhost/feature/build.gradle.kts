@@ -31,6 +31,7 @@ dependencies {
     applyProject(gallery.feature)
     applyProject(navigation.module)
     applyProject(utils.module)
+    applyProject(samples.feature)
 
     implementation(libs.app.compat)
     implementation(libs.compose.runtime)

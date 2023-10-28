@@ -53,7 +53,7 @@ internal fun Home(
     retry: () -> Unit,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
-    navigateDeeplink: (String) -> Unit
+    navigateDeeplink: (String) -> Unit,
 ) {
 
     when (uiState) {

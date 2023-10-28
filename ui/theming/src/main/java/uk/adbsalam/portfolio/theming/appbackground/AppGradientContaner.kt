@@ -26,7 +26,9 @@ fun AppGradientContainer(
         dynamic = dynamicColor
     ) {
         Surface(modifier = Modifier.fillMaxSize()) {
-            GradientColumn(theme = theme) {
+            GradientColumn(
+                theme = theme
+            ) {
                 content()
             }
         }

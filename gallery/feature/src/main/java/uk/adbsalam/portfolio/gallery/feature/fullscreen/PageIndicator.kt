@@ -32,9 +32,9 @@ fun PagerIndicator(
     pagerState: PagerState,
     pageCount: Int,
     indicatorCount: Int = 5,
-    indicatorSize: Dp = 16.dp,
+    indicatorSize: Dp = 8.dp,
     indicatorShape: Shape = CircleShape,
-    space: Dp = 8.dp,
+    space: Dp = 4.dp,
 ) {
     val listState = rememberLazyListState()
     val totalWidth: Dp = indicatorSize * indicatorCount + space * (indicatorCount - 1)
@@ -68,8 +68,8 @@ fun PagerIndicator(
             Box(
                 modifier = Modifier
                     .graphicsLayer {
-                        scaleX = if(isSelected) 1f else 0.5f
-                        scaleY = if(isSelected) 1f else 0.5f
+                        scaleX = if(isSelected) 1f else 0.7f
+                        scaleY = if(isSelected) 1f else 0.7f
                     }
                     .clip(indicatorShape)
                     .size(indicatorSize)

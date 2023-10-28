@@ -1,7 +1,10 @@
 package uk.adbsalam.portfolio.home.feature.components
 
+import android.content.Intent
+import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -15,8 +18,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.data.SocialMedia
 import uk.adbsalam.portfolio.theming.PreviewLight
@@ -29,6 +34,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @DrawableRes
 fun iconRes(mediaType: SocialMedia): Int {
     return when (mediaType) {
+        SocialMedia.G_PLAY -> R.drawable.g_play
         SocialMedia.LINKED_IN -> R.drawable.ic_linked_in
         SocialMedia.GIT -> R.drawable.ic_git
         SocialMedia.YOUTUBE -> R.drawable.ic_youtube
@@ -45,6 +51,8 @@ internal fun SocialMediaCarousal() {
     Column(
         modifier = Modifier.fillMaxWidth()
     ) {
+        val context = LocalContext.current
+
         Text(
             text = "Find me on social media",
             style = MaterialTheme.typography.titleMedium,
@@ -66,6 +74,10 @@ internal fun SocialMediaCarousal() {
                                 .align(Alignment.TopCenter)
                                 .padding(12.dp)
                                 .size(50.dp)
+                                .clickable {
+                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(media.link))
+                                    ContextCompat.startActivity(context, intent, null)
+                                }
                         )
                     }
                 }

@@ -6,12 +6,19 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
 import kotlinx.coroutines.launch
 import uk.adbsalam.portfolio.components.SettingsIcon
+import uk.adbsalam.portfolio.components.shimmerCarousal.ShimmerCardCarousal
 import uk.adbsalam.portfolio.home.feature.components.Profile
 import uk.adbsalam.portfolio.home.feature.components.SocialMediaCarousal
 import uk.adbsalam.portfolio.home.feature.components.card.InfoCard
@@ -90,6 +98,29 @@ internal fun HomeScreen(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(20.dp),
         ) {
+            Row(
+                modifier = Modifier
+                    .padding(start = 14.dp, end = 14.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Component Lab",
+                    style = MaterialTheme.typography.titleLarge
+                )
+                Icon(imageVector = Icons.Default.Info, contentDescription = null)
+            }
+
+            ShimmerCardCarousal(
+                onClick = { deeplink ->
+                    if (deeplink == "/dark_mode") {
+                        settings.value = true
+                    } else {
+                        navigateDeeplink(deeplink)
+                    }
+                }
+            )
+
             items.forEach { item ->
                 InfoCardByType(
                     item = item,
@@ -97,7 +128,6 @@ internal fun HomeScreen(
                 ) {
                     when (item.deeplink) {
                         deeplinkPatrolla,
-                        deeplinkSnapit,
                         deeplinkGallery -> {
                             navigateDeeplink(item.deeplink)
                             return@InfoCardByType
@@ -107,6 +137,7 @@ internal fun HomeScreen(
                     val url = when (item.deeplink) {
                         deeplinkYoutube -> "https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA"
                         deeplinkGesture -> "https://github.com/MuhammadAbdulSalam/arduino_gesture"
+                        deeplinkSnapit -> "https://github.com/MuhammadAbdulSalam/snapit-plugin"
                         else -> ""
                     }
 
