@@ -98,7 +98,7 @@ private fun startActivityForLink(context: Context, media: SocialMedia) {
             val i = Intent(Intent.ACTION_SEND)
             i.type = "text/plain"
             i.putExtra(EXTRA_SUBJECT, "Share play store link")
-            i.putExtra(Intent.EXTRA_TEXT, "select how would you like to share")
+            i.putExtra(Intent.EXTRA_TEXT, media.link)
             startActivity(context, createChooser(i, "Share via"), null)
         }
 
