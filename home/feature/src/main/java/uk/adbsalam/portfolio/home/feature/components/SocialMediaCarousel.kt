@@ -1,7 +1,13 @@
 package uk.adbsalam.portfolio.home.feature.components
 
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
+import android.content.Intent.ACTION_SENDTO
+import android.content.Intent.ACTION_VIEW
+import android.content.Intent.EXTRA_EMAIL
+import android.content.Intent.EXTRA_SUBJECT
+import android.content.Intent.createChooser
+import android.net.Uri.parse
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -21,11 +27,14 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.data.SocialMedia
+import uk.adbsalam.portfolio.data.SocialMedia.GMAIL
+import uk.adbsalam.portfolio.data.SocialMedia.G_PLAY
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
+
 
 /**
  * @param mediaType Social Media type to return Icons
@@ -40,7 +49,7 @@ fun iconRes(mediaType: SocialMedia): Int {
         SocialMedia.YOUTUBE -> R.drawable.ic_youtube
         SocialMedia.FACEBOOK -> R.drawable.ic_fb
         SocialMedia.INSTA -> R.drawable.ic_insta
-        SocialMedia.GMAIL -> R.drawable.ic_gmail
+        GMAIL -> R.drawable.ic_gmail
     }
 }
 
@@ -74,14 +83,36 @@ internal fun SocialMediaCarousal() {
                                 .align(Alignment.TopCenter)
                                 .padding(12.dp)
                                 .size(50.dp)
-                                .clickable {
-                                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(media.link))
-                                    ContextCompat.startActivity(context, intent, null)
-                                }
+                                .clickable { startActivityForLink(context, media) }
                         )
                     }
                 }
             }
+        }
+    }
+}
+
+private fun startActivityForLink(context: Context, media: SocialMedia) {
+    when (media) {
+        G_PLAY -> {
+            val i = Intent(Intent.ACTION_SEND)
+            i.type = "text/plain"
+            i.putExtra(EXTRA_SUBJECT, "Share play store link")
+            i.putExtra(Intent.EXTRA_TEXT, "select how would you like to share")
+            startActivity(context, createChooser(i, "Share via"), null)
+        }
+
+        GMAIL -> {
+            val intent = Intent(ACTION_SENDTO)
+            intent.data = parse("mailto:")
+            intent.putExtra(EXTRA_EMAIL, arrayOf(media.link))
+            intent.putExtra(EXTRA_SUBJECT, "Query for Salam")
+            startActivity(context, createChooser(intent, "Email via..."), null)
+        }
+
+        else -> {
+            val intent = Intent(ACTION_VIEW, parse(media.link))
+            startActivity(context, intent, null)
         }
     }
 }
