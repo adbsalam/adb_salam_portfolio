@@ -30,17 +30,19 @@ fun GradientColumn(
     content: @Composable () -> Unit
 ) {
     val gradientColorOne = when {
-        ((theme == Theme.DARK || isSystemInDarkTheme())) -> dark_gradient_color_one
+        theme == Theme.SYSTEM && isSystemInDarkTheme() -> dark_gradient_color_one
+        theme == Theme.DARK -> dark_gradient_color_one
         theme == Theme.CHRISTMAS -> christmas_gradient_color
         else -> light_gradient_color_one
     }
 
     val gradientColorTwo = when {
-        (theme == Theme.DARK || isSystemInDarkTheme()) -> dark_gradient_color_two
+        theme == Theme.SYSTEM && isSystemInDarkTheme() -> dark_gradient_color_two
+        theme == Theme.DARK -> dark_gradient_color_two
         theme == Theme.CHRISTMAS -> christmas_gradient_color
         else -> light_gradient_color_two
     }
-
+    
     val modifier = if (theme == Theme.CHRISTMAS) Modifier.snowfall() else Modifier
     val gradientModifier = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         Modifier.drawWithCache {
