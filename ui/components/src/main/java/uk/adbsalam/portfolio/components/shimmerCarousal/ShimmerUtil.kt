@@ -31,21 +31,21 @@ data class ShimmerCardItem(
             ShimmerCardItem(
                 R.drawable.transform,
                 "Transformable Gallery",
-                "Transformation, grid arrangement selection and fancy craousals and this is some extra long text",
+                "Transformation, grid arrangement selection and fancy craousals",
                 "/gallery"
             ),
 
             ShimmerCardItem(
                 R.drawable.animation_samples,
                 "Animation Experiments",
-                "Some of animation components visualised in form of graphs asdasd asd asd asd as das da sdasdasd asd asd asd as da sd asd as da sd asd ",
+                "Some of animation components visualised in form of graphs",
                 "/animation_samples"
             ),
 
             ShimmerCardItem(
                 R.drawable.dark_mode,
                 "Explore Dark Mode",
-                "Insights of how dark mode for this app is implementedasda as d asd   asdasd",
+                "Insights of how dark mode for this app is implemented",
                 "/dark_mode"
             ),
 
