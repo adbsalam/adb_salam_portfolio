@@ -51,6 +51,7 @@ private fun String.snapPath() = this.replace(":", "/")
  */
 val home = Module(name = ":home")
 val info = Module(":info")
+val blog = Module(":blog")
 val navHost = Module(":navhost")
 val startup = Module(":startup")
 val settings = Module(":settings")

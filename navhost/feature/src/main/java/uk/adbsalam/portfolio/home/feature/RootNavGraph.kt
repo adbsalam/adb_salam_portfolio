@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import uk.adbsalam.portfolio.blog.feature.BlogScreen
 import uk.adbsalam.portfolio.gallery.feature.Gallery
 import uk.adbsalam.portfolio.gallery.feature.fullscreen.FullscreenGallery
 import uk.adbsalam.portfolio.navigation.NavigationScreen
@@ -39,12 +40,8 @@ fun RootNavGraph(
                 InProgressPage()
             }
 
-            composeRoute(NavigationScreen.OnPatrolla) {
-                // TODO add page
-            }
-
-            composeRoute(NavigationScreen.OnSnapIt) {
-                // TODO add page
+            composeRoute(NavigationScreen.OnBlogScreen) {
+                BlogScreen(navController = navController)
             }
 
             composeRoute(NavigationScreen.OnShimmerSample) {

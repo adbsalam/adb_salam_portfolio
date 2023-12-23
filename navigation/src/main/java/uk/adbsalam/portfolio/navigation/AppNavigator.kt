@@ -37,3 +37,8 @@ fun NavController.navigateToReviews() {
 fun NavController.navigateToFullScreenGallery(galleryArgs: FullScreenArgs) {
     this.toDestination(NavigationScreen.OnFullScreenGallery, galleryArgs)
 }
+
+fun NavController.navigateToBlogScreen(args: BlogScreenArgs){
+    this.toDestination(NavigationScreen.OnBlogScreen, args)
+}
+
