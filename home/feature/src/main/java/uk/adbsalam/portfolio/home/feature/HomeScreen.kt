@@ -41,10 +41,7 @@ import uk.adbsalam.portfolio.home.feature.utils.HomeItemType
 import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
 import uk.adbsalam.portfolio.home.feature.utils.getDrawableRes
 import uk.adbsalam.portfolio.home.feature.utils.getRawRes
-import uk.adbsalam.portfolio.navigation.deeplinkGallery
 import uk.adbsalam.portfolio.navigation.deeplinkGesture
-import uk.adbsalam.portfolio.navigation.deeplinkPatrolla
-import uk.adbsalam.portfolio.navigation.deeplinkSnapit
 import uk.adbsalam.portfolio.navigation.deeplinkYoutube
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
 import uk.adbsalam.portfolio.theming.PreviewDark
@@ -127,22 +124,26 @@ internal fun HomeScreen(
                     animateLottie = !scrollState.isScrollInProgress
                 ) {
                     when (item.deeplink) {
-                        deeplinkPatrolla,
-                        deeplinkGallery -> {
+                        deeplinkYoutube -> {
+                            val intent = Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA")
+                            )
+                            startActivity(context, intent, null)
+                        }
+
+                        deeplinkGesture -> {
+                            val intent = Intent(
+                                Intent.ACTION_VIEW,
+                                Uri.parse("https://github.com/MuhammadAbdulSalam/arduino_gesture")
+                            )
+                            startActivity(context, intent, null)
+                        }
+
+                        else -> {
                             navigateDeeplink(item.deeplink)
-                            return@InfoCardByType
                         }
                     }
-
-                    val url = when (item.deeplink) {
-                        deeplinkYoutube -> "https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA"
-                        deeplinkGesture -> "https://github.com/MuhammadAbdulSalam/arduino_gesture"
-                        deeplinkSnapit -> "https://github.com/MuhammadAbdulSalam/snapit-plugin"
-                        else -> ""
-                    }
-
-                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                    startActivity(context, intent, null)
                 }
             }
 

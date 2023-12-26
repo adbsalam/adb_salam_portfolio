@@ -11,3 +11,9 @@ fun Modifier.adbRoundedBackground() = composed {
         .background(color = MaterialTheme.colorScheme.background, roundedContainerShape)
         .clip(roundedContainerShape)
 }
+
+fun Modifier.adbRoundedBackgroundForButtons() = composed {
+    this
+        .background(color = MaterialTheme.colorScheme.primary, roundedContainerShape)
+        .clip(roundedContainerShape)
+}

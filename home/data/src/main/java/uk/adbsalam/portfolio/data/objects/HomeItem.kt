@@ -1,8 +1,12 @@
 package uk.adbsalam.portfolio.data.objects
 
+import androidx.compose.runtime.Stable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import javax.annotation.concurrent.Immutable
 
+@Immutable
+@Stable
 @JsonClass(generateAdapter = true)
 data class HomeItems(
     @Json(name = "home") val home: List<HomeItem>
