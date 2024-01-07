@@ -36,6 +36,15 @@ fun Project.applyProject(module: String) {
 }
 
 /**
+ * Simplify api implementation command
+ */
+fun Project.apiProject(module: String) {
+    this.dependencies {
+        "api"(project(module))
+    }
+}
+
+/**
  * get name space along with package ID
  */
 fun asNameSpace(name: String): String {

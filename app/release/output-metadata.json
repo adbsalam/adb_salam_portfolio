@@ -4,15 +4,15 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "uk.adbsalam.portfolio",
+  "applicationId": "uk.adbsalam.portfolio.release",
   "variantName": "release",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
       "attributes": [],
-      "versionCode": 1,
-      "versionName": "1.0",
+      "versionCode": 4,
+      "versionName": "1.4",
       "outputFile": "app-release.apk"
     }
   ],

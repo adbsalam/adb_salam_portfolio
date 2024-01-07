@@ -28,6 +28,7 @@ dependencies {
     applyProject(core.network)
     applyProject(settings.feature)
     applyProject(home.data)
+    applyProject(walkie.feature)
     applyProject(utils.module)
     applyProject(navigation.module)
 

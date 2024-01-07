@@ -11,11 +11,13 @@ import uk.adbsalam.portfolio.data.objects.HomeItems
 import uk.adbsalam.portfolio.home.feature.utils.HomeItemType
 import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
 import uk.adbsalam.portfolio.network.Response
+import uk.adbsalam.portfolio.prefs.AppSharedPrefManager
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val homeRepo: HomeRepo
+    private val homeRepo: HomeRepo,
+    val themePrefs: AppSharedPrefManager.ThemePrefs
 ) : ViewModel() {
 
     private val _viewState =

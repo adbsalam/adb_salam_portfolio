@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithCache
 import androidx.compose.ui.graphics.ShaderBrush
+import uk.adbsalam.portfolio.theming.DeepDarkColorScheme.darkGradientColor
 import uk.adbsalam.portfolio.theming.appbackground.snow.snowfall
 import uk.adbsalam.portfolio.theming.christmas_gradient_color
 import uk.adbsalam.portfolio.theming.dark_gradient_color_one
@@ -33,6 +34,7 @@ fun GradientColumn(
         theme == Theme.SYSTEM && isSystemInDarkTheme() -> dark_gradient_color_one
         theme == Theme.DARK -> dark_gradient_color_one
         theme == Theme.CHRISTMAS -> christmas_gradient_color
+        theme == Theme.DEEP_DARK -> darkGradientColor
         else -> light_gradient_color_one
     }
 
@@ -40,6 +42,7 @@ fun GradientColumn(
         theme == Theme.SYSTEM && isSystemInDarkTheme() -> dark_gradient_color_two
         theme == Theme.DARK -> dark_gradient_color_two
         theme == Theme.CHRISTMAS -> christmas_gradient_color
+        theme == Theme.DEEP_DARK -> darkGradientColor
         else -> light_gradient_color_two
     }
     

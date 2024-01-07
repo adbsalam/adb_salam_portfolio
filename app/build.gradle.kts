@@ -13,8 +13,8 @@ android {
         applicationId = "uk.adbsalam.portfolio"
         minSdk = 28
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.4"
+        versionCode = 6
+        versionName = "2.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -29,6 +29,13 @@ android {
                 file("proguard-rules.pro")
             )
         }
+        debug {
+            applicationIdSuffix = ".debug"
+        }
+    }
+
+    buildFeatures{
+        buildConfig = true
     }
 
     packaging {

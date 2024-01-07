@@ -11,6 +11,7 @@ android {
 
 dependencies {
     applyProject(utils.module)
+    applyProject(core.prefs)
 
     implementation(libs.app.compat)
     implementation(libs.compose.runtime)
