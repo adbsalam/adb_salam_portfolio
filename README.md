@@ -17,13 +17,31 @@
 ## About
 This is my Portfolio app to demonstrate my skills with latest Android Technologies. This app is made fully with Jetpack Compose using MVI and multi-module design pattern.
 
-## Dark Theme
+## Features
+- App theming
+- Animation samples
+- Walkie talkie
+- Transformable gallery
+- Blog post
+- Sample Github projects
+- Videos
+- Infographics
+- About Me
 
+## Dark Theme
 <p float="left">
   <img src="https://github.com/MuhammadAbdulSalam/adb_salam_portfolio/blob/develop/screenshots/home_dark.png" width="200" />
   <img src="https://github.com/MuhammadAbdulSalam/adb_salam_portfolio/blob/develop/screenshots/info_dark.png" width="200" /> 
   <img src="https://github.com/MuhammadAbdulSalam/adb_salam_portfolio/blob/develop/screenshots/videos_dark.png" width="200" /> 
   <img src="https://github.com/MuhammadAbdulSalam/adb_salam_portfolio/blob/develop/screenshots/reviews_dark.png" width="200" /> 
+</p>
+
+## Deep Dark
+<p float="left">
+  <img src="https://github.com/MuhammadAbdulSalam/adb_salam_portfolio/blob/develop/screenshots/home_deep_dark.png" width="200" />
+  <img src="https://github.com/MuhammadAbdulSalam/adb_salam_portfolio/blob/develop/screenshots/info_deep_dark.png" width="200" /> 
+  <img src="https://github.com/MuhammadAbdulSalam/adb_salam_portfolio/blob/develop/screenshots/videos_deep_dark.png" width="200" /> 
+  <img src="https://github.com/MuhammadAbdulSalam/adb_salam_portfolio/blob/develop/screenshots/reviews_deep_dark.png" width="200" /> 
 </p>
 
 ## Light Theme
