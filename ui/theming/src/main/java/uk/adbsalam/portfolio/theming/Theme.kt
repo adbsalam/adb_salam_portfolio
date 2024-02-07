@@ -18,6 +18,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import uk.adbsalam.portfolio.prefs.AppSharedPrefManager
+import uk.adbsalam.portfolio.prefs.PrefManager
 import uk.adbsalam.portfolio.utils.Theme
 
 private val DarkColorScheme = darkColorScheme(
@@ -52,6 +54,18 @@ private val Christmas = lightColorScheme(
     inverseSurface = Color.Red
 )
 
+private val DeepDark = darkColorScheme(
+    primary = DeepDarkColorScheme.primary_deep_dark,
+    secondary = DeepDarkColorScheme.secondary_deep_dark,
+    tertiary = tertiary_dark,
+    background = DeepDarkColorScheme.background_deep_dark,
+    onPrimary = DeepDarkColorScheme.onBackground_deep_dark,
+    surface = DeepDarkColorScheme.surface_deep_dark,
+    secondaryContainer = primary_dark,
+    surfaceVariant = dark_surface_variant,
+    inverseSurface = Color.Black
+)
+
 /**
  *
  */
@@ -73,7 +87,7 @@ fun Adb_Theme(
     val systemUiController = rememberSystemUiController()
     systemUiController.setSystemBarsColor(
         color = Color.Transparent,
-        darkIcons = true
+        darkIcons = themeType != Theme.DEEP_DARK && themeType != Theme.DARK
     )
 
     val view = LocalView.current
@@ -132,10 +146,12 @@ fun getDynamicScheme(
 ): ColorScheme {
     return when (selectedType) {
         Theme.CHRISTMAS -> Christmas
+        Theme.DEEP_DARK -> DeepDark
         Theme.LIGHT -> dynamicLightColorScheme(context)
         Theme.DARK -> dynamicDarkColorScheme(context)
         Theme.SYSTEM ->
             if (isSystemDark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+
     }
 }
 
@@ -149,6 +165,7 @@ fun getNonDynamicTheme(
     return when (selectedType) {
         Theme.SYSTEM -> if (isSystemDark) DarkColorScheme else LightColorScheme
         Theme.CHRISTMAS -> Christmas
+        Theme.DEEP_DARK -> DeepDark
         Theme.LIGHT -> LightColorScheme
         Theme.DARK -> DarkColorScheme
     }

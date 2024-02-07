@@ -59,7 +59,7 @@ internal fun HorizontalChart(
         Column(Modifier.weight(2f)) {
             LinearProgressIndicator(
                 modifier = Modifier
-                    .height(15.dp)
+                    .height(12.dp)
                     .fillMaxWidth(),
                 progress = progressAnimation,
                 trackColor = MaterialTheme.colorScheme.surfaceVariant

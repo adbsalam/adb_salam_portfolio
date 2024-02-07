@@ -31,6 +31,7 @@ open class Module(private val name: String) {
 class Core : Module(":core") {
     val prefs = ":core:prefs"
     val network = ":core:network"
+    val communication = ":core:communication"
 }
 
 /**
@@ -60,6 +61,7 @@ val videos = Module(":videos")
 val reviews = Module(":reviews")
 val onboarding = Module(":onboarding")
 val samples = Module(":samples")
+val walkie = Module(":walkie")
 val utils = Module(":utils")
 val navigation = Module(":navigation")
 val core = Core()

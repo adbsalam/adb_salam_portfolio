@@ -67,7 +67,7 @@ internal fun CircularChart(
         Box {
             CircularProgressIndicator(
                 modifier = Modifier.size(100.dp),
-                strokeWidth = 16.dp,
+                strokeWidth = 12.dp,
                 progress = progressAnimation,
                 trackColor = MaterialTheme.colorScheme.surfaceVariant,
             )

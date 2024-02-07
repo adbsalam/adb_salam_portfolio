@@ -35,6 +35,7 @@ fun Home(
 
     Home(
         uiState = uiState,
+        currentTheme = viewModel.themePrefs.theme(),
         retry = viewModel::loadHomeItems,
         onDynamicColor = onDynamicColor,
         onTheme = onTheme,
@@ -50,6 +51,7 @@ fun Home(
 @Composable
 internal fun Home(
     uiState: HomeScreenState,
+    currentTheme: Theme,
     retry: () -> Unit,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
@@ -75,6 +77,7 @@ internal fun Home(
                 items = uiState.homeItems,
                 onDynamicColor = onDynamicColor,
                 onTheme = onTheme,
+                currentTheme = currentTheme,
                 navigateDeeplink = navigateDeeplink
             )
         }
@@ -88,6 +91,7 @@ internal fun HomePreviewLight() {
     Adb_Screen_Theme {
         Home(
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
+            currentTheme = Theme.LIGHT,
             retry = { /* unused */ },
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ },
@@ -103,6 +107,7 @@ internal fun HomePreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         Home(
             uiState = HomeScreenState.OnHome(HomeScreenItem.createMock()),
+            currentTheme = Theme.DARK,
             retry = { /* unused */ },
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ },

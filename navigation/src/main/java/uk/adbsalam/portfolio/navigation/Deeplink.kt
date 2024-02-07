@@ -6,6 +6,7 @@ const val deeplinkGallery = "/gallery"
 const val deeplinkGesture = "/gesture"
 const val deeplinkYoutube = "/youtube"
 const val deeplinkShimmerCard = "/shimmer_card"
+const val deeplinkWalkie = "/walkie"
 
 fun NavHostController.navigateDeepLink(deeplink: String) {
     if (deeplink.isBlogLink()) {

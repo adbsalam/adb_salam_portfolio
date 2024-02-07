@@ -32,11 +32,28 @@ internal data class HomeScreenItem(
                     res = "snapit",
                     body = "This is body text",
                     deeplink = "/patrolla"
+                ),
+                HomeScreenItem(
+                    tags = listOf("Android", "Test"),
+                    title = "Test Title",
+                    type = HomeItemType.IMAGE_CARD,
+                    res = "walkie",
+                    body = "This is body text",
+                    deeplink = "/walkie"
                 )
             )
         }
     }
 }
+
+internal val walkieCard =  HomeScreenItem(
+    tags = listOf("Android", "Nearby Share", "Comms"),
+    title = "Walkie Talkie",
+    type = HomeItemType.IMAGE_CARD,
+    res = "walkie",
+    body = "Checkout this sample that converts your device into walkie talkie. You would need two devices, turn on this feature on both and enjoy talking to your buddy over a  wireless communication",
+    deeplink = "/walkie"
+)
 
 internal enum class HomeItemType(val type: String) {
     IMAGE_CARD("image"),
@@ -57,8 +74,9 @@ internal fun getRawRes(res: String): Int {
 @DrawableRes
 internal fun getDrawableRes(res: String): Int {
     return when (res) {
-        "snapit" -> R.drawable.ic_snapit
+        "snapit" -> R.drawable.ic_snap_it
         "youtube" -> R.drawable.ic_youtube_channel
+        "walkie" -> R.drawable.ic_walkie_talkie
         else -> 0
     }
 }

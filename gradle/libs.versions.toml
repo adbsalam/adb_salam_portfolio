@@ -95,3 +95,4 @@ coroutine-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-t
 paparazzi = { group = "app.cash.paparazzi", name = "paparazzi", version.ref = "paparazzi" }
 youtube-player = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "core", version = "12.1.0" }
 youtube-player-seekbar = { group = "com.pierfrancescosoffritti.androidyoutubeplayer", name = "custom-ui", version = "12.1.0" }
+play-services-nearby = { group = "com.google.android.gms", name = "play-services-nearby", version = "18.5.0" }

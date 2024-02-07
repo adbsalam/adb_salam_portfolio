@@ -1,13 +1,5 @@
 package uk.adbsalam.portfolio.home.feature.components
 
-import android.content.Context
-import android.content.Intent
-import android.content.Intent.ACTION_SENDTO
-import android.content.Intent.ACTION_VIEW
-import android.content.Intent.EXTRA_EMAIL
-import android.content.Intent.EXTRA_SUBJECT
-import android.content.Intent.createChooser
-import android.net.Uri.parse
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -27,11 +19,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
 import uk.adbsalam.portfolio.components.R
 import uk.adbsalam.portfolio.data.SocialMedia
 import uk.adbsalam.portfolio.data.SocialMedia.GMAIL
-import uk.adbsalam.portfolio.data.SocialMedia.G_PLAY
+import uk.adbsalam.portfolio.home.feature.utils.startActivityForLink
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
@@ -82,37 +73,12 @@ internal fun SocialMediaCarousal() {
                             modifier = Modifier
                                 .align(Alignment.TopCenter)
                                 .padding(12.dp)
-                                .size(50.dp)
+                                .size(32.dp)
                                 .clickable { startActivityForLink(context, media) }
                         )
                     }
                 }
             }
-        }
-    }
-}
-
-private fun startActivityForLink(context: Context, media: SocialMedia) {
-    when (media) {
-        G_PLAY -> {
-            val i = Intent(Intent.ACTION_SEND)
-            i.type = "text/plain"
-            i.putExtra(EXTRA_SUBJECT, "Share play store link")
-            i.putExtra(Intent.EXTRA_TEXT, media.link)
-            startActivity(context, createChooser(i, "Share via"), null)
-        }
-
-        GMAIL -> {
-            val intent = Intent(ACTION_SENDTO)
-            intent.data = parse("mailto:")
-            intent.putExtra(EXTRA_EMAIL, arrayOf(media.link))
-            intent.putExtra(EXTRA_SUBJECT, "Query for Salam")
-            startActivity(context, createChooser(intent, "Email via..."), null)
-        }
-
-        else -> {
-            val intent = Intent(ACTION_VIEW, parse(media.link))
-            startActivity(context, intent, null)
         }
     }
 }

@@ -1,8 +1,8 @@
 package uk.adbsalam.portfolio.home.feature
 
-import android.content.Intent
-import android.net.Uri
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -23,17 +22,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.core.content.ContextCompat.startActivity
 import kotlinx.coroutines.launch
-import uk.adbsalam.portfolio.components.SettingsIcon
 import uk.adbsalam.portfolio.components.shimmerCarousal.ShimmerCardCarousal
-import uk.adbsalam.portfolio.home.feature.components.Profile
+import uk.adbsalam.portfolio.home.feature.components.HomeHeader
 import uk.adbsalam.portfolio.home.feature.components.SocialMediaCarousal
 import uk.adbsalam.portfolio.home.feature.components.card.InfoCard
 import uk.adbsalam.portfolio.home.feature.components.card.LottiInfoCard
@@ -41,8 +37,7 @@ import uk.adbsalam.portfolio.home.feature.utils.HomeItemType
 import uk.adbsalam.portfolio.home.feature.utils.HomeScreenItem
 import uk.adbsalam.portfolio.home.feature.utils.getDrawableRes
 import uk.adbsalam.portfolio.home.feature.utils.getRawRes
-import uk.adbsalam.portfolio.navigation.deeplinkGesture
-import uk.adbsalam.portfolio.navigation.deeplinkYoutube
+import uk.adbsalam.portfolio.home.feature.utils.handleDeepLinkForItem
 import uk.adbsalam.portfolio.settings.feature.SettingsDialog
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
@@ -61,109 +56,104 @@ internal fun HomeScreen(
     items: List<HomeScreenItem>,
     navigateDeeplink: (String) -> Unit,
     onDynamicColor: (Boolean) -> Unit,
+    currentTheme: Theme,
     onTheme: (Theme) -> Unit,
 ) {
     val settings = remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
-    val headerHeight = LocalConfiguration.current.screenHeightDp / 3
+    val headerHeight = LocalConfiguration.current.screenHeightDp / 1.75
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
-
-    Column(
-        modifier = Modifier
-            .verticalScroll(scrollState)
-            .fillMaxSize(),
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(headerHeight.dp)
-                .statusBarsPadding()
-                .graphicsLayer {
-                    alpha = 1f - ((scrollState.value.toFloat() / scrollState.maxValue) * 3.5f)
-                    translationY = 0.8f * scrollState.value
-                },
-        ) {
-            Profile(modifier = Modifier.align(Alignment.Center))
-            SettingsIcon(
-                modifier = Modifier.align(Alignment.TopStart),
-                onClick = { settings.value = true }
-            )
-        }
-
+    Box(modifier = Modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
-            verticalArrangement = Arrangement.spacedBy(20.dp),
+            modifier = Modifier
+                .verticalScroll(scrollState)
+                .fillMaxSize(),
         ) {
-            Row(
-                modifier = Modifier
-                    .padding(start = 14.dp, end = 14.dp)
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text(
-                    text = "Component Lab",
-                    style = MaterialTheme.typography.titleLarge
-                )
-                Icon(imageVector = Icons.Default.Info, contentDescription = null)
-            }
 
-            ShimmerCardCarousal(
-                onClick = { deeplink ->
-                    if (deeplink == "/dark_mode") {
-                        settings.value = true
-                    } else {
-                        navigateDeeplink(deeplink)
-                    }
-                }
+            HomeHeader(
+                theme = currentTheme,
+                headerHeight = headerHeight.dp,
+                parallaxTranslation = 0.5f * scrollState.value,
+                onSettingsClick = { settings.value = true },
             )
 
-            items.forEach { item ->
-                InfoCardByType(
-                    item = item,
-                    animateLottie = !scrollState.isScrollInProgress
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                verticalArrangement = Arrangement.spacedBy(20.dp),
+            ) {
+
+                Row(
+                    modifier = Modifier
+                        .padding(start = 14.dp, end = 14.dp, top = 14.dp)
+                        .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    when (item.deeplink) {
-                        deeplinkYoutube -> {
-                            val intent = Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA")
-                            )
-                            startActivity(context, intent, null)
-                        }
+                    Text(
+                        text = "Component Lab",
+                        style = MaterialTheme.typography.titleLarge,
+                        color = MaterialTheme.colorScheme.onBackground
+                    )
+                    Icon(
+                        imageVector = Icons.Default.Info,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onBackground
+                    )
+                }
 
-                        deeplinkGesture -> {
-                            val intent = Intent(
-                                Intent.ACTION_VIEW,
-                                Uri.parse("https://github.com/MuhammadAbdulSalam/arduino_gesture")
-                            )
-                            startActivity(context, intent, null)
-                        }
-
-                        else -> {
-                            navigateDeeplink(item.deeplink)
+                ShimmerCardCarousal(
+                    onClick = { deeplink ->
+                        if (deeplink == "/dark_mode") {
+                            settings.value = true
+                        } else {
+                            navigateDeeplink(deeplink)
                         }
                     }
+                )
+
+                items.forEach { item ->
+                    InfoCardByType(
+                        item = item,
+                        animateLottie = !scrollState.isScrollInProgress
+                    ) {
+                        handleDeepLinkForItem(
+                            deeplink = item.deeplink,
+                            context = context,
+                            navigateDeeplink = navigateDeeplink
+                        )
+                    }
+                }
+                SocialMediaCarousal()
+            }
+        }
+
+        if (settings.value) {
+            SettingsDialog(
+                onDynamicColor = onDynamicColor,
+                onTheme = onTheme,
+                onDismiss = { settings.value = false }
+            )
+        }
+
+        if (scrollState.value > 0) {
+            BackHandler {
+                scope.launch {
+                    scrollState.animateScrollTo(0)
                 }
             }
-
-            SocialMediaCarousal()
         }
-    }
 
-    if (settings.value) {
-        SettingsDialog(
-            onDynamicColor = onDynamicColor,
-            onTheme = onTheme,
-            onDismiss = { settings.value = false }
-        )
-    }
-
-    if (scrollState.value > 0) {
-        BackHandler {
-            scope.launch {
-                scrollState.animateScrollTo(0)
-            }
+        val isSystemLight = currentTheme == Theme.SYSTEM && !isSystemInDarkTheme()
+        if (currentTheme == Theme.LIGHT || isSystemLight) {
+            val alpha = (0.3f - ((scrollState.value.toFloat() / scrollState.maxValue) * 3.5f))
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(48.dp)
+                    .background(
+                        color = Color.Gray.copy(alpha = alpha.coerceIn(0f, 1f))
+                    )
+            )
         }
     }
 }
@@ -177,6 +167,7 @@ internal fun HomeLightPreview() {
             items = HomeScreenItem.createMock(),
             navigateDeeplink = { /* unused */ },
             onDynamicColor = { /* unused */ },
+            currentTheme = Theme.LIGHT,
             onTheme = { /* unused */ }
         )
     }
@@ -191,6 +182,7 @@ internal fun HomeDarkPreview() {
             items = HomeScreenItem.createMock(),
             onDynamicColor = { /* unused */ },
             navigateDeeplink = { /* unused */ },
+            currentTheme = Theme.DARK,
             onTheme = { /* unused */ }
         )
     }
