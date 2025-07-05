@@ -19,26 +19,27 @@ import uk.adbsalam.portfolio.theming.PreviewLight
 @Composable
 fun LoadingLotti(
     modifier: Modifier = Modifier,
-    msg: String = ""
+    msg: String = "",
 ) {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.ic_loading_clock))
     val progress by animateLottieCompositionAsState(
         composition,
         iterations = Integer.MAX_VALUE,
-        isPlaying = true
+        isPlaying = true,
     )
 
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         LottieAnimation(
             composition = composition,
             progress = { progress },
-            modifier = Modifier
-                .width(80.dp)
-                .height(80.dp)
+            modifier =
+                Modifier
+                    .width(80.dp)
+                    .height(80.dp),
         )
     }
 }

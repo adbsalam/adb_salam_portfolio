@@ -39,18 +39,20 @@ internal fun InfoCard(
     val readMore = remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp)
-            .adbRoundedBackground()
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp)
+                .adbRoundedBackground(),
     ) {
         Image(
             painter = painterResource(id = resId),
             contentDescription = null,
             contentScale = ContentScale.FillBounds,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(200.dp),
         )
 
         CardInfoText(
@@ -58,7 +60,7 @@ internal fun InfoCard(
             title = title,
             body = body,
             readMore = readMore,
-            action = action
+            action = action,
         )
     }
 }
@@ -73,7 +75,7 @@ internal fun InfoCardLightPreview() {
             title = "This Is Sample Title",
             body = "This is some very long text that will show some description of what item is and what it does",
             resId = R.drawable.preview,
-            action = {/* unused */ }
+            action = { /* unused */ },
         )
     }
 }
@@ -88,7 +90,7 @@ internal fun InfoCardDarkPreview() {
             title = "This Is Sample Title",
             body = "This is some very long text that will show some description of what item is and what it does",
             resId = R.drawable.preview,
-            action = {/* unused */ }
+            action = { /* unused */ },
         )
     }
 }

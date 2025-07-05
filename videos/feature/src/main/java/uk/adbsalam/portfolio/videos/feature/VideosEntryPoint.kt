@@ -21,15 +21,13 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * Perform functionality that might block preview here
  */
 @Composable
-fun Videos(
-    viewModel: VideosViewModel = hiltViewModel()
-) {
+fun Videos(viewModel: VideosViewModel = hiltViewModel()) {
     val uiState by viewModel.viewState.collectAsState()
 
     Videos(
         uiState = uiState,
         currentTheme = viewModel.currentTheme(),
-        retry = viewModel::fetchVideos
+        retry = viewModel::fetchVideos,
     )
 }
 
@@ -47,20 +45,20 @@ private fun Videos(
         VideosState.OnLoading ->
             LoadingLotti(
                 modifier = Modifier.fillMaxSize(),
-                msg = "Loading"
+                msg = "Loading",
             )
 
         is VideosState.OnError -> {
             ErrorPage(
                 msg = uiState.msg,
-                retry = retry
+                retry = retry,
             )
         }
 
         is VideosState.OnVideos -> {
             VideosScreen(
                 videos = uiState.videos,
-                currentTheme = currentTheme
+                currentTheme = currentTheme,
             )
         }
     }
@@ -74,7 +72,7 @@ internal fun VideosPreviewLight() {
         Videos(
             uiState = VideosState.OnVideos(VideoItems.createMock()),
             currentTheme = Theme.LIGHT,
-            retry = {/*unused*/ }
+            retry = { /*unused*/ },
         )
     }
 }
@@ -87,9 +85,7 @@ internal fun VideosPreviewDark() {
         Videos(
             uiState = VideosState.OnVideos(VideoItems.createMock()),
             currentTheme = Theme.DARK,
-            retry = {/*unused*/ }
+            retry = { /*unused*/ },
         )
     }
 }
-
-

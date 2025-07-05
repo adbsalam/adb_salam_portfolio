@@ -1,7 +1,6 @@
 package uk.adbsalam.portfolio.reviews.feature
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -28,20 +27,18 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * Main screen to populate reviews on screen
  */
 @Composable
-internal fun ReviewsScreen(
-    reviews: ReviewItems
-) {
+internal fun ReviewsScreen(reviews: ReviewItems) {
     val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp)
-            .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(14.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp)
+                .verticalScroll(scrollState),
+        verticalArrangement = Arrangement.spacedBy(14.dp),
     ) {
-
         ReviewLottiTitle()
 
         reviews.reviews.forEach {
@@ -66,7 +63,7 @@ internal fun ReviewsScreen(
 internal fun ReviewsScreenPreviewLight() {
     Adb_Screen_Theme {
         ReviewsScreen(
-            reviews = ReviewItems.createMock()
+            reviews = ReviewItems.createMock(),
         )
     }
 }
@@ -77,7 +74,7 @@ internal fun ReviewsScreenPreviewLight() {
 internal fun ReviewsScreenPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         ReviewsScreen(
-            reviews = ReviewItems.createMock()
+            reviews = ReviewItems.createMock(),
         )
     }
 }

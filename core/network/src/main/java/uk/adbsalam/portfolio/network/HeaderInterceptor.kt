@@ -10,14 +10,13 @@ import okhttp3.Response
  * add api key to each call seperatly.
  */
 class HeaderInterceptor : Interceptor {
-    override fun intercept(chain: Interceptor.Chain): Response {
-        return chain.run {
+    override fun intercept(chain: Interceptor.Chain): Response =
+        chain.run {
             proceed(
                 request()
                     .newBuilder()
-                    .addHeader("x-api-key", "18G0K0zq7paLmYTueZiK74YbEzrrALjO5R8rRHKp")
-                    .build()
+                    .addHeader("x-api-key", BuildConfig.API_KEY)
+                    .build(),
             )
         }
-    }
 }

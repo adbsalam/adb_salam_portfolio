@@ -8,18 +8,17 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-internal class VideosRepository @Inject constructor(
-    private val videosService: VideoService
-) : VideosRepo {
-
-    override suspend fun videos(): Response<VideoItems> {
-        return try {
-            val videos = videosService.videos(item = "videos")
-            Response.Success(data = videos)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Response.Failure(genericException(e))
-        }
+internal class VideosRepository
+    @Inject
+    constructor(
+        private val videosService: VideoService,
+    ) : VideosRepo {
+        override suspend fun videos(): Response<VideoItems> =
+            try {
+                val videos = videosService.videos(item = "videos")
+                Response.Success(data = videos)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Response.Failure(genericException(e))
+            }
     }
-
-}

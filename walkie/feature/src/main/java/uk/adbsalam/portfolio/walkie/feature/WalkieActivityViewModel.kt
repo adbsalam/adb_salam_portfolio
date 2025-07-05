@@ -8,28 +8,29 @@ import uk.adbsalam.portfolio.prefs.AppSharedPrefManager
 import javax.inject.Inject
 
 @HiltViewModel
-class WalkieActivityViewModel @Inject constructor(
-    private val prefs: AppSharedPrefManager.ThemePrefs,
-) : ViewModel() {
+class WalkieActivityViewModel
+    @Inject
+    constructor(
+        private val prefs: AppSharedPrefManager.ThemePrefs,
+    ) : ViewModel() {
+        private val _viewState = MutableStateFlow<WalkieState>(WalkieState.OnLoading)
+        internal val viewState = _viewState.asStateFlow()
 
-    private val _viewState = MutableStateFlow<WalkieState>(WalkieState.OnLoading)
-    internal val viewState = _viewState.asStateFlow()
+        fun onStartConnection() {
+            _viewState.value = WalkieState.OnConnect
+        }
 
-    fun onStartConnection() {
-        _viewState.value = WalkieState.OnConnect
+        fun onPermissionsError() {
+            _viewState.value = WalkieState.OnPermissionsError
+        }
+
+        fun onRequirePermission() {
+            _viewState.value = WalkieState.OnRequirePermissions
+        }
+
+        val currentTheme
+            get() = prefs.theme()
+
+        val isDynamic
+            get() = prefs.dynamicColors()
     }
-
-    fun onPermissionsError() {
-        _viewState.value = WalkieState.OnPermissionsError
-    }
-
-    fun onRequirePermission() {
-        _viewState.value = WalkieState.OnRequirePermissions
-    }
-
-    val currentTheme
-        get() = prefs.theme()
-
-    val isDynamic
-        get() = prefs.dynamicColors()
-}

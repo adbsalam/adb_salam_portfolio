@@ -9,29 +9,26 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-internal class InfoRepository @Inject constructor(
-    private val infoService: InfoService
-) : InfoRepo {
+internal class InfoRepository
+    @Inject
+    constructor(
+        private val infoService: InfoService,
+    ) : InfoRepo {
+        override suspend fun infographics(): Response<Infographics> =
+            try {
+                val infographics = infoService.infographics(item = "infographics")
+                Response.Success(data = infographics)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Response.Failure(genericException(e))
+            }
 
-
-    override suspend fun infographics(): Response<Infographics> {
-        return try {
-            val infographics = infoService.infographics(item = "infographics")
-            Response.Success(data = infographics)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Response.Failure(genericException(e))
-        }
+        override suspend fun workHistory(): Response<WorkHistory> =
+            try {
+                val workHistory = infoService.workHistory(item = "workhistory")
+                Response.Success(data = workHistory)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Response.Failure(genericException(e))
+            }
     }
-
-    override suspend fun workHistory(): Response<WorkHistory> {
-        return try {
-            val workHistory = infoService.workHistory(item = "workhistory")
-            Response.Success(data = workHistory)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Response.Failure(genericException(e))
-        }
-    }
-
-}

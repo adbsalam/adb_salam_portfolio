@@ -6,32 +6,36 @@ import androidx.compose.ui.geometry.RoundRect
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.text.TextLayoutResult
 
-
 val codeBlockRegex = Regex("`(.*?)`")
 
 data class CodeBlockRange(
     val start: Int,
-    val stop: Int
+    val stop: Int,
 )
 
 fun getCodeBlockIndexes(text: String): List<CodeBlockRange> {
     val codeBlocks = codeBlockRegex.findAll(text)
-    return codeBlocks.mapIndexed { index, block ->
-        CodeBlockRange(
-            start = (block.range.first - (index * 2)),
-            stop = block.range.last - ((index * 2) + 1)
-        )
-    }.toList()
+    return codeBlocks
+        .mapIndexed { index, block ->
+            CodeBlockRange(
+                start = (block.range.first - (index * 2)),
+                stop = block.range.last - ((index * 2) + 1),
+            )
+        }.toList()
 }
 
-fun Path.createCodeBlockRect(codeBlockRange: CodeBlockRange, layoutResult: TextLayoutResult): Path {
+fun Path.createCodeBlockRect(
+    codeBlockRange: CodeBlockRange,
+    layoutResult: TextLayoutResult,
+): Path {
     val cornerRadius = CornerRadius(x = 10f, y = 10f)
     return this.apply {
-        val boundingBoxes = layoutResult
-            .getBoundingBoxesForRange(
-                start = codeBlockRange.start,
-                end = codeBlockRange.stop
-            )
+        val boundingBoxes =
+            layoutResult
+                .getBoundingBoxesForRange(
+                    start = codeBlockRange.start,
+                    end = codeBlockRange.stop,
+                )
         for (i in boundingBoxes.indices) {
             val boundingBox = boundingBoxes[i]
             val leftCornerRoundRect =
@@ -45,22 +49,26 @@ fun Path.createCodeBlockRect(codeBlockRange: CodeBlockRange, layoutResult: TextL
                     topRight = rightCornerRoundRect,
                     bottomRight = rightCornerRoundRect,
                     bottomLeft = leftCornerRoundRect,
-                )
+                ),
             )
         }
     }
 }
 
+fun Rect.inflate(
+    verticalDelta: Float,
+    horizontalDelta: Float,
+) = Rect(
+    left = left - horizontalDelta,
+    top = top - verticalDelta,
+    right = right + horizontalDelta,
+    bottom = bottom + verticalDelta,
+)
 
-fun Rect.inflate(verticalDelta: Float, horizontalDelta: Float) =
-    Rect(
-        left = left - horizontalDelta,
-        top = top - verticalDelta,
-        right = right + horizontalDelta,
-        bottom = bottom + verticalDelta,
-    )
-
-fun TextLayoutResult.getBoundingBoxesForRange(start: Int, end: Int): List<Rect> {
+fun TextLayoutResult.getBoundingBoxesForRange(
+    start: Int,
+    end: Int,
+): List<Rect> {
     var prevRect: Rect? = null
     var firstLineCharRect: Rect? = null
     val boundingBoxes = mutableListOf<Rect>()
@@ -80,7 +88,7 @@ fun TextLayoutResult.getBoundingBoxesForRange(start: Int, end: Int): List<Rect> 
         } else if (prevRect != null) {
             if (prevRect.bottom != rect.bottom || isLastRect) {
                 boundingBoxes.add(
-                    firstLineCharRect.copy(right = prevRect.right)
+                    firstLineCharRect.copy(right = prevRect.right),
                 )
                 firstLineCharRect = rect
             }

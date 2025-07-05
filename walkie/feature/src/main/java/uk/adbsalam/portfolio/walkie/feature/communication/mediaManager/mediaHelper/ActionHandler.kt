@@ -22,13 +22,14 @@ fun Modifier.onVolumeButton(
     onStopAndGetRecording: () -> ByteArray?,
     onSendAudio: (Payload) -> Unit,
 ) = composed {
-
     var consumeKeyDown by remember { mutableStateOf(false) }
 
     Modifier.onKeyEvent { keyEvent ->
-        return@onKeyEvent when{
+        return@onKeyEvent when {
             keyEvent.type == KeyEventType.KeyDown && keyEvent.key == Key.VolumeDown -> {
-                if (!consumeKeyDown) { onStartRecording() }
+                if (!consumeKeyDown) {
+                    onStartRecording()
+                }
                 consumeKeyDown = true
                 true
             }

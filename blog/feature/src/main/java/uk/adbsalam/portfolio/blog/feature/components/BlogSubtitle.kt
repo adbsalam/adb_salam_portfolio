@@ -1,6 +1,7 @@
 package uk.adbsalam.portfolio.blog.feature.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,16 +12,15 @@ import androidx.compose.ui.unit.sp
 import uk.adbsalam.portfolio.theming.appFont
 
 @Composable
-fun BlogSubTitle(
-    text: String
-) {
+fun BlogSubTitle(text: String) {
     Text(
         modifier = Modifier.fillMaxWidth(),
         text = text,
         fontSize = 14.sp,
         fontFamily = appFont,
         textAlign = TextAlign.Center,
-        fontWeight = FontWeight.W400
+        fontWeight = FontWeight.W400,
+        color = MaterialTheme.colorScheme.onBackground,
     )
 }
 

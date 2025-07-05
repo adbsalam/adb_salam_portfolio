@@ -1,4 +1,3 @@
-apply<BaseConfig>()
 
 plugins {
     alias(libs.plugins.android.library)
@@ -7,6 +6,16 @@ plugins {
 
 android {
     namespace = asNameSpace("utils")
+
+    compileSdk = COMPILE_SDK
+    defaultConfig {
+        minSdk = MIN_SDK
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
 }
 
 dependencies {}

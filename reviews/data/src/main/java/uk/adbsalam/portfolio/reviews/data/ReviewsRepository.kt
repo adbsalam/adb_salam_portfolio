@@ -8,17 +8,17 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-internal class ReviewsRepository @Inject constructor(
-    private val reviewsService: ReviewsService
-) : ReviewsRepo {
-
-    override suspend fun reviews(): Response<ReviewItems> {
-        return try {
-            val reviews = reviewsService.reviews(item = "reviews")
-            Response.Success(data = reviews)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            Response.Failure(genericException(e))
-        }
+internal class ReviewsRepository
+    @Inject
+    constructor(
+        private val reviewsService: ReviewsService,
+    ) : ReviewsRepo {
+        override suspend fun reviews(): Response<ReviewItems> =
+            try {
+                val reviews = reviewsService.reviews(item = "reviews")
+                Response.Success(data = reviews)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Response.Failure(genericException(e))
+            }
     }
-}

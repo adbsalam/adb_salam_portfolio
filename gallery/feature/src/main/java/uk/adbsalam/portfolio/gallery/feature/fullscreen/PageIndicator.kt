@@ -50,7 +50,7 @@ fun PagerIndicator(
         val viewportSize = listState.layoutInfo.viewportSize
         listState.animateScrollToItem(
             currentItem,
-            (widthInPx / 2 - viewportSize.width / 2).toInt()
+            (widthInPx / 2 - viewportSize.width / 2).toInt(),
         )
     }
 
@@ -59,24 +59,23 @@ fun PagerIndicator(
         state = listState,
         contentPadding = PaddingValues(vertical = space),
         horizontalArrangement = Arrangement.spacedBy(space),
-        userScrollEnabled = false
+        userScrollEnabled = false,
     ) {
-
         items(pageCount) { index ->
             val isSelected = (index == currentItem)
 
             Box(
-                modifier = Modifier
-                    .graphicsLayer {
-                        scaleX = if(isSelected) 1f else 0.7f
-                        scaleY = if(isSelected) 1f else 0.7f
-                    }
-                    .clip(indicatorShape)
-                    .size(indicatorSize)
-                    .background(
-                        if (isSelected) Color.White else Color.LightGray,
-                        indicatorShape
-                    )
+                modifier =
+                    Modifier
+                        .graphicsLayer {
+                            scaleX = if (isSelected) 1f else 0.7f
+                            scaleY = if (isSelected) 1f else 0.7f
+                        }.clip(indicatorShape)
+                        .size(indicatorSize)
+                        .background(
+                            if (isSelected) Color.White else Color.LightGray,
+                            indicatorShape,
+                        ),
             )
         }
     }

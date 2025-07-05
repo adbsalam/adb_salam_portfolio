@@ -13,43 +13,41 @@ import uk.adbsalam.portfolio.videos.data.VideosRepo
 import javax.inject.Inject
 
 @HiltViewModel
-class VideosViewModel @Inject constructor(
-    private val themePrefs: AppSharedPrefManager.ThemePrefs,
-    private val videosRepo: VideosRepo
-) : ViewModel() {
+class VideosViewModel
+    @Inject
+    constructor(
+        private val themePrefs: AppSharedPrefManager.ThemePrefs,
+        private val videosRepo: VideosRepo,
+    ) : ViewModel() {
+        private val _viewState = MutableStateFlow<VideosState>(VideosState.OnLoading)
+        internal val viewState = _viewState.asStateFlow()
 
-    private val _viewState = MutableStateFlow<VideosState>(VideosState.OnLoading)
-    internal val viewState = _viewState.asStateFlow()
+        /**
+         * Fetch data on init View Model
+         */
+        init {
+            fetchVideos()
+        }
 
-    /**
-     * Fetch data on init View Model
-     */
-    init {
-        fetchVideos()
-    }
+        internal fun fetchVideos() {
+            _viewState.value = VideosState.OnLoading
 
-    internal fun fetchVideos() {
-        _viewState.value = VideosState.OnLoading
+            viewModelScope.launch {
+                when (val result = videosRepo.videos()) {
+                    is Response.Failure -> {
+                        _viewState.value =
+                            VideosState.OnError("something went wrong, please try again")
+                    }
 
-        viewModelScope.launch {
-
-            when (val result = videosRepo.videos()) {
-                is Response.Failure -> {
-                    _viewState.value =
-                        VideosState.OnError("something went wrong, please try again")
-                }
-
-                is Response.Success -> {
-                    _viewState.value = VideosState.OnVideos(result.data)
+                    is Response.Success -> {
+                        _viewState.value = VideosState.OnVideos(result.data)
+                    }
                 }
             }
         }
-    }
 
-    /**
-     * get current theme app us using from prefs
-     */
-    internal fun currentTheme(): Theme {
-        return themePrefs.theme()
+        /**
+         * get current theme app us using from prefs
+         */
+        internal fun currentTheme(): Theme = themePrefs.theme()
     }
-}

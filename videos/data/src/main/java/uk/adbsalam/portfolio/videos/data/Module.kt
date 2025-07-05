@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal interface Module {
-
     @Binds
     @Singleton
     fun bindHomeRepository(videosRepository: VideosRepository): VideosRepo
@@ -20,7 +19,8 @@ internal interface Module {
     companion object {
         @Provides
         @Singleton
-        fun provideHomeService(@PortfolioRetrofit retrofit: Retrofit): VideoService =
-            retrofit.create(VideoService::class.java)
+        fun provideHomeService(
+            @PortfolioRetrofit retrofit: Retrofit,
+        ): VideoService = retrofit.create(VideoService::class.java)
     }
 }

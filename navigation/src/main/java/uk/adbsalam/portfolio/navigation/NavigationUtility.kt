@@ -2,8 +2,12 @@ package uk.adbsalam.portfolio.navigation
 
 import android.net.Uri
 import androidx.compose.runtime.Composable
-import androidx.navigation.*
+import androidx.navigation.NamedNavArgument
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.google.gson.Gson
 
 /**
@@ -13,7 +17,10 @@ import com.google.gson.Gson
  * this wil navigate to fragment and set root as first fragment,
  * All fragments will be removed from backstack and only root will stay as first
  */
-fun NavController.navigateAndResetHome(route: NavigationScreen, root: NavigationScreen) {
+fun NavController.navigateAndResetHome(
+    route: NavigationScreen,
+    root: NavigationScreen,
+) {
     this.navigate(route.route()) {
         popUpTo(root.route()) {
             inclusive = false
@@ -39,7 +46,10 @@ fun NavController.popToRoute(route: NavigationScreen) {
  * navigate using args as object. Preferred Data class
  * use @Keep annotations on args dataclass to avoid obfuscation issues
  */
-fun NavController.toDestination(route: NavigationScreen, item: Any) {
+fun NavController.toDestination(
+    route: NavigationScreen,
+    item: Any,
+) {
     this.navigate("${route.name}/${item.mapObjectToParcelableData()}")
 }
 
@@ -47,30 +57,36 @@ fun NavController.toDestination(route: NavigationScreen, item: Any) {
  * map name of fragment to navigation route format
  * which is "routeName/{argsName}"
  */
-fun NavigationScreen.route(): String {
-    return "${this.name}/{${this.name}}"
-}
+fun NavigationScreen.route(): String = "${this.name}/{${this.name}}"
+
+/**
+ * map name of fragment to navigation route format
+ * which is "routeName/{argsName}"
+ */
+fun NavigationScreen.navHostRoute(): String = "${this.name}/arg-string"
 
 /**
  * create routes and args names, return composable to add to nav graph
  */
-fun NavGraphBuilder.composeRoute(route: NavigationScreen, screen: @Composable() () -> Unit) {
-    return composable(
-        route.route(),
-        arguments = route.args()
-    ) {
-        screen()
-    }
+fun NavGraphBuilder.composeRoute(
+    route: NavigationScreen,
+    screen:
+        @Composable()
+        () -> Unit,
+) = composable(
+    route.route(),
+    arguments = route.args(),
+) {
+    screen()
 }
 
 /**
  * Add args to compose using arg name, return a list of nav args
  */
-fun NavigationScreen.args(): List<NamedNavArgument> {
-    return listOf(
-        navArgument(this.name) { type = NavType.StringType }
+fun NavigationScreen.args(): List<NamedNavArgument> =
+    listOf(
+        navArgument(this.name) { type = NavType.StringType },
     )
-}
 
 /**
  * convert args object to Serializable Json so it can be passed as nav arg
@@ -90,7 +106,13 @@ fun Any.mapObjectToParcelableData(): String {
  * navController.backStackEntry.arguments.extractArgs<HomeScreenArgs>()
  */
 inline fun <reified T : Any> NavController.navArgs(): T? {
-    val key = this.currentBackStackEntry?.destination?.arguments?.keys?.first().orEmpty() //arg name
+    val key =
+        this.currentBackStackEntry
+            ?.destination
+            ?.arguments
+            ?.keys
+            ?.first()
+            .orEmpty() // arg name
     val args = this.currentBackStackEntry?.arguments?.getString(key) ?: return null
     return try {
         Gson().fromJson(Uri.decode(args), T::class.java)

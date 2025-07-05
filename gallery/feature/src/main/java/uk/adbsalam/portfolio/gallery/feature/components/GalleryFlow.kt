@@ -34,17 +34,19 @@ import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 internal fun GalleryFlow(
     size: MutableState<Dp>,
     media: GalleryMedia,
-    onClick: (String, Int) -> Unit
+    onClick: (String, Int) -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .heightIn(max = 10000.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .heightIn(max = 10000.dp),
     ) {
         Text(
             modifier = Modifier.padding(start = 12.dp),
             text = media.title,
-            style = MaterialTheme.typography.bodyLarge
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onBackground
         )
         Spacer(modifier = Modifier.height(12.dp))
 
@@ -57,17 +59,19 @@ internal fun GalleryFlow(
                 media.images.forEachIndexed { index, item ->
                     item {
                         Image(
-                            modifier = Modifier
-                                .clickable { onClick(media.title, index) }
-                                .aspectRatio(4f / 3f)
-                                .clip(RoundedCornerShape(4.dp)),
+                            modifier =
+                                Modifier
+                                    .clickable { onClick(media.title, index) }
+                                    .aspectRatio(4f / 3f)
+                                    .clip(RoundedCornerShape(4.dp))
+                                    .animateItem(),
                             contentScale = ContentScale.FillBounds,
                             painter = painterResource(id = item),
-                            contentDescription = null
+                            contentDescription = null,
                         )
                     }
                 }
-            }
+            },
         )
     }
 }
@@ -79,7 +83,7 @@ internal fun GalleryFlowLightPreview() {
         GalleryFlow(
             size = remember { mutableStateOf(500.dp) },
             media = GalleryMedia.mockkGallery().first(),
-            onClick = { _, _ -> /* unused */ }
+            onClick = { _, _ -> /* unused */ },
         )
     }
 }
@@ -91,7 +95,7 @@ internal fun GalleryFlowDarkPreview() {
         GalleryFlow(
             size = remember { mutableStateOf(100.dp) },
             media = GalleryMedia.mockkGallery().first(),
-            onClick = { _, _ -> /* unused */ }
+            onClick = { _, _ -> /* unused */ },
         )
     }
 }

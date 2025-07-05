@@ -19,11 +19,11 @@ import uk.adbsalam.portfolio.utils.Theme
 @Composable
 fun BlogGenerator(
     components: List<Blog.Component>,
-    currentTheme: Theme
+    currentTheme: Theme,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth(),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         components.forEach {
             when (it.type) {
@@ -38,5 +38,4 @@ fun BlogGenerator(
             }
         }
     }
-
 }

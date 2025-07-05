@@ -15,10 +15,9 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 fun AdbImage(
     modifier: Modifier = Modifier,
-    @DrawableRes
-    resourceId: Int,
+    @DrawableRes resourceId: Int,
     tag: String = "",
-    contentScale: ContentScale = ContentScale.FillBounds
+    contentScale: ContentScale = ContentScale.FillBounds,
 ) {
     Image(
         modifier = modifier,
@@ -39,9 +38,7 @@ internal fun AdbImagePreview() {
 }
 
 @Composable
-fun AdbMainLogo(
-    modifier: Modifier = Modifier
-) {
+fun AdbMainLogo(modifier: Modifier = Modifier) {
     AdbImage(
         modifier = modifier,
         resourceId = R.drawable.ic_logo_main,
@@ -53,6 +50,6 @@ fun AdbMainLogo(
 @SnapIt
 internal fun AdbMainLogoPreview() {
     AdbMainLogo(
-        modifier = Modifier.size(150.dp)
+        modifier = Modifier.size(150.dp),
     )
 }

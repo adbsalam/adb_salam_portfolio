@@ -3,7 +3,8 @@ package uk.adbsalam.portfolio.theming.appbackground
 import org.intellij.lang.annotations.Language
 
 @Language("AGSL")
-val CUSTOM_SHADER = """
+val CUSTOM_SHADER =
+    """
     uniform float2 resolution;
     layout(color) uniform half4 color;
     layout(color) uniform half4 color2;
@@ -14,4 +15,4 @@ val CUSTOM_SHADER = """
         float mixValue = distance(uv, vec2(0, 1));
         return mix(color, color2, mixValue);
     }
-""".trimIndent()
+    """.trimIndent()

@@ -15,9 +15,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -53,70 +52,69 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 internal fun VideosScreen(
     videos: VideoItems,
-    currentTheme: Theme
+    currentTheme: Theme,
 ) {
-    val scrollState = rememberScrollState()
     val context = LocalContext.current
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(12.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background),
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(200.dp)
-                .statusBarsPadding(),
-            horizontalAlignment = Alignment.CenterHorizontally
+        item {
+            Column(
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(200.dp)
+                        .statusBarsPadding(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                Image(
+                    painter = painterResource(id = ic_logo_main),
+                    contentDescription = null,
+                    contentScale = ContentScale.FillBounds,
+                    modifier =
+                        Modifier
+                            .size(80.dp)
+                            .clip(RoundedCornerShape(20.dp)),
+                )
 
-        ) {
-            Image(
-                painter = painterResource(id = ic_logo_main),
-                contentDescription = null,
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .size(80.dp)
-                    .clip(RoundedCornerShape(20.dp))
-            )
+                Text(
+                    text = "@adb_salam",
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
 
-            Text(
-                text = "@adb_salam",
-                style = MaterialTheme.typography.titleMedium
-            )
+                val icon =
+                    if (currentTheme == DARK || isSystemInDarkTheme()) ic_youtube_dark else ic_youtube_light
 
-            val icon =
-                if (currentTheme == DARK || isSystemInDarkTheme()) ic_youtube_dark else ic_youtube_light
-
-            Icon(
-                painter = painterResource(id = icon),
-                contentDescription = null,
-                tint = Color.Unspecified,
-                modifier = Modifier
-                    .width(100.dp)
-                    .height(80.dp)
-                    .clip(RoundedCornerShape(20.dp))
-                    .clickable {
-                        val url = "https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA"
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        startActivity(context, intent, null)
-                    }
-            )
+                Icon(
+                    painter = painterResource(id = icon),
+                    contentDescription = null,
+                    tint = Color.Unspecified,
+                    modifier =
+                        Modifier
+                            .width(100.dp)
+                            .height(80.dp)
+                            .clip(RoundedCornerShape(20.dp))
+                            .clickable {
+                                val url =
+                                    "https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA"
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                                startActivity(context, intent, null)
+                            },
+                )
+            }
         }
-
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.background)
-        ) {
-            videos.videos.forEach { item ->
+        videos.videos.forEach { item ->
+            item {
                 VideoCard(videoData = item)
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }
-
-        Spacer(modifier = Modifier.height(30.dp))
     }
 }
 
@@ -127,7 +125,7 @@ internal fun VideosScreenPreviewLight() {
     Adb_Screen_Theme {
         VideosScreen(
             videos = VideoItems.createMock(),
-            currentTheme = LIGHT
+            currentTheme = LIGHT,
         )
     }
 }
@@ -139,8 +137,7 @@ internal fun VideosScreenPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         VideosScreen(
             videos = VideoItems.createMock(),
-            currentTheme = DARK
+            currentTheme = DARK,
         )
     }
 }
-

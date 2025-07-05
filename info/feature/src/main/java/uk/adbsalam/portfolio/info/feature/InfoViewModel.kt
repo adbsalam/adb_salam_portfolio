@@ -14,54 +14,55 @@ import uk.adbsalam.portfolio.network.Response
 import javax.inject.Inject
 
 @HiltViewModel
-class InfoViewModel @Inject constructor(
-    private val infoRepo: InfoRepo
-) : ViewModel() {
+class InfoViewModel
+    @Inject
+    constructor(
+        private val infoRepo: InfoRepo,
+    ) : ViewModel() {
+        private val _viewState = MutableStateFlow<InfoScreenState>(InfoScreenState.OnLoading)
+        internal val viewState = _viewState.asStateFlow()
 
-    private val _viewState = MutableStateFlow<InfoScreenState>(InfoScreenState.OnLoading)
-    internal val viewState = _viewState.asStateFlow()
+        /**
+         * Fetch data on init View Model
+         */
+        init {
+            fetchInfoAndWork()
+        }
 
-    /**
-     * Fetch data on init View Model
-     */
-    init {
-        fetchInfoAndWork()
-    }
+        internal fun fetchInfoAndWork() {
+            _viewState.value = InfoScreenState.OnLoading
 
-    internal fun fetchInfoAndWork() {
+            viewModelScope.launch {
+                val infographics: Infographics
+                val workHistory: WorkHistory
 
-        _viewState.value = InfoScreenState.OnLoading
+                when (val result = infoRepo.infographics()) {
+                    is Response.Failure -> {
+                        _viewState.value = OnError("something went wrong, please try again")
+                        return@launch
+                    }
 
-        viewModelScope.launch {
-            val infographics: Infographics
-            val workHistory: WorkHistory
-
-            when (val result = infoRepo.infographics()) {
-                is Response.Failure -> {
-                    _viewState.value = OnError("something went wrong, please try again")
-                    return@launch
+                    is Response.Success -> {
+                        infographics = result.data
+                    }
                 }
 
-                is Response.Success -> {
-                    infographics = result.data
+                when (val result = infoRepo.workHistory()) {
+                    is Response.Failure -> {
+                        _viewState.value = OnError("something went wrong, please try again")
+                        return@launch
+                    }
+
+                    is Response.Success -> {
+                        workHistory = result.data
+                    }
                 }
+
+                _viewState.value =
+                    InfoScreenState.OnInfo(
+                        infographics = infographics,
+                        workHistory = workHistory,
+                    )
             }
-
-            when (val result = infoRepo.workHistory()) {
-                is Response.Failure -> {
-                    _viewState.value = OnError("something went wrong, please try again")
-                    return@launch
-                }
-
-                is Response.Success -> {
-                    workHistory = result.data
-                }
-            }
-
-            _viewState.value = InfoScreenState.OnInfo(
-                infographics = infographics,
-                workHistory = workHistory
-            )
         }
     }
-}

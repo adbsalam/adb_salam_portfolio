@@ -1,4 +1,6 @@
-open class Module(private val name: String) {
+open class Module(
+    private val name: String,
+) {
     /**
      * module name as data module e.g ":module:data"
      */

@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -23,26 +23,25 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * This is main Reviews card to display in list
  */
 @Composable
-internal fun ReviewCard(
-    review: ReviewItems.Review
-) {
+internal fun ReviewCard(review: ReviewItems.Review) {
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .adbRoundedBackground()
-            .animateContentSize()
-            .padding(vertical = 12.dp),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .adbRoundedBackground()
+                .animateContentSize()
+                .padding(vertical = 12.dp),
     ) {
         ReviewTitle(review = review)
 
         Text(
             text = review.review,
             style = MaterialTheme.typography.bodyLarge,
-            modifier = Modifier.padding(horizontal = 12.dp)
+            modifier = Modifier.padding(horizontal = 12.dp),
         )
 
-        Divider(modifier = Modifier.fillMaxWidth())
+        HorizontalDivider(modifier = Modifier.fillMaxWidth())
 
         RelationShipAccordion(review = review)
     }

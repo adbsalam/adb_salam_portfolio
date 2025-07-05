@@ -23,7 +23,7 @@ import uk.adbsalam.portfolio.utils.Theme
 fun HomeNavHost(
     onTheme: (Theme) -> Unit,
     onDynamicColor: (Boolean) -> Unit,
-    rootNavHostController: NavHostController
+    rootNavHostController: NavHostController,
 ) {
     val visibility = remember { mutableStateOf(false) }
     val selected = remember { mutableStateOf(0) }
@@ -35,27 +35,28 @@ fun HomeNavHost(
 
     AnimatedVisibility(
         visible = visibility.value,
-        enter = fadeIn(tween(500))
+        enter = fadeIn(tween(500)),
     ) {
         Scaffold(
             containerColor = Color.Unspecified,
             bottomBar = {
                 RootNavBar(
                     selected = selected,
-                    navController = navController
+                    navController = navController,
                 )
-            }
+            },
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(bottom = it.calculateBottomPadding())
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(bottom = it.calculateBottomPadding()),
             ) {
                 HomeNavGraph(
                     onTheme = onTheme,
                     onDynamicColor = onDynamicColor,
                     homeNavController = navController,
-                    rootNavHostController = rootNavHostController
+                    rootNavHostController = rootNavHostController,
                 )
             }
         }

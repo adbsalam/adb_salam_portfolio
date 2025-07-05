@@ -1,7 +1,7 @@
 package uk.adbsalam.portfolio.communication
 
 data class NearbyUsers(
-    val users: ArrayList<User> = arrayListOf()
+    val users: ArrayList<User> = arrayListOf(),
 ) {
     data class User(
         val id: String,
@@ -9,21 +9,23 @@ data class NearbyUsers(
     )
 
     companion object {
-        fun mockUsers() = NearbyUsers(
-            users = arrayListOf(
-                User(
-                    id = "01",
-                    name = "testUser"
-                ),
-                User(
-                    id = "01",
-                    name = "testUser"
-                ),
-                User(
-                    id = "01",
-                    name = "testUser"
-                ),
+        fun mockUsers() =
+            NearbyUsers(
+                users =
+                    arrayListOf(
+                        User(
+                            id = "01",
+                            name = "testUser",
+                        ),
+                        User(
+                            id = "01",
+                            name = "testUser",
+                        ),
+                        User(
+                            id = "01",
+                            name = "testUser",
+                        ),
+                    ),
             )
-        )
     }
 }

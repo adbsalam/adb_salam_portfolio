@@ -11,9 +11,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 
 @Composable
-fun AnimatedColumn(
-    content: @Composable () -> Unit
-) {
+fun AnimatedColumn(content: @Composable () -> Unit) {
     var visibility by remember { mutableStateOf(false) }
 
     LaunchedEffect(key1 = null) {
@@ -22,7 +20,7 @@ fun AnimatedColumn(
 
     AnimatedVisibility(
         visible = visibility,
-        enter = fadeIn(tween(1000))
+        enter = fadeIn(tween(1000)),
     ) {
         content()
     }

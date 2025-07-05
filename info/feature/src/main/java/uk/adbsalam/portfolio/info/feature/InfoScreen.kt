@@ -37,7 +37,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 internal fun InfoScreen(
     infographics: Infographics,
-    workHistory: WorkHistory
+    workHistory: WorkHistory,
 ) {
     val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
@@ -45,40 +45,43 @@ internal fun InfoScreen(
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 16.dp)
-            .verticalScroll(scrollState),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+                .verticalScroll(scrollState),
     ) {
-
         Text(
             modifier = Modifier.statusBarsPadding(),
             text = "Primary Android Skills",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground,
         )
 
         AndroidMainCard()
 
         Text(
             text = "Have a look at my skill set",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground,
         )
 
         SkillsInsightCard(infographics = infographics)
 
         Text(
             text = "My Work History",
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground,
         )
 
         Column(
             verticalArrangement = Arrangement.spacedBy(20.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .adbRoundedBackground()
-                .padding(vertical = 20.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .adbRoundedBackground()
+                    .padding(vertical = 20.dp),
         ) {
-
             workHistory.workHistory.forEachIndexed { index, item ->
                 WorkInfo(
                     showDivider = index != workHistory.workHistory.lastIndex,
@@ -106,7 +109,7 @@ internal fun InfoScreenLight() {
     Adb_Screen_Theme {
         InfoScreen(
             infographics = Infographics.createMock(),
-            workHistory = WorkHistory.createMock()
+            workHistory = WorkHistory.createMock(),
         )
     }
 }
@@ -118,7 +121,7 @@ internal fun InfoScreenDark() {
     Adb_Screen_Theme(isDark = true) {
         InfoScreen(
             infographics = Infographics.createMock(),
-            workHistory = WorkHistory.createMock()
+            workHistory = WorkHistory.createMock(),
         )
     }
 }

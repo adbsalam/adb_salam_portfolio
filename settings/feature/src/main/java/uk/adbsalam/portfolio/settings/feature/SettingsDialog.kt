@@ -20,21 +20,20 @@ import uk.adbsalam.portfolio.utils.Theme
 fun SettingsDialog(
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
-
     val openDialog = remember { mutableStateOf(true) }
 
     if (openDialog.value) {
         AlertDialog(
             onDismissRequest = { openDialog.value = false },
-            properties = DialogProperties(
-                usePlatformDefaultWidth = false,
-                dismissOnBackPress = false,
-                dismissOnClickOutside = false
-            )
+            properties =
+                DialogProperties(
+                    usePlatformDefaultWidth = false,
+                    dismissOnBackPress = false,
+                    dismissOnClickOutside = false,
+                ),
         ) {
-
             if (!LocalInspectionMode.current) {
                 SettingsScreen(
                     onDynamicColor = onDynamicColor,
@@ -42,7 +41,7 @@ fun SettingsDialog(
                     onDismiss = {
                         openDialog.value = false
                         onDismiss()
-                    }
+                    },
                 )
             } else { // to preview settings dialog
                 SettingsScreen(
@@ -53,7 +52,7 @@ fun SettingsDialog(
                     onDismiss = {
                         openDialog.value = false
                         onDismiss()
-                    }
+                    },
                 )
             }
         }
@@ -64,8 +63,14 @@ fun SettingsDialog(
 @Preview
 fun SettingsDialogPreview() {
     SettingsDialog(
-        onDynamicColor = { /** unused **/ },
-        onTheme = { /** unused **/ },
-        onDismiss = { /** unused **/ }
+        onDynamicColor = {
+            /** unused **/
+        },
+        onTheme = {
+            /** unused **/
+        },
+        onDismiss = {
+            /** unused **/
+        },
     )
 }

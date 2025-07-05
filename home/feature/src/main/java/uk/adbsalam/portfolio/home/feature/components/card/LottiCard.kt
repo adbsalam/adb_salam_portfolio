@@ -47,19 +47,20 @@ internal fun LottiInfoCard(
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(resId))
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(12.dp)
-            .adbRoundedBackground()
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+                .adbRoundedBackground(),
     ) {
-
         if (LocalInspectionMode.current) {
             Image(
                 painter = painterResource(id = R.drawable.preview),
                 contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(200.dp),
             )
         } else {
             LottieAnimation(
@@ -69,9 +70,10 @@ internal fun LottiInfoCard(
                 iterations = Int.MAX_VALUE,
                 renderMode = RenderMode.HARDWARE,
                 asyncUpdates = AsyncUpdates.ENABLED,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(200.dp),
             )
         }
 
@@ -80,7 +82,7 @@ internal fun LottiInfoCard(
             title = title,
             body = body,
             readMore = readMore,
-            action = action
+            action = action,
         )
     }
 }
@@ -96,7 +98,7 @@ internal fun LottiInfoCardLightPreview() {
             title = "Patrolla Android App",
             body = "This is some body of this view",
             animate = true,
-            action = {/* unused */ }
+            action = { /* unused */ },
         )
     }
 }
@@ -112,7 +114,7 @@ internal fun LottiInfoCardDarkPreview() {
             title = "Patrolla Android App",
             body = "This is some body of this view",
             animate = true,
-            action = { /* unused */ }
+            action = { /* unused */ },
         )
     }
 }

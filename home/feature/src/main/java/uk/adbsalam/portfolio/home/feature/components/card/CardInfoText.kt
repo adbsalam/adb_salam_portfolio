@@ -45,26 +45,26 @@ internal fun CardInfoText(
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(12.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(all = 12.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(all = 12.dp),
     ) {
-
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .horizontalScroll(rememberScrollState())
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .horizontalScroll(rememberScrollState()),
         ) {
-
             tags.forEach { tag ->
                 AssistChip(
                     onClick = { },
                     label = {
                         Text(
                             text = tag,
-                            fontSize = 10.sp
+                            fontSize = 10.sp,
                         )
                     },
                 )
@@ -75,28 +75,29 @@ internal fun CardInfoText(
             Text(
                 text = title,
                 style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onBackground,
             )
 
             Spacer(modifier = Modifier.height(8.dp))
 
             ExpandableText(
                 readMore = readMore,
-                text = body
+                text = body,
             )
         }
 
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             Button(
-                onClick = {action()},
-                content = { Text(text = "View") }
+                onClick = { action() },
+                content = { Text(text = "View") },
             )
 
             TextButton(
                 content = { Text(text = "Read more") },
-                onClick = { readMore.value = !readMore.value }
+                onClick = { readMore.value = !readMore.value },
             )
         }
     }
@@ -113,7 +114,7 @@ internal fun CardInfoTextPreviewLight() {
             title = "Sample Title",
             body = "This is body example",
             readMore = readMore,
-            action = { /*unused*/ }
+            action = { /*unused*/ },
         )
     }
 }
@@ -129,8 +130,7 @@ internal fun CardInfoTextPreviewDark() {
             title = "Sample Title",
             body = "This is body example",
             readMore = readMore,
-            action = { /*unused*/ }
+            action = { /*unused*/ },
         )
     }
 }
-

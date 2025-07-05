@@ -33,7 +33,6 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import uk.adbsalam.portfolio.theming.adbRoundedBackground
 
-
 @Composable
 fun ShimmerCard(
     item: ShimmerCardItem,
@@ -61,14 +60,14 @@ fun ShimmerCard(
             delay(1000)
             if (currentIndex > 0) {
                 delay(150)
-            } //extra delay to let first anim start first
+            } // extra delay to let first anim start first
             animOne = 0f
 
             onUpdateState(
                 LazyRowShimmerState.LazyRowItemShimmer(
                     index = currentIndex,
-                    isShimmerComplete = true
-                )
+                    isShimmerComplete = true,
+                ),
             )
         }
     })
@@ -84,12 +83,13 @@ fun ShimmerCard(
     }
 
     Column(
-        modifier = Modifier
-            .size(180.dp, 260.dp)
-            .adbRoundedBackground()
+        modifier =
+            Modifier
+                .size(180.dp, 260.dp)
+                .adbRoundedBackground(),
     ) {
         Surface(
-            modifier = Modifier.clickable { onClick() }
+            modifier = Modifier.clickable { onClick() },
         ) {
             Column {
                 ShimmerCardImage(
@@ -97,14 +97,14 @@ fun ShimmerCard(
                     alphaOne = animateOneAlpha,
                     alphaTwo = animTwoAlpha,
                     alphaThree = animThreeAlpha,
-                    index = currentIndex
+                    index = currentIndex,
                 )
 
                 ShimmerCardText(
                     item = item,
                     alphaOne = animateOneAlpha,
                     alphaTwo = animTwoAlpha,
-                    alphaThree = animThreeAlpha
+                    alphaThree = animThreeAlpha,
                 )
             }
         }
@@ -117,28 +117,31 @@ fun ShimmerCardImage(
     alphaOne: Float,
     alphaTwo: Float,
     alphaThree: Float,
-    index: Int
+    index: Int,
 ) {
     Box(
-        modifier = Modifier
-            .height(160.dp)
-            .fillMaxWidth()
+        modifier =
+            Modifier
+                .height(160.dp)
+                .fillMaxWidth(),
     ) {
         Image(
-            modifier = Modifier
-                .fillMaxSize()
-                .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp)),
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp)),
             contentScale = ContentScale.Crop,
             painter = painterResource(id = item.imageRes),
-            contentDescription = null
+            contentDescription = null,
         )
 
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .pointerInput(Unit) {}
-                .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
-                .background(shimmerRadialBackground(alphaOne, alphaTwo, alphaThree, index))
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .pointerInput(Unit) {}
+                    .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
+                    .background(shimmerRadialBackground(alphaOne, alphaTwo, alphaThree, index)),
         )
     }
 }
@@ -151,36 +154,34 @@ fun ShimmerCardText(
     alphaThree: Float,
 ) {
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background),
     ) {
-
         Column(
             modifier = Modifier.padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             Text(
                 text = item.title,
                 style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.onBackground
+                color = MaterialTheme.colorScheme.onBackground,
             )
 
             Text(
                 text = item.body,
                 style = MaterialTheme.typography.bodySmall,
                 overflow = TextOverflow.Ellipsis,
-                color = MaterialTheme.colorScheme.onBackground
+                color = MaterialTheme.colorScheme.onBackground,
             )
         }
 
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(shimmerTextBackground(alphaOne, alphaTwo, alphaThree))
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .background(shimmerTextBackground(alphaOne, alphaTwo, alphaThree)),
         )
     }
 }
-
-
-

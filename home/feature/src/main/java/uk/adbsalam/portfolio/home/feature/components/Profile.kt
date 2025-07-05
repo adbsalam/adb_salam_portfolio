@@ -37,7 +37,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 internal fun Profile(
     theme: Theme,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(modifier = modifier, contentAlignment = Alignment.Center) {
         val isSystemLight = theme == Theme.SYSTEM && !isSystemInDarkTheme()
@@ -47,34 +47,34 @@ internal fun Profile(
             modifier = Modifier.fillMaxSize(),
             painter = painterResource(id = image),
             contentScale = ContentScale.FillBounds,
-            contentDescription = null
+            contentDescription = null,
         )
 
         Column(
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-
             Image(
                 painterResource(id = R.drawable.ic_dp),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(150.dp)
-                    .clip(CircleShape)
+                modifier =
+                    Modifier
+                        .size(150.dp)
+                        .clip(CircleShape),
             )
 
             Spacer(modifier = Modifier.height(10.dp))
 
             Row(
-                modifier = Modifier
-                    .background(
-                        color = Color.DarkGray.copy(alpha = 0.9f),
-                        shape = RoundedCornerShape(10.dp)
-                    )
-                    .padding(8.dp),
+                modifier =
+                    Modifier
+                        .background(
+                            color = Color.DarkGray.copy(alpha = 0.9f),
+                            shape = RoundedCornerShape(10.dp),
+                        ).padding(8.dp),
                 horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = "Abdul Salam",

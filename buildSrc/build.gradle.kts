@@ -2,6 +2,6 @@ plugins {
     `kotlin-dsl`
 }
 
-dependencies{
-    implementation(libs.gradle.api)
+dependencies {
+    // implementation(libs.gradle.api)
 }

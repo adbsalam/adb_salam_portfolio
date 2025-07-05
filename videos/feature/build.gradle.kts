@@ -1,6 +1,6 @@
 import uk.adbsalam.snapit.plugin.snapIt
 
-apply<ComposableConfig>()
+
 
 plugins {
     alias(libs.plugins.android.library)
@@ -8,12 +8,22 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.paparazzi)
     alias(libs.plugins.snapit)
-    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.android.hilt.plugin)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
     namespace = asNameSpace("videos.feature")
+
+    compileSdk = COMPILE_SDK
+    defaultConfig {
+        minSdk = MIN_SDK
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
 }
 
 snapIt {
@@ -42,5 +52,5 @@ dependencies {
     implementation(libs.youtube.player.seekbar)
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+    ksp(libs.hilt.compiler)
 }

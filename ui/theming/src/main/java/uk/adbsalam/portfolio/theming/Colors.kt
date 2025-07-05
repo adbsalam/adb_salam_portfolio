@@ -22,14 +22,14 @@ val kotlin_color_light = Color(0xFFC4AEFF)
 val compose_color = Color(0xFF3983f9)
 val compose_color_light = Color(0xFFD2ECFC)
 
-val dark_gradient_color_one =  primary_dark
+val dark_gradient_color_one = primary_dark
 val dark_gradient_color_two = dark_background
 
 val christmas_gradient_color = Color(0xFF990537)
-val light_gradient_color_one =  Color(0xFFFFF6F9)
+val light_gradient_color_one = Color(0xFFFFF6F9)
 val light_gradient_color_two = secondary_light
 
-object DeepDarkColorScheme{
+object DeepDarkColorScheme {
     val primary_deep_dark = Color(0xFF2196F3)
     val secondary_deep_dark = Color(0xFF3C3C3C)
     val surface_deep_dark = Color(0xFF000000)

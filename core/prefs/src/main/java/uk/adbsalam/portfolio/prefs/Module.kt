@@ -11,9 +11,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class Module {
-
     @Singleton
     @Provides
-    fun provideSharedPref(@ApplicationContext context: Context) = PrefManager(context)
-
+    fun provideSharedPref(
+        @ApplicationContext context: Context,
+    ) = PrefManager(context)
 }

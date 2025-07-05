@@ -37,9 +37,7 @@ import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.portfolio.walkie.feature.communication.Communication
 
 @Composable
-fun Connect(
-    viewModel: ConnectViewModel = hiltViewModel()
-) {
+fun Connect(viewModel: ConnectViewModel = hiltViewModel()) {
     val activity = LocalContext.current as Activity
     val connectionClient = Nearby.getConnectionsClient(activity)
     val uiState by viewModel.viewState.collectAsState()
@@ -50,7 +48,7 @@ fun Connect(
         uiState = uiState,
         currentUserChannel = viewModel.currentUserChannel,
         onUserClick = viewModel::connectToUser,
-        startRecording = viewModel::sendAudio
+        startRecording = viewModel::sendAudio,
     )
 
     DisposableEffect(null) {
@@ -65,22 +63,23 @@ private fun Connect(
     uiState: ConnectState,
     currentUserChannel: String,
     onUserClick: (NearbyUsers.User) -> Unit,
-    startRecording: (Payload) -> Unit
+    startRecording: (Payload) -> Unit,
 ) {
     when (uiState) {
         ConnectState.OnLoading -> {}
-        is ConnectState.OnConnected -> Communication(
-            userName = currentUserChannel,
-            sendAudio = startRecording,
-            audioPayload = uiState.payload
-        )
+        is ConnectState.OnConnected ->
+            Communication(
+                userName = currentUserChannel,
+                sendAudio = startRecording,
+                audioPayload = uiState.payload,
+            )
 
         is ConnectState.OnUpdateLogs -> {
             Connect(
                 log = uiState.log,
                 currentUserChannel = currentUserChannel,
                 nearbyUser = uiState.nearbyUsers,
-                onClick = onUserClick
+                onClick = onUserClick,
             )
         }
     }
@@ -91,16 +90,16 @@ private fun Connect(
     log: String,
     currentUserChannel: String,
     nearbyUser: NearbyUsers,
-    onClick: (NearbyUsers.User) -> Unit
+    onClick: (NearbyUsers.User) -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .statusBarsPadding()
-            .navigationBarsPadding()
-            .padding(10.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .statusBarsPadding()
+                .navigationBarsPadding()
+                .padding(10.dp),
     ) {
-
         if (nearbyUser.users.size > 0) {
             Text(text = "Select channel to connect", style = MaterialTheme.typography.bodyMedium)
             Spacer(modifier = Modifier.height(12.dp))
@@ -114,36 +113,38 @@ private fun Connect(
                         UserItem(user = it, onClick = { onClick(it) })
                     }
                 }
-            }
+            },
         )
 
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
         ) {
             val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.searching_nearby))
             val progress by animateLottieCompositionAsState(
                 composition,
                 iterations = Integer.MAX_VALUE,
-                isPlaying = true
+                isPlaying = true,
             )
 
             Column(
                 modifier = Modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 LottieAnimation(
                     composition = composition,
                     progress = { progress },
-                    modifier = Modifier
-                        .width(200.dp)
-                        .height(200.dp)
+                    modifier =
+                        Modifier
+                            .width(200.dp)
+                            .height(200.dp),
                 )
                 Text(
                     text = "Channel: $currentUserChannel",
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.bodyLarge,
                 )
                 Text(text = log, style = MaterialTheme.typography.labelLarge)
             }
@@ -159,10 +160,11 @@ private fun ConnectPreview() {
             currentUserChannel = "23123",
             onUserClick = {},
             startRecording = {},
-            uiState = ConnectState.OnUpdateLogs(
-                log = "Loading Users...",
-                nearbyUsers = NearbyUsers.mockUsers()
-            )
+            uiState =
+                ConnectState.OnUpdateLogs(
+                    log = "Loading Users...",
+                    nearbyUsers = NearbyUsers.mockUsers(),
+                ),
         )
     }
 }

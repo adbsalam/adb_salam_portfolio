@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal interface InfoModule {
-
     @Binds
     @Singleton
     fun bindInfoRepo(infoRepository: InfoRepository): InfoRepo
@@ -20,7 +19,8 @@ internal interface InfoModule {
     companion object {
         @Provides
         @Singleton
-        fun provideInfoService(@PortfolioRetrofit retrofit: Retrofit): InfoService =
-            retrofit.create(InfoService::class.java)
+        fun provideInfoService(
+            @PortfolioRetrofit retrofit: Retrofit,
+        ): InfoService = retrofit.create(InfoService::class.java)
     }
 }

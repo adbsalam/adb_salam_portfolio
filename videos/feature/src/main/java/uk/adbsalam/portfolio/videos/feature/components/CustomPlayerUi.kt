@@ -29,9 +29,8 @@ internal class CustomPlayerUiController(
     customPlayerUi: View,
     playerTracker: YouTubePlayerTracker,
     youTubePlayer: YouTubePlayer,
-    private val initPlay: Boolean
+    private val initPlay: Boolean,
 ) : AbstractYouTubePlayerListener() {
-
     private lateinit var panel: View
     private lateinit var progressbar: View
     private lateinit var seekbar: YouTubePlayerSeekBar
@@ -48,16 +47,21 @@ internal class CustomPlayerUiController(
         seekbar = playerUi.findViewById(R.id.youtube_player_seekbar)
     }
 
-    override fun onStateChange(youTubePlayer: YouTubePlayer, state: PlayerState) {
+    override fun onStateChange(
+        youTubePlayer: YouTubePlayer,
+        state: PlayerState,
+    ) {
         when (state) {
             PlayerState.PLAYING,
             PlayerState.PAUSED,
-            PlayerState.VIDEO_CUED -> {
+            PlayerState.VIDEO_CUED,
+            -> {
                 progressbar.visibility = View.GONE
                 panel.setBackgroundColor(
                     ContextCompat.getColor(
-                        context, R.color.transparent
-                    )
+                        context,
+                        R.color.transparent,
+                    ),
                 )
                 if (initPlay && counter == 0) {
                     youTubePlayer.play()
@@ -73,18 +77,23 @@ internal class CustomPlayerUiController(
 
     fun setOnClick(videoId: String) {
         panel.setOnClickListener {
-            val url = "https://www.youtube.com/watch?v=${videoId}"
+            val url = "https://www.youtube.com/watch?v=$videoId"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(context, intent, null)
         }
     }
 
-    override fun onCurrentSecond(youTubePlayer: YouTubePlayer, second: Float) {
+    override fun onCurrentSecond(
+        youTubePlayer: YouTubePlayer,
+        second: Float,
+    ) {
         seekbar.onCurrentSecond(youTubePlayer, second)
     }
 
-    override fun onVideoDuration(youTubePlayer: YouTubePlayer, duration: Float) {
+    override fun onVideoDuration(
+        youTubePlayer: YouTubePlayer,
+        duration: Float,
+    ) {
         seekbar.onVideoDuration(youTubePlayer, duration)
     }
-
 }

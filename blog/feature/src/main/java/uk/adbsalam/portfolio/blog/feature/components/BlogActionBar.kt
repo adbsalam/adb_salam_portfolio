@@ -22,29 +22,30 @@ import uk.adbsalam.portfolio.theming.adbRoundedBackgroundForButtons
 @Composable
 fun BlogActionsBar(modifier: Modifier) {
     Row(
-        modifier = modifier
-            .adbRoundedBackgroundForButtons()
-            .padding(14.dp),
+        modifier =
+            modifier
+                .adbRoundedBackgroundForButtons()
+                .padding(14.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
             modifier = Modifier.size(40.dp),
             imageVector = Icons.Rounded.Favorite,
             contentDescription = null,
-            tint = Color.White
+            tint = Color.White,
         )
         Icon(
             modifier = Modifier.size(40.dp),
             imageVector = Icons.Rounded.Share,
             contentDescription = null,
-            tint = Color.White
+            tint = Color.White,
         )
         Icon(
             modifier = Modifier.size(40.dp),
             imageVector = Icons.Rounded.CopyAll,
             contentDescription = null,
-            tint = Color.White
+            tint = Color.White,
         )
     }
 }
@@ -56,7 +57,6 @@ fun BlogActionsBarLightPreview() {
         BlogActionsBar(Modifier)
     }
 }
-
 
 @PreviewDark
 @Composable

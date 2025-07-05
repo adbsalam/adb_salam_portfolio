@@ -34,32 +34,33 @@ internal fun VideoPlayerView(
             view.enableAutomaticInitialization = false
             val customView = view.inflateCustomPlayerUi(R.layout.player_item_view)
             view.initialize(
-                youTubePlayerListener = object : AbstractYouTubePlayerListener() {
-                    override fun onReady(youTubePlayer: YouTubePlayer) {
-                        player.value = youTubePlayer
-                        val customPlayerUiController = CustomPlayerUiController(
-                            context = context,
-                            customPlayerUi = customView,
-                            playerTracker = playerTracker,
-                            youTubePlayer = youTubePlayer,
-                            initPlay = initialPlay.value
-                        )
-                        customPlayerUiController.setOnClick(videoData.videoId)
-                        youTubePlayer.addListener(customPlayerUiController);
-                        youTubePlayer.cueVideo(videoData.videoId, 0f)
-                    }
-                },
-                playerOptions = iFrameOptions()
+                youTubePlayerListener =
+                    object : AbstractYouTubePlayerListener() {
+                        override fun onReady(youTubePlayer: YouTubePlayer) {
+                            player.value = youTubePlayer
+                            val customPlayerUiController =
+                                CustomPlayerUiController(
+                                    context = context,
+                                    customPlayerUi = customView,
+                                    playerTracker = playerTracker,
+                                    youTubePlayer = youTubePlayer,
+                                    initPlay = initialPlay.value,
+                                )
+                            customPlayerUiController.setOnClick(videoData.videoId)
+                            youTubePlayer.addListener(customPlayerUiController)
+                            youTubePlayer.cueVideo(videoData.videoId, 0f)
+                        }
+                    },
+                playerOptions = iFrameOptions(),
             )
             view
-        }
+        },
     )
 }
 
-private fun iFrameOptions(): IFramePlayerOptions {
-    return IFramePlayerOptions.Builder()
+private fun iFrameOptions(): IFramePlayerOptions =
+    IFramePlayerOptions
+        .Builder()
         .controls(0)
         .mute(1)
         .build()
-}
-

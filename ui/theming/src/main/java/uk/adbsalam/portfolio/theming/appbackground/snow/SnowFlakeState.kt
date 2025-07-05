@@ -5,7 +5,6 @@ import androidx.compose.ui.unit.IntSize
 import kotlin.math.PI
 import kotlin.math.roundToInt
 
-
 internal data class SnowflakesState(
     var tickNanos: Long,
     val snowflakes: List<Snowflake>,
@@ -29,7 +28,7 @@ internal data class SnowflakesState(
                     size = sizeRange.random(),
                     canvasSize = canvasSize,
                     position = canvasSize.randomPosition(),
-                    angle = angleSeed.random() / angleSeed * angleRange + (PI / 2.0) - (angleRange / 2.0)
+                    angle = angleSeed.random() / angleSeed * angleRange + (PI / 2.0) - (angleRange / 2.0),
                 )
             }
         }
