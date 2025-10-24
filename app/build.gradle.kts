@@ -11,10 +11,10 @@ android {
 
     defaultConfig {
         applicationId = "uk.adbsalam.portfolio"
-        minSdk = 28
+        minSdk = MIN_SDK
         targetSdk = COMPILE_SDK
-        versionCode = 7
-        versionName = "3.0"
+        versionCode = 8
+        versionName = "4.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

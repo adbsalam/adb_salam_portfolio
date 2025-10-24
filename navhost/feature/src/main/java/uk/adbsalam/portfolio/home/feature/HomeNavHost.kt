@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.home.feature
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.exponentialDecay
@@ -16,6 +17,7 @@ import androidx.compose.material.icons.filled.Forum
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Movie
+import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material3.ExitAlwaysFloatingToolbarScrollBehavior
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FabPosition
@@ -41,6 +43,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.xr.compose.material3.ExperimentalMaterial3XrApi
 import androidx.xr.compose.material3.HorizontalFloatingToolbar
 import uk.adbsalam.portfolio.navigation.NavigationScreen
+import uk.adbsalam.portfolio.navigation.navigateToGallery
 import uk.adbsalam.portfolio.navigation.navigateToHome
 import uk.adbsalam.portfolio.navigation.navigateToInfo
 import uk.adbsalam.portfolio.navigation.navigateToReviews
@@ -49,9 +52,10 @@ import uk.adbsalam.portfolio.navigation.route
 import uk.adbsalam.portfolio.utils.Theme
 import kotlin.math.abs
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(
     ExperimentalMaterial3ExpressiveApi::class,
-    ExperimentalMaterial3XrApi::class
+    ExperimentalMaterial3XrApi::class,
 )
 @Composable
 fun HomeNavHost(
@@ -76,31 +80,34 @@ fun HomeNavHost(
         Scaffold(
             containerColor = Color.Unspecified,
             floatingActionButton = {
-                val slowerDecay = exponentialDecay<Float>(
-                    frictionMultiplier = 1.5f // > 1.0 slows it down, < 1.0 speeds it up
-                )
+                val slowerDecay =
+                    exponentialDecay<Float>(
+                        frictionMultiplier = 1.5f, // > 1.0 slows it down, < 1.0 speeds it up
+                    )
                 HorizontalFloatingToolbar(
-                    scrollBehavior = ExitAlwaysFloatingToolbarScrollBehavior(
-                        state = rememberFloatingToolbarState(),
-                        exitDirection = FloatingToolbarExitDirection.End, // or Down depending on your use case
-                        snapAnimationSpec = spring(
-                            dampingRatio = Spring.DampingRatioMediumBouncy, // adds bounce
-                            stiffness = Spring.StiffnessLow                  // slower movement
+                    scrollBehavior =
+                        ExitAlwaysFloatingToolbarScrollBehavior(
+                            state = rememberFloatingToolbarState(),
+                            exitDirection = FloatingToolbarExitDirection.End, // or Down depending on your use case
+                            snapAnimationSpec =
+                                spring(
+                                    dampingRatio = Spring.DampingRatioMediumBouncy, // adds bounce
+                                    stiffness = Spring.StiffnessLow, // slower movement
+                                ),
+                            flingAnimationSpec = slowerDecay,
                         ),
-                        flingAnimationSpec = slowerDecay
-                    ),
                     expanded = scrollDirection == ScrollDirection.NONE || scrollDirection == ScrollDirection.UP,
                     floatingActionButton = {
                         FloatingToolbarDefaults.VibrantFloatingActionButton(
                             onClick = {
                                 scrollDirection =
                                     if (scrollDirection == ScrollDirection.DOWN) ScrollDirection.UP else ScrollDirection.DOWN
-                            }
+                            },
                         ) {
                             Image(
                                 modifier = Modifier.size(40.dp),
                                 painter = painterResource(uk.adbsalam.portfolio.components.R.drawable.ic_logo_main),
-                                contentDescription = null
+                                contentDescription = null,
                             )
                         }
                     },
@@ -109,28 +116,35 @@ fun HomeNavHost(
                             Icon(
                                 Icons.Filled.Home,
                                 contentDescription = null,
-                                tint = Color(0xFFFF9800)
+                                tint = Color(0xFFFF9800),
                             )
                         }
                         IconButton(onClick = navController::navigateToInfo) {
                             Icon(
                                 Icons.Filled.Info,
                                 contentDescription = null,
-                                tint = Color(0xFF9C27B0)
+                                tint = Color(0xFF9C27B0),
                             )
                         }
                         IconButton(onClick = navController::navigateToVideos) {
                             Icon(
                                 Icons.Filled.Movie,
                                 contentDescription = null,
-                                tint = Color(0xFF4CAF50)
+                                tint = Color(0xFF4CAF50),
+                            )
+                        }
+                        IconButton(onClick = navController::navigateToGallery) {
+                            Icon(
+                                Icons.Filled.PhotoCamera,
+                                contentDescription = null,
+                                tint = Color.Yellow,
                             )
                         }
                         IconButton(onClick = navController::navigateToReviews) {
                             Icon(
                                 Icons.Filled.Forum,
                                 contentDescription = null,
-                                tint = Color.Cyan
+                                tint = Color.Cyan,
                             )
                         }
                     },
@@ -142,7 +156,7 @@ fun HomeNavHost(
                 modifier =
                     Modifier
                         .fillMaxSize()
-                        .padding(bottom = it.calculateBottomPadding()),
+                        .padding(),
             ) {
                 HomeNavGraph(
                     onTheme = onTheme,
@@ -153,11 +167,12 @@ fun HomeNavHost(
                     val threshold = 100
                     val delta = scroll - lastScrollOffset
                     if (abs(delta) > threshold) {
-                        scrollDirection = when {
-                            delta > 0 -> ScrollDirection.DOWN
-                            delta < 0 -> ScrollDirection.UP
-                            else -> ScrollDirection.NONE
-                        }
+                        scrollDirection =
+                            when {
+                                delta > 0 -> ScrollDirection.DOWN
+                                delta < 0 -> ScrollDirection.UP
+                                else -> ScrollDirection.NONE
+                            }
                         lastScrollOffset = scroll
                     }
                 }
@@ -172,6 +187,8 @@ fun HomeNavHost(
     }
 }
 
-enum class ScrollDirection() {
-    UP, DOWN, NONE
+enum class ScrollDirection {
+    UP,
+    DOWN,
+    NONE,
 }

@@ -7,6 +7,7 @@ const val deeplinkGesture = "/gesture"
 const val deeplinkYoutube = "/youtube"
 const val deeplinkShimmerCard = "/shimmer_card"
 const val deeplinkWalkie = "/walkie"
+const val stickyTab = "/sticky_tab"
 
 fun NavHostController.navigateDeepLink(deeplink: String) {
     if (deeplink.isBlogLink()) {
@@ -17,6 +18,7 @@ fun NavHostController.navigateDeepLink(deeplink: String) {
             when (deeplink) {
                 deeplinkShimmerCard -> NavigationScreen.OnShimmerSample
                 deeplinkGallery -> NavigationScreen.OnGallery
+                stickyTab -> NavigationScreen.OnStickyTabLayout
                 else -> NavigationScreen.OnInProgress
             }
         this.toDestination(destination)

@@ -13,6 +13,7 @@ const val GESTURE_DEEPLINK = "gesture"
 const val YOUTUBE_DEEPLINK = "youtube"
 const val IN_PROGRESS_DEEPLINK = "in_progress"
 const val BLOG_SCREEN_DEEPLINK = "blog_screen"
+const val STICKY_TAB_LAYOUT_DEEPLINK = "sticky_tab_layout"
 
 sealed class NavigationScreen(
     val name: String,
@@ -36,4 +37,6 @@ sealed class NavigationScreen(
     object OnFullScreenGallery : NavigationScreen(FULL_SCREEN_GALLERY)
 
     object OnBlogScreen : NavigationScreen(BLOG_SCREEN_DEEPLINK)
+
+    object OnStickyTabLayout : NavigationScreen(STICKY_TAB_LAYOUT_DEEPLINK)
 }

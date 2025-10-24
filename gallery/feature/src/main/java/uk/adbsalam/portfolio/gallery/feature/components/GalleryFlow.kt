@@ -46,7 +46,7 @@ internal fun GalleryFlow(
             modifier = Modifier.padding(start = 12.dp),
             text = media.title,
             style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onBackground
+            color = MaterialTheme.colorScheme.onBackground,
         )
         Spacer(modifier = Modifier.height(12.dp))
 

@@ -36,9 +36,9 @@ data class ShimmerCardItem(
                 ),
                 ShimmerCardItem(
                     R.drawable.animation_samples,
-                    "Animation Experiments",
-                    "Some of animation components visualised in form of graphs",
-                    "/animation_samples",
+                    "Tab Selector",
+                    "A tab selector row with sticky selection animation",
+                    "/sticky_tab",
                 ),
                 ShimmerCardItem(
                     R.drawable.dark_mode,

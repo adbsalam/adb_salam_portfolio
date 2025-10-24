@@ -23,14 +23,14 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 fun Reviews(
     viewModel: ReviewsViewModel = hiltViewModel(),
-    onScroll: (Int) -> Unit
+    onScroll: (Int) -> Unit,
 ) {
     val uiState by viewModel.viewState.collectAsState()
 
     Reviews(
         uiState = uiState,
         retry = viewModel::fetchReviews,
-        onScroll = onScroll
+        onScroll = onScroll,
     )
 }
 
@@ -42,7 +42,7 @@ fun Reviews(
 private fun Reviews(
     uiState: ReviewsState,
     retry: () -> Unit,
-    onScroll: (Int) -> Unit
+    onScroll: (Int) -> Unit,
 ) {
     when (uiState) {
         ReviewsState.OnLoading ->
@@ -72,7 +72,7 @@ internal fun ReviewsPreviewLight() {
         Reviews(
             uiState = ReviewsState.OnReviews(ReviewItems.createMock()),
             retry = { /*unused*/ },
-            onScroll = {}
+            onScroll = {},
         )
     }
 }
@@ -85,7 +85,7 @@ internal fun ReviewsPreviewDark() {
         Reviews(
             uiState = ReviewsState.OnReviews(ReviewItems.createMock()),
             retry = { /*unused*/ },
-            onScroll = {}
+            onScroll = {},
         )
     }
 }

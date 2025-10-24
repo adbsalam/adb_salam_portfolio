@@ -23,14 +23,14 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 fun Info(
     viewModel: InfoViewModel = hiltViewModel(),
-    onScroll: (Int) -> Unit
+    onScroll: (Int) -> Unit,
 ) {
     val uiState by viewModel.viewState.collectAsState()
 
     Info(
         uiState = uiState,
         retry = viewModel::fetchInfoAndWork,
-        onScroll = onScroll
+        onScroll = onScroll,
     )
 }
 
@@ -42,7 +42,7 @@ fun Info(
 private fun Info(
     uiState: InfoScreenState,
     retry: () -> Unit,
-    onScroll: (Int) -> Unit
+    onScroll: (Int) -> Unit,
 ) {
     when (uiState) {
         InfoScreenState.OnLoading ->
@@ -62,7 +62,7 @@ private fun Info(
             InfoScreen(
                 infographics = uiState.infographics,
                 workHistory = uiState.workHistory,
-                onScroll = onScroll
+                onScroll = onScroll,
             )
         }
     }
@@ -80,7 +80,7 @@ internal fun InfoScreenLightPreview() {
                     workHistory = WorkHistory.createMock(),
                 ),
             retry = { /* unused */ },
-            onScroll = {}
+            onScroll = {},
         )
     }
 }
@@ -97,7 +97,7 @@ internal fun InfoScreenDarkPreview() {
                     workHistory = WorkHistory.createMock(),
                 ),
             retry = { /* unused */ },
-            onScroll = {}
+            onScroll = {},
         )
     }
 }

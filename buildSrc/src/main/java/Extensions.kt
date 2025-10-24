@@ -9,7 +9,7 @@ const val COMPILE_SDK = 36
 /**
  * Current Minimum SDK version of module
  */
-const val MIN_SDK = 24
+const val MIN_SDK = 31
 
 /**
  * Build flavor debug as default debug flavor

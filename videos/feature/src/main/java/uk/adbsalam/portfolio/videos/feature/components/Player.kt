@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.videos.feature.components
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.platform.LocalContext
@@ -51,16 +52,16 @@ internal fun VideoPlayerView(
                             youTubePlayer.cueVideo(videoData.videoId, 0f)
                         }
                     },
-                playerOptions = iFrameOptions(),
+                playerOptions = iFrameOptions(context),
             )
             view
         },
     )
 }
 
-private fun iFrameOptions(): IFramePlayerOptions =
+private fun iFrameOptions(context: Context): IFramePlayerOptions =
     IFramePlayerOptions
-        .Builder()
+        .Builder(context)
         .controls(0)
         .mute(1)
         .build()

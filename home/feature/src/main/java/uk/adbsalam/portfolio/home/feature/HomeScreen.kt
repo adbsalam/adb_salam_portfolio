@@ -58,7 +58,7 @@ internal fun HomeScreen(
     onDynamicColor: (Boolean) -> Unit,
     currentTheme: Theme,
     onTheme: (Theme) -> Unit,
-    onScroll: (Int) -> Unit
+    onScroll: (Int) -> Unit,
 ) {
     val settings = remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
@@ -175,7 +175,7 @@ internal fun HomeLightPreview() {
             onDynamicColor = { /* unused */ },
             currentTheme = Theme.LIGHT,
             onTheme = { /* unused */ },
-            onScroll = {}
+            onScroll = {},
         )
     }
 }
@@ -191,7 +191,7 @@ internal fun HomeDarkPreview() {
             navigateDeeplink = { /* unused */ },
             currentTheme = Theme.DARK,
             onTheme = { /* unused */ },
-            onScroll = {}
+            onScroll = {},
         )
     }
 }

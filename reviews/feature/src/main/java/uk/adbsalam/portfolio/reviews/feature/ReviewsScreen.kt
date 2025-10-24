@@ -30,7 +30,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 internal fun ReviewsScreen(
     reviews: ReviewItems,
-    onScroll: (Int) -> Unit
+    onScroll: (Int) -> Unit,
 ) {
     val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
@@ -72,7 +72,7 @@ internal fun ReviewsScreenPreviewLight() {
     Adb_Screen_Theme {
         ReviewsScreen(
             reviews = ReviewItems.createMock(),
-            onScroll = {}
+            onScroll = {},
         )
     }
 }
@@ -84,7 +84,7 @@ internal fun ReviewsScreenPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         ReviewsScreen(
             reviews = ReviewItems.createMock(),
-            onScroll = {}
+            onScroll = {},
         )
     }
 }

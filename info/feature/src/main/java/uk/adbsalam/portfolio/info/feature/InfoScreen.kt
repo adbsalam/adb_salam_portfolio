@@ -39,7 +39,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
 internal fun InfoScreen(
     infographics: Infographics,
     workHistory: WorkHistory,
-    onScroll: (Int) -> Unit
+    onScroll: (Int) -> Unit,
 ) {
     val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
@@ -114,7 +114,7 @@ internal fun InfoScreenLight() {
         InfoScreen(
             infographics = Infographics.createMock(),
             workHistory = WorkHistory.createMock(),
-            onScroll = {}
+            onScroll = {},
         )
     }
 }
@@ -127,7 +127,7 @@ internal fun InfoScreenDark() {
         InfoScreen(
             infographics = Infographics.createMock(),
             workHistory = WorkHistory.createMock(),
-            onScroll = {}
+            onScroll = {},
         )
     }
 }

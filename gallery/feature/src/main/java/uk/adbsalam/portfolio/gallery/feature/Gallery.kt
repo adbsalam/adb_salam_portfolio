@@ -58,7 +58,7 @@ fun Gallery(navController: NavController) {
                 Text(
                     text = "Transformable Gallery",
                     style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
@@ -66,7 +66,7 @@ fun Gallery(navController: NavController) {
                     text = "Try this transformable gallery. Pinch or zoom to change grid size of gallery. Click on an image to open in immersive mode with transforming gestures",
                     style = MaterialTheme.typography.bodyMedium,
                     textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.onBackground
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
             }
         }
@@ -141,7 +141,7 @@ private fun GalleryCarousal(
             modifier = Modifier.padding(start = 16.dp, top = 14.dp, bottom = 10.dp),
             text = title,
             style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onBackground
+            color = MaterialTheme.colorScheme.onBackground,
         )
         ImageCarousal(
             imageResList = imageRes,

@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import uk.adbsalam.portfolio.gallery.feature.Gallery
 import uk.adbsalam.portfolio.info.feature.Info
 import uk.adbsalam.portfolio.navigation.NavigationScreen
 import uk.adbsalam.portfolio.navigation.composeRoute
@@ -20,7 +21,7 @@ fun HomeNavGraph(
     onDynamicColor: (Boolean) -> Unit,
     homeNavController: NavHostController,
     rootNavHostController: NavHostController,
-    onScroll: (Int) -> Unit
+    onScroll: (Int) -> Unit,
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         NavHost(
@@ -32,7 +33,7 @@ fun HomeNavGraph(
                     onTheme = onTheme,
                     onDynamicColor = onDynamicColor,
                     navController = rootNavHostController,
-                    onScroll = onScroll
+                    onScroll = onScroll,
                 )
             }
 
@@ -46,6 +47,10 @@ fun HomeNavGraph(
 
             composeRoute(NavigationScreen.OnReviews) {
                 Reviews(onScroll = onScroll)
+            }
+
+            composeRoute(NavigationScreen.OnGallery) {
+                Gallery(navController = rootNavHostController)
             }
         }
     }

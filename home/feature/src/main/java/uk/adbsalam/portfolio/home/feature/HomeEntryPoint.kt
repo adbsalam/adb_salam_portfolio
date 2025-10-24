@@ -30,7 +30,7 @@ fun Home(
     onTheme: (Theme) -> Unit,
     navController: NavHostController,
     viewModel: HomeViewModel = hiltViewModel(),
-    onScroll: (Int) -> Unit
+    onScroll: (Int) -> Unit,
 ) {
     val uiState by viewModel.viewState.collectAsState()
 
@@ -41,7 +41,7 @@ fun Home(
         onDynamicColor = onDynamicColor,
         onTheme = onTheme,
         navigateDeeplink = navController::navigateDeepLink,
-        onScroll = onScroll
+        onScroll = onScroll,
     )
 }
 
@@ -58,7 +58,7 @@ internal fun Home(
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
     navigateDeeplink: (String) -> Unit,
-    onScroll: (Int) -> Unit
+    onScroll: (Int) -> Unit,
 ) {
     when (uiState) {
         HomeScreenState.OnLoading ->
@@ -81,7 +81,7 @@ internal fun Home(
                 onTheme = onTheme,
                 currentTheme = currentTheme,
                 navigateDeeplink = navigateDeeplink,
-                onScroll = onScroll
+                onScroll = onScroll,
             )
         }
     }
@@ -99,7 +99,7 @@ internal fun HomePreviewLight() {
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ },
             navigateDeeplink = { /* unused */ },
-            onScroll = {}
+            onScroll = {},
         )
     }
 }
@@ -116,7 +116,7 @@ internal fun HomePreviewDark() {
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ },
             navigateDeeplink = { /* unused */ },
-            onScroll = {}
+            onScroll = {},
         )
     }
 }

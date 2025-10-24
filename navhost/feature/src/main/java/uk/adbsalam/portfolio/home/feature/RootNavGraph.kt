@@ -14,6 +14,7 @@ import uk.adbsalam.portfolio.navigation.composeRoute
 import uk.adbsalam.portfolio.navigation.navHostRoute
 import uk.adbsalam.portfolio.samples.feature.InProgressPage
 import uk.adbsalam.portfolio.samples.feature.ShimmerCardSample
+import uk.adbsalam.portfolio.samples.feature.tabLayout.StickyTabLayout
 import uk.adbsalam.portfolio.utils.Theme
 
 @Composable
@@ -38,6 +39,10 @@ fun RootNavGraph(
 
             composeRoute(NavigationScreen.OnInProgress) {
                 InProgressPage()
+            }
+
+            composeRoute(NavigationScreen.OnStickyTabLayout) {
+                StickyTabLayout()
             }
 
             composeRoute(NavigationScreen.OnBlogScreen) {

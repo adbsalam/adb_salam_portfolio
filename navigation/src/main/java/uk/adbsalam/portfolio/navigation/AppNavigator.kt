@@ -38,6 +38,10 @@ fun NavController.navigateToFullScreenGallery(galleryArgs: FullScreenArgs) {
     this.toDestination(NavigationScreen.OnFullScreenGallery, galleryArgs)
 }
 
+fun NavController.navigateToGallery() {
+    this.toDestination(NavigationScreen.OnGallery)
+}
+
 fun NavController.navigateToBlogScreen(args: BlogScreenArgs) {
     this.toDestination(NavigationScreen.OnBlogScreen, args)
 }
