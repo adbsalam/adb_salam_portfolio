@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -27,9 +28,16 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * Main screen to populate reviews on screen
  */
 @Composable
-internal fun ReviewsScreen(reviews: ReviewItems) {
+internal fun ReviewsScreen(
+    reviews: ReviewItems,
+    onScroll: (Int) -> Unit
+) {
     val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
+
+    LaunchedEffect(scrollState.value) {
+        onScroll(scrollState.value)
+    }
 
     Column(
         modifier =
@@ -64,6 +72,7 @@ internal fun ReviewsScreenPreviewLight() {
     Adb_Screen_Theme {
         ReviewsScreen(
             reviews = ReviewItems.createMock(),
+            onScroll = {}
         )
     }
 }
@@ -75,6 +84,7 @@ internal fun ReviewsScreenPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         ReviewsScreen(
             reviews = ReviewItems.createMock(),
+            onScroll = {}
         )
     }
 }

@@ -20,6 +20,7 @@ fun HomeNavGraph(
     onDynamicColor: (Boolean) -> Unit,
     homeNavController: NavHostController,
     rootNavHostController: NavHostController,
+    onScroll: (Int) -> Unit
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         NavHost(
@@ -31,11 +32,12 @@ fun HomeNavGraph(
                     onTheme = onTheme,
                     onDynamicColor = onDynamicColor,
                     navController = rootNavHostController,
+                    onScroll = onScroll
                 )
             }
 
             composeRoute(NavigationScreen.OnInfo) {
-                Info()
+                Info(onScroll = onScroll)
             }
 
             composeRoute(NavigationScreen.OnVideos) {
@@ -43,7 +45,7 @@ fun HomeNavGraph(
             }
 
             composeRoute(NavigationScreen.OnReviews) {
-                Reviews()
+                Reviews(onScroll = onScroll)
             }
         }
     }

@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -57,12 +58,17 @@ internal fun HomeScreen(
     onDynamicColor: (Boolean) -> Unit,
     currentTheme: Theme,
     onTheme: (Theme) -> Unit,
+    onScroll: (Int) -> Unit
 ) {
     val settings = remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
     val headerHeight = LocalConfiguration.current.screenHeightDp / 1.75
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
+
+    LaunchedEffect(scrollState.value) {
+        onScroll(scrollState.value)
+    }
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier =
@@ -169,6 +175,7 @@ internal fun HomeLightPreview() {
             onDynamicColor = { /* unused */ },
             currentTheme = Theme.LIGHT,
             onTheme = { /* unused */ },
+            onScroll = {}
         )
     }
 }
@@ -184,6 +191,7 @@ internal fun HomeDarkPreview() {
             navigateDeeplink = { /* unused */ },
             currentTheme = Theme.DARK,
             onTheme = { /* unused */ },
+            onScroll = {}
         )
     }
 }

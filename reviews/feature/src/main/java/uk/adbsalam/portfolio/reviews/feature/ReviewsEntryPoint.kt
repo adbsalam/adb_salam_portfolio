@@ -21,12 +21,16 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * Perform all functionality that might block Previews
  */
 @Composable
-fun Reviews(viewModel: ReviewsViewModel = hiltViewModel()) {
+fun Reviews(
+    viewModel: ReviewsViewModel = hiltViewModel(),
+    onScroll: (Int) -> Unit
+) {
     val uiState by viewModel.viewState.collectAsState()
 
     Reviews(
         uiState = uiState,
         retry = viewModel::fetchReviews,
+        onScroll = onScroll
     )
 }
 
@@ -38,6 +42,7 @@ fun Reviews(viewModel: ReviewsViewModel = hiltViewModel()) {
 private fun Reviews(
     uiState: ReviewsState,
     retry: () -> Unit,
+    onScroll: (Int) -> Unit
 ) {
     when (uiState) {
         ReviewsState.OnLoading ->
@@ -54,7 +59,7 @@ private fun Reviews(
         }
 
         is ReviewsState.OnReviews -> {
-            ReviewsScreen(reviews = uiState.reviews)
+            ReviewsScreen(reviews = uiState.reviews, onScroll)
         }
     }
 }
@@ -67,6 +72,7 @@ internal fun ReviewsPreviewLight() {
         Reviews(
             uiState = ReviewsState.OnReviews(ReviewItems.createMock()),
             retry = { /*unused*/ },
+            onScroll = {}
         )
     }
 }
@@ -79,6 +85,7 @@ internal fun ReviewsPreviewDark() {
         Reviews(
             uiState = ReviewsState.OnReviews(ReviewItems.createMock()),
             retry = { /*unused*/ },
+            onScroll = {}
         )
     }
 }

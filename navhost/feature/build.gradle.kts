@@ -32,6 +32,7 @@ snapIt {
 }
 
 dependencies {
+    implementation(libs.material3)
     applyProject(ui.components)
     applyProject(ui.theming)
     applyProject(home.feature)
@@ -54,5 +55,6 @@ dependencies {
     implementation(libs.compose.material.icons.extended)
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.android)
+//    implementation(libs.e)
     ksp(libs.hilt.compiler)
 }

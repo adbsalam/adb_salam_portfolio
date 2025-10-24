@@ -35,5 +35,5 @@ object DeepDarkColorScheme {
     val surface_deep_dark = Color(0xFF000000)
     val onBackground_deep_dark = Color(0xFFCECECE)
     val background_deep_dark = Color(0xFF131313)
-    val darkGradientColor = Color(0xFF00060A)
+    val darkGradientColor = Color(0xFF030303)
 }

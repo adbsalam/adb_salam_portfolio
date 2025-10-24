@@ -14,6 +14,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,10 +39,13 @@ import uk.adbsalam.snapit.annotations.SnapIt
 internal fun InfoScreen(
     infographics: Infographics,
     workHistory: WorkHistory,
+    onScroll: (Int) -> Unit
 ) {
     val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
-
+    LaunchedEffect(scrollState.value) {
+        onScroll(scrollState.value)
+    }
     Column(
         verticalArrangement = Arrangement.spacedBy(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -110,6 +114,7 @@ internal fun InfoScreenLight() {
         InfoScreen(
             infographics = Infographics.createMock(),
             workHistory = WorkHistory.createMock(),
+            onScroll = {}
         )
     }
 }
@@ -122,6 +127,7 @@ internal fun InfoScreenDark() {
         InfoScreen(
             infographics = Infographics.createMock(),
             workHistory = WorkHistory.createMock(),
+            onScroll = {}
         )
     }
 }

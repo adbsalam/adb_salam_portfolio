@@ -87,10 +87,16 @@ fun Adb_Theme(
             getNonDynamicTheme(isSystemInDarkTheme(), themeType)
         }
 
+    val showDarkIcons = when {
+        themeType == Theme.SYSTEM -> !isSystemInDarkTheme()
+        themeType == Theme.DEEP_DARK || themeType == Theme.DARK -> false
+        else -> true
+    }
+
     val systemUiController = rememberSystemUiController()
     systemUiController.setSystemBarsColor(
         color = Color.Transparent,
-        darkIcons = themeType != Theme.DEEP_DARK && themeType != Theme.DARK,
+        darkIcons = showDarkIcons,
     )
 
     val view = LocalView.current
@@ -110,36 +116,75 @@ fun Adb_Theme(
         content = content,
         typography =
             Typography(
-                displayLarge = MaterialTheme.typography.displayLarge.copy(fontFamily = appFont),
-                displayMedium = MaterialTheme.typography.displayMedium.copy(fontFamily = appFont),
-                displaySmall = MaterialTheme.typography.displaySmall.copy(fontFamily = appFont),
-                headlineLarge = MaterialTheme.typography.headlineLarge.copy(fontFamily = appFont),
-                headlineMedium = MaterialTheme.typography.headlineMedium.copy(fontFamily = appFont),
-                headlineSmall = MaterialTheme.typography.headlineSmall.copy(fontFamily = appFont),
+                displayLarge = MaterialTheme.typography.displayLarge.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
+                displayMedium = MaterialTheme.typography.displayMedium.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
+                displaySmall = MaterialTheme.typography.displaySmall.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
+                headlineLarge = MaterialTheme.typography.headlineLarge.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
+                headlineMedium = MaterialTheme.typography.headlineMedium.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
+                headlineSmall = MaterialTheme.typography.headlineSmall.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
                 titleLarge =
                     MaterialTheme.typography.titleLarge.copy(
                         fontFamily = appFont,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp,
+                        color = sch.onBackground
                     ),
                 titleMedium =
                     MaterialTheme.typography.titleMedium.copy(
                         fontFamily = appFont,
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp,
+                        color = sch.onBackground
                     ),
                 titleSmall =
                     MaterialTheme.typography.titleSmall.copy(
                         fontFamily = appFont,
                         fontWeight = FontWeight.SemiBold,
                         fontSize = 14.sp,
+                        color = sch.onBackground
                     ),
-                bodyLarge = MaterialTheme.typography.bodyLarge.copy(fontFamily = appFont),
-                bodyMedium = MaterialTheme.typography.bodyMedium.copy(fontFamily = appFont),
-                bodySmall = MaterialTheme.typography.bodySmall.copy(fontFamily = appFont),
-                labelLarge = MaterialTheme.typography.labelLarge.copy(fontFamily = appFont),
-                labelMedium = MaterialTheme.typography.labelMedium.copy(fontFamily = appFont),
-                labelSmall = MaterialTheme.typography.labelSmall.copy(fontFamily = appFont),
+                bodyLarge = MaterialTheme.typography.bodyLarge.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
+                bodyMedium = MaterialTheme.typography.bodyMedium.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
+                bodySmall = MaterialTheme.typography.bodySmall.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
+                labelLarge = MaterialTheme.typography.labelLarge.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
+                labelMedium = MaterialTheme.typography.labelMedium.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
+                labelSmall = MaterialTheme.typography.labelSmall.copy(
+                    fontFamily = appFont,
+                    color = sch.onBackground
+                ),
             ),
     )
 }
