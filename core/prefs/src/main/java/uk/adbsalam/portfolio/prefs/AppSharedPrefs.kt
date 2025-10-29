@@ -5,27 +5,39 @@ import javax.inject.Inject
 
 sealed class AppSharedPrefManager {
     class ThemePrefs
-        @Inject
-        constructor(
-            private val pref: PrefManager,
-        ) : AppSharedPrefManager() {
-            /**
-             * Theme Prefs to retrieve current theme
-             * Store current Theme
-             */
-            fun setTheme(theme: Theme) = pref.saveString("theme", theme.title)
+    @Inject
+    constructor(
+        private val pref: PrefManager,
+    ) : AppSharedPrefManager() {
+        /**
+         * Theme Prefs to retrieve current theme
+         * Store current Theme
+         */
+        fun setTheme(theme: Theme) = pref.saveString("theme", theme.title)
 
-            fun theme(): Theme {
-                val theme = pref.loadString("theme", Theme.SYSTEM.title)
-                return Theme.values().first { it.title == theme }
-            }
-
-            /**
-             * Dynamic theme preference
-             * Store current Theme and retrieve current dynamic theme pref
-             */
-            fun setDynamic(value: Boolean) = pref.saveBoolean("dynamic", value)
-
-            fun dynamicColors() = pref.loadBoolean("dynamic", false)
+        fun theme(): Theme {
+            val theme = pref.loadString("theme", Theme.SYSTEM.title)
+            return Theme.values().first { it.title == theme }
         }
+
+        /**
+         * Dynamic theme preference
+         * Store current Theme and retrieve current dynamic theme pref
+         */
+        fun setDynamic(value: Boolean) = pref.saveBoolean("dynamic", value)
+
+        fun dynamicColors() = pref.loadBoolean("dynamic", false)
+    }
+
+    class VideosPref
+    @Inject
+    constructor(
+        private val pref: PrefManager,
+    ) : AppSharedPrefManager() {
+        fun setVideoAutoPlay(boolean: Boolean) = pref.saveBoolean("video_switch", boolean)
+
+        fun videoAutoPlay(): Boolean {
+            return pref.loadBoolean("video_switch", false)
+        }
+    }
 }

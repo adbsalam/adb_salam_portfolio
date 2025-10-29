@@ -13,8 +13,8 @@ android {
         applicationId = "uk.adbsalam.portfolio"
         minSdk = MIN_SDK
         targetSdk = COMPILE_SDK
-        versionCode = 8
-        versionName = "4.0.0"
+        versionCode = 9
+        versionName = "4.0.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {

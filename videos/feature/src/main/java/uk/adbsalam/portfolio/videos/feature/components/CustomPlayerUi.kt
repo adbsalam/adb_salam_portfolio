@@ -5,9 +5,22 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.view.View.VISIBLE
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Text
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.startActivity
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.views.YouTubePlayerSeekBar
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.customui.views.YouTubePlayerSeekBarListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants.PlayerState
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -34,6 +47,7 @@ internal class CustomPlayerUiController(
     private lateinit var panel: View
     private lateinit var progressbar: View
     private lateinit var seekbar: YouTubePlayerSeekBar
+    private lateinit var composeView: ComposeView
     private var counter = 0
 
     init {
@@ -45,17 +59,32 @@ internal class CustomPlayerUiController(
         panel = playerUi.findViewById(R.id.panel)
         progressbar = playerUi.findViewById(R.id.progressbar)
         seekbar = playerUi.findViewById(R.id.youtube_player_seekbar)
+        composeView = playerUi.findViewById(R.id.youtube_icon)
     }
 
     override fun onStateChange(
         youTubePlayer: YouTubePlayer,
         state: PlayerState,
     ) {
+        panel.setOnClickListener {
+            if (state == PlayerState.PLAYING) {
+                youTubePlayer.pause()
+            } else {
+                youTubePlayer.play()
+            }
+        }
         when (state) {
             PlayerState.PLAYING,
             PlayerState.PAUSED,
             PlayerState.VIDEO_CUED,
-            -> {
+                -> {
+                youTubePlayer.addListener(seekbar)
+                seekbar.youtubePlayerSeekBarListener = object : YouTubePlayerSeekBarListener {
+                    override fun seekTo(time: Float) {
+                        youTubePlayer.seekTo(time)
+                    }
+                }
+
                 progressbar.visibility = View.GONE
                 panel.setBackgroundColor(
                     ContextCompat.getColor(
@@ -72,14 +101,33 @@ internal class CustomPlayerUiController(
             else -> {}
         }
 
-        seekbar.visibility = if (state == PlayerState.PLAYING) VISIBLE else View.INVISIBLE
+        seekbar.visibility =
+            if (state == PlayerState.PLAYING || state == PlayerState.PAUSED) VISIBLE else View.INVISIBLE
+        composeView.visibility =
+            if (state == PlayerState.PLAYING || state == PlayerState.PAUSED) VISIBLE else View.INVISIBLE
     }
 
     fun setOnClick(videoId: String) {
-        panel.setOnClickListener {
-            val url = "https://www.youtube.com/watch?v=$videoId"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            startActivity(context, intent, null)
+        composeView.setContent {
+            Row(
+                modifier = Modifier.clickable(
+                    onClick = {
+                        val url = "https://www.youtube.com/watch?v=$videoId"
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                        context.startActivity(intent)
+                    }
+                ),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text("watch on ", fontSize = 16.sp, color = Color.White, fontWeight = FontWeight.Bold)
+                Image(
+                    modifier = Modifier
+                        .size(32.dp),
+                    painter = painterResource(uk.adbsalam.portfolio.components.R.drawable.ic_youtube),
+                    contentDescription = null
+                )
+            }
+
         }
     }
 

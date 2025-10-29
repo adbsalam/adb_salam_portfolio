@@ -11,5 +11,6 @@ internal sealed class VideosState {
 
     data class OnVideos(
         val videos: VideoItems,
+        val isAutoPlay: Boolean
     ) : VideosState()
 }

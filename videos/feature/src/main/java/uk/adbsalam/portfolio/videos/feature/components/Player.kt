@@ -63,5 +63,5 @@ private fun iFrameOptions(context: Context): IFramePlayerOptions =
     IFramePlayerOptions
         .Builder(context)
         .controls(0)
-        .mute(1)
+        .mute(0)
         .build()

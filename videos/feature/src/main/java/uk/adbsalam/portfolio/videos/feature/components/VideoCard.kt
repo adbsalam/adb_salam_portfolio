@@ -30,7 +30,7 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * Video will start playing while between playable area
  */
 @Composable
-internal fun VideoCard(videoData: VideoItems.Video) {
+internal fun VideoCard(videoData: VideoItems.Video, autoPlay: Boolean) {
     val player = remember { mutableStateOf<YouTubePlayer?>(null) }
     val setToPlay = remember { mutableStateOf(false) }
 
@@ -41,7 +41,7 @@ internal fun VideoCard(videoData: VideoItems.Video) {
                 .wrapContentHeight()
                 .onGloballyPositioned { coordinates ->
                     val offsetY = coordinates.positionInRoot().y
-                    if (offsetY < 1150 && offsetY > 120) {
+                    if (offsetY < 1150 && offsetY > 120 && autoPlay) {
                         setToPlay.value = true
                         player.value?.play()
                     } else {
@@ -82,6 +82,7 @@ internal fun VideoCardPreviewLight() {
     Adb_Theme {
         VideoCard(
             videoData = VideoItems.createMock().videos.first(),
+            autoPlay = false
         )
     }
 }
@@ -93,6 +94,7 @@ internal fun VideoCardPreviewDark() {
     Adb_Theme(true) {
         VideoCard(
             videoData = VideoItems.createMock().videos.first(),
+            autoPlay = false
         )
     }
 }
