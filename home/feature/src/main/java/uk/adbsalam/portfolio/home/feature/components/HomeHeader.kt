@@ -35,41 +35,43 @@ internal fun HomeHeader(
     Box(modifier = Modifier) {
         val context = LocalContext.current
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(headerHeight)
-                .graphicsLayer { translationY = parallaxTranslation },
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(headerHeight)
+                    .graphicsLayer { translationY = parallaxTranslation },
         ) {
-
             Profile(
                 theme = theme,
-                modifier = Modifier
-                    .align(Alignment.Center)
-                    .fillMaxSize()
+                modifier =
+                    Modifier
+                        .align(Alignment.Center)
+                        .fillMaxSize(),
             )
 
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .align(Alignment.BottomCenter)
-                    .padding(all = 24.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.BottomCenter)
+                        .padding(all = 24.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 HeaderIcon(
                     icon = Icons.Default.Share,
                     title = "Share app",
-                    onClick = { startActivityForLink(context = context, SocialMedia.G_PLAY) }
+                    onClick = { startActivityForLink(context = context, SocialMedia.G_PLAY) },
                 )
 
                 HeaderIcon(
                     icon = Icons.Default.Code,
                     title = "See Git",
-                    onClick = { startActivityForLink(context = context, SocialMedia.GIT) }
+                    onClick = { startActivityForLink(context = context, SocialMedia.GIT) },
                 )
                 HeaderIcon(
                     icon = Icons.Default.PlayArrow,
                     "Videos",
-                    onClick = { startActivityForLink(context = context, SocialMedia.YOUTUBE) }
+                    onClick = { startActivityForLink(context = context, SocialMedia.YOUTUBE) },
                 )
                 HeaderIcon(icon = Icons.Default.Settings, "Settings", onClick = onSettingsClick)
             }
@@ -85,7 +87,7 @@ internal fun HomeHeaderPreviewLight() {
             theme = Theme.LIGHT,
             headerHeight = 600.dp,
             parallaxTranslation = 20f,
-            onSettingsClick = { /* unused */ }
+            onSettingsClick = { /* unused */ },
         )
     }
 }
@@ -98,7 +100,7 @@ internal fun HomeHeaderPreviewDark() {
             theme = Theme.DARK,
             headerHeight = 400.dp,
             parallaxTranslation = 0.5f,
-            onSettingsClick = { /* unused */ }
+            onSettingsClick = { /* unused */ },
         )
     }
 }

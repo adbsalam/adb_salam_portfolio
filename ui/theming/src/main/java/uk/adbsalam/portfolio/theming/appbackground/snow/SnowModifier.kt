@@ -18,31 +18,31 @@ import kotlin.time.Duration.Companion.nanoseconds
 /**
  * Modifier to enable snow fall on a compose
  */
-internal fun Modifier.snowfall() = composed {
+internal fun Modifier.snowfall() =
+    composed {
+        var snowflakesState by remember {
+            mutableStateOf(SnowflakesState(-1, IntSize(0, 0)))
+        }
 
-    var snowflakesState by remember {
-        mutableStateOf(SnowflakesState(-1, IntSize(0, 0)))
-    }
-
-    LaunchedEffect(Unit) {
-        while (isActive) {
-            withFrameNanos { newTick ->
-                val elapsedMillis =
-                    (newTick - snowflakesState.tickNanos).nanoseconds.inWholeMilliseconds
-                val wasFirstRun = snowflakesState.tickNanos < 0
-                snowflakesState.tickNanos = newTick
-                if (wasFirstRun) return@withFrameNanos
-                for (snowflake in snowflakesState.snowflakes) {
-                    snowflake.update(elapsedMillis)
+        LaunchedEffect(Unit) {
+            while (isActive) {
+                withFrameNanos { newTick ->
+                    val elapsedMillis =
+                        (newTick - snowflakesState.tickNanos).nanoseconds.inWholeMilliseconds
+                    val wasFirstRun = snowflakesState.tickNanos < 0
+                    snowflakesState.tickNanos = newTick
+                    if (wasFirstRun) return@withFrameNanos
+                    for (snowflake in snowflakesState.snowflakes) {
+                        snowflake.update(elapsedMillis)
+                    }
                 }
             }
         }
-    }
 
-    onSizeChanged { newSize -> snowflakesState = snowflakesState.resize(newSize) }
-        .clipToBounds()
-        .drawWithContent {
-            drawContent()
-            snowflakesState.draw(drawContext.canvas)
-        }
-}
+        onSizeChanged { newSize -> snowflakesState = snowflakesState.resize(newSize) }
+            .clipToBounds()
+            .drawWithContent {
+                drawContent()
+                snowflakesState.draw(drawContext.canvas)
+            }
+    }

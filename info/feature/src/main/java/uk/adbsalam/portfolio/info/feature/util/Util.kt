@@ -4,10 +4,8 @@ import androidx.annotation.DrawableRes
 import uk.adbsalam.portfolio.components.R
 
 @DrawableRes
-internal fun workIcon(
-    tag: String
-): Int {
-    return when (tag) {
+internal fun workIcon(tag: String): Int =
+    when (tag) {
         "ic_android" -> R.drawable.ic_android
         "ic_kotlin" -> R.drawable.ic_kotlin
         "ic_compose" -> R.drawable.ic_compose_logo
@@ -19,4 +17,3 @@ internal fun workIcon(
         "ic_shop" -> R.drawable.ic_shop
         else -> 0
     }
-}

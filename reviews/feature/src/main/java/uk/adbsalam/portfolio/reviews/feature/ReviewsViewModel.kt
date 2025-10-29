@@ -11,36 +11,36 @@ import uk.adbsalam.portfolio.reviews.data.ReviewsRepo
 import javax.inject.Inject
 
 @HiltViewModel
-class ReviewsViewModel @Inject constructor(
-    private val reviewsRepo: ReviewsRepo
-) : ViewModel() {
+class ReviewsViewModel
+    @Inject
+    constructor(
+        private val reviewsRepo: ReviewsRepo,
+    ) : ViewModel() {
+        private val _viewState =
+            MutableStateFlow<ReviewsState>(ReviewsState.OnLoading)
+        internal val viewState = _viewState.asStateFlow()
 
-    private val _viewState =
-        MutableStateFlow<ReviewsState>(ReviewsState.OnLoading)
-    internal val viewState = _viewState.asStateFlow()
+        /**
+         * Fetch data on init View Model
+         */
+        init {
+            fetchReviews()
+        }
 
-    /**
-     * Fetch data on init View Model
-     */
-    init {
-        fetchReviews()
-    }
+        internal fun fetchReviews() {
+            _viewState.value = ReviewsState.OnLoading
 
-    internal fun fetchReviews() {
-        _viewState.value = ReviewsState.OnLoading
+            viewModelScope.launch {
+                when (val result = reviewsRepo.reviews()) {
+                    is Response.Failure -> {
+                        _viewState.value =
+                            ReviewsState.OnError("something went wrong, please try again")
+                    }
 
-        viewModelScope.launch {
-
-            when (val result = reviewsRepo.reviews()) {
-                is Response.Failure -> {
-                    _viewState.value =
-                        ReviewsState.OnError("something went wrong, please try again")
-                }
-
-                is Response.Success -> {
-                    _viewState.value = ReviewsState.OnReviews(result.data)
+                    is Response.Success -> {
+                        _viewState.value = ReviewsState.OnReviews(result.data)
+                    }
                 }
             }
         }
     }
-}

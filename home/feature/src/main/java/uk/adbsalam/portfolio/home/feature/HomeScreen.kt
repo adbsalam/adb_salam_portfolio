@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -45,7 +46,6 @@ import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.portfolio.utils.Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
-
 /**
  * @param items list of items to show on home screen
  * @param onDynamicColor action on dynamic color value change
@@ -58,19 +58,24 @@ internal fun HomeScreen(
     onDynamicColor: (Boolean) -> Unit,
     currentTheme: Theme,
     onTheme: (Theme) -> Unit,
+    onScroll: (Int) -> Unit,
 ) {
     val settings = remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
     val headerHeight = LocalConfiguration.current.screenHeightDp / 1.75
     val scope = rememberCoroutineScope()
     val context = LocalContext.current
+
+    LaunchedEffect(scrollState.value) {
+        onScroll(scrollState.value)
+    }
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier
-                .verticalScroll(scrollState)
-                .fillMaxSize(),
+            modifier =
+                Modifier
+                    .verticalScroll(scrollState)
+                    .fillMaxSize(),
         ) {
-
             HomeHeader(
                 theme = currentTheme,
                 headerHeight = headerHeight.dp,
@@ -82,22 +87,22 @@ internal fun HomeScreen(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(20.dp),
             ) {
-
                 Row(
-                    modifier = Modifier
-                        .padding(start = 14.dp, end = 14.dp, top = 14.dp)
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    modifier =
+                        Modifier
+                            .padding(start = 14.dp, end = 14.dp, top = 14.dp)
+                            .fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
                 ) {
                     Text(
                         text = "Component Lab",
                         style = MaterialTheme.typography.titleLarge,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
                     )
                     Icon(
                         imageVector = Icons.Default.Info,
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onBackground
+                        tint = MaterialTheme.colorScheme.onBackground,
                     )
                 }
 
@@ -108,18 +113,18 @@ internal fun HomeScreen(
                         } else {
                             navigateDeeplink(deeplink)
                         }
-                    }
+                    },
                 )
 
                 items.forEach { item ->
                     InfoCardByType(
                         item = item,
-                        animateLottie = !scrollState.isScrollInProgress
+                        animateLottie = !scrollState.isScrollInProgress,
                     ) {
                         handleDeepLinkForItem(
                             deeplink = item.deeplink,
                             context = context,
-                            navigateDeeplink = navigateDeeplink
+                            navigateDeeplink = navigateDeeplink,
                         )
                     }
                 }
@@ -131,7 +136,7 @@ internal fun HomeScreen(
             SettingsDialog(
                 onDynamicColor = onDynamicColor,
                 onTheme = onTheme,
-                onDismiss = { settings.value = false }
+                onDismiss = { settings.value = false },
             )
         }
 
@@ -147,12 +152,13 @@ internal fun HomeScreen(
         if (currentTheme == Theme.LIGHT || isSystemLight) {
             val alpha = (0.3f - ((scrollState.value.toFloat() / scrollState.maxValue) * 3.5f))
             Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp)
-                    .background(
-                        color = Color.Gray.copy(alpha = alpha.coerceIn(0f, 1f))
-                    )
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .height(48.dp)
+                        .background(
+                            color = Color.Gray.copy(alpha = alpha.coerceIn(0f, 1f)),
+                        ),
             )
         }
     }
@@ -168,7 +174,8 @@ internal fun HomeLightPreview() {
             navigateDeeplink = { /* unused */ },
             onDynamicColor = { /* unused */ },
             currentTheme = Theme.LIGHT,
-            onTheme = { /* unused */ }
+            onTheme = { /* unused */ },
+            onScroll = {},
         )
     }
 }
@@ -183,7 +190,8 @@ internal fun HomeDarkPreview() {
             onDynamicColor = { /* unused */ },
             navigateDeeplink = { /* unused */ },
             currentTheme = Theme.DARK,
-            onTheme = { /* unused */ }
+            onTheme = { /* unused */ },
+            onScroll = {},
         )
     }
 }
@@ -197,7 +205,7 @@ internal fun HomeDarkPreview() {
 private fun InfoCardByType(
     item: HomeScreenItem,
     animateLottie: Boolean,
-    action: () -> Unit
+    action: () -> Unit,
 ) {
     when (item.type) {
         HomeItemType.IMAGE_CARD ->
@@ -206,7 +214,7 @@ private fun InfoCardByType(
                 title = item.title,
                 body = item.body,
                 resId = getDrawableRes(item.res),
-                action = action
+                action = action,
             )
 
         HomeItemType.LOTTI_CARD -> {
@@ -216,7 +224,7 @@ private fun InfoCardByType(
                 body = item.body,
                 resId = getRawRes(item.res),
                 animate = animateLottie,
-                action = action
+                action = action,
             )
         }
 
@@ -227,7 +235,7 @@ private fun InfoCardByType(
                 body = item.body,
                 resId = getRawRes(item.res),
                 animate = animateLottie,
-                action = action
+                action = action,
             )
         }
     }

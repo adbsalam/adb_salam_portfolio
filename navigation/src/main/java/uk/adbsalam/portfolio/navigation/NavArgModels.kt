@@ -8,9 +8,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class FullScreenArgs(
     val title: String = "Croatia",
-    val index: Int = 0
+    val index: Int = 0,
 ) : Parcelable
 
 data class BlogScreenArgs(
-    val query: String = ""
+    val query: String = "",
 )

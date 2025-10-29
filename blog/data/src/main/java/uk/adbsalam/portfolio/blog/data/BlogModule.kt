@@ -9,11 +9,9 @@ import retrofit2.Retrofit
 import uk.adbsalam.portfolio.network.PortfolioRetrofit
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 internal interface BlogModule {
-
     @Binds
     @Singleton
     fun bindHomeRepository(blogRepo: BlogRepository): BlogRepo
@@ -21,7 +19,8 @@ internal interface BlogModule {
     companion object {
         @Provides
         @Singleton
-        fun provideHomeService(@PortfolioRetrofit retrofit: Retrofit): BlogService =
-            retrofit.create(BlogService::class.java)
+        fun provideHomeService(
+            @PortfolioRetrofit retrofit: Retrofit,
+        ): BlogService = retrofit.create(BlogService::class.java)
     }
 }

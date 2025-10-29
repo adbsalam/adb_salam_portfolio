@@ -31,46 +31,46 @@ import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.roundedContainerShape
 import uk.adbsalam.portfolio.utils.Theme
 
-
 @Composable
 fun BlogCodeBlock(
     text: String,
-    currentTheme: Theme
+    currentTheme: Theme,
 ) {
     val context = LocalContext.current
     val codeText = getTextWithCodeFormatting(text)
     Column(
         horizontalAlignment = Alignment.End,
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(
-                color = getBlockBackgroundColor(currentTheme),
-                shape = roundedContainerShape
-            )
-            .padding(12.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(
+                    color = getBlockBackgroundColor(currentTheme),
+                    shape = roundedContainerShape,
+                ).padding(12.dp),
     ) {
         Icon(
             imageVector = Icons.Default.CopyAll,
             contentDescription = null,
             tint = Color.White,
-            modifier = Modifier
-                .align(Alignment.End)
-                .padding(vertical = 4.dp)
-                .clickable { textCopyThenPost(codeText.text, context) }
+            modifier =
+                Modifier
+                    .align(Alignment.End)
+                    .padding(vertical = 4.dp)
+                    .clickable { textCopyThenPost(codeText.text, context) },
         )
 
         Text(
             modifier = Modifier.fillMaxWidth(),
             text = codeText,
             style = MaterialTheme.typography.labelLarge,
-            color = Color.White
+            color = Color.White,
         )
     }
 }
 
 @Composable
-private fun getBlockBackgroundColor(currentTheme: Theme): Color {
-    return when {
+private fun getBlockBackgroundColor(currentTheme: Theme): Color =
+    when {
         currentTheme == Theme.SYSTEM && isSystemInDarkTheme() -> Color.Black
         currentTheme == Theme.SYSTEM && !isSystemInDarkTheme() -> MaterialTheme.colorScheme.primary
         currentTheme == Theme.LIGHT -> MaterialTheme.colorScheme.primary
@@ -78,14 +78,17 @@ private fun getBlockBackgroundColor(currentTheme: Theme): Color {
         currentTheme == Theme.CHRISTMAS -> Color.Black
         else -> Color.Black
     }
-}
 
-fun textCopyThenPost(textCopied: String, context: Context) {
+fun textCopyThenPost(
+    textCopied: String,
+    context: Context,
+) {
     val clipboardManager = getSystemService(context, ClipboardManager::class.java)
     clipboardManager?.setPrimaryClip(ClipData.newPlainText("", textCopied))
     // Only show a toast for Android 12 and lower.
-    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2)
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
         Toast.makeText(context, "Copied", Toast.LENGTH_SHORT).show()
+    }
 }
 
 @PreviewLight
@@ -94,7 +97,7 @@ fun CodeBlockKotlinLightPreview() {
     Adb_Theme {
         BlogCodeBlock(
             Blog.kotlinCodeBlock.data,
-            currentTheme = Theme.SYSTEM
+            currentTheme = Theme.SYSTEM,
         )
     }
 }
@@ -105,7 +108,7 @@ fun CodeBlockKotlinDarkPreview() {
     Adb_Theme(isSystemDark = true) {
         BlogCodeBlock(
             Blog.kotlinCodeBlock.data,
-            currentTheme = Theme.SYSTEM
+            currentTheme = Theme.SYSTEM,
         )
     }
 }

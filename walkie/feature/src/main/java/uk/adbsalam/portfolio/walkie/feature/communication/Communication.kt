@@ -45,7 +45,7 @@ import uk.adbsalam.portfolio.walkie.feature.communication.mediaManager.record.An
 fun Communication(
     userName: String,
     sendAudio: (Payload) -> Unit,
-    audioPayload: Payload?
+    audioPayload: Payload?,
 ) {
     val context = LocalContext.current
     val focusRequester = remember { FocusRequester() }
@@ -70,67 +70,72 @@ fun Communication(
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .statusBarsPadding()
-            .navigationBarsPadding()
-            .focusRequester(focusRequester)
-            .focusable()
-            .padding(20.dp)
-            .onVolumeButton(
-                onStartRecording = {
-                    isPlaying = false
-                    isRecording = true
-                    recorder.start(context)
-                },
-                onStopAndGetRecording = {
-                    isRecording = false
-                    recorder.stopAndGetRecording()
-                },
-                onSendAudio = sendAudio
-            )
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .statusBarsPadding()
+                .navigationBarsPadding()
+                .focusRequester(focusRequester)
+                .focusable()
+                .padding(20.dp)
+                .onVolumeButton(
+                    onStartRecording = {
+                        isPlaying = false
+                        isRecording = true
+                        recorder.start(context)
+                    },
+                    onStopAndGetRecording = {
+                        isRecording = false
+                        recorder.stopAndGetRecording()
+                    },
+                    onSendAudio = sendAudio,
+                ),
     ) {
         CommunicationsLottie(
             isPlaying = isPlaying,
             res = R.raw.ic_sound_wave,
-            lottieModifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp),
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
+            lottieModifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(80.dp),
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
         )
 
         Column(
             verticalArrangement = Arrangement.spacedBy(14.dp, Alignment.CenterVertically),
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
         ) {
             Text(
                 text = "Connected To: $userName",
                 style = MaterialTheme.typography.labelLarge,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
             Text(
                 text = "Press and hold volume down button to communicate",
                 style = MaterialTheme.typography.labelLarge,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
             )
         }
 
         CommunicationsLottie(
             isPlaying = isRecording,
             res = R.raw.ic_mic,
-            lottieModifier = Modifier
-                .width(200.dp)
-                .height(160.dp),
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
+            lottieModifier =
+                Modifier
+                    .width(200.dp)
+                    .height(160.dp),
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
         )
-
     }
 }
 
@@ -139,10 +144,10 @@ private fun CommunicationsLottie(
     modifier: Modifier,
     isPlaying: Boolean,
     @RawRes res: Int,
-    lottieModifier: Modifier
+    lottieModifier: Modifier,
 ) {
     Box(
-        modifier = modifier
+        modifier = modifier,
     ) {
         val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(res))
         val progress by animateLottieCompositionAsState(
@@ -150,14 +155,15 @@ private fun CommunicationsLottie(
             iterations = Integer.MAX_VALUE,
             restartOnPlay = true,
             isPlaying = isPlaying,
-            cancellationBehavior = LottieCancellationBehavior.Immediately
+            cancellationBehavior = LottieCancellationBehavior.Immediately,
         )
 
         LottieAnimation(
             composition = composition,
             progress = { progress },
-            modifier = lottieModifier
-                .align(Alignment.Center)
+            modifier =
+                lottieModifier
+                    .align(Alignment.Center),
         )
     }
 }
@@ -169,7 +175,7 @@ private fun CommunicationPreview() {
         Communication(
             userName = "3452",
             sendAudio = { /* unused */ },
-            audioPayload = null
+            audioPayload = null,
         )
     }
 }
@@ -181,8 +187,7 @@ private fun CommunicationPreviewDark() {
         Communication(
             userName = "3452",
             sendAudio = { /* unused */ },
-            audioPayload = null
+            audioPayload = null,
         )
     }
 }
-

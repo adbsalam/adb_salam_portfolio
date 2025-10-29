@@ -6,7 +6,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
@@ -26,14 +28,13 @@ import uk.adbsalam.portfolio.home.feature.utils.startActivityForLink
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
-
 /**
  * @param mediaType Social Media type to return Icons
  * @return Icon Resource ID for item image
  */
 @DrawableRes
-fun iconRes(mediaType: SocialMedia): Int {
-    return when (mediaType) {
+fun iconRes(mediaType: SocialMedia): Int =
+    when (mediaType) {
         SocialMedia.G_PLAY -> R.drawable.g_play
         SocialMedia.LINKED_IN -> R.drawable.ic_linked_in
         SocialMedia.GIT -> R.drawable.ic_git
@@ -42,26 +43,25 @@ fun iconRes(mediaType: SocialMedia): Int {
         SocialMedia.INSTA -> R.drawable.ic_insta
         GMAIL -> R.drawable.ic_gmail
     }
-}
 
 @PreviewLight
 @Composable
 @SnapIt
 internal fun SocialMediaCarousal() {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         val context = LocalContext.current
 
         Text(
             text = "Find me on social media",
             style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(start = 12.dp)
+            modifier = Modifier.padding(start = 12.dp),
         )
 
         LazyRow(
             modifier = Modifier.fillMaxWidth(),
-            contentPadding = PaddingValues(12.dp)
+            contentPadding = PaddingValues(12.dp),
         ) {
             SocialMedia.values().forEach { media ->
                 item {
@@ -70,15 +70,18 @@ internal fun SocialMediaCarousal() {
                             painter = painterResource(id = iconRes(media)),
                             contentDescription = null,
                             contentScale = ContentScale.FillBounds,
-                            modifier = Modifier
-                                .align(Alignment.TopCenter)
-                                .padding(12.dp)
-                                .size(32.dp)
-                                .clickable { startActivityForLink(context, media) }
+                            modifier =
+                                Modifier
+                                    .align(Alignment.TopCenter)
+                                    .padding(12.dp)
+                                    .size(32.dp)
+                                    .clickable { startActivityForLink(context, media) },
                         )
                     }
                 }
             }
         }
+
+        Spacer(modifier = Modifier.height(112.dp))
     }
 }

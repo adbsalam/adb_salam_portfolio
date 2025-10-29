@@ -1,7 +1,6 @@
 package uk.adbsalam.portfolio.reviews.feature
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -29,19 +29,24 @@ import uk.adbsalam.snapit.annotations.SnapIt
  */
 @Composable
 internal fun ReviewsScreen(
-    reviews: ReviewItems
+    reviews: ReviewItems,
+    onScroll: (Int) -> Unit,
 ) {
     val scrollState = rememberScrollState()
     val scope = rememberCoroutineScope()
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp)
-            .verticalScroll(scrollState),
-        verticalArrangement = Arrangement.spacedBy(14.dp)
-    ) {
+    LaunchedEffect(scrollState.value) {
+        onScroll(scrollState.value)
+    }
 
+    Column(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp)
+                .verticalScroll(scrollState),
+        verticalArrangement = Arrangement.spacedBy(14.dp),
+    ) {
         ReviewLottiTitle()
 
         reviews.reviews.forEach {
@@ -66,7 +71,8 @@ internal fun ReviewsScreen(
 internal fun ReviewsScreenPreviewLight() {
     Adb_Screen_Theme {
         ReviewsScreen(
-            reviews = ReviewItems.createMock()
+            reviews = ReviewItems.createMock(),
+            onScroll = {},
         )
     }
 }
@@ -77,7 +83,8 @@ internal fun ReviewsScreenPreviewLight() {
 internal fun ReviewsScreenPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         ReviewsScreen(
-            reviews = ReviewItems.createMock()
+            reviews = ReviewItems.createMock(),
+            onScroll = {},
         )
     }
 }

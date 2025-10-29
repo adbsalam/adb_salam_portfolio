@@ -16,13 +16,12 @@ import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
 
-
 @Composable
 fun <T> RadioGroup(
     items: List<T>,
     title: (T) -> String,
     preSelect: T,
-    onSelected: (T) -> Unit
+    onSelected: (T) -> Unit,
 ) {
     val selected = remember { mutableStateOf(preSelect) }
     Column {
@@ -35,21 +34,20 @@ fun <T> RadioGroup(
                         onClick = {
                             selected.value = item
                             onSelected(item)
-                        }
-                    )
-                    .padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
+                        },
+                    ).padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 RadioButton(
                     selected = (item == selected.value),
                     onClick = {
                         selected.value = item
                         onSelected(item)
-                    }
+                    },
                 )
                 Text(
                     text = title(item),
-                    modifier = Modifier.padding(start = 16.dp)
+                    modifier = Modifier.padding(start = 16.dp),
                 )
             }
         }
@@ -64,6 +62,8 @@ internal fun RadioGroupPreview() {
         items = listOf("itemOne", "itemTwo"),
         title = { item -> item },
         preSelect = "itemOne",
-        onSelected = { /** unused **/}
+        onSelected = {
+            /** unused **/
+        },
     )
 }

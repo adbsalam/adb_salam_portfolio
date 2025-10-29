@@ -4,5 +4,6 @@ import android.content.Context
 
 interface AudioRecorder {
     fun start(context: Context)
+
     fun stopAndGetRecording(): ByteArray?
 }

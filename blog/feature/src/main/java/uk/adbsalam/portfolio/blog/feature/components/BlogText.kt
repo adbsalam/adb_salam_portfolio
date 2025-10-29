@@ -27,16 +27,18 @@ fun BlogText(text: String) {
         Text(
             text.removeCodeBlockRegex(),
             style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onBackground,
             onTextLayout = { layoutResult ->
                 selectedPartPaths =
                     codeBlocksLocations.map { Path().createCodeBlockRect(it, layoutResult) }
             },
-            modifier = Modifier.drawBehind {
-                selectedPartPaths.forEach { path ->
-                    drawPath(path, style = Fill, color = Color.Blue.copy(alpha = 0.2f))
-                    drawPath(path, style = Stroke(width = 2f), color = Color.Blue)
-                }
-            }
+            modifier =
+                Modifier.drawBehind {
+                    selectedPartPaths.forEach { path ->
+                        drawPath(path, style = Fill, color = Color.Blue.copy(alpha = 0.2f))
+                        drawPath(path, style = Stroke(width = 2f), color = Color.Blue)
+                    }
+                },
         )
     }
 }

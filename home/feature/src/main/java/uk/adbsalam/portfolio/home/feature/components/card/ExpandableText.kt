@@ -24,27 +24,31 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 internal fun ExpandableText(
     readMore: MutableState<Boolean>,
-    text: String
+    text: String,
 ) {
-    Column(modifier = Modifier
-        .wrapContentSize()
-        .animateContentSize(animationSpec = tween(500))
-        .clickable(
-            interactionSource = remember { MutableInteractionSource() },
-            indication = null
-        ) { readMore.value = !readMore.value }) {
-
+    Column(
+        modifier =
+            Modifier
+                .wrapContentSize()
+                .animateContentSize(animationSpec = tween(500))
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null,
+                ) { readMore.value = !readMore.value },
+    ) {
         if (readMore.value) {
             Text(
                 text = text,
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground,
             )
         } else {
             Text(
                 text = text,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
+                color = MaterialTheme.colorScheme.onBackground,
             )
         }
     }
@@ -57,7 +61,7 @@ internal fun ExpandableTextCollapsedPreview() {
     val readMore = remember { mutableStateOf(false) }
     ExpandableText(
         readMore = readMore,
-        text = "This is some long text for 2 lines and should be ellipsed to shorter lines since it cannot fit in two lines"
+        text = "This is some long text for 2 lines and should be ellipsed to shorter lines since it cannot fit in two lines",
     )
 }
 
@@ -68,6 +72,6 @@ internal fun ExpandableTextExpandedPreview() {
     val readMore = remember { mutableStateOf(true) }
     ExpandableText(
         readMore = readMore,
-        text = "This is some long text for 2 lines and should be ellipsed to shorter lines since it cannot fit in two lines"
+        text = "This is some long text for 2 lines and should be ellipsed to shorter lines since it cannot fit in two lines",
     )
 }

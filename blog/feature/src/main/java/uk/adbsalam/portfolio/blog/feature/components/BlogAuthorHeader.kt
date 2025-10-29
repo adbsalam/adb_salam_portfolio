@@ -23,31 +23,32 @@ import uk.adbsalam.portfolio.theming.PreviewLight
  * Hard coded component since will not change anytime soon
  */
 @Composable
-fun BlogAuthorHeader(
-    modifier: Modifier = Modifier
-) {
+fun BlogAuthorHeader(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
             painterResource(id = R.drawable.ic_dp),
             contentDescription = null,
             contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(60.dp)
-                .clip(CircleShape)
+            modifier =
+                Modifier
+                    .size(60.dp)
+                    .clip(CircleShape),
         )
 
         Spacer(modifier = Modifier.height(6.dp))
 
         Text(
             text = "Author",
-            style = MaterialTheme.typography.titleSmall
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.onBackground,
         )
         Text(
             text = "AbdulSalam",
             style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground,
         )
     }
 }

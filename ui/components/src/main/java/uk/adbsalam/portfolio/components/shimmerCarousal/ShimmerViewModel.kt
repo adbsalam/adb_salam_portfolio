@@ -7,14 +7,13 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class ShimmerViewModel @Inject constructor(): ViewModel() {
+class ShimmerViewModel
+    @Inject
+    constructor() : ViewModel() {
+        private val _shimmerState = MutableStateFlow(LazyRowShimmerState())
+        internal val shimmerState = _shimmerState.asStateFlow()
 
-    private val _shimmerState = MutableStateFlow(LazyRowShimmerState())
-    internal val shimmerState = _shimmerState.asStateFlow()
-
-    fun updateState(
-        shimmerState: LazyRowShimmerState.LazyRowItemShimmer
-    ){
-        _shimmerState.value.stateList.add(shimmerState)
+        fun updateState(shimmerState: LazyRowShimmerState.LazyRowItemShimmer) {
+            _shimmerState.value.stateList.add(shimmerState)
+        }
     }
-}

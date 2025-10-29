@@ -33,38 +33,40 @@ import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 import uk.adbsalam.snapit.annotations.SnapIt
 
 @Composable
-fun Gallery(
-    navController: NavController
-) {
+fun Gallery(navController: NavController) {
     val isTransforming = remember { mutableStateOf(false) }
     val gridCellSize = remember { mutableStateOf(MIN_SIZE) }
 
     LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.inverseSurface),
-        userScrollEnabled = !isTransforming.value
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.inverseSurface),
+        userScrollEnabled = !isTransforming.value,
     ) {
-
         item {
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .statusBarsPadding()
-                    .padding(start = 20.dp, end = 20.dp, top = 14.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .statusBarsPadding()
+                        .padding(start = 20.dp, end = 20.dp, top = 14.dp)
+                        .animateItem(),
             ) {
                 Text(
                     text = "Transformable Gallery",
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleLarge,
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
 
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = "Try this transformable gallery. Pinch or zoom to change grid size of gallery. Click on an image to open in immersive mode with transforming gestures",
                     style = MaterialTheme.typography.bodyMedium,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
             }
         }
@@ -73,7 +75,7 @@ fun Gallery(
             GalleryCarousal(
                 title = "Most Recent",
                 modifier = Modifier.padding(top = 14.dp),
-                imageRes = recent
+                imageRes = recent,
             )
         }
 
@@ -82,7 +84,7 @@ fun Gallery(
                 modifier = Modifier.padding(top = 20.dp),
                 title = "Highlights",
                 isHero = true,
-                imageRes = highlights
+                imageRes = highlights,
             )
         }
 
@@ -96,10 +98,10 @@ fun Gallery(
                     navController.navigateToFullScreenGallery(
                         FullScreenArgs(
                             title = title,
-                            index = index
-                        )
+                            index = index,
+                        ),
                     )
-                }
+                },
             )
         }
 
@@ -118,7 +120,6 @@ internal fun GalleryLightPreview() {
     }
 }
 
-
 @PreviewDark
 @SnapIt(isDark = true)
 @Composable
@@ -133,17 +134,18 @@ private fun GalleryCarousal(
     title: String,
     modifier: Modifier = Modifier,
     isHero: Boolean = false,
-    @DrawableRes imageRes: List<Int>
+    @DrawableRes imageRes: List<Int>,
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
         Text(
             modifier = Modifier.padding(start = 16.dp, top = 14.dp, bottom = 10.dp),
             text = title,
-            style = MaterialTheme.typography.bodyLarge
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onBackground,
         )
         ImageCarousal(
             imageResList = imageRes,
-            isHero = isHero
+            isHero = isHero,
         )
     }
 }

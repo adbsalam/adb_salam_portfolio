@@ -13,11 +13,13 @@ import uk.adbsalam.portfolio.videos.data.VideosRepo
 import javax.inject.Inject
 
 @HiltViewModel
-class VideosViewModel @Inject constructor(
+class VideosViewModel
+@Inject
+constructor(
     private val themePrefs: AppSharedPrefManager.ThemePrefs,
-    private val videosRepo: VideosRepo
+    private val videosRepo: VideosRepo,
+    private val videoSharedPrefManager: AppSharedPrefManager.VideosPref
 ) : ViewModel() {
-
     private val _viewState = MutableStateFlow<VideosState>(VideosState.OnLoading)
     internal val viewState = _viewState.asStateFlow()
 
@@ -32,7 +34,6 @@ class VideosViewModel @Inject constructor(
         _viewState.value = VideosState.OnLoading
 
         viewModelScope.launch {
-
             when (val result = videosRepo.videos()) {
                 is Response.Failure -> {
                     _viewState.value =
@@ -40,16 +41,20 @@ class VideosViewModel @Inject constructor(
                 }
 
                 is Response.Success -> {
-                    _viewState.value = VideosState.OnVideos(result.data)
+                    _viewState.value =
+                        VideosState.OnVideos(result.data, videoSharedPrefManager.videoAutoPlay())
                 }
             }
         }
     }
 
+    fun setAutoPlay(flag: Boolean) {
+        _viewState.value = (_viewState.value as VideosState.OnVideos).copy(isAutoPlay = flag)
+        videoSharedPrefManager.setVideoAutoPlay(flag)
+    }
+
     /**
      * get current theme app us using from prefs
      */
-    internal fun currentTheme(): Theme {
-        return themePrefs.theme()
-    }
+    internal fun currentTheme(): Theme = themePrefs.theme()
 }

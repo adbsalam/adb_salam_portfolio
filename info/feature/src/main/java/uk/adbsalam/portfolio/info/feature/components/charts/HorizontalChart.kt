@@ -32,9 +32,8 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 internal fun HorizontalChart(
     subTitle: String,
-    percent: Float
+    percent: Float,
 ) {
-
     var percentFloat by remember { mutableStateOf(0f) }
 
     LaunchedEffect(key1 = null) {
@@ -44,28 +43,28 @@ internal fun HorizontalChart(
     val progressAnimation by animateFloatAsState(
         targetValue = percentFloat,
         animationSpec = tween(durationMillis = 1000, easing = LinearEasing),
-        label = ""
+        label = "",
     )
 
     Row(modifier = Modifier.fillMaxWidth()) {
-
         Column(Modifier.weight(1f)) {
             Text(
                 text = subTitle,
-                style = MaterialTheme.typography.titleSmall
+                style = MaterialTheme.typography.titleSmall,
+                color = MaterialTheme.colorScheme.onBackground,
             )
         }
 
         Column(Modifier.weight(2f)) {
             LinearProgressIndicator(
-                modifier = Modifier
-                    .height(12.dp)
-                    .fillMaxWidth(),
-                progress = progressAnimation,
-                trackColor = MaterialTheme.colorScheme.surfaceVariant
+                modifier =
+                    Modifier
+                        .height(12.dp)
+                        .fillMaxWidth(),
+                progress = { progressAnimation },
+                trackColor = MaterialTheme.colorScheme.surfaceVariant,
             )
         }
-
     }
 }
 
@@ -76,7 +75,7 @@ internal fun HorizontalChartPreviewLight() {
     Adb_Theme {
         HorizontalChart(
             subTitle = "Component",
-            percent = 40f
+            percent = 40f,
         )
     }
 }
@@ -88,7 +87,7 @@ internal fun HorizontalChartPreviewDark() {
     Adb_Theme(isSystemDark = true) {
         HorizontalChart(
             subTitle = "Component",
-            percent = 40f
+            percent = 40f,
         )
     }
 }

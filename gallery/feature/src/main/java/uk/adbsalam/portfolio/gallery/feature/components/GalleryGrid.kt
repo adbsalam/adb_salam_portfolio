@@ -26,16 +26,17 @@ internal fun GalleryGrid(
     gridCellSize: MutableState<Dp>,
     galleryMedia: List<GalleryMedia>,
     onTransforming: (Boolean) -> Unit,
-    onClick: (String, Int) -> Unit
+    onClick: (String, Int) -> Unit,
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(30.dp),
-        modifier = Modifier
-            .padding(horizontal = 12.dp, vertical = 20.dp)
-            .transformGrid(
-                onTransforming = onTransforming,
-                gridCellSize = gridCellSize
-            )
+        modifier =
+            Modifier
+                .padding(horizontal = 12.dp, vertical = 20.dp)
+                .transformGrid(
+                    onTransforming = onTransforming,
+                    gridCellSize = gridCellSize,
+                ),
     ) {
         galleryMedia.forEach {
             GalleryFlow(size = gridCellSize, media = it, onClick = onClick)
@@ -51,7 +52,7 @@ internal fun GalleryGridLightPreview() {
             gridCellSize = remember { mutableStateOf(100.dp) },
             galleryMedia = GalleryMedia.mockkGallery(),
             onTransforming = { /* unused */ },
-            onClick = { _, _ -> /* unused */ }
+            onClick = { _, _ -> /* unused */ },
         )
     }
 }
@@ -64,14 +65,14 @@ internal fun GalleryGridDarkPreview() {
             gridCellSize = remember { mutableStateOf(100.dp) },
             galleryMedia = GalleryMedia.mockkGallery(),
             onTransforming = { /* unused */ },
-            onClick = { _, _ -> /* unused */ }
+            onClick = { _, _ -> /* unused */ },
         )
     }
 }
 
 private fun Modifier.transformGrid(
     onTransforming: (Boolean) -> Unit,
-    gridCellSize: MutableState<Dp>
+    gridCellSize: MutableState<Dp>,
 ) = this.pointerInput(null) {
     awaitEachGesture {
         do {
@@ -80,12 +81,13 @@ private fun Modifier.transformGrid(
             val isTransforming = pointCount > 1
             onTransforming(isTransforming)
             if (isTransforming) {
-                gridCellSize.value = gridCellSize.value
-                    .times(event.calculateZoom())
-                    .coerceIn(
-                        minimumValue = MIN_SIZE,
-                        maximumValue = MAX_SIZE
-                    )
+                gridCellSize.value =
+                    gridCellSize.value
+                        .times(event.calculateZoom())
+                        .coerceIn(
+                            minimumValue = MIN_SIZE,
+                            maximumValue = MAX_SIZE,
+                        )
             }
         } while (event.changes.any { it.pressed })
     }

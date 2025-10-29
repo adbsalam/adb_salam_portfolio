@@ -22,33 +22,32 @@ import uk.adbsalam.snapit.annotations.SnapIt
 @Composable
 fun ErrorPage(
     msg: String = "Something went wrong, please retry",
-    retry: () -> Unit
+    retry: () -> Unit,
 ) {
-
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.ic_error))
     val progress by animateLottieCompositionAsState(
         composition,
         iterations = Integer.MAX_VALUE,
-        isPlaying = true
+        isPlaying = true,
     )
 
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterVertically),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         LottieAnimation(
             composition = composition,
             progress = { progress },
-            modifier = Modifier
-                .width(140.dp)
-                .height(140.dp)
+            modifier =
+                Modifier
+                    .width(140.dp)
+                    .height(140.dp),
         )
         Text(text = msg)
         Button(onClick = { retry() }) {
             Text(text = "Retry")
         }
-
     }
 }
 
@@ -58,6 +57,6 @@ fun ErrorPage(
 internal fun ErrorPagePreview() {
     ErrorPage(
         msg = "Cannot load page currently",
-        retry = { /*unused*/ }
+        retry = { /*unused*/ },
     )
 }

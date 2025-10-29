@@ -9,17 +9,16 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 
-
 @Composable
 fun ShimmerCardCarousal(
     viewModel: ShimmerViewModel = hiltViewModel(),
-    onClick: (String) -> Unit
+    onClick: (String) -> Unit,
 ) {
     val shimmerState by viewModel.shimmerState.collectAsState()
 
     LazyRow(
         contentPadding = PaddingValues(horizontal = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp)
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         ShimmerCardItem.mockCards().forEachIndexed { index, item ->
             item {
@@ -28,7 +27,7 @@ fun ShimmerCardCarousal(
                     currentIndex = index,
                     shimmerState = shimmerState,
                     onUpdateState = viewModel::updateState,
-                    onClick = { onClick(item.deepLink) }
+                    onClick = { onClick(item.deepLink) },
                 )
             }
         }
@@ -36,10 +35,10 @@ fun ShimmerCardCarousal(
 }
 
 //
-//@Preview
-//@Composable
-//fun ShimmerCardPreview() {
+// @Preview
+// @Composable
+// fun ShimmerCardPreview() {
 //    ShimmerCardCarousal(
 //        shimmerCardRowState = remember { mutableStateOf(LazyRowShimmerState()) }
 //    )
-//}
+// }

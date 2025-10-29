@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal interface HomeModule {
-
     @Binds
     @Singleton
     fun bindHomeRepository(homeRepo: HomeRepository): HomeRepo
@@ -20,7 +19,8 @@ internal interface HomeModule {
     companion object {
         @Provides
         @Singleton
-        fun provideHomeService(@PortfolioRetrofit retrofit: Retrofit): HomeService =
-            retrofit.create(HomeService::class.java)
+        fun provideHomeService(
+            @PortfolioRetrofit retrofit: Retrofit,
+        ): HomeService = retrofit.create(HomeService::class.java)
     }
 }

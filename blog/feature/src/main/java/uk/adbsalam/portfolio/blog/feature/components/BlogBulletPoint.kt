@@ -14,18 +14,16 @@ import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.theming.PreviewLight
 
 @Composable
-fun BlogBulletPoint(
-    text: String
-) {
+fun BlogBulletPoint(text: String) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
-        verticalAlignment = Alignment.Top
+        verticalAlignment = Alignment.Top,
     ) {
         Icon(
             imageVector = Icons.Filled.Circle,
             contentDescription = null,
-            modifier = Modifier.size(10.dp)
+            modifier = Modifier.size(10.dp),
         )
         BlogText(text = text)
     }

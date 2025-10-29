@@ -3,16 +3,16 @@ package uk.adbsalam.portfolio.navigation
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 
-private fun NavController.rootNavOptions() = NavOptions
-    .Builder()
-    .setPopUpTo(
-        this.graph.startDestinationId,
-        inclusive = false,
-        saveState = true
-    )
-    .setLaunchSingleTop(true)
-    .setRestoreState(true)
-    .build()
+private fun NavController.rootNavOptions() =
+    NavOptions
+        .Builder()
+        .setPopUpTo(
+            this.graph.startDestinationId,
+            inclusive = false,
+            saveState = true,
+        ).setLaunchSingleTop(true)
+        .setRestoreState(true)
+        .build()
 
 fun NavController.navigateHomeNavHost() {
     this.navigate(NavigationScreen.OnHomeNav.route(), this.rootNavOptions())
@@ -38,7 +38,10 @@ fun NavController.navigateToFullScreenGallery(galleryArgs: FullScreenArgs) {
     this.toDestination(NavigationScreen.OnFullScreenGallery, galleryArgs)
 }
 
-fun NavController.navigateToBlogScreen(args: BlogScreenArgs){
-    this.toDestination(NavigationScreen.OnBlogScreen, args)
+fun NavController.navigateToGallery() {
+    this.toDestination(NavigationScreen.OnGallery)
 }
 
+fun NavController.navigateToBlogScreen(args: BlogScreenArgs) {
+    this.toDestination(NavigationScreen.OnBlogScreen, args)
+}

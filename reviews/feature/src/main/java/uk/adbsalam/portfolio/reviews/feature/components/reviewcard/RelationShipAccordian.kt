@@ -41,49 +41,49 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * This is expandable accordion to show and hide details of relationship
  */
 @Composable
-internal fun RelationShipAccordion(
-    review: ReviewItems.Review
-) {
+internal fun RelationShipAccordion(review: ReviewItems.Review) {
     var expand by remember { mutableStateOf(false) }
     var chevronRotation by remember { mutableStateOf(0f) }
 
     val chevronRotate by animateFloatAsState(
         targetValue = chevronRotation,
         animationSpec = tween(durationMillis = 300, easing = LinearEasing),
-        label = ""
+        label = "",
     )
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable {
-                chevronRotation = if (!expand) 90f else 0f
-                expand = !expand
-            },
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable {
+                    chevronRotation = if (!expand) 90f else 0f
+                    expand = !expand
+                },
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 12.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp),
         ) {
             Row {
                 Icon(
                     imageVector = Icons.Default.Handshake,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onBackground
+                    tint = MaterialTheme.colorScheme.onBackground,
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(
                     text = "Relationship",
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.titleMedium,
                 )
             }
 
             Icon(
                 imageVector = Icons.Default.ChevronRight,
                 contentDescription = null,
-                modifier = Modifier.rotate(chevronRotate)
+                modifier = Modifier.rotate(chevronRotate),
             )
         }
 
@@ -94,9 +94,10 @@ internal fun RelationShipAccordion(
         ) {
             Column(
                 verticalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(12.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(12.dp),
             ) {
                 Text(
                     text = review.relation,

@@ -44,9 +44,8 @@ internal fun CircularChart(
     title: String,
     subTitle: String,
     @DrawableRes icon: Int,
-    percent: Float
+    percent: Float,
 ) {
-
     var percentFloat by remember { mutableFloatStateOf(0f) }
 
     LaunchedEffect(key1 = null) {
@@ -56,28 +55,28 @@ internal fun CircularChart(
     val progressAnimation by animateFloatAsState(
         targetValue = percentFloat,
         animationSpec = tween(durationMillis = 1000, easing = LinearEasing),
-        label = ""
+        label = "",
     )
 
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-
         Box {
             CircularProgressIndicator(
                 modifier = Modifier.size(100.dp),
                 strokeWidth = 12.dp,
-                progress = progressAnimation,
+                progress = { progressAnimation },
                 trackColor = MaterialTheme.colorScheme.surfaceVariant,
             )
 
             Image(
                 painter = painterResource(id = icon),
                 contentDescription = null,
-                modifier = Modifier
-                    .size(30.dp)
-                    .align(Alignment.Center)
+                modifier =
+                    Modifier
+                        .size(30.dp)
+                        .align(Alignment.Center),
             )
         }
 
@@ -85,14 +84,16 @@ internal fun CircularChart(
 
         Text(
             text = title,
-            style = MaterialTheme.typography.titleMedium
+            style = MaterialTheme.typography.titleMedium,
+            color = MaterialTheme.colorScheme.onBackground,
         )
 
         Spacer(modifier = Modifier.height(5.dp))
 
         Text(
             text = subTitle,
-            style = MaterialTheme.typography.titleSmall
+            style = MaterialTheme.typography.titleSmall,
+            color = MaterialTheme.colorScheme.onBackground,
         )
     }
 }
@@ -106,7 +107,7 @@ internal fun CircularChartPreviewLight() {
             title = "Android",
             subTitle = "kotlin",
             icon = R.drawable.ic_kotlin,
-            percent = 0.5f
+            percent = 0.5f,
         )
     }
 }
@@ -120,7 +121,7 @@ internal fun CircularChartPreviewDark() {
             title = "Android",
             subTitle = "kotlin",
             icon = R.drawable.ic_kotlin,
-            percent = 0.5f
+            percent = 0.5f,
         )
     }
 }

@@ -1,6 +1,5 @@
 package uk.adbsalam.portfolio.theming.appbackground
 
-
 import android.graphics.RuntimeShader
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -28,59 +27,65 @@ import uk.adbsalam.portfolio.utils.Theme
 @Composable
 fun GradientColumn(
     theme: Theme,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
-    val gradientColorOne = when {
-        theme == Theme.SYSTEM && isSystemInDarkTheme() -> dark_gradient_color_one
-        theme == Theme.DARK -> dark_gradient_color_one
-        theme == Theme.CHRISTMAS -> christmas_gradient_color
-        theme == Theme.DEEP_DARK -> darkGradientColor
-        else -> light_gradient_color_one
-    }
-
-    val gradientColorTwo = when {
-        theme == Theme.SYSTEM && isSystemInDarkTheme() -> dark_gradient_color_two
-        theme == Theme.DARK -> dark_gradient_color_two
-        theme == Theme.CHRISTMAS -> christmas_gradient_color
-        theme == Theme.DEEP_DARK -> darkGradientColor
-        else -> light_gradient_color_two
-    }
-    
-    val modifier = if (theme == Theme.CHRISTMAS) Modifier.snowfall() else Modifier
-    val gradientModifier = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-        Modifier.drawWithCache {
-            val shader = RuntimeShader(CUSTOM_SHADER)
-            val shaderBrush = ShaderBrush(shader)
-            shader.setFloatUniform("resolution", size.width, size.height)
-            onDrawBehind {
-                shader.setColorUniform(
-                    "color",
-                    android.graphics.Color.valueOf(
-                        gradientColorTwo.red,
-                        gradientColorTwo.green,
-                        gradientColorTwo.blue,
-                        gradientColorTwo.alpha
-                    )
-                )
-                shader.setColorUniform(
-                    "color2",
-                    android.graphics.Color.valueOf(
-                        gradientColorOne.red,
-                        gradientColorOne.green,
-                        gradientColorOne.blue,
-                        gradientColorOne.alpha
-                    )
-                )
-                drawRect(shaderBrush)
-            }
+    val gradientColorOne =
+        when {
+            theme == Theme.SYSTEM && isSystemInDarkTheme() -> darkGradientColor
+            theme == Theme.DARK -> dark_gradient_color_one
+            theme == Theme.CHRISTMAS -> christmas_gradient_color
+            theme == Theme.DEEP_DARK -> darkGradientColor
+            else -> light_gradient_color_one
         }
-    } else Modifier
+
+    val gradientColorTwo =
+        when {
+            theme == Theme.SYSTEM && isSystemInDarkTheme() -> darkGradientColor
+            theme == Theme.DARK -> dark_gradient_color_two
+            theme == Theme.CHRISTMAS -> christmas_gradient_color
+            theme == Theme.DEEP_DARK -> darkGradientColor
+            else -> light_gradient_color_two
+        }
+
+    val modifier = if (theme == Theme.CHRISTMAS) Modifier.snowfall() else Modifier
+    val gradientModifier =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            Modifier.drawWithCache {
+                val shader = RuntimeShader(CUSTOM_SHADER)
+                val shaderBrush = ShaderBrush(shader)
+                shader.setFloatUniform("resolution", size.width, size.height)
+                onDrawBehind {
+                    shader.setColorUniform(
+                        "color",
+                        android.graphics.Color.valueOf(
+                            gradientColorTwo.red,
+                            gradientColorTwo.green,
+                            gradientColorTwo.blue,
+                            gradientColorTwo.alpha,
+                        ),
+                    )
+                    shader.setColorUniform(
+                        "color2",
+                        android.graphics.Color.valueOf(
+                            gradientColorOne.red,
+                            gradientColorOne.green,
+                            gradientColorOne.blue,
+                            gradientColorOne.alpha,
+                        ),
+                    )
+                    drawRect(shaderBrush)
+                }
+            }
+        } else {
+            Modifier
+        }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .then(gradientModifier)
-            .then(modifier)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .then(gradientModifier)
+                .then(modifier),
     ) {
         content()
     }

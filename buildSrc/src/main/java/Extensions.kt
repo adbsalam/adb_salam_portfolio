@@ -4,17 +4,12 @@ import org.gradle.kotlin.dsl.dependencies
 /**
  * Current Compile SDK version of module
  */
-const val COMPILE_SDK = 34
+const val COMPILE_SDK = 36
 
 /**
  * Current Minimum SDK version of module
  */
-const val MIN_SDK = 24
-
-/**
- * Compose compiler version, Since cannot be inherited from version catalogue
- */
-const val COMPOSE_COMPILER = "1.4.7"
+const val MIN_SDK = 31
 
 /**
  * Build flavor debug as default debug flavor
@@ -47,6 +42,4 @@ fun Project.apiProject(module: String) {
 /**
  * get name space along with package ID
  */
-fun asNameSpace(name: String): String {
-    return "uk.adbsalam.portfolio.${name}"
-}
+fun asNameSpace(name: String): String = "uk.adbsalam.portfolio.$name"

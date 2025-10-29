@@ -18,53 +18,55 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import uk.adbsalam.portfolio.prefs.AppSharedPrefManager
-import uk.adbsalam.portfolio.prefs.PrefManager
 import uk.adbsalam.portfolio.utils.Theme
 
-private val DarkColorScheme = darkColorScheme(
-    primary = primary_dark,
-    secondary = secondary_dark,
-    tertiary = tertiary_dark,
-    background = dark_background,
-    onPrimary = Color.White,
-    surface = dark_surface,
-    secondaryContainer = primary_dark,
-    surfaceVariant = dark_surface_variant,
-    inverseSurface = Color.Black
-)
+private val DarkColorScheme =
+    darkColorScheme(
+        primary = primary_dark,
+        secondary = secondary_dark,
+        tertiary = tertiary_dark,
+        background = dark_background,
+        onPrimary = Color.White,
+        surface = dark_surface,
+        secondaryContainer = primary_dark,
+        surfaceVariant = dark_surface_variant,
+        inverseSurface = Color.Black,
+    )
 
-private val LightColorScheme = lightColorScheme(
-    primary = primary_light,
-    secondary = secondary_light,
-    tertiary = tertiary_light,
-    background = light_backgraound,
-    secondaryContainer = secondary_container_light,
-    surface = light_surface,
-    surfaceVariant = light_surface_variant,
-    inverseSurface = Color.White
-)
+private val LightColorScheme =
+    lightColorScheme(
+        primary = primary_light,
+        secondary = secondary_light,
+        tertiary = tertiary_light,
+        background = light_backgraound,
+        secondaryContainer = secondary_container_light,
+        surface = light_surface,
+        surfaceVariant = light_surface_variant,
+        inverseSurface = Color.White,
+    )
 
-private val Christmas = lightColorScheme(
-    primary = Color.Black,
-    secondary = Color.White,
-    tertiary = Color.White,
-    background = Color(0xFFF08A8A),
-    secondaryContainer = Color.White,
-    inverseSurface = Color.Red
-)
+private val Christmas =
+    lightColorScheme(
+        primary = Color.Black,
+        secondary = Color.White,
+        tertiary = Color.White,
+        background = Color(0xFFF08A8A),
+        secondaryContainer = Color.White,
+        inverseSurface = Color.Red,
+    )
 
-private val DeepDark = darkColorScheme(
-    primary = DeepDarkColorScheme.primary_deep_dark,
-    secondary = DeepDarkColorScheme.secondary_deep_dark,
-    tertiary = tertiary_dark,
-    background = DeepDarkColorScheme.background_deep_dark,
-    onPrimary = DeepDarkColorScheme.onBackground_deep_dark,
-    surface = DeepDarkColorScheme.surface_deep_dark,
-    secondaryContainer = primary_dark,
-    surfaceVariant = dark_surface_variant,
-    inverseSurface = Color.Black
-)
+private val DeepDark =
+    darkColorScheme(
+        primary = DeepDarkColorScheme.primary_deep_dark,
+        secondary = DeepDarkColorScheme.secondary_deep_dark,
+        tertiary = tertiary_dark,
+        background = DeepDarkColorScheme.background_deep_dark,
+        onPrimary = DeepDarkColorScheme.onBackground_deep_dark,
+        surface = DeepDarkColorScheme.surface_deep_dark,
+        secondaryContainer = primary_dark,
+        surfaceVariant = dark_surface_variant,
+        inverseSurface = Color.Black,
+    )
 
 /**
  *
@@ -74,26 +76,35 @@ fun Adb_Theme(
     isSystemDark: Boolean = isSystemInDarkTheme(),
     themeType: Theme = Theme.SYSTEM,
     dynamic: Boolean = false,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val context = LocalContext.current
 
-    val sch: ColorScheme = if (dynamic) {
-        getDynamicScheme(isSystemDark, themeType, context)
-    } else {
-        getNonDynamicTheme(isSystemInDarkTheme(), themeType)
-    }
+    val sch: ColorScheme =
+        if (dynamic) {
+            getDynamicScheme(isSystemDark, themeType, context)
+        } else {
+            getNonDynamicTheme(isSystemInDarkTheme(), themeType)
+        }
+
+    val showDarkIcons =
+        when {
+            themeType == Theme.SYSTEM -> !isSystemInDarkTheme()
+            themeType == Theme.DEEP_DARK || themeType == Theme.DARK -> false
+            else -> true
+        }
 
     val systemUiController = rememberSystemUiController()
     systemUiController.setSystemBarsColor(
         color = Color.Transparent,
-        darkIcons = themeType != Theme.DEEP_DARK && themeType != Theme.DARK
+        darkIcons = showDarkIcons,
     )
 
     val view = LocalView.current
 
     if (!view.isInEditMode) {
-        try { // paparazzi throws exception
+        try {
+            // paparazzi throws exception
             val window = (view.context as Activity).window
             WindowCompat.setDecorFitsSystemWindows(window, false)
         } catch (e: Exception) {
@@ -104,35 +115,90 @@ fun Adb_Theme(
     MaterialTheme(
         colorScheme = sch,
         content = content,
-        typography = Typography(
-            displayLarge = MaterialTheme.typography.displayLarge.copy(fontFamily = appFont),
-            displayMedium = MaterialTheme.typography.displayMedium.copy(fontFamily = appFont),
-            displaySmall = MaterialTheme.typography.displaySmall.copy(fontFamily = appFont),
-            headlineLarge = MaterialTheme.typography.headlineLarge.copy(fontFamily = appFont),
-            headlineMedium = MaterialTheme.typography.headlineMedium.copy(fontFamily = appFont),
-            headlineSmall = MaterialTheme.typography.headlineSmall.copy(fontFamily = appFont),
-            titleLarge = MaterialTheme.typography.titleLarge.copy(
-                fontFamily = appFont,
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp
+        typography =
+            Typography(
+                displayLarge =
+                    MaterialTheme.typography.displayLarge.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                displayMedium =
+                    MaterialTheme.typography.displayMedium.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                displaySmall =
+                    MaterialTheme.typography.displaySmall.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                headlineLarge =
+                    MaterialTheme.typography.headlineLarge.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                headlineMedium =
+                    MaterialTheme.typography.headlineMedium.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                headlineSmall =
+                    MaterialTheme.typography.headlineSmall.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                titleLarge =
+                    MaterialTheme.typography.titleLarge.copy(
+                        fontFamily = appFont,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 18.sp,
+                        color = sch.onBackground,
+                    ),
+                titleMedium =
+                    MaterialTheme.typography.titleMedium.copy(
+                        fontFamily = appFont,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 16.sp,
+                        color = sch.onBackground,
+                    ),
+                titleSmall =
+                    MaterialTheme.typography.titleSmall.copy(
+                        fontFamily = appFont,
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 14.sp,
+                        color = sch.onBackground,
+                    ),
+                bodyLarge =
+                    MaterialTheme.typography.bodyLarge.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                bodyMedium =
+                    MaterialTheme.typography.bodyMedium.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                bodySmall =
+                    MaterialTheme.typography.bodySmall.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                labelLarge =
+                    MaterialTheme.typography.labelLarge.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                labelMedium =
+                    MaterialTheme.typography.labelMedium.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
+                labelSmall =
+                    MaterialTheme.typography.labelSmall.copy(
+                        fontFamily = appFont,
+                        color = sch.onBackground,
+                    ),
             ),
-            titleMedium = MaterialTheme.typography.titleMedium.copy(
-                fontFamily = appFont,
-                fontWeight = FontWeight.Bold,
-                fontSize = 16.sp
-            ),
-            titleSmall = MaterialTheme.typography.titleSmall.copy(
-                fontFamily = appFont,
-                fontWeight = FontWeight.SemiBold,
-                fontSize = 14.sp
-            ),
-            bodyLarge = MaterialTheme.typography.bodyLarge.copy(fontFamily = appFont),
-            bodyMedium = MaterialTheme.typography.bodyMedium.copy(fontFamily = appFont),
-            bodySmall = MaterialTheme.typography.bodySmall.copy(fontFamily = appFont),
-            labelLarge = MaterialTheme.typography.labelLarge.copy(fontFamily = appFont),
-            labelMedium = MaterialTheme.typography.labelMedium.copy(fontFamily = appFont),
-            labelSmall = MaterialTheme.typography.labelSmall.copy(fontFamily = appFont)
-        )
     )
 }
 
@@ -142,31 +208,28 @@ fun Adb_Theme(
 fun getDynamicScheme(
     isSystemDark: Boolean,
     selectedType: Theme,
-    context: Context
-): ColorScheme {
-    return when (selectedType) {
+    context: Context,
+): ColorScheme =
+    when (selectedType) {
         Theme.CHRISTMAS -> Christmas
         Theme.DEEP_DARK -> DeepDark
         Theme.LIGHT -> dynamicLightColorScheme(context)
         Theme.DARK -> dynamicDarkColorScheme(context)
         Theme.SYSTEM ->
-            if (isSystemDark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-
+            if (isSystemDark) DeepDark else dynamicLightColorScheme(context)
     }
-}
 
 /**
  *
  */
 fun getNonDynamicTheme(
     isSystemDark: Boolean,
-    selectedType: Theme
-): ColorScheme {
-    return when (selectedType) {
-        Theme.SYSTEM -> if (isSystemDark) DarkColorScheme else LightColorScheme
+    selectedType: Theme,
+): ColorScheme =
+    when (selectedType) {
+        Theme.SYSTEM -> if (isSystemDark) DeepDark else LightColorScheme
         Theme.CHRISTMAS -> Christmas
         Theme.DEEP_DARK -> DeepDark
         Theme.LIGHT -> LightColorScheme
         Theme.DARK -> DarkColorScheme
     }
-}

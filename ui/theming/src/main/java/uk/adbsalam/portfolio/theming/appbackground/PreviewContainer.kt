@@ -15,10 +15,10 @@ import uk.adbsalam.portfolio.utils.Theme
 @Composable
 fun Adb_Screen_Theme(
     isDark: Boolean = false,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Adb_Theme(
-        isSystemDark = isDark
+        isSystemDark = isDark,
     ) {
         Surface(modifier = Modifier.fillMaxSize()) {
             GradientColumn(theme = if (isDark) Theme.DARK else Theme.LIGHT) {

@@ -20,7 +20,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ChevronRight
 import androidx.compose.material.icons.filled.WorkHistory
 import androidx.compose.material3.AssistChip
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -53,32 +53,32 @@ internal fun WorkInfo(
     workHistory: WorkHistory.Work,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .animateContentSize()
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .animateContentSize(),
     ) {
-
         var expand by remember { mutableStateOf(false) }
         var chevronRotation by remember { mutableStateOf(0f) }
 
         val chevronRotate by animateFloatAsState(
             targetValue = chevronRotation,
             animationSpec = tween(durationMillis = 300, easing = LinearEasing),
-            label = ""
+            label = "",
         )
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 10.dp, bottom = 8.dp, end = 10.dp)
-                .clickable {
-                    chevronRotation = if (!expand) 90f else 0f
-                    expand = !expand
-                },
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp, bottom = 8.dp, end = 10.dp)
+                    .clickable {
+                        chevronRotation = if (!expand) 90f else 0f
+                        expand = !expand
+                    },
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(5.dp),
@@ -86,36 +86,38 @@ internal fun WorkInfo(
                 Icon(
                     imageVector = Icons.Default.WorkHistory,
                     contentDescription = null,
-                    tint = workTint(workHistory.color)
+                    tint = workTint(workHistory.color),
                 )
 
                 Text(
                     text = workHistory.company,
-                    style = MaterialTheme.typography.titleSmall
+                    style = MaterialTheme.typography.titleSmall,
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
                 Text(
                     text = workHistory.duration,
-                    style = MaterialTheme.typography.bodyMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onBackground,
                 )
             }
 
             Icon(
                 imageVector = Icons.Default.ChevronRight,
                 contentDescription = null,
-                modifier = Modifier.rotate(chevronRotate)
+                modifier = Modifier.rotate(chevronRotate),
             )
-
         }
 
         AnimatedVisibility(visible = expand) {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 10.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 10.dp),
             ) {
                 FlowRow(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(10.dp)
+                    horizontalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
                     workHistory.tags.forEach {
                         AssistChip(
@@ -125,17 +127,20 @@ internal fun WorkInfo(
                                     modifier = Modifier.sizeIn(maxHeight = 30.dp, maxWidth = 30.dp),
                                     painter = painterResource(id = workIcon(it.icon)),
                                     contentDescription = null,
-                                    tint = Color.Unspecified
+                                    tint = Color.Unspecified,
                                 )
                             },
-                            onClick = {}
+                            onClick = {},
                         )
                     }
                 }
 
                 Spacer(modifier = Modifier.height(10.dp))
 
-                Text(text = workHistory.description)
+                Text(
+                    text = workHistory.description,
+                    color = MaterialTheme.colorScheme.onBackground,
+                )
 
                 Spacer(modifier = Modifier.height(20.dp))
             }
@@ -143,24 +148,23 @@ internal fun WorkInfo(
 
         if (!showDivider) return@Column
 
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 10.dp)
+        HorizontalDivider(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(start = 10.dp),
         )
-
     }
 }
 
-private fun workTint(color: String): Color {
-    return when (color) {
+private fun workTint(color: String): Color =
+    when (color) {
         "orange" -> Color(0xFFFF9800)
         "purple" -> Color(0xFF9C27B0)
         "pink" -> Color(0xFFFF4785)
         "green" -> Color(0xFF4CAF50)
         else -> Color.Unspecified
     }
-}
 
 @Preview
 @Composable
@@ -168,6 +172,6 @@ private fun workTint(color: String): Color {
 internal fun WorkInfoPreview() {
     WorkInfo(
         showDivider = true,
-        workHistory = WorkHistory.createMock().workHistory.first()
+        workHistory = WorkHistory.createMock().workHistory.first(),
     )
 }

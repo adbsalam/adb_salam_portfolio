@@ -1,19 +1,29 @@
 import uk.adbsalam.snapit.plugin.snapIt
 
-apply<ComposableConfig>()
+
 
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.android.kotlin)
-    alias(libs.plugins.kotlin.kapt)
-    alias(libs.plugins.android.hilt.plugin)
+    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.ksp)
+    alias(libs.plugins.android.hilt.plugin)
     alias(libs.plugins.paparazzi)
     alias(libs.plugins.snapit)
 }
 
 android {
     namespace = asNameSpace("navhost.feature")
+
+    compileSdk = COMPILE_SDK
+    defaultConfig {
+        minSdk = MIN_SDK
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
 }
 
 snapIt {
@@ -22,6 +32,7 @@ snapIt {
 }
 
 dependencies {
+    implementation(libs.material3)
     applyProject(ui.components)
     applyProject(ui.theming)
     applyProject(home.feature)
@@ -44,5 +55,6 @@ dependencies {
     implementation(libs.compose.material.icons.extended)
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
+//    implementation(libs.e)
+    ksp(libs.hilt.compiler)
 }
