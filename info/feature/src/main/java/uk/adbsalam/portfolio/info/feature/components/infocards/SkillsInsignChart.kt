@@ -30,28 +30,25 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * Animated progress will be shown
  */
 @Composable
-internal fun SkillsInsightCard(
-    infographics: Infographics
-) {
-
+internal fun SkillsInsightCard(infographics: Infographics) {
     var expandInfoBars by remember { mutableStateOf(false) }
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .adbRoundedBackground()
-            .padding(14.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .adbRoundedBackground()
+                .padding(14.dp),
     ) {
-
         InfoTitle(
-            title = "Skills Insight"
+            title = "Skills Insight",
         )
 
         infographics.infoGraphics.subList(0, 5).forEach {
             Spacer(modifier = Modifier.height(16.dp))
             HorizontalChart(
                 subTitle = it.name,
-                percent = it.value
+                percent = it.value,
             )
         }
 
@@ -63,7 +60,7 @@ internal fun SkillsInsightCard(
                     Spacer(modifier = Modifier.height(16.dp))
                     HorizontalChart(
                         subTitle = it.name,
-                        percent = it.value
+                        percent = it.value,
                     )
                 }
             }
@@ -73,7 +70,7 @@ internal fun SkillsInsightCard(
 
         TextButton(
             modifier = Modifier.align(Alignment.End),
-            onClick = { expandInfoBars = !expandInfoBars }
+            onClick = { expandInfoBars = !expandInfoBars },
         ) {
             Text(text = if (expandInfoBars) "see less" else "see more")
         }
@@ -86,7 +83,7 @@ internal fun SkillsInsightCard(
 internal fun SkillsInsightCardLight() {
     Adb_Theme {
         SkillsInsightCard(
-            infographics = Infographics.createMock()
+            infographics = Infographics.createMock(),
         )
     }
 }
@@ -97,7 +94,7 @@ internal fun SkillsInsightCardLight() {
 internal fun SkillsInsightCardDark() {
     Adb_Theme(isSystemDark = true) {
         SkillsInsightCard(
-            infographics = Infographics.createMock()
+            infographics = Infographics.createMock(),
         )
     }
 }

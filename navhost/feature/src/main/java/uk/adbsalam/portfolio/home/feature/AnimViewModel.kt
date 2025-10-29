@@ -7,9 +7,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class AnimViewModel @Inject constructor(): ViewModel() {
-
-    var _animOne = MutableStateFlow(0f)
-    internal val animOne = _animOne.asStateFlow()
-
-}
+class AnimViewModel
+    @Inject
+    constructor() : ViewModel() {
+        var _animOne = MutableStateFlow(0f)
+        internal val animOne = _animOne.asStateFlow()
+    }

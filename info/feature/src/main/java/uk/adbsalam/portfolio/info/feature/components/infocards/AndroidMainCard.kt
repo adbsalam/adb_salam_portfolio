@@ -25,14 +25,14 @@ internal fun AndroidMainCard() {
     Column {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-
             Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .adbRoundedBackground()
-                    .padding(vertical = 10.dp)
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .adbRoundedBackground()
+                        .padding(vertical = 10.dp),
             ) {
                 CircularChart(
                     modifier = Modifier.fillMaxWidth(),
@@ -43,12 +43,12 @@ internal fun AndroidMainCard() {
                 )
             }
 
-
             Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .adbRoundedBackground()
-                    .padding(vertical = 10.dp)
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .adbRoundedBackground()
+                        .padding(vertical = 10.dp),
             ) {
                 CircularChart(
                     modifier = Modifier.fillMaxWidth(),
@@ -61,17 +61,18 @@ internal fun AndroidMainCard() {
         }
 
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 12.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(top = 12.dp),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-
             Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .adbRoundedBackground()
-                    .padding(vertical = 10.dp)
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .adbRoundedBackground()
+                        .padding(vertical = 10.dp),
             ) {
                 CircularChart(
                     modifier = Modifier.fillMaxWidth(),
@@ -83,10 +84,11 @@ internal fun AndroidMainCard() {
             }
 
             Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .adbRoundedBackground()
-                    .padding(vertical = 10.dp)
+                modifier =
+                    Modifier
+                        .weight(1f)
+                        .adbRoundedBackground()
+                        .padding(vertical = 10.dp),
             ) {
                 CircularChart(
                     modifier = Modifier.fillMaxWidth(),

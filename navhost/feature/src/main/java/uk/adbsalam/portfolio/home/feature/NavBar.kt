@@ -37,7 +37,7 @@ import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
 @Composable
 fun RootNavBar(
     selected: MutableState<Int>,
-    navController: NavHostController
+    navController: NavHostController,
 ) {
     RootNavBar(
         selected = selected,
@@ -47,7 +47,6 @@ fun RootNavBar(
         onReviewClick = navController::navigateToReviews,
     )
 }
-
 
 @Composable
 private fun RootNavBar(
@@ -90,26 +89,26 @@ private fun RowScope.NavButton(
     item: NavItem,
     isSelected: Boolean,
     index: Int,
-    onSelected: (Int) -> Unit
+    onSelected: (Int) -> Unit,
 ) {
     val background =
         if (isSelected) MaterialTheme.colorScheme.surfaceVariant else MaterialTheme.colorScheme.onBackground
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-            .weight(1f)
-            .clickable { onSelected(index) }
+        modifier =
+            Modifier
+                .weight(1f)
+                .clickable { onSelected(index) },
     ) {
         Icon(
             imageVector = item.icon,
             contentDescription = item.title,
-            tint = background
+            tint = background,
         )
         Text(text = item.title, fontSize = 11.sp, color = background)
     }
 }
-
 
 @Composable
 @PreviewLight
@@ -117,14 +116,14 @@ internal fun RooNavBarPreviewLight() {
     Adb_Screen_Theme {
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Bottom
+            verticalArrangement = Arrangement.Bottom,
         ) {
             RootNavBar(
                 selected = remember { mutableIntStateOf(0) },
                 onHomeClick = { /* unused */ },
                 onInfoClick = { /* unused */ },
                 onVideoClick = { /* unused */ },
-                onReviewClick = { /* unused */ }
+                onReviewClick = { /* unused */ },
             )
         }
     }
@@ -136,16 +135,15 @@ internal fun RooNavBarPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.Bottom
+            verticalArrangement = Arrangement.Bottom,
         ) {
             RootNavBar(
                 selected = remember { mutableIntStateOf(0) },
                 onHomeClick = { /* unused */ },
                 onInfoClick = { /* unused */ },
                 onVideoClick = { /* unused */ },
-                onReviewClick = { /* unused */ }
+                onReviewClick = { /* unused */ },
             )
         }
     }
 }
-

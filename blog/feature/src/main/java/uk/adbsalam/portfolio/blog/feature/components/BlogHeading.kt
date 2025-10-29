@@ -15,7 +15,8 @@ fun BlogHeading(text: String) {
         Text(
             text = text,
             style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier.padding(top = 8.dp)
+            modifier = Modifier.padding(top = 8.dp),
+            color = MaterialTheme.colorScheme.onBackground,
         )
     }
 }

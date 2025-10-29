@@ -22,13 +22,15 @@ import uk.adbsalam.snapit.annotations.SnapIt
  */
 @Composable
 fun Info(
-    viewModel: InfoViewModel = hiltViewModel()
+    viewModel: InfoViewModel = hiltViewModel(),
+    onScroll: (Int) -> Unit,
 ) {
     val uiState by viewModel.viewState.collectAsState()
 
     Info(
         uiState = uiState,
-        retry = viewModel::fetchInfoAndWork
+        retry = viewModel::fetchInfoAndWork,
+        onScroll = onScroll,
     )
 }
 
@@ -39,25 +41,28 @@ fun Info(
 @Composable
 private fun Info(
     uiState: InfoScreenState,
-    retry: () -> Unit
+    retry: () -> Unit,
+    onScroll: (Int) -> Unit,
 ) {
     when (uiState) {
-        InfoScreenState.OnLoading -> LoadingLotti(
-            modifier = Modifier.fillMaxSize(),
-            msg = "Loading"
-        )
+        InfoScreenState.OnLoading ->
+            LoadingLotti(
+                modifier = Modifier.fillMaxSize(),
+                msg = "Loading",
+            )
 
         is InfoScreenState.OnError -> {
             ErrorPage(
                 msg = uiState.msg,
-                retry = retry
+                retry = retry,
             )
         }
 
         is InfoScreenState.OnInfo -> {
             InfoScreen(
                 infographics = uiState.infographics,
-                workHistory = uiState.workHistory
+                workHistory = uiState.workHistory,
+                onScroll = onScroll,
             )
         }
     }
@@ -69,11 +74,13 @@ private fun Info(
 internal fun InfoScreenLightPreview() {
     Adb_Screen_Theme {
         Info(
-            uiState = InfoScreenState.OnInfo(
-                infographics = Infographics.createMock(),
-                workHistory = WorkHistory.createMock()
-            ),
-            retry = { /* unused */ }
+            uiState =
+                InfoScreenState.OnInfo(
+                    infographics = Infographics.createMock(),
+                    workHistory = WorkHistory.createMock(),
+                ),
+            retry = { /* unused */ },
+            onScroll = {},
         )
     }
 }
@@ -84,11 +91,13 @@ internal fun InfoScreenLightPreview() {
 internal fun InfoScreenDarkPreview() {
     Adb_Screen_Theme(isDark = true) {
         Info(
-            uiState = InfoScreenState.OnInfo(
-                infographics = Infographics.createMock(),
-                workHistory = WorkHistory.createMock()
-            ),
-            retry = { /* unused */ }
+            uiState =
+                InfoScreenState.OnInfo(
+                    infographics = Infographics.createMock(),
+                    workHistory = WorkHistory.createMock(),
+                ),
+            retry = { /* unused */ },
+            onScroll = {},
         )
     }
 }

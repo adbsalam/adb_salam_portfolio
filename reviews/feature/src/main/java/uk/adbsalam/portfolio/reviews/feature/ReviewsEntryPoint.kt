@@ -22,13 +22,15 @@ import uk.adbsalam.snapit.annotations.SnapIt
  */
 @Composable
 fun Reviews(
-    viewModel: ReviewsViewModel = hiltViewModel()
+    viewModel: ReviewsViewModel = hiltViewModel(),
+    onScroll: (Int) -> Unit,
 ) {
     val uiState by viewModel.viewState.collectAsState()
 
     Reviews(
         uiState = uiState,
-        retry = viewModel::fetchReviews
+        retry = viewModel::fetchReviews,
+        onScroll = onScroll,
     )
 }
 
@@ -39,24 +41,25 @@ fun Reviews(
 @Composable
 private fun Reviews(
     uiState: ReviewsState,
-    retry: () -> Unit
+    retry: () -> Unit,
+    onScroll: (Int) -> Unit,
 ) {
     when (uiState) {
         ReviewsState.OnLoading ->
             LoadingLotti(
                 modifier = Modifier.fillMaxSize(),
-                msg = "Loading"
+                msg = "Loading",
             )
 
         is ReviewsState.OnError -> {
             ErrorPage(
                 msg = uiState.msg,
-                retry = retry
+                retry = retry,
             )
         }
 
         is ReviewsState.OnReviews -> {
-            ReviewsScreen(reviews = uiState.reviews)
+            ReviewsScreen(reviews = uiState.reviews, onScroll)
         }
     }
 }
@@ -68,7 +71,8 @@ internal fun ReviewsPreviewLight() {
     Adb_Screen_Theme {
         Reviews(
             uiState = ReviewsState.OnReviews(ReviewItems.createMock()),
-            retry = { /*unused*/ }
+            retry = { /*unused*/ },
+            onScroll = {},
         )
     }
 }
@@ -80,7 +84,8 @@ internal fun ReviewsPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         Reviews(
             uiState = ReviewsState.OnReviews(ReviewItems.createMock()),
-            retry = { /*unused*/ }
+            retry = { /*unused*/ },
+            onScroll = {},
         )
     }
 }

@@ -12,22 +12,24 @@ import uk.adbsalam.portfolio.navigation.deeplinkYoutube
 internal fun handleDeepLinkForItem(
     deeplink: String,
     context: Context,
-    navigateDeeplink: (String) -> Unit
+    navigateDeeplink: (String) -> Unit,
 ) {
     when (deeplink) {
         deeplinkYoutube -> {
-            val intent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA")
-            )
+            val intent =
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://www.youtube.com/channel/UCct4uE53LK-r_0DlNBM_InA"),
+                )
             ContextCompat.startActivity(context, intent, null)
         }
 
         deeplinkGesture -> {
-            val intent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://github.com/MuhammadAbdulSalam/arduino_gesture")
-            )
+            val intent =
+                Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://github.com/MuhammadAbdulSalam/arduino_gesture"),
+                )
             ContextCompat.startActivity(context, intent, null)
         }
 
@@ -49,7 +51,10 @@ internal fun handleDeepLinkForItem(
     }
 }
 
-internal fun startActivityForLink(context: Context, media: SocialMedia) {
+internal fun startActivityForLink(
+    context: Context,
+    media: SocialMedia,
+) {
     when (media) {
         SocialMedia.G_PLAY -> {
             val i = Intent(Intent.ACTION_SEND)

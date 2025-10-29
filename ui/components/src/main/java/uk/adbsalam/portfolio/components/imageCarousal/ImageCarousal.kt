@@ -21,12 +21,13 @@ import uk.adbsalam.portfolio.components.R.layout.image_carousal_recycler
 fun ImageCarousal(
     modifier: Modifier = Modifier,
     @DrawableRes imageResList: List<Int>,
-    isHero: Boolean = false
+    isHero: Boolean = false,
 ) {
     AndroidView(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 10.dp),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(horizontal = 10.dp),
         factory = { context ->
             val view = from(context).inflate(image_carousal_recycler, null, false)
             val recycler = view.findViewById<RecyclerView>(carousel_recycler_view)
@@ -46,6 +47,6 @@ fun ImageCarousal(
 
             view
         },
-        update = {}
+        update = {},
     )
 }

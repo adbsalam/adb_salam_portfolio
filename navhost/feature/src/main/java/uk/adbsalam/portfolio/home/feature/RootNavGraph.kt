@@ -11,9 +11,10 @@ import uk.adbsalam.portfolio.gallery.feature.Gallery
 import uk.adbsalam.portfolio.gallery.feature.fullscreen.FullscreenGallery
 import uk.adbsalam.portfolio.navigation.NavigationScreen
 import uk.adbsalam.portfolio.navigation.composeRoute
-import uk.adbsalam.portfolio.navigation.route
+import uk.adbsalam.portfolio.navigation.navHostRoute
 import uk.adbsalam.portfolio.samples.feature.InProgressPage
 import uk.adbsalam.portfolio.samples.feature.ShimmerCardSample
+import uk.adbsalam.portfolio.samples.feature.tabLayout.StickyTabLayout
 import uk.adbsalam.portfolio.utils.Theme
 
 @Composable
@@ -26,18 +27,22 @@ fun RootNavGraph(
     Column(modifier = Modifier.fillMaxSize()) {
         NavHost(
             navController = navController,
-            startDestination = NavigationScreen.OnHome.route(),
+            startDestination = NavigationScreen.OnHomeNav.navHostRoute(),
         ) {
-            composeRoute(NavigationScreen.OnHome) {
+            composeRoute(NavigationScreen.OnHomeNav) {
                 HomeNavHost(
                     onTheme = onTheme,
                     onDynamicColor = onDynamicColor,
-                    rootNavHostController = navController
+                    rootNavHostController = navController,
                 )
             }
 
             composeRoute(NavigationScreen.OnInProgress) {
                 InProgressPage()
+            }
+
+            composeRoute(NavigationScreen.OnStickyTabLayout) {
+                StickyTabLayout()
             }
 
             composeRoute(NavigationScreen.OnBlogScreen) {

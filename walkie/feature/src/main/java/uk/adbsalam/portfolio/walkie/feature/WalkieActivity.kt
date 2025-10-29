@@ -18,7 +18,6 @@ import uk.adbsalam.portfolio.walkie.feature.connect.Connect
 
 @AndroidEntryPoint
 class WalkieActivity : CommunicationsComponentActivity() {
-
     private val viewModel: WalkieActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +26,7 @@ class WalkieActivity : CommunicationsComponentActivity() {
         handlePermissions(
             onPermissionsGranted = viewModel::onStartConnection,
             onPermissionsError = viewModel::onPermissionsError,
-            onRequirePermissions = viewModel::onRequirePermission
+            onRequirePermissions = viewModel::onRequirePermission,
         )
 
         setContent {
@@ -35,7 +34,7 @@ class WalkieActivity : CommunicationsComponentActivity() {
 
             AppGradientContainer(
                 theme = viewModel.currentTheme,
-                dynamicColor = viewModel.isDynamic
+                dynamicColor = viewModel.isDynamic,
             ) {
                 WalkieHome(uiState = uiState)
             }
@@ -43,16 +42,14 @@ class WalkieActivity : CommunicationsComponentActivity() {
     }
 
     @Composable
-    private fun WalkieHome(
-        uiState: WalkieState
-    ) {
+    private fun WalkieHome(uiState: WalkieState) {
         when (uiState) {
             WalkieState.OnLoading -> {}
             WalkieState.OnPermissionsError ->
                 Box(modifier = Modifier.fillMaxSize()) {
                     Text(
                         text = "Something went wrong, please retry!",
-                        modifier = Modifier.align(Alignment.Center)
+                        modifier = Modifier.align(Alignment.Center),
                     )
                 }
 
@@ -60,7 +57,7 @@ class WalkieActivity : CommunicationsComponentActivity() {
                 Box(modifier = Modifier.fillMaxSize()) {
                     Text(
                         text = "Missing Permissions",
-                        modifier = Modifier.align(Alignment.Center)
+                        modifier = Modifier.align(Alignment.Center),
                     )
                 }
 
@@ -69,4 +66,3 @@ class WalkieActivity : CommunicationsComponentActivity() {
         }
     }
 }
-

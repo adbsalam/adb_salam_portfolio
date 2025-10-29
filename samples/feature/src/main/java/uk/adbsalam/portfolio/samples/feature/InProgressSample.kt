@@ -25,7 +25,7 @@ fun InProgressPage() {
         Column(
             modifier = Modifier.align(Alignment.Center),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             LottieAnimation(
                 composition = composition,
@@ -34,7 +34,7 @@ fun InProgressPage() {
                 iterations = Int.MAX_VALUE,
                 renderMode = RenderMode.HARDWARE,
                 asyncUpdates = AsyncUpdates.ENABLED,
-                modifier = Modifier.size(200.dp)
+                modifier = Modifier.size(200.dp),
             )
             Text(text = "Currently in progress. Please check again later.")
         }

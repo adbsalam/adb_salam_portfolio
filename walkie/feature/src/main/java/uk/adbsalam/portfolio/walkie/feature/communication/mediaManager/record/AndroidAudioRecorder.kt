@@ -8,15 +8,17 @@ import java.io.File
 import java.io.FileOutputStream
 
 class AndroidAudioRecorder : AudioRecorder {
-
     private var recorder: MediaRecorder? = null
     private var audioFile: File? = null
 
     override fun start(context: Context) {
         audioFile = File(context.cacheDir, "audio.mp3")
-        recorder = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            MediaRecorder(context)
-        } else MediaRecorder()
+        recorder =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                MediaRecorder(context)
+            } else {
+                MediaRecorder()
+            }
 
         recorder?.apply {
             setAudioSource(MediaRecorder.AudioSource.MIC)

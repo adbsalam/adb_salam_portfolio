@@ -21,15 +21,14 @@ import uk.adbsalam.snapit.annotations.SnapIt
  * Perform functionality that might block preview here
  */
 @Composable
-fun Videos(
-    viewModel: VideosViewModel = hiltViewModel()
-) {
+fun Videos(viewModel: VideosViewModel = hiltViewModel()) {
     val uiState by viewModel.viewState.collectAsState()
 
     Videos(
         uiState = uiState,
         currentTheme = viewModel.currentTheme(),
-        retry = viewModel::fetchVideos
+        retry = viewModel::fetchVideos,
+        onSetAutoplay = viewModel::setAutoPlay
     )
 }
 
@@ -41,26 +40,29 @@ fun Videos(
 private fun Videos(
     uiState: VideosState,
     currentTheme: Theme,
+    onSetAutoplay: (Boolean) -> Unit,
     retry: () -> Unit,
 ) {
     when (uiState) {
         VideosState.OnLoading ->
             LoadingLotti(
                 modifier = Modifier.fillMaxSize(),
-                msg = "Loading"
+                msg = "Loading",
             )
 
         is VideosState.OnError -> {
             ErrorPage(
                 msg = uiState.msg,
-                retry = retry
+                retry = retry,
             )
         }
 
         is VideosState.OnVideos -> {
             VideosScreen(
                 videos = uiState.videos,
-                currentTheme = currentTheme
+                currentTheme = currentTheme,
+                isAutoPlay = uiState.isAutoPlay,
+                onSetAutoplay = onSetAutoplay
             )
         }
     }
@@ -72,9 +74,10 @@ private fun Videos(
 internal fun VideosPreviewLight() {
     Adb_Screen_Theme {
         Videos(
-            uiState = VideosState.OnVideos(VideoItems.createMock()),
+            uiState = VideosState.OnVideos(VideoItems.createMock(), false),
             currentTheme = Theme.LIGHT,
-            retry = {/*unused*/ }
+            onSetAutoplay = {},
+            retry = { /*unused*/ },
         )
     }
 }
@@ -85,11 +88,10 @@ internal fun VideosPreviewLight() {
 internal fun VideosPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         Videos(
-            uiState = VideosState.OnVideos(VideoItems.createMock()),
+            uiState = VideosState.OnVideos(VideoItems.createMock(), false),
             currentTheme = Theme.DARK,
-            retry = {/*unused*/ }
+            onSetAutoplay = {},
+            retry = { /*unused*/ },
         )
     }
 }
-
-

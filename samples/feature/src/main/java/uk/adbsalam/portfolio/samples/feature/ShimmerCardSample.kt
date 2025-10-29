@@ -50,13 +50,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun ShimmerCardSample(){
+fun ShimmerCardSample() {
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
-
         val manualReset = rememberSaveable { mutableStateOf(false) }
 
         val duration = rememberSaveable { mutableFloatStateOf(500f) }
@@ -71,7 +70,7 @@ fun ShimmerCardSample(){
 
         Text(
             text = "Try out Synchronised Shimmer",
-            style = MaterialTheme.typography.bodyLarge
+            style = MaterialTheme.typography.bodyLarge,
         )
 
         Spacer(Modifier.height(40.dp))
@@ -88,15 +87,15 @@ fun ShimmerCardSample(){
 
                 delay(20)
                 startFour.floatValue = 0f
-            }
+            },
         )
 
-        Row() {
+        Row {
             Cover(
                 threshold = threshold,
                 duration = duration,
                 startHere = startOne,
-                manualReset = manualReset
+                manualReset = manualReset,
             )
             Spacer(modifier = Modifier.width(12.dp))
             Cover(
@@ -104,20 +103,19 @@ fun ShimmerCardSample(){
                 duration = duration,
                 currentIndex = 1,
                 startHere = startTwo,
-                manualReset = manualReset
+                manualReset = manualReset,
             )
         }
 
         Spacer(modifier = Modifier.height(12.dp))
 
-
-        Row() {
+        Row {
             Cover(
                 threshold = threshold,
                 duration = duration,
                 startHere = startThree,
                 currentIndex = 2,
-                manualReset = manualReset
+                manualReset = manualReset,
             )
             Spacer(modifier = Modifier.width(12.dp))
             Cover(
@@ -125,7 +123,7 @@ fun ShimmerCardSample(){
                 duration = duration,
                 currentIndex = 3,
                 startHere = startFour,
-                manualReset = manualReset
+                manualReset = manualReset,
             )
         }
 
@@ -133,14 +131,14 @@ fun ShimmerCardSample(){
             Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 12.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             Spacer(modifier = Modifier.height(22.dp))
 
             Slider(
                 value = duration.floatValue,
                 onValueChange = { duration.floatValue = it },
-                valueRange = 0f..1000f
+                valueRange = 0f..1000f,
             )
             Text(text = "Duration: " + duration.floatValue.toString())
         }
@@ -149,7 +147,7 @@ fun ShimmerCardSample(){
 
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         ) {
             Button(
                 modifier = Modifier.width(120.dp),
@@ -159,8 +157,8 @@ fun ShimmerCardSample(){
                     startTwo.floatValue = 1f
                     startThree.floatValue = 1f
                     startFour.floatValue = 1f
-
-                }) {
+                },
+            ) {
                 Text(text = "reset")
             }
 
@@ -177,13 +175,13 @@ fun ShimmerCardSample(){
                         startThree.floatValue = 0f
                         startFour.floatValue = 0f
                     }
-                }) {
+                },
+            ) {
                 Text(text = "shimmer")
             }
         }
     }
 }
-
 
 @Composable
 fun Cover(
@@ -191,10 +189,8 @@ fun Cover(
     startHere: MutableState<Float>,
     duration: MutableState<Float> = remember { mutableFloatStateOf(1000f) },
     threshold: MutableState<Float> = remember { mutableFloatStateOf(0.97f) },
-    manualReset: MutableState<Boolean>
+    manualReset: MutableState<Boolean>,
 ) {
-
-
     var componentWidth by remember { mutableFloatStateOf(0f) }
 
     var animateTwo by remember { mutableFloatStateOf(1f) }
@@ -216,7 +212,7 @@ fun Cover(
     val animateTwoAlpha by animateFloatAsState(
         targetValue = animateTwo,
         label = "",
-        animationSpec = tween(duration.value.toInt())
+        animationSpec = tween(duration.value.toInt()),
     )
 
     val animateThreeAlpha by animateFloatAsState(
@@ -257,51 +253,54 @@ fun Cover(
         fiveReset = true
     }
 
+    val background =
+        when (currentIndex) {
+            0 ->
+                Brush.radialGradient(
+                    0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
+                    0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
+                    0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+                    1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+                    center = Offset(0f, 100f),
+                    radius = 900f,
+                    tileMode = TileMode.Decal,
+                )
 
-    val background = when (currentIndex) {
-        0 -> Brush.radialGradient(
-            0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
-            0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
-            0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
-            1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
-            center = Offset(0f, 100f),
-            radius = 900f,
-            tileMode = TileMode.Decal
-        )
+            1 ->
+                Brush.radialGradient(
+                    0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
+                    0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
+                    0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+                    1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+                    center = Offset(-900f, 200f),
+                    radius = 3000f,
+                    tileMode = TileMode.Decal,
+                )
 
-        1 -> Brush.radialGradient(
-            0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
-            0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
-            0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
-            1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
-            center = Offset(-900f, 200f),
-            radius = 3000f,
-            tileMode = TileMode.Decal
-        )
+            2 ->
+                Brush.radialGradient(
+                    0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
+                    0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
+                    0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+                    1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+                    center = Offset(-0f, -500f),
+                    radius = 3000f,
+                    tileMode = TileMode.Decal,
+                )
 
-        2 -> Brush.radialGradient(
-            0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
-            0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
-            0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
-            1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
-            center = Offset(-0f, -500f),
-            radius = 3000f,
-            tileMode = TileMode.Decal
-        )
+            else ->
+                Brush.radialGradient(
+                    0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
+                    0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
+                    0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+                    1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
+                    center = Offset(-900f, -900f),
+                    radius = 3000f,
+                    tileMode = TileMode.Decal,
+                )
+        }
 
-        else -> Brush.radialGradient(
-            0.0F to MaterialTheme.colorScheme.secondary.copy(animateOneAlpha),
-            0.4F to MaterialTheme.colorScheme.secondary.copy(animateTwoAlpha),
-            0.6F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
-            1F to MaterialTheme.colorScheme.secondary.copy(animateThreeAlpha),
-            center = Offset(-900f, -900f),
-            radius = 3000f,
-            tileMode = TileMode.Decal
-        )
-    }
-
-
-    if(manualReset.value){
+    if (manualReset.value) {
         manualReset.value = true
         startHere.value = 1f
         animateTwo = 1f
@@ -317,98 +316,100 @@ fun Cover(
 
     Box(
         modifier = Modifier.wrapContentSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Card(
             modifier = Modifier.size(200.dp, 300.dp),
             elevation = CardDefaults.cardElevation(defaultElevation = 3.dp),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background)
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
         ) {
             Column {
                 Box(
-                    modifier = Modifier
-                        .height(200.dp)
-                        .fillMaxWidth()
-                        .onSizeChanged {
-                            componentWidth = it.width.toFloat()
-                        }
+                    modifier =
+                        Modifier
+                            .height(200.dp)
+                            .fillMaxWidth()
+                            .onSizeChanged {
+                                componentWidth = it.width.toFloat()
+                            },
                 ) {
                     Image(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp)),
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp)),
                         contentScale = ContentScale.Crop,
                         painter = painterResource(id = uk.adbsalam.portfolio.components.R.drawable.swiss_8),
-                        contentDescription = null
+                        contentDescription = null,
                     )
 
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .pointerInput(Unit) {
-                                detectTapGestures(
-                                    onTap = {
-                                        if (startHere.value == 0f) {
-                                            manualReset.value = true
-                                            startHere.value = 1f
-                                            animateTwo = 1f
-                                            animateThree = 1f
-                                            animateFour = 1f
-                                            animateFive = 1f
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .pointerInput(Unit) {
+                                    detectTapGestures(
+                                        onTap = {
+                                            if (startHere.value == 0f) {
+                                                manualReset.value = true
+                                                startHere.value = 1f
+                                                animateTwo = 1f
+                                                animateThree = 1f
+                                                animateFour = 1f
+                                                animateFive = 1f
 
-                                            twoReset = false
-                                            threeReset = false
-                                            fourReset = false
-                                            fiveReset = false
-
-                                        } else {
-                                            manualReset.value = false
-                                            startHere.value = 0f
-                                        }
-                                    }
-                                )
-                            }
-                            .clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
-                            .background(background)
+                                                twoReset = false
+                                                threeReset = false
+                                                fourReset = false
+                                                fiveReset = false
+                                            } else {
+                                                manualReset.value = false
+                                                startHere.value = 0f
+                                            }
+                                        },
+                                    )
+                                }.clip(RoundedCornerShape(bottomStart = 10.dp, bottomEnd = 10.dp))
+                                .background(background),
                     )
                 }
             }
 
             Box(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .fillMaxWidth()
+                modifier =
+                    Modifier
+                        .fillMaxHeight()
+                        .fillMaxWidth(),
             ) {
-
                 Column(
                     modifier = Modifier.padding(12.dp),
-                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
                     Text(
                         text = "Title",
                         style = MaterialTheme.typography.titleMedium,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
                     )
 
                     Text(
                         text = "This is some sample text here, this is soo cool!!",
                         style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onBackground,
                     )
                 }
 
                 Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(
-                            Brush.linearGradient(
-                                0F to MaterialTheme.colorScheme.background.copy(animateOneAlpha),
-                                0.25F to MaterialTheme.colorScheme.background.copy(animateTwoAlpha),
-                                0.5F to MaterialTheme.colorScheme.background.copy(animateThreeAlpha),
-                                0.75F to MaterialTheme.colorScheme.background.copy(animateFourAlpha),
-                                1F to MaterialTheme.colorScheme.background.copy(animateFiveAlpha),
-                            )
-                        )
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .background(
+                                Brush.linearGradient(
+                                    0F to MaterialTheme.colorScheme.background.copy(animateOneAlpha),
+                                    0.25F to MaterialTheme.colorScheme.background.copy(animateTwoAlpha),
+                                    0.5F to MaterialTheme.colorScheme.background.copy(animateThreeAlpha),
+                                    0.75F to MaterialTheme.colorScheme.background.copy(animateFourAlpha),
+                                    1F to MaterialTheme.colorScheme.background.copy(animateFiveAlpha),
+                                ),
+                            ),
                 )
             }
         }

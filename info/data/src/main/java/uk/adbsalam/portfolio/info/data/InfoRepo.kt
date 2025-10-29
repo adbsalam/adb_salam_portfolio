@@ -9,5 +9,6 @@ import uk.adbsalam.portfolio.network.Response
  */
 interface InfoRepo {
     suspend fun infographics(): Response<Infographics>
+
     suspend fun workHistory(): Response<WorkHistory>
 }

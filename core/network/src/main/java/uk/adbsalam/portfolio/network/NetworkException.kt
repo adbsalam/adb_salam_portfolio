@@ -5,7 +5,8 @@ package uk.adbsalam.portfolio.network
  *
  * This is general exception to return with a message
  */
-fun genericException(cause: Throwable) = Exception(
-    "Sorry, something went wrong, please try again later",
-    cause,
-)
+fun genericException(cause: Throwable) =
+    Exception(
+        "Sorry, something went wrong, please try again later",
+        cause,
+    )

@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -39,14 +39,14 @@ internal fun SettingsScreen(
     viewModel: SettingsViewModel = hiltViewModel(),
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     SettingsScreen(
         isDynamic = viewModel.isDynamicColors(),
         theme = viewModel.theme(),
         onDynamicColor = onDynamicColor,
         onTheme = onTheme,
-        onDismiss = onDismiss
+        onDismiss = onDismiss,
     )
 }
 
@@ -63,38 +63,38 @@ internal fun SettingsScreen(
     theme: Theme,
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     val preSelectedDynamic = remember { mutableStateOf(isDynamic) }
     val preSelectedTheme = remember { mutableStateOf(theme) }
 
     Column(
-        modifier = Modifier
-            .padding(horizontal = 30.dp)
-            .fillMaxWidth()
-            .background(
-                shape = RoundedCornerShape(30.dp),
-                color = MaterialTheme.colorScheme.background
-            )
-            .padding(20.dp, vertical = 20.dp)
+        modifier =
+            Modifier
+                .padding(horizontal = 30.dp)
+                .fillMaxWidth()
+                .background(
+                    shape = RoundedCornerShape(30.dp),
+                    color = MaterialTheme.colorScheme.background,
+                ).padding(20.dp, vertical = 20.dp),
     ) {
-
         Text(
             text = "Settings",
             fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
         )
 
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 14.dp)
+        HorizontalDivider(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 14.dp),
         )
 
         Text(
             text = "Use Dynamic Colors",
             fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
         )
 
         RadioGroup(
@@ -104,7 +104,7 @@ internal fun SettingsScreen(
             onSelected = { item ->
                 preSelectedDynamic.value = item
                 onDynamicColor(item)
-            }
+            },
         )
 
         Spacer(modifier = Modifier.height(14.dp))
@@ -113,7 +113,7 @@ internal fun SettingsScreen(
             text = "Use Dynamic Colors",
             fontWeight = FontWeight.Bold,
             fontSize = 16.sp,
-            modifier = Modifier.padding(bottom = 12.dp)
+            modifier = Modifier.padding(bottom = 12.dp),
         )
 
         RadioGroup(
@@ -123,20 +123,22 @@ internal fun SettingsScreen(
             onSelected = { item ->
                 preSelectedTheme.value = item
                 onTheme(item)
-            }
+            },
         )
 
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 12.dp)
+        HorizontalDivider(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 12.dp),
         )
 
         TextButton(
-            modifier = Modifier
-                .wrapContentWidth()
-                .align(Alignment.End),
-            onClick = { onDismiss() }
+            modifier =
+                Modifier
+                    .wrapContentWidth()
+                    .align(Alignment.End),
+            onClick = { onDismiss() },
         ) {
             Text(text = "Ok")
         }
@@ -151,9 +153,15 @@ fun SettingsScreenLightPreview() {
         SettingsScreen(
             isDynamic = false,
             theme = Theme.LIGHT,
-            onDynamicColor = { /** unused **/ },
-            onTheme = { /** unused **/ },
-            onDismiss = { /** unused **/ }
+            onDynamicColor = {
+                /** unused **/
+            },
+            onTheme = {
+                /** unused **/
+            },
+            onDismiss = {
+                /** unused **/
+            },
         )
     }
 }
@@ -166,9 +174,15 @@ fun SettingsScreenDarkPreview() {
         SettingsScreen(
             isDynamic = false,
             theme = Theme.DARK,
-            onDynamicColor = { /** unused **/ },
-            onTheme = { /** unused **/ },
-            onDismiss = { /** unused **/ }
+            onDynamicColor = {
+                /** unused **/
+            },
+            onTheme = {
+                /** unused **/
+            },
+            onDismiss = {
+                /** unused **/
+            },
         )
     }
 }

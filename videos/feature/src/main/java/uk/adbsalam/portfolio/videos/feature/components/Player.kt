@@ -1,5 +1,6 @@
 package uk.adbsalam.portfolio.videos.feature.components
 
+import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.platform.LocalContext
@@ -34,32 +35,33 @@ internal fun VideoPlayerView(
             view.enableAutomaticInitialization = false
             val customView = view.inflateCustomPlayerUi(R.layout.player_item_view)
             view.initialize(
-                youTubePlayerListener = object : AbstractYouTubePlayerListener() {
-                    override fun onReady(youTubePlayer: YouTubePlayer) {
-                        player.value = youTubePlayer
-                        val customPlayerUiController = CustomPlayerUiController(
-                            context = context,
-                            customPlayerUi = customView,
-                            playerTracker = playerTracker,
-                            youTubePlayer = youTubePlayer,
-                            initPlay = initialPlay.value
-                        )
-                        customPlayerUiController.setOnClick(videoData.videoId)
-                        youTubePlayer.addListener(customPlayerUiController);
-                        youTubePlayer.cueVideo(videoData.videoId, 0f)
-                    }
-                },
-                playerOptions = iFrameOptions()
+                youTubePlayerListener =
+                    object : AbstractYouTubePlayerListener() {
+                        override fun onReady(youTubePlayer: YouTubePlayer) {
+                            player.value = youTubePlayer
+                            val customPlayerUiController =
+                                CustomPlayerUiController(
+                                    context = context,
+                                    customPlayerUi = customView,
+                                    playerTracker = playerTracker,
+                                    youTubePlayer = youTubePlayer,
+                                    initPlay = initialPlay.value,
+                                )
+                            customPlayerUiController.setOnClick(videoData.videoId)
+                            youTubePlayer.addListener(customPlayerUiController)
+                            youTubePlayer.cueVideo(videoData.videoId, 0f)
+                        }
+                    },
+                playerOptions = iFrameOptions(context),
             )
             view
-        }
+        },
     )
 }
 
-private fun iFrameOptions(): IFramePlayerOptions {
-    return IFramePlayerOptions.Builder()
+private fun iFrameOptions(context: Context): IFramePlayerOptions =
+    IFramePlayerOptions
+        .Builder(context)
         .controls(0)
-        .mute(1)
+        .mute(0)
         .build()
-}
-

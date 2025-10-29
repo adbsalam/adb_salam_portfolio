@@ -24,27 +24,27 @@ import uk.adbsalam.portfolio.theming.exitFadeAndSlide
 fun TransformResetButton(
     modifier: Modifier = Modifier,
     visibility: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     AnimatedVisibility(
         modifier = modifier,
         visible = visibility,
         enter = enterFadeAndSlide(directionY = 50),
-        exit = exitFadeAndSlide(directionY = 50)
+        exit = exitFadeAndSlide(directionY = 50),
     ) {
         Column(
             modifier = Modifier.clickable(onClick = onClick),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(10.dp)
+            verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             Box(
-                modifier = Modifier.background(shape = RoundedCornerShape(50), color = Color.White)
+                modifier = Modifier.background(shape = RoundedCornerShape(50), color = Color.White),
             ) {
                 Icon(
                     modifier = Modifier.padding(6.dp),
                     imageVector = Icons.Default.Clear,
                     contentDescription = null,
-                    tint = Color.Black
+                    tint = Color.Black,
                 )
             }
 

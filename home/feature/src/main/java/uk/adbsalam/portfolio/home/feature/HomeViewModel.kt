@@ -15,59 +15,58 @@ import uk.adbsalam.portfolio.prefs.AppSharedPrefManager
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
-    private val homeRepo: HomeRepo,
-    val themePrefs: AppSharedPrefManager.ThemePrefs
-) : ViewModel() {
+class HomeViewModel
+    @Inject
+    constructor(
+        private val homeRepo: HomeRepo,
+        val themePrefs: AppSharedPrefManager.ThemePrefs,
+    ) : ViewModel() {
+        private val _viewState =
+            MutableStateFlow<HomeScreenState>(HomeScreenState.OnLoading)
+        internal val viewState = _viewState.asStateFlow()
 
-    private val _viewState =
-        MutableStateFlow<HomeScreenState>(HomeScreenState.OnLoading)
-    internal val viewState = _viewState.asStateFlow()
+        /**
+         * Fetch data on init View Model
+         */
+        init {
+            loadHomeItems()
+        }
 
-    /**
-     * Fetch data on init View Model
-     */
-    init {
-        loadHomeItems()
-    }
+        /**
+         * Load home items
+         * Set state according to data loaded or error states
+         */
+        internal fun loadHomeItems() {
+            _viewState.value = HomeScreenState.OnLoading
 
-    /**
-     * Load home items
-     * Set state according to data loaded or error states
-     */
-    internal fun loadHomeItems() {
-        _viewState.value = HomeScreenState.OnLoading
+            viewModelScope.launch {
+                when (val result = homeRepo.homeItems()) {
+                    is Response.Failure -> {
+                        _viewState.value =
+                            HomeScreenState.OnError("something went wrong, please try again")
+                    }
 
-        viewModelScope.launch {
-
-            when (val result = homeRepo.homeItems()) {
-                is Response.Failure -> {
-                    _viewState.value =
-                        HomeScreenState.OnError("something went wrong, please try again")
-                }
-
-                is Response.Success -> {
-                    val items = mapToHomeScreenItems(result.data)
-                    _viewState.value = HomeScreenState.OnHome(items)
+                    is Response.Success -> {
+                        val items = mapToHomeScreenItems(result.data)
+                        _viewState.value = HomeScreenState.OnHome(items)
+                    }
                 }
             }
         }
-    }
 
-    /**
-     * Map HomeItems to Home Screen UI Item
-     * This will map icons and items to be ready for UI use
-     */
-    private fun mapToHomeScreenItems(items: HomeItems): List<HomeScreenItem> {
-        return items.home.map { item ->
-            HomeScreenItem(
-                tags = item.tags,
-                title = item.title,
-                type = HomeItemType.values().first { enum -> item.type == enum.type },
-                res = item.res,
-                body = item.body,
-                deeplink = item.deeplink
-            )
-        }
+        /**
+         * Map HomeItems to Home Screen UI Item
+         * This will map icons and items to be ready for UI use
+         */
+        private fun mapToHomeScreenItems(items: HomeItems): List<HomeScreenItem> =
+            items.home.map { item ->
+                HomeScreenItem(
+                    tags = item.tags,
+                    title = item.title,
+                    type = HomeItemType.values().first { enum -> item.type == enum.type },
+                    res = item.res,
+                    body = item.body,
+                    deeplink = item.deeplink,
+                )
+            }
     }
-}

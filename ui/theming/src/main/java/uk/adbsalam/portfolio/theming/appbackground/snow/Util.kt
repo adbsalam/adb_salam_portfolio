@@ -12,8 +12,7 @@ internal const val angleRange = 0.1f
 internal const val angleDivisor = 10000.0f
 internal val angleSeedRange = -angleSeed..angleSeed
 
-fun ClosedRange<Float>.random() =
-    ThreadLocalRandom.current().nextFloat() * (endInclusive - start) + start
+fun ClosedRange<Float>.random() = ThreadLocalRandom.current().nextFloat() * (endInclusive - start) + start
 
 fun Float.random() = ThreadLocalRandom.current().nextFloat() * this
 

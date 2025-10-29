@@ -17,15 +17,13 @@ fun BlogButton(action: String) {
 
     Column(
         modifier = Modifier.fillMaxWidth(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Button(onClick = {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(action))
             activity.startActivity(intent)
-
         }) {
             Text(text = "View Repo")
         }
     }
 }
-

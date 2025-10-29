@@ -26,31 +26,30 @@ import uk.adbsalam.portfolio.theming.Adb_Theme
  * This includes name, designation and LinkedIn icon
  */
 @Composable
-internal fun ReviewTitle(
-    review: ReviewItems.Review
-) {
+internal fun ReviewTitle(review: ReviewItems.Review) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 12.dp),
-        verticalAlignment = Alignment.Top
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 12.dp),
+        verticalAlignment = Alignment.Top,
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_linked_in),
             contentDescription = null,
             tint = Color.Unspecified,
-            modifier = Modifier.size(40.dp)
+            modifier = Modifier.size(40.dp),
         )
         Spacer(modifier = Modifier.width(10.dp))
         Column {
             Text(
                 text = review.name,
-                style = MaterialTheme.typography.titleMedium
+                style = MaterialTheme.typography.titleMedium,
             )
 
             Text(
                 text = review.designation,
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
             )
         }
     }

@@ -14,10 +14,9 @@ fun BlogImage(name: String) {
 
 @Composable
 @DrawableRes
-private fun getImage(name: String): Int {
-    return when (name) {
+private fun getImage(name: String): Int =
+    when (name) {
         "ic_component" -> R.drawable.ic_component
         "ic_screen" -> R.drawable.ic_screen
         else -> 0
     }
-}

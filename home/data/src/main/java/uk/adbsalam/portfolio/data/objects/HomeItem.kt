@@ -9,15 +9,15 @@ import javax.annotation.concurrent.Immutable
 @Stable
 @JsonClass(generateAdapter = true)
 data class HomeItems(
-    @Json(name = "home") val home: List<HomeItem>
+    @field:Json(name = "home") val home: List<HomeItem>,
 ) {
     @JsonClass(generateAdapter = true)
     data class HomeItem(
-        @Json(name = "tags") val tags: List<String>,
-        @Json(name = "title") val title: String,
-        @Json(name = "type") val type: String,
-        @Json(name = "res") val res: String,
-        @Json(name = "body") val body: String,
-        @Json(name = "deeplink") val deeplink: String
+        @field:Json(name = "tags") val tags: List<String>,
+        @field:Json(name = "title") val title: String,
+        @field:Json(name = "type") val type: String,
+        @field:Json(name = "res") val res: String,
+        @field:Json(name = "body") val body: String,
+        @field:Json(name = "deeplink") val deeplink: String,
     )
 }

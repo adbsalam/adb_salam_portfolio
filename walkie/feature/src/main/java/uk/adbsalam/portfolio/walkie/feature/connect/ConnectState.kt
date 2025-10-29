@@ -5,6 +5,13 @@ import uk.adbsalam.portfolio.communication.NearbyUsers
 
 sealed class ConnectState {
     object OnLoading : ConnectState()
-    data class OnUpdateLogs(val log: String, val nearbyUsers: NearbyUsers) : ConnectState()
-    data class OnConnected(val payload: Payload?) : ConnectState()
+
+    data class OnUpdateLogs(
+        val log: String,
+        val nearbyUsers: NearbyUsers,
+    ) : ConnectState()
+
+    data class OnConnected(
+        val payload: Payload?,
+    ) : ConnectState()
 }

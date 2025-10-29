@@ -5,12 +5,11 @@ import androidx.activity.ComponentActivity
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 
-open class CommunicationsComponentActivity: ComponentActivity() {
-
+open class CommunicationsComponentActivity : ComponentActivity() {
     fun handlePermissions(
         onPermissionsGranted: () -> Unit,
         onPermissionsError: () -> Unit,
-        onRequirePermissions: () -> Unit
+        onRequirePermissions: () -> Unit,
     ) {
         val permissionCaller =
             registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { perms ->
@@ -24,10 +23,8 @@ open class CommunicationsComponentActivity: ComponentActivity() {
         }
     }
 
-    private fun hasMissingPermissions(): Boolean {
-        return permissionsList.any {
+    private fun hasMissingPermissions(): Boolean =
+        permissionsList.any {
             ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
         }
-    }
-
 }

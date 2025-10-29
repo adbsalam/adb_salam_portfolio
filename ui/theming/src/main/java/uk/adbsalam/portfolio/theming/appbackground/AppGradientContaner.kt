@@ -19,15 +19,15 @@ import uk.adbsalam.portfolio.utils.Theme
 fun AppGradientContainer(
     theme: Theme,
     dynamicColor: Boolean,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Adb_Theme(
         themeType = theme,
-        dynamic = dynamicColor
+        dynamic = dynamicColor,
     ) {
         Surface(modifier = Modifier.fillMaxSize()) {
             GradientColumn(
-                theme = theme
+                theme = theme,
             ) {
                 content()
             }

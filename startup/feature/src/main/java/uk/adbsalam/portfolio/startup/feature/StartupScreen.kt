@@ -39,7 +39,7 @@ internal fun StartupScreen() {
         theme = theme,
         dynamicColor = dynamic,
         onTheme = mainViewModel::onThemeChange,
-        onDynamicColor = mainViewModel::onDynamic
+        onDynamicColor = mainViewModel::onDynamic,
     )
 }
 
@@ -56,18 +56,19 @@ private fun StartupScreen(
     theme: Theme,
     dynamicColor: Boolean,
     onTheme: (Theme) -> Unit,
-    onDynamicColor: (Boolean) -> Unit
+    onDynamicColor: (Boolean) -> Unit,
 ) {
     AppGradientContainer(
         theme = theme,
-        dynamicColor = dynamicColor
+        dynamicColor = dynamicColor,
     ) {
         when (uiState) {
             StartupState.OnLoading -> LoadingScreen()
-            StartupState.OnStart -> RootNavGraph(
-                onTheme = onTheme,
-                onDynamicColor = onDynamicColor,
-            )
+            StartupState.OnStart ->
+                RootNavGraph(
+                    onTheme = onTheme,
+                    onDynamicColor = onDynamicColor,
+                )
         }
     }
 }
@@ -80,8 +81,12 @@ internal fun StartupScreenLoadingLightTheme() {
         uiState = StartupState.OnLoading,
         theme = Theme.LIGHT,
         dynamicColor = false,
-        onTheme = { /** unused **/ },
-        onDynamicColor = { /** unused **/ },
+        onTheme = {
+            /** unused **/
+        },
+        onDynamicColor = {
+            /** unused **/
+        },
     )
 }
 
@@ -93,7 +98,11 @@ internal fun StartupScreenLoadingDarkTheme() {
         uiState = StartupState.OnLoading,
         theme = Theme.DARK,
         dynamicColor = false,
-        onTheme = { /** unused **/ },
-        onDynamicColor = { /** unused **/ },
+        onTheme = {
+            /** unused **/
+        },
+        onDynamicColor = {
+            /** unused **/
+        },
     )
 }

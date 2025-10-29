@@ -16,21 +16,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.snapit.annotations.SnapIt
+
 @Composable
 fun SettingsIcon(
     modifier: Modifier = Modifier,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = modifier
-            .size(60.dp)
-            .padding(6.dp)
-            .clickable { onClick() }
-            .background(
-                Color.DarkGray.copy(alpha = 0.9f),
-                shape = RoundedCornerShape(50.dp)
-            )
+        modifier =
+            modifier
+                .size(60.dp)
+                .padding(6.dp)
+                .clickable { onClick() }
+                .background(
+                    Color.DarkGray.copy(alpha = 0.9f),
+                    shape = RoundedCornerShape(50.dp),
+                ),
     ) {
         Icon(
             imageVector = Icons.Default.Settings,
@@ -45,6 +47,6 @@ fun SettingsIcon(
 @SnapIt
 internal fun SettingsIconPreview() {
     SettingsIcon(
-        onClick = {}
+        onClick = {},
     )
 }

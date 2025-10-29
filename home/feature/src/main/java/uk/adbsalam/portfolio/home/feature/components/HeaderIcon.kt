@@ -30,20 +30,21 @@ internal fun HeaderIcon(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(
-            modifier = Modifier
-                .size(60.dp)
-                .padding(6.dp)
-                .clickable { onClick() }
-                .background(
-                    Color.DarkGray.copy(alpha = 0.9f),
-                    shape = RoundedCornerShape(50.dp)
-                )
+            modifier =
+                Modifier
+                    .size(60.dp)
+                    .padding(6.dp)
+                    .clickable { onClick() }
+                    .background(
+                        Color.DarkGray.copy(alpha = 0.9f),
+                        shape = RoundedCornerShape(50.dp),
+                    ),
         ) {
             Icon(
                 modifier = Modifier.align(Alignment.Center),
                 imageVector = icon,
                 tint = Color.White,
-                contentDescription = null
+                contentDescription = null,
             )
         }
 
@@ -57,6 +58,6 @@ internal fun HeaderIconPreview() {
     HeaderIcon(
         icon = Icons.Default.AcUnit,
         title = "Get Test",
-        onClick = {}
+        onClick = {},
     )
 }

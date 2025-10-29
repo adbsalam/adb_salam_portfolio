@@ -29,7 +29,8 @@ fun Home(
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
     navController: NavHostController,
-    viewModel: HomeViewModel = hiltViewModel()
+    viewModel: HomeViewModel = hiltViewModel(),
+    onScroll: (Int) -> Unit,
 ) {
     val uiState by viewModel.viewState.collectAsState()
 
@@ -39,7 +40,8 @@ fun Home(
         retry = viewModel::loadHomeItems,
         onDynamicColor = onDynamicColor,
         onTheme = onTheme,
-        navigateDeeplink = navController::navigateDeepLink
+        navigateDeeplink = navController::navigateDeepLink,
+        onScroll = onScroll,
     )
 }
 
@@ -56,19 +58,19 @@ internal fun Home(
     onDynamicColor: (Boolean) -> Unit,
     onTheme: (Theme) -> Unit,
     navigateDeeplink: (String) -> Unit,
+    onScroll: (Int) -> Unit,
 ) {
-
     when (uiState) {
         HomeScreenState.OnLoading ->
             LoadingLotti(
                 modifier = Modifier.fillMaxSize(),
-                msg = "Loading"
+                msg = "Loading",
             )
 
         is HomeScreenState.OnError -> {
             ErrorPage(
                 msg = uiState.errorMessage,
-                retry = retry
+                retry = retry,
             )
         }
 
@@ -78,7 +80,8 @@ internal fun Home(
                 onDynamicColor = onDynamicColor,
                 onTheme = onTheme,
                 currentTheme = currentTheme,
-                navigateDeeplink = navigateDeeplink
+                navigateDeeplink = navigateDeeplink,
+                onScroll = onScroll,
             )
         }
     }
@@ -95,7 +98,8 @@ internal fun HomePreviewLight() {
             retry = { /* unused */ },
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ },
-            navigateDeeplink = { /* unused */ }
+            navigateDeeplink = { /* unused */ },
+            onScroll = {},
         )
     }
 }
@@ -111,7 +115,8 @@ internal fun HomePreviewDark() {
             retry = { /* unused */ },
             onDynamicColor = { /* unused */ },
             onTheme = { /* unused */ },
-            navigateDeeplink = { /* unused */ }
+            navigateDeeplink = { /* unused */ },
+            onScroll = {},
         )
     }
 }

@@ -5,13 +5,17 @@ import android.content.SharedPreferences
 
 const val PREFS_NAME = "prefs"
 
-class PrefManager(private val context: Context) {
-
+class PrefManager(
+    private val context: Context,
+) {
     /**
      * @param key key to store/read prefs as
      * @param defaultValue default String value to retrieve in pref
      */
-    fun loadString(key: String, defaultValue: String = ""): String {
+    fun loadString(
+        key: String,
+        defaultValue: String = "",
+    ): String {
         val sharedPreferences = getWithFileName(context)
         return if (!sharedPreferences.contains(key)) {
             defaultValue
@@ -20,12 +24,14 @@ class PrefManager(private val context: Context) {
         }
     }
 
-
     /**
      * @param key key to store/read prefs as
      * @param defaultValue default Boolean value to retrieve in pref
      */
-    fun loadBoolean(key: String, defaultValue: Boolean = false): Boolean {
+    fun loadBoolean(
+        key: String,
+        defaultValue: Boolean = false,
+    ): Boolean {
         val sharedPreferences = getWithFileName(context)
         return if (!sharedPreferences.contains(key)) {
             defaultValue
@@ -41,22 +47,25 @@ class PrefManager(private val context: Context) {
     /**
      * String Pref File Name
      */
-    private fun getWithFileName(context: Context): SharedPreferences {
-        return context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-    }
+    private fun getWithFileName(context: Context): SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     /**
      * Save a string value to prefs
      */
-    fun saveString(key: String, value: String?) {
+    fun saveString(
+        key: String,
+        value: String?,
+    ) {
         getWithFileName(context).edit().putString(key, value).apply()
     }
 
     /**
      * Save a boolean value to prefs
      */
-    fun saveBoolean(key: String, value: Boolean) {
+    fun saveBoolean(
+        key: String,
+        value: Boolean,
+    ) {
         getWithFileName(context).edit().putBoolean(key, value).apply()
     }
-
 }

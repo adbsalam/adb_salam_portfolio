@@ -15,11 +15,12 @@ import kotlin.math.sin
 /**
  * Snowflake paint to be use as color and fill style
  */
-private val snowflakePaint = Paint().apply {
-    isAntiAlias = true
-    color = Color.White
-    style = PaintingStyle.Fill
-}
+private val snowflakePaint =
+    Paint().apply {
+        isAntiAlias = true
+        color = Color.White
+        style = PaintingStyle.Fill
+    }
 
 /**
  * @param incrementFactor incremental factor to setup snow flake speed
@@ -35,10 +36,11 @@ internal class Snowflake(
     private val size: Float,
     private val canvasSize: IntSize,
     position: Offset,
-    angle: Double
+    angle: Double,
 ) {
     private var position by mutableStateOf(position)
     private var angle by mutableStateOf(angle)
+
     fun update(elapsedMillis: Long) {
         val increment = (incrementFactor * elapsedMillis) / 2
         val xDelta = (increment * cos(angle)).toFloat()
