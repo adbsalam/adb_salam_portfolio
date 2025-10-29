@@ -52,5 +52,8 @@ dependencies {
     implementation(libs.youtube.player.seekbar)
     implementation(libs.hilt.navigation)
     implementation(libs.hilt.android)
+    implementation(libs.coil3)
+    implementation(libs.coil3.network)
+
     ksp(libs.hilt.compiler)
 }

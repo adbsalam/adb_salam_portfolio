@@ -24,11 +24,11 @@ import uk.adbsalam.portfolio.theming.PreviewLight
 internal fun StickyTabAnimationSlider(
     title: String,
     onDampingRatioChange: (Int) -> Unit,
-    onStiffnessChange: (Int) -> Unit
+    onStiffnessChange: (Int) -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxWidth().padding(all = 12.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(title, style = MaterialTheme.typography.titleSmall)
         Row(
@@ -89,6 +89,6 @@ private fun StickyTabAnimationSliderPreview() {
     StickyTabAnimationSlider(
         title = "Title",
         onStiffnessChange = {},
-        onDampingRatioChange = {}
+        onDampingRatioChange = {},
     )
 }

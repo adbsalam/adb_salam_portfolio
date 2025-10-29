@@ -28,7 +28,7 @@ fun Videos(viewModel: VideosViewModel = hiltViewModel()) {
         uiState = uiState,
         currentTheme = viewModel.currentTheme(),
         retry = viewModel::fetchVideos,
-        onSetAutoplay = viewModel::setAutoPlay
+        onInitialize = viewModel::onInitialised,
     )
 }
 
@@ -40,8 +40,8 @@ fun Videos(viewModel: VideosViewModel = hiltViewModel()) {
 private fun Videos(
     uiState: VideosState,
     currentTheme: Theme,
-    onSetAutoplay: (Boolean) -> Unit,
     retry: () -> Unit,
+    onInitialize: (Int) -> Unit,
 ) {
     when (uiState) {
         VideosState.OnLoading ->
@@ -61,8 +61,8 @@ private fun Videos(
             VideosScreen(
                 videos = uiState.videos,
                 currentTheme = currentTheme,
-                isAutoPlay = uiState.isAutoPlay,
-                onSetAutoplay = onSetAutoplay
+                isInitialized = { uiState.initializedItems.contains(it) },
+                onInitialized = onInitialize,
             )
         }
     }
@@ -74,10 +74,10 @@ private fun Videos(
 internal fun VideosPreviewLight() {
     Adb_Screen_Theme {
         Videos(
-            uiState = VideosState.OnVideos(VideoItems.createMock(), false),
+            uiState = VideosState.OnVideos(VideoItems.createMock(), emptyList()),
             currentTheme = Theme.LIGHT,
-            onSetAutoplay = {},
             retry = { /*unused*/ },
+            onInitialize = {},
         )
     }
 }
@@ -88,10 +88,10 @@ internal fun VideosPreviewLight() {
 internal fun VideosPreviewDark() {
     Adb_Screen_Theme(isDark = true) {
         Videos(
-            uiState = VideosState.OnVideos(VideoItems.createMock(), false),
+            uiState = VideosState.OnVideos(VideoItems.createMock(), emptyList()),
             currentTheme = Theme.DARK,
-            onSetAutoplay = {},
             retry = { /*unused*/ },
+            onInitialize = {},
         )
     }
 }
