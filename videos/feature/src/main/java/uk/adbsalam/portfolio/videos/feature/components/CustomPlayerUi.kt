@@ -77,13 +77,14 @@ internal class CustomPlayerUiController(
             PlayerState.PLAYING,
             PlayerState.PAUSED,
             PlayerState.VIDEO_CUED,
-                -> {
+            -> {
                 youTubePlayer.addListener(seekbar)
-                seekbar.youtubePlayerSeekBarListener = object : YouTubePlayerSeekBarListener {
-                    override fun seekTo(time: Float) {
-                        youTubePlayer.seekTo(time)
+                seekbar.youtubePlayerSeekBarListener =
+                    object : YouTubePlayerSeekBarListener {
+                        override fun seekTo(time: Float) {
+                            youTubePlayer.seekTo(time)
+                        }
                     }
-                }
 
                 progressbar.visibility = View.GONE
                 panel.setBackgroundColor(
@@ -110,24 +111,25 @@ internal class CustomPlayerUiController(
     fun setOnClick(videoId: String) {
         composeView.setContent {
             Row(
-                modifier = Modifier.clickable(
-                    onClick = {
-                        val url = "https://www.youtube.com/watch?v=$videoId"
-                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                        context.startActivity(intent)
-                    }
-                ),
-                verticalAlignment = Alignment.CenterVertically
+                modifier =
+                    Modifier.clickable(
+                        onClick = {
+                            val url = "https://www.youtube.com/watch?v=$videoId"
+                            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                            context.startActivity(intent)
+                        },
+                    ),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text("watch on ", fontSize = 16.sp, color = Color.White, fontWeight = FontWeight.Bold)
                 Image(
-                    modifier = Modifier
-                        .size(32.dp),
+                    modifier =
+                        Modifier
+                            .size(32.dp),
                     painter = painterResource(uk.adbsalam.portfolio.components.R.drawable.ic_youtube),
-                    contentDescription = null
+                    contentDescription = null,
                 )
             }
-
         }
     }
 

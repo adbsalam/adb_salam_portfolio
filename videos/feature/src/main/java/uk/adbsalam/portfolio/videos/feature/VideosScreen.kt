@@ -8,7 +8,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,7 +20,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -56,12 +54,11 @@ import uk.adbsalam.snapit.annotations.SnapIt
 internal fun VideosScreen(
     videos: VideoItems,
     currentTheme: Theme,
-    isAutoPlay: Boolean,
-    onSetAutoplay: (Boolean) -> Unit
+    isInitialized: (Int) -> Boolean,
+    onInitialized: (Int) -> Unit,
 ) {
     val context = LocalContext.current
     val scrollState = rememberLazyListState()
-
 
     LazyColumn(
         state = scrollState,
@@ -71,7 +68,7 @@ internal fun VideosScreen(
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background),
     ) {
-        item {
+        item(key = "header") {
             Column(
                 modifier =
                     Modifier
@@ -116,28 +113,15 @@ internal fun VideosScreen(
                             },
                 )
             }
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End,
-                verticalAlignment = Alignment.CenterVertically
-
-            ) {
-                Text(
-                    text = "Autoplay",
-                    style = MaterialTheme.typography.titleMedium
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Switch(
-                    checked = isAutoPlay,
-                    onCheckedChange = { onSetAutoplay(it) }
-                )
-            }
         }
 
-        videos.videos.forEach { item ->
-            item {
-                VideoCard(videoData = item, autoPlay = isAutoPlay)
+        videos.videos.forEachIndexed { index, item ->
+            item(key = index) {
+                VideoCard(
+                    videoData = item,
+                    isInitialized = isInitialized(index),
+                    onInitialized = { onInitialized(index) },
+                )
                 Spacer(modifier = Modifier.height(16.dp))
             }
         }
@@ -152,8 +136,8 @@ internal fun VideosScreenPreviewLight() {
         VideosScreen(
             videos = VideoItems.createMock(),
             currentTheme = LIGHT,
-            isAutoPlay = true,
-            onSetAutoplay = {}
+            isInitialized = { false },
+            onInitialized = {},
         )
     }
 }
@@ -166,8 +150,8 @@ internal fun VideosScreenPreviewDark() {
         VideosScreen(
             videos = VideoItems.createMock(),
             currentTheme = DARK,
-            isAutoPlay = true,
-            onSetAutoplay = {}
+            isInitialized = { false },
+            onInitialized = {},
         )
     }
 }

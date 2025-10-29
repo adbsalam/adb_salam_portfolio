@@ -2,6 +2,7 @@ package uk.adbsalam.portfolio.videos.feature.components
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
@@ -57,6 +58,11 @@ internal fun VideoPlayerView(
             view
         },
     )
+    DisposableEffect(null) {
+        onDispose {
+            view.release()
+        }
+    }
 }
 
 private fun iFrameOptions(context: Context): IFramePlayerOptions =

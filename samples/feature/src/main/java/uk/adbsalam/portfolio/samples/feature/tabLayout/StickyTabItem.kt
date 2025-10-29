@@ -29,15 +29,13 @@ internal fun StickyTabItem(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = null,
                     onClick = { onClick() },
-                )
-                .onSizeChanged { size ->
+                ).onSizeChanged { size ->
                     val sizeInDp =
                         with(density) {
                             DpSize(size.width.toDp(), size.height.toDp())
                         }
                     onSizeChanged(sizeInDp)
-                }
-                .padding(horizontal = 16.dp, vertical = 12.dp),
+                }.padding(horizontal = 16.dp, vertical = 12.dp),
     ) {
         Text(text = title, style = MaterialTheme.typography.bodyMedium)
     }

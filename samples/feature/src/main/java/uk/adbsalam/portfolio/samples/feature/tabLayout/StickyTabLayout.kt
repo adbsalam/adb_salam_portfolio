@@ -65,7 +65,7 @@ fun StickyTabLayout() {
         StickyTabLayoutSample(
             modifier = Modifier.fillMaxWidth(),
             style = StickyTabStyle.Simple,
-            animationState = animationState
+            animationState = animationState,
         )
 
         Text(
@@ -80,7 +80,7 @@ fun StickyTabLayout() {
                     .background(MaterialTheme.colorScheme.onBackground.copy(alpha = 0.2f))
                     .padding(vertical = 8.dp),
             style = StickyTabStyle.Card,
-            animationState = animationState
+            animationState = animationState,
         )
 
         StickyTabAnimationSlider(
@@ -90,7 +90,7 @@ fun StickyTabLayout() {
             },
             onStiffnessChange = {
                 animationState = animationState.copy(offsetAnimationStiffness = it)
-            }
+            },
         )
 
         StickyTabAnimationSlider(
@@ -100,7 +100,7 @@ fun StickyTabLayout() {
             },
             onStiffnessChange = {
                 animationState = animationState.copy(widthAnimationStiffness = it)
-            }
+            },
         )
     }
 }
@@ -109,7 +109,7 @@ fun StickyTabLayout() {
 private fun StickyTabLayoutSample(
     modifier: Modifier,
     style: StickyTabStyle,
-    animationState: TabIndicatorAnimationState
+    animationState: TabIndicatorAnimationState,
 ) {
     val sizeHashMap = remember { mutableStateMapOf<Int, DpSize>() }
     val listState = rememberLazyListState()
@@ -209,7 +209,7 @@ private fun StickyTabLayoutSample(
         LazyRow(
             modifier = modifier,
             state = listState,
-            contentPadding = PaddingValues(horizontal = StickyTabContentPaddingHorizontal)
+            contentPadding = PaddingValues(horizontal = StickyTabContentPaddingHorizontal),
         ) {
             tabItems.forEachIndexed { index, item ->
                 item(key = index) {

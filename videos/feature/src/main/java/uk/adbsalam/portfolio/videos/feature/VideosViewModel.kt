@@ -14,47 +14,53 @@ import javax.inject.Inject
 
 @HiltViewModel
 class VideosViewModel
-@Inject
-constructor(
-    private val themePrefs: AppSharedPrefManager.ThemePrefs,
-    private val videosRepo: VideosRepo,
-    private val videoSharedPrefManager: AppSharedPrefManager.VideosPref
-) : ViewModel() {
-    private val _viewState = MutableStateFlow<VideosState>(VideosState.OnLoading)
-    internal val viewState = _viewState.asStateFlow()
+    @Inject
+    constructor(
+        private val themePrefs: AppSharedPrefManager.ThemePrefs,
+        private val videosRepo: VideosRepo,
+    ) : ViewModel() {
+        private val _viewState = MutableStateFlow<VideosState>(VideosState.OnLoading)
+        internal val viewState = _viewState.asStateFlow()
 
-    /**
-     * Fetch data on init View Model
-     */
-    init {
-        fetchVideos()
-    }
+        /**
+         * Fetch data on init View Model
+         */
+        init {
+            fetchVideos()
+        }
 
-    internal fun fetchVideos() {
-        _viewState.value = VideosState.OnLoading
+        internal fun fetchVideos() {
+            _viewState.value = VideosState.OnLoading
 
-        viewModelScope.launch {
-            when (val result = videosRepo.videos()) {
-                is Response.Failure -> {
-                    _viewState.value =
-                        VideosState.OnError("something went wrong, please try again")
-                }
+            viewModelScope.launch {
+                when (val result = videosRepo.videos()) {
+                    is Response.Failure -> {
+                        _viewState.value =
+                            VideosState.OnError("something went wrong, please try again")
+                    }
 
-                is Response.Success -> {
-                    _viewState.value =
-                        VideosState.OnVideos(result.data, videoSharedPrefManager.videoAutoPlay())
+                    is Response.Success -> {
+                        _viewState.value =
+                            VideosState.OnVideos(
+                                result.data,
+                                listOf(),
+                            )
+                    }
                 }
             }
         }
-    }
 
-    fun setAutoPlay(flag: Boolean) {
-        _viewState.value = (_viewState.value as VideosState.OnVideos).copy(isAutoPlay = flag)
-        videoSharedPrefManager.setVideoAutoPlay(flag)
-    }
+        fun onInitialised(index: Int) {
+            val initialisedList =
+                (_viewState.value as VideosState.OnVideos).initializedItems.toMutableList()
+            if (!initialisedList.contains(index)) {
+                initialisedList.add(index)
+                _viewState.value = (_viewState.value as VideosState.OnVideos).copy(initializedItems = initialisedList.toList())
+            }
+        }
 
-    /**
-     * get current theme app us using from prefs
-     */
-    internal fun currentTheme(): Theme = themePrefs.theme()
-}
+        /**
+         * get current theme app us using from prefs
+         */
+        internal fun currentTheme(): Theme = themePrefs.theme()
+    }
