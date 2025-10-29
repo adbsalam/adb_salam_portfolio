@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -31,9 +32,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
-import uk.adbsalam.portfolio.components.R.drawable.ic_logo_main
 import uk.adbsalam.portfolio.components.R.drawable.ic_youtube_dark
 import uk.adbsalam.portfolio.components.R.drawable.ic_youtube_light
+import uk.adbsalam.portfolio.components.R.drawable.logo_small
 import uk.adbsalam.portfolio.theming.PreviewDark
 import uk.adbsalam.portfolio.theming.PreviewLight
 import uk.adbsalam.portfolio.theming.appbackground.Adb_Screen_Theme
@@ -73,12 +74,12 @@ internal fun VideosScreen(
                 modifier =
                     Modifier
                         .fillMaxWidth()
-                        .height(200.dp)
+                        .wrapContentHeight()
                         .statusBarsPadding(),
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Image(
-                    painter = painterResource(id = ic_logo_main),
+                    painter = painterResource(id = logo_small),
                     contentDescription = null,
                     contentScale = ContentScale.FillBounds,
                     modifier =
@@ -103,7 +104,7 @@ internal fun VideosScreen(
                     modifier =
                         Modifier
                             .width(100.dp)
-                            .height(80.dp)
+                            .height(60.dp)
                             .clip(RoundedCornerShape(20.dp))
                             .clickable {
                                 val url =

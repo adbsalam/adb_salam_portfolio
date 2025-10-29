@@ -106,7 +106,7 @@ fun HomeNavHost(
                         ) {
                             Image(
                                 modifier = Modifier.size(40.dp),
-                                painter = painterResource(uk.adbsalam.portfolio.components.R.drawable.ic_logo_main),
+                                painter = painterResource(uk.adbsalam.portfolio.components.R.drawable.logo_small),
                                 contentDescription = null,
                             )
                         }

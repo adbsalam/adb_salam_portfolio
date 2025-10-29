@@ -41,7 +41,7 @@ internal fun AdbImagePreview() {
 fun AdbMainLogo(modifier: Modifier = Modifier) {
     AdbImage(
         modifier = modifier,
-        resourceId = R.drawable.ic_logo_main,
+        resourceId = R.drawable.logo_small,
     )
 }
 
